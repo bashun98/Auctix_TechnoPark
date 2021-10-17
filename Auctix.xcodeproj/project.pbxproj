@@ -16,6 +16,12 @@
 		FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80782714B225005185D6 /* AuctixTests.swift */; };
 		FC1C80832714B225005185D6 /* AuctixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80822714B225005185D6 /* AuctixUITests.swift */; };
 		FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */; };
+		FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */; };
+		FC5EB4C1271B39BE000EA4C1 /* Nunito in Resources */ = {isa = PBXBuildFile; fileRef = FC5EB4C0271B39BD000EA4C1 /* Nunito */; };
+		FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */; };
+		FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */; };
+		FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */; };
+		FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		FC1C807E2714B225005185D6 /* AuctixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuctixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80822714B225005185D6 /* AuctixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITests.swift; sourceTree = "<group>"; };
 		FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
+		FC5EB4C0271B39BD000EA4C1 /* Nunito */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Nunito; path = ../../../../Downloads/Nunito; sourceTree = "<group>"; };
+		FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionCell.swift; sourceTree = "<group>"; };
+		FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibition.swift; sourceTree = "<group>"; };
+		FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionManager.swift; sourceTree = "<group>"; };
+		FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +111,19 @@
 		FC1C80602714B223005185D6 /* Auctix */ = {
 			isa = PBXGroup;
 			children = (
+				FC5EB4BF271B395E000EA4C1 /* Fonts */,
 				FC1C80612714B223005185D6 /* AppDelegate.swift */,
 				FC1C80632714B223005185D6 /* SceneDelegate.swift */,
 				FC1C80652714B223005185D6 /* ViewController.swift */,
 				FC1C80672714B223005185D6 /* Main.storyboard */,
 				FC1C806A2714B225005185D6 /* Assets.xcassets */,
 				FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */,
+				FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */,
 				FC1C806F2714B225005185D6 /* Info.plist */,
+				FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */,
+				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
+				FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */,
+				FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */,
 			);
 			path = Auctix;
 			sourceTree = "<group>";
@@ -125,6 +143,14 @@
 				FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */,
 			);
 			path = AuctixUITests;
+			sourceTree = "<group>";
+		};
+		FC5EB4BF271B395E000EA4C1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FC5EB4C0271B39BD000EA4C1 /* Nunito */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +260,7 @@
 				FC1C806E2714B225005185D6 /* LaunchScreen.storyboard in Resources */,
 				FC1C806B2714B225005185D6 /* Assets.xcassets in Resources */,
 				FC1C80692714B223005185D6 /* Main.storyboard in Resources */,
+				FC5EB4C1271B39BE000EA4C1 /* Nunito in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +286,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1C80662714B223005185D6 /* ViewController.swift in Sources */,
+				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
+				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
+				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
 				FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */,
+				FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */,
 				FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */,
+				FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
