@@ -22,6 +22,11 @@
 		FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */; };
 		FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */; };
 		FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */; };
+		FCFCE7CF271DD02700A59AA0 /* AccountButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */; };
+		FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */; };
+		FCFCE7D5271DE3EC00A59AA0 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D4271DE3EC00A59AA0 /* TabBarVC.swift */; };
+		FCFCE7D9271EB94300A59AA0 /* ListButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */; };
+		FCFCE7DB271EB9DC00A59AA0 /* BidButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +66,11 @@
 		FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibition.swift; sourceTree = "<group>"; };
 		FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionManager.swift; sourceTree = "<group>"; };
 		FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
+		FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonTabViewController.swift; sourceTree = "<group>"; };
+		FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		FCFCE7D4271DE3EC00A59AA0 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonViewController.swift; sourceTree = "<group>"; };
+		FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidButtonTabViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +124,12 @@
 				FC5EB4BF271B395E000EA4C1 /* Fonts */,
 				FC1C80612714B223005185D6 /* AppDelegate.swift */,
 				FC1C80632714B223005185D6 /* SceneDelegate.swift */,
+				FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */,
+				FCFCE7D4271DE3EC00A59AA0 /* TabBarVC.swift */,
 				FC1C80652714B223005185D6 /* ViewController.swift */,
+				FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */,
+				FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */,
+				FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */,
 				FC1C80672714B223005185D6 /* Main.storyboard */,
 				FC1C806A2714B225005185D6 /* Assets.xcassets */,
 				FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */,
@@ -285,13 +300,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCFCE7CF271DD02700A59AA0 /* AccountButtonTabViewController.swift in Sources */,
 				FC1C80662714B223005185D6 /* ViewController.swift in Sources */,
+				FCFCE7D9271EB94300A59AA0 /* ListButtonViewController.swift in Sources */,
+				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
 				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
 				FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */,
 				FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */,
 				FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */,
+				FCFCE7D5271DE3EC00A59AA0 /* TabBarVC.swift in Sources */,
+				FCFCE7DB271EB9DC00A59AA0 /* BidButtonTabViewController.swift in Sources */,
 				FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

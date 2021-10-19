@@ -7,29 +7,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeButtonTabViewController: UIViewController {
     
+    let imageIconSearch = UIImageView()
+    let imageIconDelete = UIImageView()
     let logoLabel1 = UILabel()
     let logoLabel2 = UILabel()
     let nameLabel = UILabel()
-    let searchBar = UISearchBar()
-    //let exhibitions_table = UICollectionView()
-    let navigatorBar = UITabBar()
-
+    let searchTextField = UITextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.selectedIndex = 1  //  отвечает за то, чтобы при активации показывался домашний экран (возможно)
         setupLabel()
-        setupSearchBar()
         setupCollectionView()
-        setupTabBar()
 
+        setupTextField()
         view.addSubview(logoLabel1)
         view.addSubview(logoLabel2)
         view.addSubview(nameLabel)
-        view.addSubview(searchBar)
-        //view.addSubview(exhibitions_table)
-        view.addSubview(navigatorBar)
+        view.addSubview(searchTextField)
+  
     }
     
     override func viewWillLayoutSubviews() {
@@ -60,29 +59,49 @@ class ViewController: UIViewController {
         
     }
     
-    func setupSearchBar(){
+
+    
+    
+    //настройка строки поиска
+    
+    func setupTextField() {
         
-        searchBar.placeholder = "Search..."
-        searchBar.backgroundColor = .systemGray
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        //картинка поиска
+        
+        imageIconSearch.image = UIImage(named: "Search")
+        
+        let contentViewSearch = UIView()
+        contentViewSearch.addSubview(imageIconSearch)
+        contentViewSearch.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        imageIconSearch.frame = CGRect(x: 2, y: 0, width: 30, height: 30)
+        searchTextField.leftView = contentViewSearch
+        searchTextField.leftViewMode = .always
+        
+        //картнка стереть
+        
+        searchTextField.clearButtonMode = .whileEditing
+        
+        searchTextField.font = .systemFont(ofSize: 20)
+        searchTextField.placeholder = "Search..."
+        searchTextField.layer.cornerRadius = 15
+        searchTextField.layer.backgroundColor = UIColor(red: 0.871, green: 0.937, blue: 0.973, alpha: 0.5).cgColor
+        
+        
+        
+        searchTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+       
+        
     }
+   
+    
     
     func setupCollectionView(){
         //exhibitions_table.backgroundColor = .red
         //exhibitions_table.largeContentTitle = "New"
         //сюда делекатов
     }
-    
-    func setupTabBar(){
-        navigatorBar.backgroundColor = .red
-        navigatorBar.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    func setupImgView(){
-        
 
-        
-    }
     
     func setupLayuot(){
         NSLayoutConstraint.activate([
@@ -94,31 +113,15 @@ class ViewController: UIViewController {
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 25),
             nameLabel.bottomAnchor.constraint(equalTo: logoLabel1.bottomAnchor, constant: 30),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            searchBar.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 70),
-            //exhibitions_table.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            //exhibitions_table.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 25),
-            //exhibitions_table.bottomAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 30),
-            //exhibitions_table.heightAnchor.constraint(equalTo: view.heightAnchor, constant: 150),
-            //exhibitions_table.topAnchor.constraint(equalTo: searchBar.topAnchor, constant: 10),
-            //navigatorBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            navigatorBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            navigatorBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            navigatorBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20),
-            
-           
-            
-//            contentLogoImg.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-//            contentLogoImg.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-//            contentLogoImg.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 12),
-
-            
-            
+            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            searchTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 50),
+            searchTextField.heightAnchor.constraint(equalTo: nameLabel.heightAnchor, constant: 40),
+            searchTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 40),
 
         ])
     }
-    
    
+
 }
 
