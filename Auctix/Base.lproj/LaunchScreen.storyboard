@@ -28,31 +28,39 @@
                                     <constraint firstAttribute="height" constant="300" id="XNP-Cy-tui"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FUJ-ud-RVt">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUJ-ud-RVt">
                                 <rect key="frame" x="85" y="518" width="202" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdi-KZ-bNZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdi-KZ-bNZ">
                                         <rect key="frame" x="4" y="1" width="41" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="41" id="oVf-Vu-49U"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="55"/>
                                         <color key="textColor" red="1" green="0.76621277590286674" blue="0.27689847393781286" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UCTIX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dr-VM-Ivl">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="UCTIX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dr-VM-Ivl">
                                         <rect key="frame" x="31" y="-3" width="176" height="57"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="55"/>
                                         <color key="textColor" red="0.44022848001333753" green="0.82746428579036824" blue="0.87058818339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Bdi-KZ-bNZ" firstAttribute="top" secondItem="FUJ-ud-RVt" secondAttribute="top" constant="1" id="35s-If-9VF"/>
+                                    <constraint firstItem="Bdi-KZ-bNZ" firstAttribute="centerY" secondItem="FUJ-ud-RVt" secondAttribute="centerY" id="OgE-u5-Hqy"/>
+                                    <constraint firstItem="Bdi-KZ-bNZ" firstAttribute="leading" secondItem="FUJ-ud-RVt" secondAttribute="leading" constant="4" id="hH4-cH-DrF"/>
+                                    <constraint firstItem="Bdi-KZ-bNZ" firstAttribute="centerY" secondItem="7dr-VM-Ivl" secondAttribute="centerY" id="kZa-BB-oZ9"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wal-PD-s6g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="DPC-Lk-NB1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FUJ-ud-RVt" secondAttribute="bottom" constant="294" id="ITu-qg-TOg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FUJ-ud-RVt" secondAttribute="trailing" constant="127" id="Usq-Dv-sWZ"/>
                             <constraint firstItem="FUJ-ud-RVt" firstAttribute="top" secondItem="wal-PD-s6g" secondAttribute="bottom" constant="74" id="WaI-5G-9lZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wal-PD-s6g" secondAttribute="trailing" constant="57" id="dpr-2X-g8q"/>
