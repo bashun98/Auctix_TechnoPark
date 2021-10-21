@@ -24,7 +24,6 @@
 		FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */; };
 		FCFCE7CF271DD02700A59AA0 /* AccountButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */; };
 		FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */; };
-		FCFCE7D5271DE3EC00A59AA0 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D4271DE3EC00A59AA0 /* TabBarVC.swift */; };
 		FCFCE7D9271EB94300A59AA0 /* ListButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */; };
 		FCFCE7DB271EB9DC00A59AA0 /* BidButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */; };
 /* End PBXBuildFile section */
@@ -68,7 +67,6 @@
 		FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonTabViewController.swift; sourceTree = "<group>"; };
 		FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		FCFCE7D4271DE3EC00A59AA0 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonViewController.swift; sourceTree = "<group>"; };
 		FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidButtonTabViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,24 +119,21 @@
 		FC1C80602714B223005185D6 /* Auctix */ = {
 			isa = PBXGroup;
 			children = (
+				FCFCE7E42721F03900A59AA0 /* TabBar */,
+				FCFCE7E32721F01700A59AA0 /* ExhibitionCell */,
+				FCFCE7E22721F00500A59AA0 /* Color */,
+				FCFCE7E12721EFE400A59AA0 /* List */,
+				FCFCE7E02721EFD300A59AA0 /* Bid */,
+				FCFCE7DF2721EFC700A59AA0 /* Account */,
+				FCFCE7DE2721EFB500A59AA0 /* Home */,
 				FC5EB4BF271B395E000EA4C1 /* Fonts */,
 				FC1C80612714B223005185D6 /* AppDelegate.swift */,
 				FC1C80632714B223005185D6 /* SceneDelegate.swift */,
-				FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */,
-				FCFCE7D4271DE3EC00A59AA0 /* TabBarVC.swift */,
-				FC1C80652714B223005185D6 /* ViewController.swift */,
-				FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */,
-				FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */,
-				FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */,
 				FC1C80672714B223005185D6 /* Main.storyboard */,
 				FC1C806A2714B225005185D6 /* Assets.xcassets */,
 				FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */,
 				FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */,
 				FC1C806F2714B225005185D6 /* Info.plist */,
-				FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */,
-				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
-				FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */,
-				FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */,
 			);
 			path = Auctix;
 			sourceTree = "<group>";
@@ -166,6 +161,64 @@
 				FC5EB4C0271B39BD000EA4C1 /* Nunito */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FCFCE7DE2721EFB500A59AA0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FC1C80652714B223005185D6 /* ViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FCFCE7DF2721EFC700A59AA0 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		FCFCE7E02721EFD300A59AA0 /* Bid */ = {
+			isa = PBXGroup;
+			children = (
+				FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */,
+			);
+			path = Bid;
+			sourceTree = "<group>";
+		};
+		FCFCE7E12721EFE400A59AA0 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		FCFCE7E22721F00500A59AA0 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		FCFCE7E32721F01700A59AA0 /* ExhibitionCell */ = {
+			isa = PBXGroup;
+			children = (
+				FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */,
+				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
+				FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */,
+			);
+			path = ExhibitionCell;
+			sourceTree = "<group>";
+		};
+		FCFCE7E42721F03900A59AA0 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +363,6 @@
 				FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */,
 				FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */,
 				FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */,
-				FCFCE7D5271DE3EC00A59AA0 /* TabBarVC.swift in Sources */,
 				FCFCE7DB271EB9DC00A59AA0 /* BidButtonTabViewController.swift in Sources */,
 				FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */,
 			);

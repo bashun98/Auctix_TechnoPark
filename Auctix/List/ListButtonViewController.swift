@@ -13,7 +13,7 @@ class ListButtonTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.selectedIndex = 2
+        
         
         //self.tabBarItem.largeContentSizeImage = CGSize(width: 35, height: 35)
         navigationController?.navigationBar.isHidden = true

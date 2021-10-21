@@ -12,7 +12,7 @@ class AccountButtonTabViewController: UIViewController {
     let label = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.selectedIndex = 4
+        
         navigationController?.navigationBar.isHidden = true
         label.text = "Acc"
         label.backgroundColor = .red

@@ -19,14 +19,7 @@ class HomeButtonTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.selectedIndex = 1  //  отвечает за то, чтобы при активации показывался домашний экран (возможно)
-        
-//        title = "Auctix"
-//        
-//        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.honeyYellow, .font: CGSize(width: 200, height: 72)]
-        navigationController?.navigationBar.isHidden = true
-        //self.tabBarItem.
-        
+        setupNavBar()
         setupLabel()
         setupCollectionView()
 
@@ -109,6 +102,11 @@ class HomeButtonTabViewController: UIViewController {
         //сюда делекатов
     }
 
+    func setupNavBar() {
+        
+        navigationController?.navigationBar.isHidden = true
+
+    }
     
     func setupLayuot(){
         NSLayoutConstraint.activate([
