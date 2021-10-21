@@ -13,7 +13,7 @@ class BidButtonTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.selectedIndex = 3
-        //self.title = "Bid"
+        navigationController?.navigationBar.isHidden = true
         label.text = "Bid"
         label.backgroundColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false

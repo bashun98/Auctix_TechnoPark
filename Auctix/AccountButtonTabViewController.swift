@@ -13,7 +13,7 @@ class AccountButtonTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.selectedIndex = 4
-        //self.title = "Acc"
+        navigationController?.navigationBar.isHidden = true
         label.text = "Acc"
         label.backgroundColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false

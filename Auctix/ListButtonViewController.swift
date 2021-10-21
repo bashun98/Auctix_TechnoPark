@@ -14,8 +14,9 @@ class ListButtonTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.selectedIndex = 2
-        //self.title = "List"
         
+        //self.tabBarItem.largeContentSizeImage = CGSize(width: 35, height: 35)
+        navigationController?.navigationBar.isHidden = true
         label.text = "List"
         label.backgroundColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false

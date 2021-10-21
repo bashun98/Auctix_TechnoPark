@@ -10,10 +10,10 @@ import UIKit
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     
-    private let listView = ListButtonTabViewController()
-    private let homeView = HomeButtonTabViewController()
-    private let accView = AccountButtonTabViewController()
-    private let bidView = BidButtonTabViewController()
+    private let listVC = UINavigationController(rootViewController: ListButtonTabViewController())
+    private let homeVC = UINavigationController(rootViewController: HomeButtonTabViewController())
+    private let accVC = UINavigationController(rootViewController: AccountButtonTabViewController())
+    private let bidVC = UINavigationController(rootViewController: BidButtonTabViewController())
     required init?(coder: NSCoder) {
         super .init(coder: coder)
     }
@@ -21,11 +21,16 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     //let navigationBar = UITabBar()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setViewControllers([homeView, listView, bidView, accView], animated: true)
+        
         view.backgroundColor = .white
         
+        
+        
+        //self.tabBar.bounds.size.height = 300
+        self.setViewControllers([homeVC, listVC, bidVC, accVC], animated: true)
+       
         self.delegate = self
-        self.selectedIndex = 5
+        self.selectedIndex = 0
        
         setupMiddleButton()
 
@@ -36,56 +41,44 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     func setupMiddleButton(){
         //домашняя кнопка
         
-        let homeButton = UIButton(frame: CGRect(x: (self.view.bounds.width / 4) - 80, y: 0, width: 45, height: 45))
-        homeButton.setBackgroundImage(UIImage(named: "HomeTabBar"), for: .normal)
-        self.tabBar.addSubview(homeButton)
-        homeButton.addTarget(self, action: #selector(homeButtonAction), for: .touchUpInside)
-        self.view.layoutIfNeeded()
+        homeVC.title = "Home"
+        homeVC.tabBarItem.image = UIImage(named: "HomeTabBar")
+        
         
         //кнопка списка
-        
-        let listButton = UIButton(frame: CGRect(x: (self.view.bounds.width / 4)+20, y: 0, width: 50, height: 50))
-        listButton.setBackgroundImage(UIImage(named: "ListTabBar"), for: .normal)
-        self.tabBar.addSubview(listButton)
-        listButton.addTarget(self, action: #selector(listButtonAction), for: .touchUpInside)
-        self.view.layoutIfNeeded()
+
+        listVC.title = "List"
+        listVC.tabBarItem.image = UIImage(named: "ListTabBar")
         
         //кнопка торгов
-        
-        let bidButton = UIButton(frame: CGRect(x: (self.view.bounds.width / 4) + 120, y: 0, width: 45, height: 45))
-        bidButton.setBackgroundImage(UIImage(named: "BidTabBar"), for: .normal)
-        self.tabBar.addSubview(bidButton)
-        bidButton.addTarget(self, action: #selector(bidButtonAction), for: .touchUpInside)
-        self.view.layoutIfNeeded()
-        
+
+        bidVC.title = "Bid"
+        bidVC.tabBarItem.image = UIImage(named: "BidTabBar")
+
         //кнопка аккаунта
         
-        let accButton = UIButton(frame: CGRect(x: (self.view.bounds.width / 4)+220, y: 0, width: 45, height: 45))
-        accButton.setBackgroundImage(UIImage(named: "AccTabBar"), for: .normal)
-//        accButton.titleLabel = UILabel()
-        self.tabBar.addSubview(accButton)
-        accButton.addTarget(self, action: #selector(accButtonAction), for: .touchUpInside)
-        self.view.layoutIfNeeded()
+        accVC.title = "Acc"
+        accVC.tabBarItem.image = UIImage(named: "AccTabBar")
         
     }
     
-    
-    @objc
-    func homeButtonAction(sender: UIButton){
-        self.selectedViewController = homeView
-    }
-    @objc
-    func listButtonAction(sender: UIButton){
-        self.selectedViewController = listView
-    }
-    @objc
-    func bidButtonAction(sender: UIButton){
-        self.selectedViewController = bidView
-    }
-    @objc
-    func accButtonAction(sender: UIButton){
-        self.selectedViewController = accView
-    }
-    
+//    
+//    @objc
+//    func homeButtonAction(sender: UIButton){
+//        self.selectedViewController = homeVC
+//    }
+//    @objc
+//    func listButtonAction(sender: UIButton){
+//        self.selectedViewController = listVC
+//    }
+//    @objc
+//    func bidButtonAction(sender: UIButton){
+//        self.selectedViewController = bidVC
+//    }
+//    @objc
+//    func accButtonAction(sender: UIButton){
+//        self.selectedViewController = accVC
+//    }
+//    
 
 }
