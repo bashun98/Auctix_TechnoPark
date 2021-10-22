@@ -5,7 +5,7 @@
 //  Created by Михаил Шаговитов on 16.10.2021.
 //
 
-import UIKit
+import UIKit.UIImage
 
 struct Exhibition{
     
