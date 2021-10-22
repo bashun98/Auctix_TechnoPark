@@ -7,20 +7,18 @@
 
 import UIKit
 
-class HomeButtonTabViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeButtonTabViewController: UIViewController {
     
-
-    
-    
-    let imageIconSearch = UIImageView()
-    let imageIconDelete = UIImageView()
-    let logoLabel1 = UILabel()
-    let logoLabel2 = UILabel()
-    let nameLabel = UILabel()
-    let searchTextField = UITextField()
+    private let imageIconSearch = UIImageView()
+    private let imageIconDelete = UIImageView()
+    private let logoLabel1 = UILabel()
+    private let logoLabel2 = UILabel()
+    private let nameLabel = UILabel()
+    private let searchTextField = UITextField()
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return UICollectionView(frame: .init(), collectionViewLayout: layout)
     }()
     
@@ -121,20 +119,9 @@ class HomeButtonTabViewController: UIViewController, UICollectionViewDelegate, U
 //        collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datasource.count
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.reuseID, for: indexPath) as? ExhibitionCell else {
-            return .init()
-        }
-        let exhibition = datasource[indexPath.row]
-        cell.configure(with: exhibition)
-//        cell.update(title: exhibition.title, image: exhibition.titleImg, opis: exhibition.text_opis)
-       
-        return cell
-    }
+    
+    
     
 
     func setupNavBar() {
@@ -152,17 +139,17 @@ class HomeButtonTabViewController: UIViewController, UICollectionViewDelegate, U
             logoLabel2.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 25),
-            nameLabel.bottomAnchor.constraint(equalTo: logoLabel1.bottomAnchor, constant: 30),
+            nameLabel.topAnchor.constraint(equalTo: logoLabel1.bottomAnchor, constant: 15),
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            searchTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 50),
+            searchTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 15),
             searchTextField.heightAnchor.constraint(equalTo: nameLabel.heightAnchor, constant: 40),
-            searchTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 40),
+            //searchTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 40),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
             
-            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: 400),
-            //collectionNew.topAnchor.constraint(equalTo: self.tabBarController.topAnchor, constant: 40),
+            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: 200),
+            //collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
 
         ])
     }
@@ -170,3 +157,21 @@ class HomeButtonTabViewController: UIViewController, UICollectionViewDelegate, U
 
 }
 
+extension HomeButtonTabViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.reuseID, for: indexPath) as? ExhibitionCell else {
+            return .init()
+        }
+        let exhibition = datasource[indexPath.row]
+        cell.configure(with: exhibition)
+//        cell.update(title: exhibition.title, image: exhibition.titleImg, opis: exhibition.text_opis)
+   
+        return cell
+    }
+}
+extension HomeButtonTabViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return datasource.count
+    }
+  
+}

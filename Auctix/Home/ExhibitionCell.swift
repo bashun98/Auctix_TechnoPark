@@ -13,11 +13,11 @@ class ExhibitionCell: UICollectionViewCell {
     static let reuseID = String(describing: ExhibitionCell.self)
     static let nib = UINib(nibName: String(describing: ExhibitionCell.self), bundle: nil)
     
-    let title1 = UILabel()
-    let text_opis1 = UILabel()
+    private let title1 = UILabel()
+    private let text_opis1 = UILabel()
     
-    let titleViewImg1 = UIImageView()
-    let botton = UIButton()
+    private let titleViewImg1 = UIImageView()
+    private let botton = UIButton()
 
 //    required init?(coder: NSCoder) {
 //        super .init(coder: coder)
@@ -39,10 +39,10 @@ class ExhibitionCell: UICollectionViewCell {
     
     }
     
-    func configure(with exhibition: Exhibition){
-        titleViewImg1.image = exhibition.titleImg
-        title1.text = exhibition.title
-        text_opis1.text = exhibition.text_opis
+    func configure(with data: Exhibition){
+        titleViewImg1.image = data.titleImg
+        title1.text = data.title
+        text_opis1.text = data.text_opis
         backgroundColor = .red
     }
     
