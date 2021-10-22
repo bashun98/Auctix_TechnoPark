@@ -14,7 +14,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private let homeVC = UINavigationController(rootViewController: HomeButtonTabViewController())
     private let accVC = UINavigationController(rootViewController: AccountButtonTabViewController())
     private let bidVC = UINavigationController(rootViewController: BidButtonTabViewController())
-    private let coll = UINavigationController(rootViewController: ExhibitionViewController())
+    
     
     required init?(coder: NSCoder) {
         super .init(coder: coder)

@@ -23,11 +23,14 @@ class HomeButtonTabViewController: UIViewController, UICollectionViewDelegate, U
         layout.scrollDirection = .horizontal
         return UICollectionView(frame: .init(), collectionViewLayout: layout)
     }()
-    private var datasource: [Exhibition] = ExhibitionManager.get()
+    
+    private var datasource: [Exhibition] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datasource = ExhibitionManager.shared.loadExhibition()
         
         setupNavBar()
         setupLabel()
@@ -123,12 +126,13 @@ class HomeButtonTabViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.reuseID,
-            for: indexPath) as? ExhibitionCell else {
-            fatalError("Wrong cell")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.reuseID, for: indexPath) as? ExhibitionCell else {
+            return .init()
         }
-        let exhibition = datasource[indexPath.item]
-        cell.update(title: exhibition.title, image: exhibition.titleImg, opis: exhibition.text_opis)
+        let exhibition = datasource[indexPath.row]
+        cell.configure(with: exhibition)
+//        cell.update(title: exhibition.title, image: exhibition.titleImg, opis: exhibition.text_opis)
+       
         return cell
     }
     
@@ -156,7 +160,8 @@ class HomeButtonTabViewController: UIViewController, UICollectionViewDelegate, U
             searchTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 40),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
-            collectionView.bottomAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 40),
+            
+            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: 400),
             //collectionNew.topAnchor.constraint(equalTo: self.tabBarController.topAnchor, constant: 40),
 
         ])
