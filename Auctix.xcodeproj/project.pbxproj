@@ -26,6 +26,9 @@
 		FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */; };
 		FCFCE7D9271EB94300A59AA0 /* ListButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */; };
 		FCFCE7DB271EB9DC00A59AA0 /* BidButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */; };
+		FCFEEBA3272418D80084FFEB /* exhi1.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFEEBA2272418D80084FFEB /* exhi1.swift */; };
+		FCFEEBA62724194E0084FFEB /* Bunde + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFEEBA52724194E0084FFEB /* Bunde + Extension.swift */; };
+		FCFEEBA927241E050084FFEB /* sec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFEEBA827241E050084FFEB /* sec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,10 @@
 		FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonViewController.swift; sourceTree = "<group>"; };
 		FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidButtonTabViewController.swift; sourceTree = "<group>"; };
+		FCFEEBA2272418D80084FFEB /* exhi1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exhi1.swift; sourceTree = "<group>"; };
+		FCFEEBA52724194E0084FFEB /* Bunde + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bunde + Extension.swift"; sourceTree = "<group>"; };
+		FCFEEBA727241B0D0084FFEB /* model.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = model.json; sourceTree = "<group>"; };
+		FCFEEBA827241E050084FFEB /* sec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +126,7 @@
 		FC1C80602714B223005185D6 /* Auctix */ = {
 			isa = PBXGroup;
 			children = (
+				FCFEEBA4272419230084FFEB /* Extensions */,
 				FCFCE7E42721F03900A59AA0 /* TabBar */,
 				FCFCE7E32721F01700A59AA0 /* ExhibitionCell */,
 				FCFCE7E22721F00500A59AA0 /* Color */,
@@ -166,6 +174,7 @@
 		FCE3827127230A4D00930E1E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				FCFEEBAA272426A10084FFEB /* prob cell */,
 				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
 				FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */,
 			);
@@ -227,6 +236,24 @@
 				FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		FCFEEBA4272419230084FFEB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FCFEEBA52724194E0084FFEB /* Bunde + Extension.swift */,
+				FCFEEBA727241B0D0084FFEB /* model.json */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FCFEEBAA272426A10084FFEB /* prob cell */ = {
+			isa = PBXGroup;
+			children = (
+				FCFEEBA827241E050084FFEB /* sec.swift */,
+				FCFEEBA2272418D80084FFEB /* exhi1.swift */,
+			);
+			path = "prob cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,11 +394,14 @@
 				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
+				FCFEEBA62724194E0084FFEB /* Bunde + Extension.swift in Sources */,
 				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
 				FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */,
 				FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */,
+				FCFEEBA3272418D80084FFEB /* exhi1.swift in Sources */,
 				FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */,
 				FCFCE7DB271EB9DC00A59AA0 /* BidButtonTabViewController.swift in Sources */,
+				FCFEEBA927241E050084FFEB /* sec.swift in Sources */,
 				FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

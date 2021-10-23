@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class HomeButtonTabViewController: UIViewController {
     
     private let imageIconSearch = UIImageView()
@@ -15,16 +16,16 @@ class HomeButtonTabViewController: UIViewController {
     private let logoLabel2 = UILabel()
     private let nameLabel = UILabel()
     private let searchTextField = UITextField()
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return UICollectionView(frame: .init(), collectionViewLayout: layout)
-    }()
+    private var collectionView =  UICollectionView() //={
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        return UICollectionView(frame: .init(), collectionViewLayout: layout)
+//    }()
     
     private var datasource: [Exhibition] = []
     
-    
+    private let sections = Bundle.main.decode([MySections].self, from: "model.json")
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,19 +110,45 @@ class HomeButtonTabViewController: UIViewController {
     
     
     func setupCollectionView(){
+        collectionView = UICollectionView(frame: collectionView.bounds, collectionViewLayout: createCompositionLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(ExhibitionCell.nib,
+        collectionView.register(ExhibitionCell.self,
                                 forCellWithReuseIdentifier: ExhibitionCell.reuseID)
         
-        collectionView.contentInset = .zero
+        //collectionView.contentInset = .zero
 //        collectionView.contentMode = .center
 //        collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    func createCompositionLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout {
+            (sectionIndex, layoutEnvironment) ->
+            NSCollectionLayoutSection? in
+            let section = self.sections[sectionIndex]
+            
+            switch section.type {
+            default:
+                return self.createActiveSection()
+                
+            }
+        }
+        return layout
+    }
     
-    
-    
+    func createActiveSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(86))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1))
+        
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
     
 
     func setupNavBar() {
@@ -159,11 +186,14 @@ class HomeButtonTabViewController: UIViewController {
 
 extension HomeButtonTabViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.reuseID, for: indexPath) as? ExhibitionCell else {
-            return .init()
-        }
-        let exhibition = datasource[indexPath.row]
-        cell.configure(with: exhibition)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.reuseID, for: indexPath) as! ExhibitionCell
+        let section = sections[indexPath.section]
+        let item = section.items[indexPath.item]
+        cell.configure(with: item)
+        
+        
+//        let exhibition = datasource[indexPath.row]
+//        cell.configure(with: exhibition)
 //        cell.update(title: exhibition.title, image: exhibition.titleImg, opis: exhibition.text_opis)
    
         return cell
@@ -175,3 +205,5 @@ extension HomeButtonTabViewController: UICollectionViewDataSource {
     }
   
 }
+
+

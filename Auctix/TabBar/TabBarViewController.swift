@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
+class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
 
     
     private let listVC = UINavigationController(rootViewController: ListButtonTabViewController())
