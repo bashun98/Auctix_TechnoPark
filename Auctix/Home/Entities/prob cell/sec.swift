@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct MySections: Decodable, Hashable{
+struct MySections: Decodable, Hashable {
     
     let type: String
     let title: String

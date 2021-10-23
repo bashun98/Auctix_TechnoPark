@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
+		314E554027242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
+		314E554127242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
+		314E554327242CA000A45903 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E554227242CA000A45903 /* Nunito-Light.ttf */; };
+		314E554427242CA000A45903 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E554227242CA000A45903 /* Nunito-Light.ttf */; };
+		314E554527242CA000A45903 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E554227242CA000A45903 /* Nunito-Light.ttf */; };
 		FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80612714B223005185D6 /* AppDelegate.swift */; };
 		FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80632714B223005185D6 /* SceneDelegate.swift */; };
-		FC1C80662714B223005185D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80652714B223005185D6 /* ViewController.swift */; };
+		FC1C80662714B223005185D6 /* HomeButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80652714B223005185D6 /* HomeButtonTabViewController.swift */; };
 		FC1C80692714B223005185D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C80672714B223005185D6 /* Main.storyboard */; };
 		FC1C806B2714B225005185D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806A2714B225005185D6 /* Assets.xcassets */; };
 		FC1C806E2714B225005185D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */; };
@@ -17,7 +23,6 @@
 		FC1C80832714B225005185D6 /* AuctixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80822714B225005185D6 /* AuctixUITests.swift */; };
 		FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */; };
 		FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */; };
-		FC5EB4C1271B39BE000EA4C1 /* Nunito in Resources */ = {isa = PBXBuildFile; fileRef = FC5EB4C0271B39BD000EA4C1 /* Nunito */; };
 		FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */; };
 		FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */; };
 		FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */; };
@@ -49,10 +54,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		314E553E27242C9100A45903 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		314E554227242CA000A45903 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
 		FC1C805E2714B223005185D6 /* Auctix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auctix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80612714B223005185D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC1C80632714B223005185D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FC1C80652714B223005185D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FC1C80652714B223005185D6 /* HomeButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonTabViewController.swift; sourceTree = "<group>"; };
 		FC1C80682714B223005185D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC1C806A2714B225005185D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC1C806D2714B225005185D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,7 +70,6 @@
 		FC1C80822714B225005185D6 /* AuctixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITests.swift; sourceTree = "<group>"; };
 		FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
-		FC5EB4C0271B39BD000EA4C1 /* Nunito */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Nunito; path = ../../../../Downloads/Nunito; sourceTree = "<group>"; };
 		FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionCell.swift; sourceTree = "<group>"; };
 		FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibition.swift; sourceTree = "<group>"; };
 		FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionManager.swift; sourceTree = "<group>"; };
@@ -166,7 +172,8 @@
 		FC5EB4BF271B395E000EA4C1 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				FC5EB4C0271B39BD000EA4C1 /* Nunito */,
+				314E554227242CA000A45903 /* Nunito-Light.ttf */,
+				314E553E27242C9100A45903 /* Nunito-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -185,7 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				FCE3827127230A4D00930E1E /* Entities */,
-				FC1C80652714B223005185D6 /* ViewController.swift */,
+				FC1C80652714B223005185D6 /* HomeButtonTabViewController.swift */,
 				FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */,
 			);
 			path = Home;
@@ -361,9 +368,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1C806E2714B225005185D6 /* LaunchScreen.storyboard in Resources */,
+				314E554327242CA000A45903 /* Nunito-Light.ttf in Resources */,
 				FC1C806B2714B225005185D6 /* Assets.xcassets in Resources */,
+				314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */,
 				FC1C80692714B223005185D6 /* Main.storyboard in Resources */,
-				FC5EB4C1271B39BE000EA4C1 /* Nunito in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +379,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				314E554427242CA000A45903 /* Nunito-Light.ttf in Resources */,
+				314E554027242C9100A45903 /* Nunito-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +388,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				314E554527242CA000A45903 /* Nunito-Light.ttf in Resources */,
+				314E554127242C9100A45903 /* Nunito-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCFCE7CF271DD02700A59AA0 /* AccountButtonTabViewController.swift in Sources */,
-				FC1C80662714B223005185D6 /* ViewController.swift in Sources */,
+				FC1C80662714B223005185D6 /* HomeButtonTabViewController.swift in Sources */,
 				FCFCE7D9271EB94300A59AA0 /* ListButtonViewController.swift in Sources */,
 				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
