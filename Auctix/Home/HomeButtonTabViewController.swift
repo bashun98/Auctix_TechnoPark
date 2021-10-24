@@ -109,7 +109,7 @@ extension HomeButtonTabViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(ExhibitionCell.self, forCellWithReuseIdentifier: ExhibitionCell.reuseID)
+        collectionView.register(ExhibitionCell.self, forCellWithReuseIdentifier: ExhibitionCell.identifire)
     }
     
     func setupNavBar() {
@@ -145,7 +145,7 @@ extension HomeButtonTabViewController {
             newExhibitions.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             collectionView.topAnchor.constraint(equalTo: newExhibitions.bottomAnchor, constant: 10)
         ])
     }
@@ -176,9 +176,11 @@ extension HomeButtonTabViewController {
 extension HomeButtonTabViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.reuseID, for: indexPath) as? ExhibitionCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.identifire, for: indexPath) as? ExhibitionCell {
             let data = datasource[indexPath.row]
             cell.configure(with: data)
+            
+            
             return cell
         }
         return .init()

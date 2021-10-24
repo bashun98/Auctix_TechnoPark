@@ -11,31 +11,33 @@ protocol ButtonClic: AnyObject {
     func didTabButton()
 }
 
-protocol ReuseIdentifyingExhib {
-    static var reuseID: String { get }
-}
-class ExhibitionCell: UICollectionViewCell, ReuseIdentifyingExhib {
-    
-    // TODO: вынести в расширение, погугли (нашел)
-    //static let reuseID: String = "ExhibitionCell"
-    static let nib = UINib(nibName: String(describing: ExhibitionCell.self), bundle: nil)
+class ExhibitionCell: UICollectionViewCell {
     
     // TODO: Нейминг поменяй (поменял)
     private let imageExhib = UIImageView()
-    private let jumpButton = UIButton(type: .system)
     
+    //private let jumpButton = UIButton (type: .system)
+     private lazy var jumpButton: UIButton = {
+         let button = UIButton(type: .system)
+            button.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
+            button.setImage(UIImage(named: "reset"), for: .normal)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
+            return button
+        }()
     weak var delegate: ButtonClic?
 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        //self.contentView.isUserInteractionEnabled = true
         setupViews()
         setupElements()
     }
-     
     required init?(coder: NSCoder) {
         // TODO: никаких фаталов  (исправил)
         super .init(coder: coder)
+        
     }
     
     func setupElements() {
@@ -46,8 +48,10 @@ class ExhibitionCell: UICollectionViewCell, ReuseIdentifyingExhib {
         jumpButton.layer.cornerRadius = 28
         jumpButton.backgroundColor = UIColor.blueGreen
         jumpButton.clipsToBounds = true
-        jumpButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
+        
+        jumpButton.isUserInteractionEnabled = true
         //jumpButton.isEnabled = true
+        
         
         imageExhib.clipsToBounds = true
         imageExhib.layer.cornerRadius = 20
@@ -67,8 +71,9 @@ class ExhibitionCell: UICollectionViewCell, ReuseIdentifyingExhib {
     }
     
     private func setupViews() {
-        addSubview(imageExhib)
+        contentView.addSubview(imageExhib)
         imageExhib.addSubview(jumpButton)
+        
     }
 }
 
@@ -78,12 +83,13 @@ extension ExhibitionCell {
         // TODO: Переделай на setupLayout и делай по одному образцу, чтобы все едино было  (сделал)
         // TODO: зачем self ? Тут итак нет разногласий (сделал)
         NSLayoutConstraint.activate([
-            imageExhib.topAnchor.constraint(equalTo: topAnchor),
-            imageExhib.bottomAnchor.constraint(equalTo: bottomAnchor),
-            imageExhib.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageExhib.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageExhib.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageExhib.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageExhib.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageExhib.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         
             jumpButton.heightAnchor.constraint(equalToConstant: 56),
+            //jumpButton.topAnchor.constraint(equalTo: contentView.bottomAnchor)
             jumpButton.bottomAnchor.constraint(equalTo: imageExhib.bottomAnchor, constant: -20),
             jumpButton.leadingAnchor.constraint(equalTo: imageExhib.leadingAnchor, constant: 40),
             jumpButton.trailingAnchor.constraint(equalTo: imageExhib.trailingAnchor, constant: -40)
@@ -95,10 +101,13 @@ extension ExhibitionCell {
     }
 }
 
-extension ReuseIdentifyingExhib {
-    static var reuseID: String {
-        return String(describing: Self.self)
+extension ExhibitionCell {
+    
+    static var nib  : UINib{
+        return UINib(nibName: identifire, bundle: nil)
+    }
+    
+    static var identifire : String{
+        return String(describing: self)
     }
 }
-
-
