@@ -26,15 +26,18 @@ class HomeButtonTabViewController: UIViewController {
         collection.isPagingEnabled = false
         
         collection.showsHorizontalScrollIndicator = false
+        collection.showsVerticalScrollIndicator = false
         return collection
     }()
+    
+    private let delegateExhib = ExhibitionCell()
     
     private var datasource: [Exhibition] = []
     
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
+        delegateExhib.delegate = self
         
         loadetDatasourse()
         setupNavBar()
@@ -54,7 +57,6 @@ class HomeButtonTabViewController: UIViewController {
         setupLayuot()
     }
 }
-
 
 extension HomeButtonTabViewController: ButtonClic {
     func didTabButton() {

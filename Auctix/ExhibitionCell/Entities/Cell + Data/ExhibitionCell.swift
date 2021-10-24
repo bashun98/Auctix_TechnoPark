@@ -51,7 +51,7 @@ class ExhibitionCell: UICollectionViewCell {
         
         jumpButton.isUserInteractionEnabled = true
         //jumpButton.isEnabled = true
-        
+        imageExhib.isUserInteractionEnabled = true
         
         imageExhib.clipsToBounds = true
         imageExhib.layer.cornerRadius = 20
@@ -75,6 +75,10 @@ class ExhibitionCell: UICollectionViewCell {
         imageExhib.addSubview(jumpButton)
         
     }
+    @objc
+    func didTabButton() {
+        delegate?.didTabButton()
+    }
 }
 
 extension ExhibitionCell {
@@ -94,10 +98,6 @@ extension ExhibitionCell {
             jumpButton.leadingAnchor.constraint(equalTo: imageExhib.leadingAnchor, constant: 40),
             jumpButton.trailingAnchor.constraint(equalTo: imageExhib.trailingAnchor, constant: -40)
         ])
-    }
-    @objc
-    func didTabButton() {
-        delegate?.didTabButton()
     }
 }
 
