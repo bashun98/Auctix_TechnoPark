@@ -11,5 +11,6 @@ struct Exhibition{
     
     let titleImg: UIImage
     let title: String
-    let text_opis: String 
+    let text_opis: String
+    let status: String
 }

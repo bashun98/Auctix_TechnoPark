@@ -15,6 +15,7 @@ class HomeButtonTabViewController: UIViewController {
     private let titleLabel = UILabel()
     private let nameLabel = UILabel()
     private let searchTextField = UITextField()
+    private let newExhibitions = UILabel()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -28,13 +29,12 @@ class HomeButtonTabViewController: UIViewController {
     }()
     
     private var datasource: [Exhibition] = []
-//    private let sections = Bundle.main.decode([MySections].self, from: "model.json")
     
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        datasource = ExhibitionManager.shared.loadExhibition()
         
+        loadetDatasourse()
         setupNavBar()
         setupLabel()
         setupCollectionView()
@@ -43,6 +43,7 @@ class HomeButtonTabViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(nameLabel)
         view.addSubview(searchTextField)
+        view.addSubview(newExhibitions)
         view.addSubview(collectionView)
     }
     
@@ -64,6 +65,11 @@ extension HomeButtonTabViewController {
         nameLabel.font = .systemFont(ofSize: 20)
         nameLabel.textColor = UIColor.lightCornflowerBlue
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        newExhibitions.text = "Newest"
+        newExhibitions.font = .systemFont(ofSize: 36)
+        newExhibitions.textColor = UIColor.honeyYellow
+        newExhibitions.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: - настройка строки поиска
@@ -86,7 +92,7 @@ extension HomeButtonTabViewController {
         searchTextField.placeholder = "Search..."
         searchTextField.layer.cornerRadius = 15
         // TODO: В константу цвет
-        searchTextField.layer.backgroundColor = UIColor(red: 0.871, green: 0.937, blue: 0.973, alpha: 0.5).cgColor
+        searchTextField.layer.backgroundColor = UIColor.searchColor.cgColor
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -101,6 +107,16 @@ extension HomeButtonTabViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    func loadetDatasourse(){
+        var datasourceAll: [Exhibition] = []
+        datasourceAll = ExhibitionManager.shared.loadExhibition()
+        for i  in 1...datasourceAll.count {
+            if datasourceAll[i-1].status == "new"
+            {
+                datasource.append(datasourceAll[i-1])
+            }
+        }
+    }
     func setupLayuot(){
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
@@ -115,13 +131,16 @@ extension HomeButtonTabViewController {
             searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
             searchTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             searchTextField.heightAnchor.constraint(equalTo: nameLabel.heightAnchor, constant: 40),
-            
+            newExhibitions.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 41),
+            newExhibitions.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
+            newExhibitions.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
-            collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 120)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            collectionView.topAnchor.constraint(equalTo: newExhibitions.bottomAnchor, constant: 10)
         ])
     }
+     
 }
 
 // MARK: - Get Methods
@@ -129,13 +148,13 @@ extension HomeButtonTabViewController {
     
     private func getAttrTitle() -> NSAttributedString {
         let aWord = NSAttributedString(string: "A", attributes: [
-            .font: UIFont.systemFont(ofSize: 22, weight: .regular),
-            .foregroundColor: UIColor.orange
+            .font: UIFont.systemFont(ofSize: 25, weight: .regular),
+            .foregroundColor: UIColor.honeyYellow
         ])
         
         let ctixWords = NSAttributedString(string: "UCTIX", attributes: [
-            .font: UIFont.systemFont(ofSize: 22, weight: .regular),
-            .foregroundColor: UIColor.blue
+            .font: UIFont.systemFont(ofSize: 25, weight: .regular),
+            .foregroundColor: UIColor.lightCornflowerBlue
         ])
         
         let mutable = NSMutableAttributedString(attributedString: aWord)
@@ -182,4 +201,3 @@ extension HomeButtonTabViewController: UICollectionViewDelegateFlowLayout {
         return .init(width: width, height: collectionView.bounds.height)
     }
 }
-

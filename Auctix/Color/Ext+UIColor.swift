@@ -20,5 +20,8 @@ extension UIColor {
     public class var lightCornflowerBlue  : UIColor {
         return UIColor(named: "Light Cornfiower Blue")   ?? UIColor.white
     }
+    public class var searchColor : UIColor {
+        return UIColor(named: "Search Blue") ?? UIColor.white
+    }
 }
 

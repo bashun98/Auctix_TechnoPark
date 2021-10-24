@@ -27,13 +27,10 @@
 		FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */; };
 		FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */; };
 		FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */; };
-		FCFCE7CF271DD02700A59AA0 /* AccountButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */; };
+		FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */; };
 		FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */; };
-		FCFCE7D9271EB94300A59AA0 /* ListButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */; };
-		FCFCE7DB271EB9DC00A59AA0 /* BidButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */; };
-		FCFEEBA3272418D80084FFEB /* exhi1.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFEEBA2272418D80084FFEB /* exhi1.swift */; };
-		FCFEEBA62724194E0084FFEB /* Bunde + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFEEBA52724194E0084FFEB /* Bunde + Extension.swift */; };
-		FCFEEBA927241E050084FFEB /* sec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFEEBA827241E050084FFEB /* sec.swift */; };
+		FCFCE7D9271EB94300A59AA0 /* ListButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D8271EB94300A59AA0 /* ListButtonController.swift */; };
+		FCFCE7DB271EB9DC00A59AA0 /* BidButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7DA271EB9DC00A59AA0 /* BidButtonController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,14 +71,10 @@
 		FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibition.swift; sourceTree = "<group>"; };
 		FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionManager.swift; sourceTree = "<group>"; };
 		FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
-		FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonTabViewController.swift; sourceTree = "<group>"; };
+		FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonController.swift; sourceTree = "<group>"; };
 		FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonViewController.swift; sourceTree = "<group>"; };
-		FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidButtonTabViewController.swift; sourceTree = "<group>"; };
-		FCFEEBA2272418D80084FFEB /* exhi1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exhi1.swift; sourceTree = "<group>"; };
-		FCFEEBA52724194E0084FFEB /* Bunde + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bunde + Extension.swift"; sourceTree = "<group>"; };
-		FCFEEBA727241B0D0084FFEB /* model.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = model.json; sourceTree = "<group>"; };
-		FCFEEBA827241E050084FFEB /* sec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sec.swift; sourceTree = "<group>"; };
+		FCFCE7D8271EB94300A59AA0 /* ListButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonController.swift; sourceTree = "<group>"; };
+		FCFCE7DA271EB9DC00A59AA0 /* BidButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidButtonController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +125,6 @@
 		FC1C80602714B223005185D6 /* Auctix */ = {
 			isa = PBXGroup;
 			children = (
-				FCFEEBA4272419230084FFEB /* Extensions */,
 				FCFCE7E42721F03900A59AA0 /* TabBar */,
 				FCFCE7E32721F01700A59AA0 /* ExhibitionCell */,
 				FCFCE7E22721F00500A59AA0 /* Color */,
@@ -181,9 +173,7 @@
 		FCE3827127230A4D00930E1E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				FCFEEBAA272426A10084FFEB /* prob cell */,
-				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
-				FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */,
+				FCFEEBAA272426A10084FFEB /* Cell + Data */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -191,9 +181,7 @@
 		FCFCE7DE2721EFB500A59AA0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FCE3827127230A4D00930E1E /* Entities */,
 				FC1C80652714B223005185D6 /* HomeButtonTabViewController.swift */,
-				FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -201,7 +189,7 @@
 		FCFCE7DF2721EFC700A59AA0 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE7CE271DD02700A59AA0 /* AccountButtonTabViewController.swift */,
+				FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -209,7 +197,7 @@
 		FCFCE7E02721EFD300A59AA0 /* Bid */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE7DA271EB9DC00A59AA0 /* BidButtonTabViewController.swift */,
+				FCFCE7DA271EB9DC00A59AA0 /* BidButtonController.swift */,
 			);
 			path = Bid;
 			sourceTree = "<group>";
@@ -217,7 +205,7 @@
 		FCFCE7E12721EFE400A59AA0 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE7D8271EB94300A59AA0 /* ListButtonViewController.swift */,
+				FCFCE7D8271EB94300A59AA0 /* ListButtonController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -233,6 +221,7 @@
 		FCFCE7E32721F01700A59AA0 /* ExhibitionCell */ = {
 			isa = PBXGroup;
 			children = (
+				FCE3827127230A4D00930E1E /* Entities */,
 			);
 			path = ExhibitionCell;
 			sourceTree = "<group>";
@@ -245,22 +234,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		FCFEEBA4272419230084FFEB /* Extensions */ = {
+		FCFEEBAA272426A10084FFEB /* Cell + Data */ = {
 			isa = PBXGroup;
 			children = (
-				FCFEEBA52724194E0084FFEB /* Bunde + Extension.swift */,
-				FCFEEBA727241B0D0084FFEB /* model.json */,
+				FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */,
+				FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */,
+				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
 			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		FCFEEBAA272426A10084FFEB /* prob cell */ = {
-			isa = PBXGroup;
-			children = (
-				FCFEEBA827241E050084FFEB /* sec.swift */,
-				FCFEEBA2272418D80084FFEB /* exhi1.swift */,
-			);
-			path = "prob cell";
+			path = "Cell + Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,20 +381,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCFCE7CF271DD02700A59AA0 /* AccountButtonTabViewController.swift in Sources */,
+				FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */,
 				FC1C80662714B223005185D6 /* HomeButtonTabViewController.swift in Sources */,
-				FCFCE7D9271EB94300A59AA0 /* ListButtonViewController.swift in Sources */,
+				FCFCE7D9271EB94300A59AA0 /* ListButtonController.swift in Sources */,
 				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
-				FCFEEBA62724194E0084FFEB /* Bunde + Extension.swift in Sources */,
 				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
 				FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */,
 				FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */,
-				FCFEEBA3272418D80084FFEB /* exhi1.swift in Sources */,
 				FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */,
-				FCFCE7DB271EB9DC00A59AA0 /* BidButtonTabViewController.swift in Sources */,
-				FCFEEBA927241E050084FFEB /* sec.swift in Sources */,
+				FCFCE7DB271EB9DC00A59AA0 /* BidButtonController.swift in Sources */,
 				FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
