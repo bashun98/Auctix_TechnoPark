@@ -19,8 +19,8 @@ class ExhibitionManager: ExhibitionManagerProtokol {
 
     func loadExhibition() -> [Exhibition] {
         return [
-            Exhibition(titleImg: #imageLiteral(resourceName: "Search"), title: "House Kult", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "new"),
-            Exhibition(titleImg: #imageLiteral(resourceName: "BidTabBar"), title: "House Kult", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "old"),
+            Exhibition(titleImg: #imageLiteral(resourceName: "artist's_house_on_Kuznetsky"), title: "Kuznetsky Most", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "new"),
+            Exhibition(titleImg: #imageLiteral(resourceName: "central_artist's_house"), title: "Park of Culture", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "new"),
             Exhibition(titleImg: #imageLiteral(resourceName: "AccTabBar"), title: "House Kult", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "new")
         ]
     }

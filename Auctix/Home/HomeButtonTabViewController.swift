@@ -23,7 +23,8 @@ class HomeButtonTabViewController: UIViewController {
         
         let collection = UICollectionView(frame: .init(), collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false 
-        collection.isPagingEnabled = true
+        collection.isPagingEnabled = false
+        
         collection.showsHorizontalScrollIndicator = false
         return collection
     }()
@@ -33,6 +34,7 @@ class HomeButtonTabViewController: UIViewController {
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
         
         loadetDatasourse()
         setupNavBar()
@@ -53,6 +55,13 @@ class HomeButtonTabViewController: UIViewController {
     }
 }
 
+
+extension HomeButtonTabViewController: ButtonClic {
+    func didTabButton() {
+        let vs = UINavigationController(rootViewController: TableProductsController())
+        vs.pushViewController(TableProductsController(), animated: true)
+    }
+}
 // MARK: - Setups
 extension HomeButtonTabViewController {
     
@@ -174,6 +183,7 @@ extension HomeButtonTabViewController: UICollectionViewDelegate {
         }
         return .init()
     }
+  
 }
 
 // MARK: - UICollectionViewDataSource
@@ -188,16 +198,16 @@ extension HomeButtonTabViewController: UICollectionViewDataSource {
 extension HomeButtonTabViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 90
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 0, left: 45, bottom: 0, right: 45)
+        return .init(top: 0, left: 25, bottom: 0, right: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // TODO: В константы
-        let width = UIScreen.main.bounds.width - 90
+        let width = UIScreen.main.bounds.width - 50
         return .init(width: width, height: collectionView.bounds.height)
     }
 }

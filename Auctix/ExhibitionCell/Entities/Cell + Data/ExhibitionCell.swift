@@ -7,10 +7,14 @@
 
 import UIKit
 
-protocol ReuseIdentifying {
+protocol ButtonClic: AnyObject {
+    func didTabButton()
+}
+
+protocol ReuseIdentifyingExhib {
     static var reuseID: String { get }
 }
-class ExhibitionCell: UICollectionViewCell, ReuseIdentifying {
+class ExhibitionCell: UICollectionViewCell, ReuseIdentifyingExhib {
     
     // TODO: вынести в расширение, погугли (нашел)
     //static let reuseID: String = "ExhibitionCell"
@@ -18,10 +22,13 @@ class ExhibitionCell: UICollectionViewCell, ReuseIdentifying {
     
     // TODO: Нейминг поменяй (поменял)
     private let imageExhib = UIImageView()
-    private let jumpButton = UIButton()
+    private let jumpButton = UIButton(type: .system)
+    
+    weak var delegate: ButtonClic?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setupElements()
     }
@@ -32,14 +39,19 @@ class ExhibitionCell: UICollectionViewCell, ReuseIdentifying {
     }
     
     func setupElements() {
+        
         jumpButton.setTitle("default", for: .normal)
         jumpButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         jumpButton.setTitleColor(.white, for: .normal)
         jumpButton.layer.cornerRadius = 28
         jumpButton.backgroundColor = UIColor.blueGreen
         jumpButton.clipsToBounds = true
+        jumpButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
+        //jumpButton.isEnabled = true
         
+        imageExhib.clipsToBounds = true
         imageExhib.layer.cornerRadius = 20
+        
         jumpButton.translatesAutoresizingMaskIntoConstraints = false
         imageExhib.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -77,12 +89,16 @@ extension ExhibitionCell {
             jumpButton.trailingAnchor.constraint(equalTo: imageExhib.trailingAnchor, constant: -40)
         ])
     }
+    @objc
+    func didTabButton() {
+        delegate?.didTabButton()
+    }
 }
-extension ExhibitionCell {
-    
-}
-extension ReuseIdentifying {
+
+extension ReuseIdentifyingExhib {
     static var reuseID: String {
         return String(describing: Self.self)
     }
 }
+
+

@@ -23,5 +23,11 @@ extension UIColor {
     public class var searchColor : UIColor {
         return UIColor(named: "Search Blue") ?? UIColor.white
     }
+    public class var lightGrad : UIColor {
+        return UIColor(named: "Grad1")   ?? UIColor.white
+    }
+    public class var darkGrad : UIColor {
+        return UIColor(named: "Grad2") ?? UIColor.white
+    }
 }
 
