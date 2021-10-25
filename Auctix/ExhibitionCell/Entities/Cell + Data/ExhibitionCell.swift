@@ -22,7 +22,7 @@ class ExhibitionCell: UICollectionViewCell {
             button.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
             button.setImage(UIImage(named: "reset"), for: .normal)
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
+            
             return button
         }()
     weak var delegate: ButtonClic?
@@ -48,7 +48,6 @@ class ExhibitionCell: UICollectionViewCell {
         jumpButton.layer.cornerRadius = 28
         jumpButton.backgroundColor = UIColor.blueGreen
         jumpButton.clipsToBounds = true
-        
         jumpButton.isUserInteractionEnabled = true
         //jumpButton.isEnabled = true
         imageExhib.isUserInteractionEnabled = true
@@ -73,10 +72,10 @@ class ExhibitionCell: UICollectionViewCell {
     private func setupViews() {
         contentView.addSubview(imageExhib)
         imageExhib.addSubview(jumpButton)
+        jumpButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
         
     }
-    @objc
-    func didTabButton() {
+    @objc func didTabButton() {
         delegate?.didTabButton()
     }
 }

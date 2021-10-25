@@ -102,7 +102,7 @@ extension HomeButtonTabViewController {
         searchTextField.font = .systemFont(ofSize: 20)
         searchTextField.placeholder = "Search..."
         searchTextField.layer.cornerRadius = 15
-        // TODO: В константу цвет
+        // TODO: В константу цвет (так точно)
         searchTextField.layer.backgroundColor = UIColor.searchColor.cgColor
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
     }
