@@ -71,7 +71,7 @@ class ExhibitionCell: UICollectionViewCell {
     private func setupViews() {
         contentView.addSubview(imageExhib)
         imageExhib.addSubview(jumpButton)
-        jumpButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
+        jumpButton.addTarget(self, action: #selector(didTabButton(sender:)), for: .touchUpInside)
         
     }
     
