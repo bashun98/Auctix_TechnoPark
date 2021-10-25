@@ -59,10 +59,11 @@ class HomeButtonTabViewController: UIViewController {
 }
 
 extension HomeButtonTabViewController: ButtonClic {
-    func didTabButton() {
+    func didTabButton(sender: UIButton) {
         let vs = UINavigationController(rootViewController: TableProductsController())
         vs.pushViewController(TableProductsController(), animated: true)
     }
+    
 }
 // MARK: - Setups
 extension HomeButtonTabViewController {

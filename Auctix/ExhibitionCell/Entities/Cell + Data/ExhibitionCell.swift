@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ButtonClic: AnyObject {
-    func didTabButton()
+    func didTabButton(sender: UIButton)
 }
 
 class ExhibitionCell: UICollectionViewCell {
@@ -44,6 +44,7 @@ class ExhibitionCell: UICollectionViewCell {
         
         jumpButton.setTitle("default", for: .normal)
         jumpButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        jumpButton.titleLabel?.isUserInteractionEnabled = true
         jumpButton.setTitleColor(.white, for: .normal)
         jumpButton.layer.cornerRadius = 28
         jumpButton.backgroundColor = UIColor.blueGreen
@@ -54,8 +55,6 @@ class ExhibitionCell: UICollectionViewCell {
         
         imageExhib.clipsToBounds = true
         imageExhib.layer.cornerRadius = 20
-        
-        jumpButton.translatesAutoresizingMaskIntoConstraints = false
         imageExhib.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -75,8 +74,9 @@ class ExhibitionCell: UICollectionViewCell {
         jumpButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
         
     }
-    @objc func didTabButton() {
-        delegate?.didTabButton()
+    
+    @objc func didTabButton(sender: UIButton) {
+        delegate?.didTabButton(sender: jumpButton)
     }
 }
 
