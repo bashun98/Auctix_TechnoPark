@@ -7,17 +7,13 @@
 
 import UIKit
 
-protocol ButtonClic: AnyObject {
-    func didTabButton(sender: UIButton)
-}
-
 class ExhibitionCell: UICollectionViewCell {
     
     // TODO: Нейминг поменяй (поменял)
     private let imageExhib = UIImageView()
     
     //private let jumpButton = UIButton (type: .system)
-     private lazy var jumpButton: UIButton = {
+     lazy var jumpButton: UIButton = {
          let button = UIButton(type: .system)
             button.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
             button.setImage(UIImage(named: "reset"), for: .normal)
@@ -25,7 +21,7 @@ class ExhibitionCell: UICollectionViewCell {
             
             return button
         }()
-    weak var delegate: ButtonClic?
+//    weak var delegate: ButtonClic?
 
     
     override init(frame: CGRect) {
@@ -71,13 +67,13 @@ class ExhibitionCell: UICollectionViewCell {
     private func setupViews() {
         contentView.addSubview(imageExhib)
         imageExhib.addSubview(jumpButton)
-        jumpButton.addTarget(self, action: #selector(didTabButton(sender:)), for: .touchUpInside)
+        //jumpButton.addTarget(self, action: #selector(didTabButton(sender:)), for: .touchUpInside)
         
     }
     
-    @objc func didTabButton(sender: UIButton) {
-        delegate?.didTabButton(sender: jumpButton)
-    }
+//    @objc func didTabButton(sender: UIButton) {
+//        delegate?.didTabButton(sender: jumpButton)
+//    }
 }
 
 extension ExhibitionCell {

@@ -23,8 +23,8 @@ class HomeButtonTabViewController: UIViewController {
         
         let collection = UICollectionView(frame: .init(), collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false 
-        collection.isPagingEnabled = false
-        
+        collection.isPagingEnabled = true
+       
         collection.showsHorizontalScrollIndicator = false
         collection.showsVerticalScrollIndicator = false
         return collection
@@ -37,7 +37,7 @@ class HomeButtonTabViewController: UIViewController {
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegateExhib.delegate = self
+//        delegateExhib.delegate = self
         
         loadetDatasourse()
         setupNavBar()
@@ -58,11 +58,13 @@ class HomeButtonTabViewController: UIViewController {
     }
 }
 
-extension HomeButtonTabViewController: ButtonClic {
+extension HomeButtonTabViewController  {
     
-    func didTabButton(sender: UIButton) {
-        let vs = UINavigationController(rootViewController: TableProductsController())
-        vs.pushViewController(TableProductsController(), animated: true)
+    @objc func didTabButton(sender: UIButton) {
+        let vc = TableProductsController()
+        navigationController?.pushViewController(vc, animated: true)
+//        let vs = UINavigationController(rootViewController: TableProductsController())
+//        vs.pushViewController(TableProductsController(), animated: true)
     }
     
 }
@@ -112,6 +114,7 @@ extension HomeButtonTabViewController {
     func setupCollectionView(){
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         
         collectionView.register(ExhibitionCell.self, forCellWithReuseIdentifier: ExhibitionCell.identifire)
     }
@@ -183,6 +186,7 @@ extension HomeButtonTabViewController: UICollectionViewDelegate {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.identifire, for: indexPath) as? ExhibitionCell {
             let data = datasource[indexPath.row]
             cell.configure(with: data)
+            cell.jumpButton.addTarget(self, action: #selector(didTabButton(sender:)), for: .touchUpInside)
             
             
             return cell
