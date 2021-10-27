@@ -147,7 +147,7 @@
 		FC1C80602714B223005185D6 /* Auctix */ = {
 			isa = PBXGroup;
 			children = (
-				FCAD16AA27254FB1009140BF /* TableGoods */,
+				FCAD16AA27254FB1009140BF /* TableProducts */,
 				FCFCE7E42721F03900A59AA0 /* TabBar */,
 				FCFCE7E32721F01700A59AA0 /* ExhibitionCell */,
 				FCFCE7E22721F00500A59AA0 /* Color */,
@@ -193,14 +193,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		FCAD16AA27254FB1009140BF /* TableGoods */ = {
+		FCAD16AA27254FB1009140BF /* TableProducts */ = {
 			isa = PBXGroup;
 			children = (
 				FCAD16AF27255006009140BF /* Cell + Data */,
 				FCAD16AB27254FF6009140BF /* TableProductsController.swift */,
 				FCAD16BC272969E6009140BF /* ProductViewController.swift */,
 			);
-			path = TableGoods;
+			path = TableProducts;
 			sourceTree = "<group>";
 		};
 		FCAD16AF27255006009140BF /* Cell + Data */ = {
