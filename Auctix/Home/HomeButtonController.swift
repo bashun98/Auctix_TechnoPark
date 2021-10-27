@@ -16,14 +16,15 @@ class HomeButtonTabViewController: UIViewController {
     private let nameLabel = UILabel()
     private let searchTextField = UITextField()
     private let newExhibitions = UILabel()
-    
+    private let collectionViewLayout = UICollectionViewFlowLayout()
+    private var indexOfCellBeforeDragging = 0
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
         let collection = UICollectionView(frame: .init(), collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false 
-        collection.isPagingEnabled = true
+        collection.isPagingEnabled = false
        
         collection.showsHorizontalScrollIndicator = false
         collection.showsVerticalScrollIndicator = false
@@ -37,7 +38,7 @@ class HomeButtonTabViewController: UIViewController {
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-//        delegateExhib.delegate = self
+
         
         loadetDatasourse()
         setupNavBar()
@@ -57,14 +58,12 @@ class HomeButtonTabViewController: UIViewController {
         setupLayuot()
     }
 }
-
+// обработчик нажатия кнопки на ячейке коллекции (открывает таблицу продуктов)
 extension HomeButtonTabViewController  {
     
     @objc func didTabButton(sender: UIButton) {
         let vc = TableProductsController()
         navigationController?.pushViewController(vc, animated: true)
-//        let vs = UINavigationController(rootViewController: TableProductsController())
-//        vs.pushViewController(TableProductsController(), animated: true)
     }
     
 }
@@ -110,19 +109,17 @@ extension HomeButtonTabViewController {
         searchTextField.layer.backgroundColor = UIColor.searchColor.cgColor
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+    // настройка коллекции
     func setupCollectionView(){
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        
         collectionView.register(ExhibitionCell.self, forCellWithReuseIdentifier: ExhibitionCell.identifire)
     }
-    
+    // настройка навигационного бара
     func setupNavBar() {
         navigationController?.navigationBar.isHidden = true
     }
-    
+    // загрузка выставок в массив выставок
     func loadetDatasourse(){
         var datasourceAll: [Exhibition] = []
         datasourceAll = ExhibitionManager.shared.loadExhibition()
@@ -156,10 +153,19 @@ extension HomeButtonTabViewController {
             collectionView.topAnchor.constraint(equalTo: newExhibitions.bottomAnchor, constant: 10)
         ])
     }
-     
+    
+    // MARK: - new
+//    private func indexOfMajorCell() -> Int {
+//        let itemWidth = collectionViewLayout.itemSize.width
+//        let proportionalOffset = collectionViewLayout.collectionView!.contentOffset.x / itemWidth
+//        let index = Int(round(proportionalOffset))
+//        let safeIndex = max(0, min(datasource.count - 1, index))
+//        return safeIndex
+//    }
 }
 
 // MARK: - Get Methods
+// расширение контроллера настройки названия приложения
 extension HomeButtonTabViewController {
     
     private func getAttrTitle() -> NSAttributedString {
@@ -220,4 +226,40 @@ extension HomeButtonTabViewController: UICollectionViewDelegateFlowLayout {
         let width = UIScreen.main.bounds.width - 50
         return .init(width: width, height: collectionView.bounds.height)
     }
+    
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        indexOfCellBeforeDragging = indexOfMajorCell()
+//    }
+//    
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        // Stop scrollView sliding:
+//        targetContentOffset.pointee = scrollView.contentOffset
+//        
+//        // calculate where scrollView should snap to:
+//        let indexOfMajorCell = self.indexOfMajorCell()
+//        
+//        // calculate conditions:
+//        let swipeVelocityThreshold: CGFloat = 0.5 // after some trail and error
+//        let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < datasource.count && velocity.x > swipeVelocityThreshold
+//        let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.x < -swipeVelocityThreshold
+//        let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
+//        let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
+//        
+//        if didUseSwipeToSkipCell {
+//            
+//            let snapToIndex = indexOfCellBeforeDragging + (hasEnoughVelocityToSlideToTheNextCell ? 1 : -1)
+//            let toValue = collectionViewLayout.itemSize.width * CGFloat(snapToIndex)
+//            
+//            // Damping equal 1 => no oscillations => decay animation:
+//            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: velocity.x, options: .allowUserInteraction, animations: {
+//                scrollView.contentOffset = CGPoint(x: toValue, y: 0)
+//                scrollView.layoutIfNeeded()
+//            }, completion: nil)
+//            
+//        } else {
+//            // This is a much better way to scroll to a cell:
+//            let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
+//            collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//        }
+//    }
 }

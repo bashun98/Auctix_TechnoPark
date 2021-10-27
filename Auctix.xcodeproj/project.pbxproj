@@ -15,7 +15,7 @@
 		314E554527242CA000A45903 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E554227242CA000A45903 /* Nunito-Light.ttf */; };
 		FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80612714B223005185D6 /* AppDelegate.swift */; };
 		FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80632714B223005185D6 /* SceneDelegate.swift */; };
-		FC1C80662714B223005185D6 /* HomeButtonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80652714B223005185D6 /* HomeButtonTabViewController.swift */; };
+		FC1C80662714B223005185D6 /* HomeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80652714B223005185D6 /* HomeButtonController.swift */; };
 		FC1C80692714B223005185D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C80672714B223005185D6 /* Main.storyboard */; };
 		FC1C806B2714B225005185D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806A2714B225005185D6 /* Assets.xcassets */; };
 		FC1C806E2714B225005185D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */; };
@@ -38,6 +38,10 @@
 		FCAD16B927255052009140BF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B827255052009140BF /* Product.swift */; };
 		FCAD16BA27255052009140BF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B827255052009140BF /* Product.swift */; };
 		FCAD16BB27255052009140BF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B827255052009140BF /* Product.swift */; };
+		FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16BC272969E6009140BF /* ProductViewController.swift */; };
+		FCAD16BE272969E6009140BF /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16BC272969E6009140BF /* ProductViewController.swift */; };
+		FCAD16BF272969E6009140BF /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16BC272969E6009140BF /* ProductViewController.swift */; };
+		FCAD16C227296C77009140BF /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = FCAD16C127296C77009140BF /* PinLayout */; };
 		FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */; };
 		FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */; };
 		FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */; };
@@ -68,7 +72,7 @@
 		FC1C805E2714B223005185D6 /* Auctix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auctix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80612714B223005185D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC1C80632714B223005185D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FC1C80652714B223005185D6 /* HomeButtonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonTabViewController.swift; sourceTree = "<group>"; };
+		FC1C80652714B223005185D6 /* HomeButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonController.swift; sourceTree = "<group>"; };
 		FC1C80682714B223005185D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC1C806A2714B225005185D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC1C806D2714B225005185D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 		FCAD16B02725502C009140BF /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		FCAD16B427255041009140BF /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		FCAD16B827255052009140BF /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		FCAD16BC272969E6009140BF /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonController.swift; sourceTree = "<group>"; };
 		FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCAD16C227296C77009140BF /* PinLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +198,7 @@
 			children = (
 				FCAD16AF27255006009140BF /* Cell + Data */,
 				FCAD16AB27254FF6009140BF /* TableProductsController.swift */,
+				FCAD16BC272969E6009140BF /* ProductViewController.swift */,
 			);
 			path = TableGoods;
 			sourceTree = "<group>";
@@ -217,7 +224,7 @@
 		FCFCE7DE2721EFB500A59AA0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FC1C80652714B223005185D6 /* HomeButtonTabViewController.swift */,
+				FC1C80652714B223005185D6 /* HomeButtonController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -296,6 +303,9 @@
 			dependencies = (
 			);
 			name = Auctix;
+			packageProductDependencies = (
+				FCAD16C127296C77009140BF /* PinLayout */,
+			);
 			productName = Auctix;
 			productReference = FC1C805E2714B223005185D6 /* Auctix.app */;
 			productType = "com.apple.product-type.application";
@@ -368,6 +378,9 @@
 				Base,
 			);
 			mainGroup = FC1C80552714B223005185D6;
+			packageReferences = (
+				FCAD16C027296C77009140BF /* XCRemoteSwiftPackageReference "PinLayout" */,
+			);
 			productRefGroup = FC1C805F2714B223005185D6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -418,9 +431,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */,
-				FC1C80662714B223005185D6 /* HomeButtonTabViewController.swift in Sources */,
+				FC1C80662714B223005185D6 /* HomeButtonController.swift in Sources */,
 				FCAD16B927255052009140BF /* Product.swift in Sources */,
 				FCFCE7D9271EB94300A59AA0 /* ListButtonController.swift in Sources */,
+				FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */,
 				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
@@ -440,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCAD16BE272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16B627255041009140BF /* ProductManager.swift in Sources */,
 				FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */,
 				FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */,
@@ -455,6 +470,7 @@
 				FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */,
 				FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */,
 				FCAD16B727255041009140BF /* ProductManager.swift in Sources */,
+				FCAD16BF272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16B32725502C009140BF /* ProductCell.swift in Sources */,
 				FCAD16BB27255052009140BF /* Product.swift in Sources */,
 				FC1C80832714B225005185D6 /* AuctixUITests.swift in Sources */,
@@ -798,6 +814,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FCAD16C027296C77009140BF /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FCAD16C127296C77009140BF /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCAD16C027296C77009140BF /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FC1C80562714B223005185D6 /* Project object */;
 }

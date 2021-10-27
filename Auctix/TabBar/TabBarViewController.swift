@@ -65,7 +65,7 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
         
     }
     
-    
+    // настройка градиента(тени) для бара кнопок
     func setupTabBarLayer() {
 
         let tabGradientView = UIView(frame: self.tabBar.bounds)

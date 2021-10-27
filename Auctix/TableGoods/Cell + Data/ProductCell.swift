@@ -22,10 +22,9 @@ class ProductCell: UITableViewCell {
  
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setupViews()
-        //setupGradient()
+        setupGradient()
         setupElements()
+        setupViews()
     }
      
     required init?(coder: NSCoder) {
@@ -44,49 +43,35 @@ class ProductCell: UITableViewCell {
         
         imageProd.clipsToBounds = true
         imageProd.layer.cornerRadius = 5
-        
+        imageProd.isUserInteractionEnabled = true
         imageProd.translatesAutoresizingMaskIntoConstraints = false
         nameProd.translatesAutoresizingMaskIntoConstraints = false
         time.translatesAutoresizingMaskIntoConstraints = false
         cost.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        //containerView.backgroundColor = .clear
+        
     }
-    
+    // настройка градиента(тени) на ячейку
     func setupGradient(){
-       
-        
-        
-//        gradient.frame = imageProd.bounds
-//        //gradient.contents = imageProd.image?.cgImage
-//        gradient.colors = [UIColor.green.cgColor, UIColor.blue.cgColor]
-//        gradient.startPoint = CGPoint(x: 0, y: 0)
-//        gradient.endPoint = CGPoint(x: 1, y: 1)
-        
-        
-       
-        gradient.frame = containerView.frame
-        gradient.colors = [UIColor.lightGrad, UIColor.darkGrad]
-        gradient.locations = [0.0, 1.0]
+        gradient.colors = [UIColor.darkGrad.cgColor, UIColor.white.withAlphaComponent(0).cgColor]
+        gradient.locations = [0, 1]
         gradient.startPoint = CGPoint(x: 0.25, y: 0.5)
         gradient.endPoint = CGPoint(x: 0.75, y: 0.5)
-        //containerView.layer.insertSublayer(gradient, at: 0)
+        gradient.cornerRadius = layer.cornerRadius
         
-        //imageProd.insertSubview(containerView, at: 0)
-        
-
-//        imageProd.bringSubviewToFront(view)
-//        gradient.frame = self.bounds
-//        gradient.colors = [UIColor.lightGrad, UIColor.darkGrad]
-//        gradient.locations = [0,1]
-//        gradient.startPoint = CGPoint(x: 0.25, y: 0.5)
-//        gradient.endPoint = CGPoint(x: 0.75, y: 0.5)
-        //gradient.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: -1, b: 0, c: 0, d: -5.8, tx: 1, ty: 3.4))
-        
+        gradient.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: -1, b: 0, c: 0, d: -5.8, tx: 1, ty: 3.4))
+        gradient.bounds = bounds.insetBy(dx: -0.5*bounds.size.width, dy: -0.5*bounds.size.height)
+        gradient.position = center
+  
     }
     
     func configure(with data: Product){
         imageProd.image = data.productImg
         nameProd.text = data.title
-        cost.text = data.cost
+        cost.text = data.cost + "$"
+        time.text = "1 work 3 tausent"
         
     }
     
@@ -96,14 +81,15 @@ class ProductCell: UITableViewCell {
     }
     
     private func setupViews() {
-        addSubview(containerView)
-        containerView.addSubview(imageProd)
-        setupGradient()
-        //contentView.layer.addSublayer(gradient)
-        //layer.addSublayer(gradient)
-//        imageProd.addSubview(nameProd)
-//        imageProd.addSubview(time)
-//        imageProd.addSubview(cost)
+        //addSubview(containerView)
+        addSubview(imageProd)
+        imageProd.addSubview(containerView)
+        containerView.layer.addSublayer(gradient)
+        
+        
+        imageProd.addSubview(nameProd)
+        imageProd.addSubview(time)
+        imageProd.addSubview(cost)
         
     }
 }
@@ -113,28 +99,30 @@ extension ProductCell {
     func setupLayuot() {
         NSLayoutConstraint.activate([
             
-            containerView.topAnchor.constraint(equalTo: topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            imageProd.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            imageProd.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            imageProd.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            imageProd.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             
-            imageProd.topAnchor.constraint(equalTo: containerView.topAnchor),
-            imageProd.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            imageProd.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            imageProd.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+            
+            containerView.topAnchor.constraint(equalTo: imageProd.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: imageProd.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: imageProd.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: imageProd.trailingAnchor),
         
             //nameProd.heightAnchor.constraint(equalToConstant: 56),
-//            nameProd.topAnchor.constraint(equalTo: imageProd.topAnchor, constant: 10),
-//            nameProd.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-//            //nameProd.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
-//
-//            cost.topAnchor.constraint(equalTo: nameProd.bottomAnchor, constant: 5),
-//            cost.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-//            //cost.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
-//
-//            time.topAnchor.constraint(equalTo: cost.bottomAnchor, constant: 5),
-//            time.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-//            //time.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
+            nameProd.topAnchor.constraint(equalTo: imageProd.topAnchor, constant: 10),
+            nameProd.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            //nameProd.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
+
+            cost.topAnchor.constraint(equalTo: nameProd.bottomAnchor, constant: 5),
+            cost.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            //cost.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
+
+            time.topAnchor.constraint(equalTo: cost.bottomAnchor, constant: 5),
+            time.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            //time.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
        ])
   }
 }
