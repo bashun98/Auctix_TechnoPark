@@ -29,34 +29,49 @@ final class ProductViewController: UIViewController {
     private let priceLabel = UILabel()
     private let titleLabel = UILabel()
     private let nowPrice = UILabel()
+    private let currency = UILabel()
+    private let priceChange = UIPickerView()
+    
+    private let screenWidth = UIScreen.main.bounds.width
     
     weak var delegate: ProductViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupElement()
+        setupNavBar()
+        [productImageView, titleLabel, nowPrice, currency, priceChange, priceLabel, chatButton].forEach {
+            view.addSubview($0)
+    }
+    
+    func setupNavBar(){
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
+        navigationItem.rightBarButtonItem = closeButton
+    }
         
-        title = "Product"
-        view.backgroundColor = .systemBackground
-        
+    func setupElement(){
         chatButton.backgroundColor = .systemIndigo
         chatButton.layer.cornerRadius = 8
         chatButton.setTitle("Chat", for: .normal)
-        
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
-        navigationItem.rightBarButtonItem = closeButton
-        //productImageView.contentMode = .scaleAspectFill
-        
-        priceLabel.font = .systemFont(ofSize: 24, weight: .semibold)
-        titleLabel.font = .systemFont(ofSize: 24, weight: .semibold)
+        chatButton.addTarget(self, action: #selector(didTapChatButton), for: .touchUpInside)
         chatButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
         
-        chatButton.addTarget(self, action: #selector(didTapChatButton), for: .touchUpInside)
-
-        [productImageView, titleLabel, priceLabel, chatButton].forEach {
-            view.addSubview($0)
+        priceLabel.font = .systemFont(ofSize: 24, weight: .regular)
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLabel.font = .systemFont(ofSize: 24, weight: .regular)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        nowPrice.font = .systemFont(ofSize: 24, weight: .regular)
+        nowPrice.translatesAutoresizingMaskIntoConstraints = false
+        nowPrice.text = "Current price:"
+        
+        currency.font = .systemFont(ofSize: 24, weight: .regular)
+        currency.translatesAutoresizingMaskIntoConstraints = false
+        currency.text = "$"
+        
         }
     }
-    
     func configure(with product: Product) {
         productImageView.image = product.productImg
         titleLabel.text = product.title
@@ -65,29 +80,33 @@ final class ProductViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        productImageView.pin
-            .top(view.safeAreaInsets.top)
-            .horizontally()
-            .height(360)
-        
-        chatButton.pin
-            .below(of: productImageView)
-            .marginTop(16)
-            .horizontally(12)
-            .height(40)
-        
-        titleLabel.pin
-            .below(of: chatButton)
-            .marginTop(16)
-            .horizontally(12)
-            .height(32)
-        
-        priceLabel.pin
-            .below(of: titleLabel)
-            .marginTop(12)
-            .horizontally(12)
-            .height(24)
+        setupLayuot()
+    }
+    
+    func setupLayuot(){
+        NSLayoutConstraint.activate([
+            titleLabel.widthAnchor.constraint(equalToConstant: 300),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: ((screenWidth - 300) / 2)),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -((screenWidth - 300) / 2)),
+            
+            productImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            productImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            productImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
+            productImageView.heightAnchor.constraint(equalToConstant: 300),
+            
+            nowPrice.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            nowPrice.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
+            
+            priceLabel.leadingAnchor.constraint(equalTo: nowPrice.leadingAnchor, constant: 10),
+            priceLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
+            
+            currency.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: 1),
+            currency.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
+            currency.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -1),
+            
+            
+        ])
     }
     
     @objc
