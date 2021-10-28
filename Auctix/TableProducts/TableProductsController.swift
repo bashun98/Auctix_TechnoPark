@@ -89,10 +89,16 @@ extension TableProductsController {
 }
 // настройка сообщения при нажатии на кнопку
 extension TableProductsController: ProductViewControllerDelegate {
-    func didTapChatButton(productViewController: UIViewController, productId: String) {
+    func didTapChatButton(productViewController: UIViewController, productId: String, priceTextFild: String) {
+        for i in 0...products.count {
+            if productId == products[i].id {
+                products[i].cost = priceTextFild
+                break
+            }
+        }
         productViewController.dismiss(animated: true)
         
-        let alertVC = UIAlertController(title: "Start Chat", message: productId, preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Wow!", message: "Your bet has been placed", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default))
         present(alertVC, animated: true, completion: nil)
     }

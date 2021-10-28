@@ -14,5 +14,5 @@ struct Product{
     let text_opis: String
     let exhibition: String
     let status: String
-    let cost: String
+    var cost: String
 }

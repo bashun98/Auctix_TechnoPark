@@ -25,7 +25,7 @@ class ListButtonTabViewController: UIViewController {
         tableView.delegate = self
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "LIST"
-        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont(name: FontsName.black.rawValue, size: 40) ?? UIFont.systemFont(ofSize: 36) ]
+        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .black, size: 40)]
        
         exhibitions = ExhibitionManager.shared.loadExhibition()
         self.view.addSubview(tableView)
