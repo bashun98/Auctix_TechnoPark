@@ -18,21 +18,18 @@ class ListButtonTabViewController: UIViewController {
         tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: "header")
         return tableView
     }()
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "LIST"
-        
-        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont(name: "Nunito-Black", size: 36) ?? UIFont.systemFont(ofSize: 36) ]
+        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont(name: FontsName.black.rawValue, size: 40) ?? UIFont.systemFont(ofSize: 36) ]
        
         exhibitions = ExhibitionManager.shared.loadExhibition()
         self.view.addSubview(tableView)
-        //view.translatesAutoresizingMaskIntoConstraints = false
+      //  view.translatesAutoresizingMaskIntoConstraints = false
     }
 
     override func viewDidLayoutSubviews() {
@@ -73,13 +70,5 @@ extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegat
         return 40
     }
 }
-        
-        /* это для товаров
-        let vc = DetailViewController()
-        self.present(vc, animated: true, completion: nil)
-         */
-//  navVC.modalPresentationStyle = .fullScreen
-//  present(navVC, animated: true, completion: nil)
-//    self.navigationController?.pushViewController(vc, animated: true)
 
 

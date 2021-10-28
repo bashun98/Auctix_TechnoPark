@@ -44,14 +44,14 @@ final class OnboardingViewController: UIViewController {
         
         buttonContinue.setTitle("Register later", for: .normal)
         buttonContinue.titleLabel?.numberOfLines = 0
-        buttonContinue.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 14)
+        buttonContinue.titleLabel?.font = UIFont(name: FontsName.regular.rawValue, size: 14)
         view.addSubview(buttonContinue)
         
         buttonContinue.addTarget(self, action: #selector(buttonContinueTapped), for: .touchUpInside)
 
         buttonSignUp.backgroundColor = UIColor.honeyYellow
         buttonSignUp.setTitle("Sign Up", for: .normal)
-        buttonSignUp.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 20)
+        buttonSignUp.titleLabel?.font = UIFont(name: FontsName.regular.rawValue, size: 20)
         buttonSignUp.titleLabel?.adjustsFontSizeToFitWidth = true
         buttonSignUp.layer.cornerRadius = 20
         view.addSubview(buttonSignUp)
@@ -62,14 +62,14 @@ final class OnboardingViewController: UIViewController {
     private func setupLabels() {
         
         label.text = "🎉 Welcome! 🎉"
-        label.font = UIFont(name: "Nunito-Black", size: 26)
+        label.font = UIFont(name: FontsName.black.rawValue, size: 26)
         label.textColor = .white
         label.adjustsFontSizeToFitWidth = true
         view.addSubview(label)
         
        
         extralabel.text = "We are happy to welcome you! Using our application, you can buy rare paintings that are shown at exhibitions. Register in the app to bid on the paintings you like."
-        extralabel.font = UIFont(name: "Nunito-Regular", size: 24)
+        extralabel.font = UIFont(name: FontsName.regular.rawValue, size: 24)
         extralabel.numberOfLines = 0
         extralabel.textColor = .white
         extralabel.adjustsFontSizeToFitWidth = true
