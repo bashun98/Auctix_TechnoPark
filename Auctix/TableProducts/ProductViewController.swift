@@ -31,6 +31,7 @@ final class ProductViewController: UIViewController {
     private let nowPrice = UILabel()
     private let currency = UILabel()
     private let priceChange = UIPickerView()
+    private let question = UILabel()
     
     private let screenWidth = UIScreen.main.bounds.width
     
@@ -38,17 +39,28 @@ final class ProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         setupElement()
         setupNavBar()
-        [productImageView, titleLabel, nowPrice, currency, priceChange, priceLabel, chatButton].forEach {
-            view.addSubview($0)
+        view.addSubview(titleLabel)
+        view.addSubview(productImageView)
+        view.addSubview(nowPrice)
+        view.addSubview(currency)
+        view.addSubview(priceLabel)
+        view.addSubview(question)
+        view.addSubview(priceChange)
+    }
+    
+    
+    func setupView() {
+        view.backgroundColor = .white
     }
     
     func setupNavBar(){
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
         navigationItem.rightBarButtonItem = closeButton
     }
-        
+    
     func setupElement(){
         chatButton.backgroundColor = .systemIndigo
         chatButton.layer.cornerRadius = 8
@@ -61,6 +73,7 @@ final class ProductViewController: UIViewController {
         
         titleLabel.font = .systemFont(ofSize: 24, weight: .regular)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textAlignment = .center
         
         nowPrice.font = .systemFont(ofSize: 24, weight: .regular)
         nowPrice.translatesAutoresizingMaskIntoConstraints = false
@@ -70,8 +83,13 @@ final class ProductViewController: UIViewController {
         currency.translatesAutoresizingMaskIntoConstraints = false
         currency.text = "$"
         
-        }
+        question.font = .systemFont(ofSize: 24, weight: .regular)
+        question.translatesAutoresizingMaskIntoConstraints = false
+        question.text = "Want to place a bet?"
+        
+        priceChange.translatesAutoresizingMaskIntoConstraints = false
     }
+    
     func configure(with product: Product) {
         productImageView.image = product.productImg
         titleLabel.text = product.title
@@ -85,25 +103,32 @@ final class ProductViewController: UIViewController {
     
     func setupLayuot(){
         NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalToConstant: 300),
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: ((screenWidth - 300) / 2)),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -((screenWidth - 300) / 2)),
+            //titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            productImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            productImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            productImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
-            productImageView.heightAnchor.constraint(equalToConstant: 300),
+//            productImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            productImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            productImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+//            productImageView.heightAnchor.constraint(equalToConstant: 300),
             
             nowPrice.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            nowPrice.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
+            nowPrice.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             
-            priceLabel.leadingAnchor.constraint(equalTo: nowPrice.leadingAnchor, constant: 10),
-            priceLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
+            priceLabel.leadingAnchor.constraint(equalTo: nowPrice.trailingAnchor, constant: 10),
+            priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+        
+            currency.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 1),
+            currency.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             
-            currency.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: 1),
-            currency.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
-            currency.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -1),
+            question.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            question.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            question.topAnchor.constraint(equalTo: nowPrice.bottomAnchor, constant: 10),
+            
+            priceChange.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            priceChange.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            priceChange.topAnchor.constraint(equalTo: question.bottomAnchor, constant: 10),
             
             
         ])
