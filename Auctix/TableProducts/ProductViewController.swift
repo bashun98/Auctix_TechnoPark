@@ -28,6 +28,7 @@ final class ProductViewController: UIViewController {
     private let productImageView = UIImageView()
     private let priceLabel = UILabel()
     private let titleLabel = UILabel()
+    private let nowPrice = UILabel()
     
     weak var delegate: ProductViewControllerDelegate?
     

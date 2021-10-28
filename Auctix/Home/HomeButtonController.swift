@@ -19,7 +19,7 @@ class HomeButtonTabViewController: UIViewController {
     private let collectionViewLayout = UICollectionViewFlowLayout()
     private var indexOfCellBeforeDragging = 0
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = HomeTableLayout()
         layout.scrollDirection = .horizontal
         
         let collection = UICollectionView(frame: .init(), collectionViewLayout: layout)
@@ -145,24 +145,18 @@ extension HomeButtonTabViewController {
             searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
             searchTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             searchTextField.heightAnchor.constraint(equalTo: nameLabel.heightAnchor, constant: 40),
+            
             newExhibitions.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 41),
             newExhibitions.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
             newExhibitions.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+            
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             collectionView.topAnchor.constraint(equalTo: newExhibitions.bottomAnchor, constant: 10)
         ])
     }
     
-    // MARK: - new
-//    private func indexOfMajorCell() -> Int {
-//        let itemWidth = collectionViewLayout.itemSize.width
-//        let proportionalOffset = collectionViewLayout.collectionView!.contentOffset.x / itemWidth
-//        let index = Int(round(proportionalOffset))
-//        let safeIndex = max(0, min(datasource.count - 1, index))
-//        return safeIndex
-//    }
 }
 
 // MARK: - Get Methods
@@ -215,11 +209,11 @@ extension HomeButtonTabViewController: UICollectionViewDataSource {
 extension HomeButtonTabViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 15
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 0, left: 25, bottom: 0, right: 25)
+        return .init(top: 20, left: 25, bottom: 50, right: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -227,40 +221,4 @@ extension HomeButtonTabViewController: UICollectionViewDelegateFlowLayout {
         let width = UIScreen.main.bounds.width - 50
         return .init(width: width, height: collectionView.bounds.height)
     }
-    
-//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        indexOfCellBeforeDragging = indexOfMajorCell()
-//    }
-//    
-//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        // Stop scrollView sliding:
-//        targetContentOffset.pointee = scrollView.contentOffset
-//        
-//        // calculate where scrollView should snap to:
-//        let indexOfMajorCell = self.indexOfMajorCell()
-//        
-//        // calculate conditions:
-//        let swipeVelocityThreshold: CGFloat = 0.5 // after some trail and error
-//        let hasEnoughVelocityToSlideToTheNextCell = indexOfCellBeforeDragging + 1 < datasource.count && velocity.x > swipeVelocityThreshold
-//        let hasEnoughVelocityToSlideToThePreviousCell = indexOfCellBeforeDragging - 1 >= 0 && velocity.x < -swipeVelocityThreshold
-//        let majorCellIsTheCellBeforeDragging = indexOfMajorCell == indexOfCellBeforeDragging
-//        let didUseSwipeToSkipCell = majorCellIsTheCellBeforeDragging && (hasEnoughVelocityToSlideToTheNextCell || hasEnoughVelocityToSlideToThePreviousCell)
-//        
-//        if didUseSwipeToSkipCell {
-//            
-//            let snapToIndex = indexOfCellBeforeDragging + (hasEnoughVelocityToSlideToTheNextCell ? 1 : -1)
-//            let toValue = collectionViewLayout.itemSize.width * CGFloat(snapToIndex)
-//            
-//            // Damping equal 1 => no oscillations => decay animation:
-//            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: velocity.x, options: .allowUserInteraction, animations: {
-//                scrollView.contentOffset = CGPoint(x: toValue, y: 0)
-//                scrollView.layoutIfNeeded()
-//            }, completion: nil)
-//            
-//        } else {
-//            // This is a much better way to scroll to a cell:
-//            let indexPath = IndexPath(row: indexOfMajorCell, section: 0)
-//            collectionViewLayout.collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//        }
-//    }
 }
