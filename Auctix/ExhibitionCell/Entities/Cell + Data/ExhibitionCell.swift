@@ -40,7 +40,7 @@ class ExhibitionCell: UICollectionViewCell {
         
         jumpButton.setTitle("default", for: .normal)
         jumpButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        jumpButton.titleLabel?.isUserInteractionEnabled = true
+        jumpButton.titleLabel?.isUserInteractionEnabled = false
         jumpButton.setTitleColor(.white, for: .normal)
         jumpButton.layer.cornerRadius = 28
         jumpButton.backgroundColor = UIColor.blueGreen
@@ -52,6 +52,11 @@ class ExhibitionCell: UICollectionViewCell {
         imageExhib.clipsToBounds = true
         imageExhib.layer.cornerRadius = 20
         imageExhib.translatesAutoresizingMaskIntoConstraints = false
+        
+        layer.shadowRadius = 3
+        layer.shadowOffset = CGSize(width: 5, height: 10)
+        layer.cornerRadius = 20
+        layer.shadowOpacity = 0.3
     }
     
     func configure(with data: Exhibition){
@@ -82,7 +87,7 @@ extension ExhibitionCell {
         // TODO: Переделай на setupLayout и делай по одному образцу, чтобы все едино было  (сделал)
         // TODO: зачем self ? Тут итак нет разногласий (сделал)
         NSLayoutConstraint.activate([
-            imageExhib.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageExhib.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             imageExhib.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             imageExhib.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageExhib.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
