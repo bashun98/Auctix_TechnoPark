@@ -15,11 +15,6 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
     private let accVC = UINavigationController(rootViewController: AccountButtonTabViewController())
     private let bidVC = UINavigationController(rootViewController: BidButtonTabViewController())
     
-    
-    required init?(coder: NSCoder) {
-        super .init(coder: coder)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
