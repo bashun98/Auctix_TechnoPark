@@ -10,9 +10,6 @@
 		2039BA99272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
 		2039BA9A272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
 		2039BA9B272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
-		208FC9F0272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */; };
-		208FC9F1272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */; };
-		208FC9F2272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */; };
 		208FC9F5272AC56B00FEB6B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 208FC9F4272AC56B00FEB6B8 /* SnapKit */; };
 		208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9F8272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
@@ -38,6 +35,7 @@
 		FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80782714B225005185D6 /* AuctixTests.swift */; };
 		FC1C80832714B225005185D6 /* AuctixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80822714B225005185D6 /* AuctixUITests.swift */; };
 		FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */; };
+		FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */; };
 		FC555534272ADAFB005E697F /* HomeTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC555533272ADAFB005E697F /* HomeTableLayout.swift */; };
 		FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */; };
 		FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */; };
@@ -85,7 +83,6 @@
 
 /* Begin PBXFileReference section */
 		2039BA98272AD3F800AD1A19 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewCell.swift; sourceTree = "<group>"; };
 		208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeader.swift; sourceTree = "<group>"; };
 		208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
@@ -104,6 +101,7 @@
 		FC1C807E2714B225005185D6 /* AuctixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuctixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80822714B225005185D6 /* AuctixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITests.swift; sourceTree = "<group>"; };
 		FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Onboarding/OnboardingViewController.swift; sourceTree = "<group>"; };
 		FC555533272ADAFB005E697F /* HomeTableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableLayout.swift; sourceTree = "<group>"; };
 		FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
 		FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionCell.swift; sourceTree = "<group>"; };
@@ -159,7 +157,7 @@
 		208FC9EE272AC4C000FEB6B8 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */,
+				FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -490,7 +488,7 @@
 				FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */,
 				FC555534272ADAFB005E697F /* HomeTableLayout.swift in Sources */,
 				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,
-				208FC9F0272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */,
+				FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
 				FCAD16B527255041009140BF /* ProductManager.swift in Sources */,
@@ -516,7 +514,6 @@
 				FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */,
 				FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */,
 				2039BA9A272AD3F800AD1A19 /* File.swift in Sources */,
-				208FC9F1272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */,
 				FCAD16BA27255052009140BF /* Product.swift in Sources */,
 				208FC9F8272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
 				FCAD16B22725502C009140BF /* ProductCell.swift in Sources */,
@@ -532,7 +529,6 @@
 				FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */,
 				FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */,
 				FCAD16B727255041009140BF /* ProductManager.swift in Sources */,
-				208FC9F2272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */,
 				FCAD16BF272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16B32725502C009140BF /* ProductCell.swift in Sources */,
 				FCAD16BB27255052009140BF /* Product.swift in Sources */,
