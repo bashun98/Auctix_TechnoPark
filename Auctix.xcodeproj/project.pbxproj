@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		208FC9F0272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */; };
+		208FC9F1272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */; };
+		208FC9F2272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */; };
+		208FC9F5272AC56B00FEB6B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 208FC9F4272AC56B00FEB6B8 /* SnapKit */; };
 		314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554027242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554127242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
@@ -67,6 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		314E553E27242C9100A45903 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		314E554227242CA000A45903 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
 		FC1C805E2714B223005185D6 /* Auctix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auctix.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCAD16C227296C77009140BF /* PinLayout in Frameworks */,
+				208FC9F5272AC56B00FEB6B8 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +130,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		208FC9EE272AC4C000FEB6B8 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
 		FC1C80552714B223005185D6 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +161,7 @@
 		FC1C80602714B223005185D6 /* Auctix */ = {
 			isa = PBXGroup;
 			children = (
+				208FC9EE272AC4C000FEB6B8 /* Onboarding */,
 				FCAD16AA27254FB1009140BF /* TableProducts */,
 				FCFCE7E42721F03900A59AA0 /* TabBar */,
 				FCFCE7E32721F01700A59AA0 /* ExhibitionCell */,
@@ -305,6 +320,7 @@
 			name = Auctix;
 			packageProductDependencies = (
 				FCAD16C127296C77009140BF /* PinLayout */,
+				208FC9F4272AC56B00FEB6B8 /* SnapKit */,
 			);
 			productName = Auctix;
 			productReference = FC1C805E2714B223005185D6 /* Auctix.app */;
@@ -380,6 +396,7 @@
 			mainGroup = FC1C80552714B223005185D6;
 			packageReferences = (
 				FCAD16C027296C77009140BF /* XCRemoteSwiftPackageReference "PinLayout" */,
+				208FC9F3272AC56A00FEB6B8 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = FC1C805F2714B223005185D6 /* Products */;
 			projectDirPath = "";
@@ -437,6 +454,7 @@
 				FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */,
 				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,
+				208FC9F0272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
 				FCAD16B527255041009140BF /* ProductManager.swift in Sources */,
@@ -458,6 +476,7 @@
 				FCAD16B627255041009140BF /* ProductManager.swift in Sources */,
 				FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */,
 				FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */,
+				208FC9F1272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */,
 				FCAD16BA27255052009140BF /* Product.swift in Sources */,
 				FCAD16B22725502C009140BF /* ProductCell.swift in Sources */,
 			);
@@ -470,6 +489,7 @@
 				FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */,
 				FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */,
 				FCAD16B727255041009140BF /* ProductManager.swift in Sources */,
+				208FC9F2272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */,
 				FCAD16BF272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16B32725502C009140BF /* ProductCell.swift in Sources */,
 				FCAD16BB27255052009140BF /* Product.swift in Sources */,
@@ -635,6 +655,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HPFL4V5BSY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Auctix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -662,6 +683,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HPFL4V5BSY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Auctix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -816,6 +838,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		208FC9F3272AC56A00FEB6B8 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		FCAD16C027296C77009140BF /* XCRemoteSwiftPackageReference "PinLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/layoutBox/PinLayout";
@@ -827,6 +857,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		208FC9F4272AC56B00FEB6B8 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 208FC9F3272AC56A00FEB6B8 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		FCAD16C127296C77009140BF /* PinLayout */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FCAD16C027296C77009140BF /* XCRemoteSwiftPackageReference "PinLayout" */;
