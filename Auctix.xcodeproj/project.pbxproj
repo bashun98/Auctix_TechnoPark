@@ -14,6 +14,9 @@
 		208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9F8272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9F9272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
+		208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
+		208FC9FC272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
+		208FC9FD272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
 		314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554027242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554127242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
@@ -76,6 +79,7 @@
 /* Begin PBXFileReference section */
 		208FC9EF272AC4EC00FEB6B8 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewCell.swift; sourceTree = "<group>"; };
+		208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeader.swift; sourceTree = "<group>"; };
 		314E553E27242C9100A45903 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		314E554227242CA000A45903 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
 		FC1C805E2714B223005185D6 /* Auctix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auctix.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +187,7 @@
 				FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */,
 				FC1C806F2714B225005185D6 /* Info.plist */,
 				208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */,
+				208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */,
 			);
 			path = Auctix;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */,
+				208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC1C80662714B223005185D6 /* HomeButtonController.swift in Sources */,
 				FCAD16B927255052009140BF /* Product.swift in Sources */,
 				FCFCE7D9271EB94300A59AA0 /* ListButtonController.swift in Sources */,
@@ -480,6 +486,7 @@
 			files = (
 				FCAD16BE272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16B627255041009140BF /* ProductManager.swift in Sources */,
+				208FC9FC272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */,
 				FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */,
 				208FC9F1272AC4EC00FEB6B8 /* OnboardingViewController.swift in Sources */,
@@ -494,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				208FC9F9272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
+				208FC9FD272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */,
 				FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */,
 				FCAD16B727255041009140BF /* ProductManager.swift in Sources */,

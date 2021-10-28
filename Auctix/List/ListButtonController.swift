@@ -6,37 +6,80 @@
 //
 
 import UIKit
+import SnapKit
 
 class ListButtonTabViewController: UIViewController {
 
-    let label = UILabel()
+    private var exhibitions: [Exhibition] = []
+    
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(ExhibitionTableViewCell.self, forCellReuseIdentifier: ExhibitionTableViewCell.identifier)
+        tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: "header")
+        return tableView
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        navigationController?.view.tintColor = UIColor.blueGreen
+        navigationItem.title = "LIST"
         
-        
-        //self.tabBarItem.largeContentSizeImage = CGSize(width: 35, height: 35)
-        navigationController?.navigationBar.isHidden = true
-        label.text = "List"
-        label.backgroundColor = .red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
+        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont(name: "Nunito-Black", size: 36) ?? UIFont.systemFont(ofSize: 36) ]
+       
+        exhibitions = ExhibitionManager.shared.loadExhibition()
+        self.view.addSubview(tableView)
+        //view.translatesAutoresizingMaskIntoConstraints = false
     }
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        setupLayuot()
-        
-    }
-    func setupLayuot(){
-        NSLayoutConstraint.activate([
-            
-            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12)
-        
-        ])
-    }
-    
-    
 
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+        
+    }
 }
+
+extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegate {
+     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return exhibitions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ExhibitionTableViewCell.identifier, for: indexPath) as? ExhibitionTableViewCell else { return UITableViewCell()}
+        let exhibition = exhibitions[indexPath.row]
+        cell.configure(with: exhibition)
+        cell.backgroundColor = .clear
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let rootVC = TableProductsController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+        return header
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+}
+        
+        /* это для товаров
+        let vc = DetailViewController()
+        self.present(vc, animated: true, completion: nil)
+         */
+//  navVC.modalPresentationStyle = .fullScreen
+//  present(navVC, animated: true, completion: nil)
+//    self.navigationController?.pushViewController(vc, animated: true)
+
+

@@ -29,6 +29,10 @@ class ExhibitionTableViewCell: UITableViewCell {
         return label
     }()
     
+    private struct Constraints {
+        static let labelPosition: CGFloat = 10
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .clear
@@ -42,9 +46,7 @@ class ExhibitionTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        myImage.frame = contentView.bounds.inset(by: UIEdgeInsets(top: 5, left: 12, bottom: 5, right: 12))
-        myLabel.frame = CGRect(x: 0, y: 0, width: 150, height: 20)
-        
+        setupLayout()
     }
     
     func configure(with exhibition: Exhibition) {
@@ -68,5 +70,13 @@ class ExhibitionTableViewCell: UITableViewCell {
         gradient.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: -1, b: 0, c: 0, d: -5.8, tx: 1, ty: 3.4))
         gradient.bounds = bounds.insetBy(dx: -0.5*bounds.size.width, dy: -0.5*bounds.size.height)
         gradient.position = center
+    }
+    
+    private func setupLayout() {
+        myImage.frame = contentView.bounds.inset(by: UIEdgeInsets(top: 5, left: 12, bottom: 5, right: 12))
+        myLabel.snp.makeConstraints { make in
+            make.trailing.equalTo(myImage).inset(Constraints.labelPosition)
+            make.top.equalTo(myImage).inset(Constraints.labelPosition)
+        }
     }
 }
