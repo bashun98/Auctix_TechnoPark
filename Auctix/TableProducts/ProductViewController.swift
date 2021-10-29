@@ -112,26 +112,32 @@ final class ProductViewController: UIViewController {
         
         priceLabel.font = .systemFont(ofSize: 24, weight: .regular)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.textColor = UIColor.honeyYellow
         
         titleLabel.font = .systemFont(ofSize: 24, weight: .regular)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.honeyYellow
         
         nowPrice.font = .systemFont(ofSize: 24, weight: .regular)
         nowPrice.translatesAutoresizingMaskIntoConstraints = false
         nowPrice.text = "Current price:"
+        nowPrice.textColor = UIColor.lightCornflowerBlue
         
         currency.font = .systemFont(ofSize: 24, weight: .regular)
         currency.translatesAutoresizingMaskIntoConstraints = false
         currency.text = "$"
+        currency.textColor = UIColor.honeyYellow
         
         question.font = .systemFont(ofSize: 24, weight: .regular)
         question.translatesAutoresizingMaskIntoConstraints = false
         question.text = "Want to place a bet?"
+        question.textColor = UIColor.lightCornflowerBlue
         
         priceChange.translatesAutoresizingMaskIntoConstraints = false
         
-        //priceFild.font = .systemFont(ofSize: 24, weight: .regular)
+        productImageView.translatesAutoresizingMaskIntoConstraints = false
+
     }
     
     func configure(with product: Product) {
@@ -148,27 +154,26 @@ final class ProductViewController: UIViewController {
     func setupLayuot(){
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            //titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-//            productImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            productImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            productImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-//            productImageView.heightAnchor.constraint(equalToConstant: 300),
-//
+            productImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            productImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            productImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            productImageView.heightAnchor.constraint(equalToConstant: 300),
+
             nowPrice.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            nowPrice.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            nowPrice.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
             
             priceLabel.leadingAnchor.constraint(equalTo: nowPrice.trailingAnchor, constant: 10),
-            priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            priceLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
         
             currency.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 1),
-            currency.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            currency.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
             
             question.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             question.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            question.topAnchor.constraint(equalTo: nowPrice.bottomAnchor, constant: 10),
+            question.topAnchor.constraint(equalTo: currency.bottomAnchor, constant: 10),
             
             priceFild.heightAnchor.constraint(equalToConstant: 50),
             priceFild.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -217,13 +222,3 @@ extension ProductViewController: UIPickerViewDelegate {
     }
 }
 
-//extension ProductViewController: UITextFieldDelegate {
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn
-//      range: NSRange, replacementString string: String) -> Bool {
-//
-//        if textField.text?.count == 0 && string == "0" {
-//            return false
-//        }
-//        return string == string.filter("0123456789".contains)
-//    }
-//}
