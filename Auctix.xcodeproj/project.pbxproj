@@ -13,6 +13,9 @@
 		2039BA99272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
 		2039BA9A272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
 		2039BA9B272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
+		205443D7272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
+		205443D8272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
+		205443D9272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
 		208FC9F5272AC56B00FEB6B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 208FC9F4272AC56B00FEB6B8 /* SnapKit */; };
 		208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9F8272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
@@ -23,6 +26,9 @@
 		208FCA03272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
 		208FCA04272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
 		208FCA05272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
+		2097AA81272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
+		2097AA82272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
+		2097AA83272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
 		314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554027242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554127242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
@@ -89,9 +95,11 @@
 		04764CBD272C2B5B0094114C /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		04764CBF272C2B6F0094114C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		2039BA98272AD3F800AD1A19 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		205443D6272DA3A40079D152 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewCell.swift; sourceTree = "<group>"; };
 		208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeader.swift; sourceTree = "<group>"; };
 		208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
+		2097AA80272DBC0900FA6292 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		314E553E27242C9100A45903 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		314E554227242CA000A45903 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
 		FC1C805E2714B223005185D6 /* Auctix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auctix.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +228,8 @@
 				FC1C806F2714B225005185D6 /* Info.plist */,
 				208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */,
 				208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */,
+				205443D6272DA3A40079D152 /* Protocols.swift */,
+				2097AA80272DBC0900FA6292 /* TestViewController.swift */,
 			);
 			path = Auctix;
 			sourceTree = "<group>";
@@ -505,12 +515,14 @@
 				04764CC0272C2B6F0094114C /* Data.swift in Sources */,
 				FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */,
+				205443D7272DA3A40079D152 /* Protocols.swift in Sources */,
 				FC555534272ADAFB005E697F /* HomeTableLayout.swift in Sources */,
 				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,
 				FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
 				FCAD16B527255041009140BF /* ProductManager.swift in Sources */,
+				2097AA81272DBC0900FA6292 /* TestViewController.swift in Sources */,
 				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
 				208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
 				FCAD16B12725502C009140BF /* ProductCell.swift in Sources */,
@@ -530,9 +542,11 @@
 			files = (
 				FCAD16BE272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16B627255041009140BF /* ProductManager.swift in Sources */,
+				2097AA82272DBC0900FA6292 /* TestViewController.swift in Sources */,
 				208FC9FC272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */,
 				FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */,
+				205443D8272DA3A40079D152 /* Protocols.swift in Sources */,
 				2039BA9A272AD3F800AD1A19 /* File.swift in Sources */,
 				FCAD16BA27255052009140BF /* Product.swift in Sources */,
 				208FC9F8272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
@@ -547,12 +561,14 @@
 				208FC9F9272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
 				208FC9FD272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */,
+				205443D9272DA3A40079D152 /* Protocols.swift in Sources */,
 				FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */,
 				FCAD16B727255041009140BF /* ProductManager.swift in Sources */,
 				FCAD16BF272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16B32725502C009140BF /* ProductCell.swift in Sources */,
 				FCAD16BB27255052009140BF /* Product.swift in Sources */,
 				2039BA9B272AD3F800AD1A19 /* File.swift in Sources */,
+				2097AA83272DBC0900FA6292 /* TestViewController.swift in Sources */,
 				FC1C80832714B225005185D6 /* AuctixUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

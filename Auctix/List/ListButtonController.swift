@@ -15,10 +15,11 @@ class ListButtonTabViewController: UIViewController {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ExhibitionTableViewCell.self, forCellReuseIdentifier: ExhibitionTableViewCell.identifier)
-        tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: "header")
+        tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: ListTableHeader.identifier)
         return tableView
     }()
 
+    private let pickerView = UIPickerView()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -63,7 +64,8 @@ extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader else { return UITableViewHeaderFooterView()}
+        header.delegate = self
         return header
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -71,4 +73,13 @@ extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegat
     }
 }
 
-
+extension ListButtonTabViewController: HeaderOutput {
+    func sortButtonTapped() {
+        let vc = TestViewController()
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func filterButtonTapped() {
+        print("Hi")
+    }
+}

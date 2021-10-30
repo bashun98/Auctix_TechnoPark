@@ -9,7 +9,7 @@ import UIKit
 
 class ListTableHeader: UITableViewHeaderFooterView {
 
-    static let identifier = "TableHeader"
+    static let identifier = "header"
     
     private let sortButton: UIButton = {
         let button = UIButton()
@@ -25,11 +25,15 @@ class ListTableHeader: UITableViewHeaderFooterView {
         return button
     }()
     
+    weak var delegate: HeaderOutput?
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
         contentView.addSubview(sortButton)
         contentView.addSubview(filterButton)
+        sortButton.addTarget(self, action: #selector(setupSort), for: .touchUpInside)
+        filterButton.addTarget(self, action: #selector(setupFilter), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -51,6 +55,14 @@ class ListTableHeader: UITableViewHeaderFooterView {
             make.trailingMargin.equalTo(contentView)
             make.bottom.equalTo(contentView)
         }
+    }
+    
+    @objc private func setupSort() {
+        delegate?.sortButtonTapped()
+    }
+    
+    @objc private func setupFilter() {
+        delegate?.filterButtonTapped()
     }
     
 }
