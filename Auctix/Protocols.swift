@@ -11,3 +11,4 @@ protocol HeaderOutput: AnyObject {
     func sortButtonTapped()
     func filterButtonTapped()
 }
+

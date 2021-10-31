@@ -226,8 +226,6 @@
 				FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */,
 				FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */,
 				FC1C806F2714B225005185D6 /* Info.plist */,
-				208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */,
-				208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */,
 				205443D6272DA3A40079D152 /* Protocols.swift */,
 				2097AA80272DBC0900FA6292 /* TestViewController.swift */,
 			);
@@ -320,6 +318,8 @@
 			isa = PBXGroup;
 			children = (
 				FCFCE7D8271EB94300A59AA0 /* ListButtonController.swift */,
+				208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */,
+				208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";

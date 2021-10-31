@@ -9,8 +9,14 @@ import UIKit
 import SnapKit
 
 class ListButtonTabViewController: UIViewController {
-
+    
     private var exhibitions: [Exhibition] = []
+    
+    private let sortingData = ["Name","City","New"]
+    private let container = UIView()
+    private let picker = UIPickerView()
+    private let toolBar = UIToolbar()
+    private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -18,30 +24,61 @@ class ListButtonTabViewController: UIViewController {
         tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: ListTableHeader.identifier)
         return tableView
     }()
-
-    private let pickerView = UIPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        picker.delegate = self
+        picker.dataSource = self
+        
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "LIST"
         navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .black, size: 40)]
-       
+        
         exhibitions = ExhibitionManager.shared.loadExhibition()
         self.view.addSubview(tableView)
-      //  view.translatesAutoresizingMaskIntoConstraints = false
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
         
+        view.addSubview(container)
+        container.addSubview(picker)
+        container.addSubview(toolBar)
+        picker.backgroundColor = .white
+        toolBar.setItems([doneButton], animated: false)
+        container.isUserInteractionEnabled = true
+        container.isHidden = true
+//        picker.backgroundColor = .white
+        
+        //  view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        tableView.frame = view.bounds
+        container.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalToSuperview().inset(300)
+            make.width.equalToSuperview()
+        }
+        toolBar.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        
+        picker.snp.makeConstraints { make in
+            make.top.equalTo(toolBar)
+            make.bottom.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        
+    }
+    
+    @objc func doneButtonTapped() {
+        container.isHidden = true
     }
 }
 
 extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegate {
-     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return exhibitions.count
     }
@@ -73,13 +110,29 @@ extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegat
     }
 }
 
+extension ListButtonTabViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return sortingData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return sortingData[row]
+    }
+    
+}
+
 extension ListButtonTabViewController: HeaderOutput {
     func sortButtonTapped() {
-        let vc = TestViewController()
-        present(vc, animated: true, completion: nil)
+        container.isHidden = false
+        navigationController?.toolbar.isHidden = true
     }
     
     func filterButtonTapped() {
-        print("Hi")
+        
     }
 }
