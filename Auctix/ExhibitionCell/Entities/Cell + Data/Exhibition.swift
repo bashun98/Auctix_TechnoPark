@@ -13,4 +13,6 @@ struct Exhibition{
     let title: String
     let text_opis: String
     let status: String
+    let city: String
+    let country: String
 }
