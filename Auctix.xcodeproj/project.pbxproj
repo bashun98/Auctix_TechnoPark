@@ -29,6 +29,9 @@
 		2097AA81272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
 		2097AA82272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
 		2097AA83272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
+		20ECC6A527303E32005358C4 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECC6A427303E32005358C4 /* CustomPickerView.swift */; };
+		20ECC6A627303E32005358C4 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECC6A427303E32005358C4 /* CustomPickerView.swift */; };
+		20ECC6A727303E32005358C4 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECC6A427303E32005358C4 /* CustomPickerView.swift */; };
 		314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554027242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554127242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
@@ -100,6 +103,7 @@
 		208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeader.swift; sourceTree = "<group>"; };
 		208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
 		2097AA80272DBC0900FA6292 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		20ECC6A427303E32005358C4 /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		314E553E27242C9100A45903 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		314E554227242CA000A45903 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
 		FC1C805E2714B223005185D6 /* Auctix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auctix.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +324,7 @@
 				FCFCE7D8271EB94300A59AA0 /* ListButtonController.swift */,
 				208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */,
 				208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */,
+				20ECC6A427303E32005358C4 /* CustomPickerView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
 				FCAD16B527255041009140BF /* ProductManager.swift in Sources */,
 				2097AA81272DBC0900FA6292 /* TestViewController.swift in Sources */,
+				20ECC6A527303E32005358C4 /* CustomPickerView.swift in Sources */,
 				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
 				208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
 				FCAD16B12725502C009140BF /* ProductCell.swift in Sources */,
@@ -549,6 +555,7 @@
 				205443D8272DA3A40079D152 /* Protocols.swift in Sources */,
 				2039BA9A272AD3F800AD1A19 /* File.swift in Sources */,
 				FCAD16BA27255052009140BF /* Product.swift in Sources */,
+				20ECC6A627303E32005358C4 /* CustomPickerView.swift in Sources */,
 				208FC9F8272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
 				FCAD16B22725502C009140BF /* ProductCell.swift in Sources */,
 			);
@@ -566,6 +573,7 @@
 				FCAD16B727255041009140BF /* ProductManager.swift in Sources */,
 				FCAD16BF272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16B32725502C009140BF /* ProductCell.swift in Sources */,
+				20ECC6A727303E32005358C4 /* CustomPickerView.swift in Sources */,
 				FCAD16BB27255052009140BF /* Product.swift in Sources */,
 				2039BA9B272AD3F800AD1A19 /* File.swift in Sources */,
 				2097AA83272DBC0900FA6292 /* TestViewController.swift in Sources */,

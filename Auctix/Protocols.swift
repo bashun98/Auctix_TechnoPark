@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol HeaderOutput: AnyObject {
     func sortButtonTapped()
-    func filterButtonTapped()
+  //  func filterButtonTapped(_ buttonLabel: UILabel)
 }
 

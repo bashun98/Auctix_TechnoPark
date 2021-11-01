@@ -11,6 +11,7 @@ import SnapKit
 class ListButtonTabViewController: UIViewController {
     
     private var exhibitions: [Exhibition] = []
+    private var header: ListTableHeader!
     
     private let sortingData = ["Name","City","New"]
     private let container = UIView()
@@ -31,6 +32,9 @@ class ListButtonTabViewController: UIViewController {
         tableView.delegate = self
         picker.delegate = self
         picker.dataSource = self
+        header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader
+        header.delegate = self
+        
         
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "LIST"
@@ -38,6 +42,7 @@ class ListButtonTabViewController: UIViewController {
         
         exhibitions = ExhibitionManager.shared.loadExhibition()
         self.view.addSubview(tableView)
+        tableView.separatorStyle = .none
         
         view.addSubview(container)
         container.addSubview(picker)
@@ -63,17 +68,19 @@ class ListButtonTabViewController: UIViewController {
             make.top.equalToSuperview()
             make.width.equalToSuperview()
         }
-        
+
         picker.snp.makeConstraints { make in
             make.top.equalTo(toolBar)
             make.bottom.equalToSuperview()
             make.width.equalToSuperview()
         }
-        
     }
     
     @objc func doneButtonTapped() {
         container.isHidden = true
+        exhibitions.sort(by: {$0.city < $1.city})
+        tableView.reloadData()
+        tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -101,8 +108,6 @@ extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader else { return UITableViewHeaderFooterView()}
-        header.delegate = self
         return header
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -123,16 +128,21 @@ extension ListButtonTabViewController: UIPickerViewDelegate, UIPickerViewDataSou
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return sortingData[row]
     }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        header.setupLabel(sortingData[row])
+  //      tableView.reloadData()
+    }
     
 }
 
 extension ListButtonTabViewController: HeaderOutput {
     func sortButtonTapped() {
         container.isHidden = false
-        navigationController?.toolbar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
     }
     
-    func filterButtonTapped() {
-        
-    }
+//    func filterButtonTapped(_ buttonLabel: UILabel) {
+//        
+//    }
 }
