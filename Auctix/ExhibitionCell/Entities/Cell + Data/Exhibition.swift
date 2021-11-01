@@ -8,7 +8,6 @@
 import UIKit
 
 struct Exhibition{
-    
     let titleImg: UIImage
     let title: String
     let text_opis: String
