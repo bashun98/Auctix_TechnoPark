@@ -11,13 +11,15 @@ class ListTableHeader: UITableViewHeaderFooterView {
     
     static let identifier = "header"
     private let headerLabel = UILabel()
+    private let contatiner = UIView()
+    private let arrow: String = " ▼"
     weak var delegate: HeaderOutput?
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
         contentView.addSubview(headerLabel)
-        headerLabel.text = "Name"
+        headerLabel.text = "Name" + arrow
         headerLabel.font = UIFont(name: "Nunito-Black" , size: 18)
         let tap = UITapGestureRecognizer(target: self, action: #selector(sortButtonTapped))
         headerLabel.isUserInteractionEnabled = true
@@ -34,7 +36,7 @@ class ListTableHeader: UITableViewHeaderFooterView {
     }
     
     func setupLabel(_ text: String) {
-        headerLabel.text = text
+        headerLabel.text = text + arrow
     }
     
     private func setupButtons() {

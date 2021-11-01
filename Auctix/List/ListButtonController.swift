@@ -83,7 +83,6 @@ class ListButtonTabViewController: UIViewController {
         container.isHidden = true
         if sortLabel == sortingData[0] {
             exhibitions.sort(by: {$0.title < $1.title})
-            
         } else if sortLabel == sortingData[1] {
             exhibitions.sort(by: {$0.city < $1.city})
         } else {
