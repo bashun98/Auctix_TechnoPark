@@ -64,7 +64,7 @@ class ListButtonTabViewController: UIViewController {
     private func setupPickerViewConstaraints() {
         container.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.height.equalToSuperview().inset(300)
+            make.height.equalTo(UIScreen.main.bounds.height/3) // иправьте
             make.width.equalToSuperview()
         }
         toolBar.snp.makeConstraints { make in
