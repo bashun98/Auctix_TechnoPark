@@ -12,7 +12,7 @@ class ListButtonTabViewController: UIViewController {
     
     private var exhibitions: [Exhibition] = []
     private var header: ListTableHeader!
-    private let sortingData = ["Name","City","New"]
+    private let sortingData = ["Name","City","Country","New"]
     private let container = UIView()
     private let picker = UIPickerView()
     private let toolBar = UIToolbar()
@@ -85,6 +85,8 @@ class ListButtonTabViewController: UIViewController {
             exhibitions.sort(by: {$0.title < $1.title})
         } else if sortLabel == sortingData[1] {
             exhibitions.sort(by: {$0.city < $1.city})
+        } else if sortLabel == sortingData[2]{
+            exhibitions.sort(by: {$0.country < $1.country})
         } else {
             exhibitions.sort(by: {$0.status < $1.status})
         }
