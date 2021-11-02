@@ -22,15 +22,29 @@ class ExhibitionTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let myLabel: UILabel = {
+    private let exhibitionName: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.font = .systemFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
+    private let exhibitionCity: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
+    private let exhibitionCountry: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 17, weight: .regular)
         return label
     }()
     
     private struct Constraints {
-        static let labelPosition: CGFloat = 10
+        static let labelPosition: CGFloat = 20
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -51,14 +65,18 @@ class ExhibitionTableViewCell: UITableViewCell {
     
     func configure(with exhibition: Exhibition) {
         myImage.image = exhibition.titleImg
-        myLabel.text = exhibition.title
+        exhibitionName.text = exhibition.title
+        exhibitionCity.text = exhibition.city + ","
+        exhibitionCountry.text = exhibition.country
     }
     
     private func setupViews() {
         addSubview(myImage)
         myImage.addSubview(container)
         container.layer.addSublayer(gradient)
-        myImage.addSubview(myLabel)
+        myImage.addSubview(exhibitionName)
+        myImage.addSubview(exhibitionCity)
+        myImage.addSubview(exhibitionCountry)
     }
     
     private func setupGradient() {
@@ -74,9 +92,17 @@ class ExhibitionTableViewCell: UITableViewCell {
     
     private func setupLayout() {
         myImage.frame = contentView.bounds.inset(by: UIEdgeInsets(top: 5, left: 12, bottom: 5, right: 12))
-        myLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(myImage).inset(Constraints.labelPosition)
+        exhibitionName.snp.makeConstraints { make in
             make.top.equalTo(myImage).inset(Constraints.labelPosition)
+            make.trailing.equalTo(myImage).inset(Constraints.labelPosition / 2)
+        }
+        exhibitionCity.snp.makeConstraints { make in
+            make.top.equalTo(exhibitionName).inset(Constraints.labelPosition * 2)
+            make.trailing.equalTo(exhibitionName)
+        }
+        exhibitionCountry.snp.makeConstraints { make in
+            make.top.equalTo(exhibitionCity).inset(Constraints.labelPosition)
+            make.trailing.equalTo(exhibitionCity)
         }
     }
 }

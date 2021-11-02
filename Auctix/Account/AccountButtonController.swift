@@ -189,7 +189,6 @@ extension AccountButtonTabViewController {
 extension UIImageView {
     //MARK: Функция позволяет сделать круглое изображение
     func makeRounded() {
-    
         self.layer.borderWidth = 1
         self.layer.masksToBounds = false
         self.layer.borderColor = UIColor.black.cgColor
