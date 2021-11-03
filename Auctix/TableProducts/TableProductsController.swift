@@ -16,9 +16,7 @@ class TableProductsController: UITableViewController {
         setupTableView()
         setupTableCell()
         products = ProductManager.shared.loadProducts()
-        
     }
-
     // настройка навигационного бара
     func setupNavBar(){
         navigationController?.navigationBar.isHidden = false
@@ -26,10 +24,7 @@ class TableProductsController: UITableViewController {
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "Products"
         navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont(name: "Nunito-Regular", size: 36) ?? UIFont.systemFont(ofSize: 36) ]
-        
-        
     }
-    
     
     func setupTableCell() {
         tableView.separatorStyle = .none
@@ -49,25 +44,10 @@ class TableProductsController: UITableViewController {
 
         present(navigationController, animated: true, completion: nil)
     }
-    //}
-
-//    extension TableProductsController: ProductViewControllerDelegate {
-//        func didTapChatButton(productViewController: UIViewController, productId: String) {
-//            productViewController.dismiss(animated: true)
-//
-//            let alertVC = UIAlertController(title: "Start Chat", message: productId, preferredStyle: .alert)
-//            alertVC.addAction(UIAlertAction(title: "OK", style: .default))
-//            present(alertVC, animated: true, completion: nil)
-//        }
-//    }
-
-
 }
 // MARK: - Table view data source
 extension TableProductsController {
-    
-    
-    
+  
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
     }
@@ -80,7 +60,6 @@ extension TableProductsController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifireProd, for: indexPath) as? ProductCell {
             let product = products[indexPath.row]
             cell.configure(with: product)
-            
             return cell
         }
         return .init()

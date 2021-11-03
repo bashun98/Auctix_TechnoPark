@@ -39,18 +39,12 @@ class HomeButtonTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         loadetDatasourse()
         setupNavBar()
         setupLabel()
         setupCollectionView()
         setupTextField()
-        
-        view.addSubview(titleLabel)
-        view.addSubview(nameLabel)
-        view.addSubview(searchTextField)
-        view.addSubview(newExhibitions)
-        view.addSubview(collectionView)
+        setupAddition()
     }
     
     override func viewWillLayoutSubviews() {
@@ -61,7 +55,8 @@ class HomeButtonTabViewController: UIViewController {
 // обработчик нажатия кнопки на ячейке коллекции (открывает таблицу продуктов)
 extension HomeButtonTabViewController  {
     
-    @objc func didTabButton(sender: UIButton) {
+    @objc
+    func didTabButton(sender: UIButton) {
         let vc = TableProductsController()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -69,6 +64,14 @@ extension HomeButtonTabViewController  {
 }
 // MARK: - Setups
 extension HomeButtonTabViewController {
+    
+    func setupAddition() {
+        view.addSubview(titleLabel)
+        view.addSubview(nameLabel)
+        view.addSubview(searchTextField)
+        view.addSubview(newExhibitions)
+        view.addSubview(collectionView)
+    }
     
     func setupLabel(){
         titleLabel.attributedText = getAttrTitle()
@@ -85,7 +88,6 @@ extension HomeButtonTabViewController {
         newExhibitions.textColor = UIColor.honeyYellow
         newExhibitions.translatesAutoresizingMaskIntoConstraints = false
     }
-    
     // MARK: - настройка строки поиска
     func setupTextField() {
         // MARK: - картинка поиска
@@ -94,8 +96,7 @@ extension HomeButtonTabViewController {
         let contentViewSearch = UIView()
         contentViewSearch.addSubview(imageIconSearch)
         contentViewSearch.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        // TODO: Настройку левых, правых картинок и тд можно вынести в расширение UITextField
-        // TODO: Placeholder тоже настраивается через Attributed String
+        
         imageIconSearch.frame = CGRect(x: 2, y: 0, width: 30, height: 30)
         searchTextField.leftView = contentViewSearch
         searchTextField.leftViewMode = .always
@@ -130,7 +131,7 @@ extension HomeButtonTabViewController {
             }
         }
     }
-    //вапвапвап
+  
     func setupLayuot(){
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
@@ -156,7 +157,6 @@ extension HomeButtonTabViewController {
             collectionView.topAnchor.constraint(equalTo: newExhibitions.bottomAnchor, constant: 10)
         ])
     }
-    
 }
 
 // MARK: - Get Methods
@@ -169,13 +169,13 @@ extension HomeButtonTabViewController {
             .foregroundColor: UIColor.honeyYellow
         ])
         
-        let ctixWords = NSAttributedString(string: "UCTIX", attributes: [
+        let bWords = NSAttributedString(string: "UCTIX", attributes: [
             .font: UIFont.systemFont(ofSize: 25, weight: .regular),
             .foregroundColor: UIColor.lightCornflowerBlue
         ])
         
         let mutable = NSMutableAttributedString(attributedString: aWord)
-        mutable.append(ctixWords)
+        mutable.append(bWords)
         return mutable
     }
 }
@@ -188,13 +188,10 @@ extension HomeButtonTabViewController: UICollectionViewDelegate {
             let data = datasource[indexPath.row]
             cell.configure(with: data)
             cell.jumpButton.addTarget(self, action: #selector(didTabButton(sender:)), for: .touchUpInside)
-            
-            
             return cell
         }
         return .init()
     }
-  
 }
 
 // MARK: - UICollectionViewDataSource

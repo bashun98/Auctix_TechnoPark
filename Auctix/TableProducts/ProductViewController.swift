@@ -19,7 +19,6 @@ final class ProductViewController: UIViewController {
             guard let product = product else {
                 return
             }
-            
             configure(with: product)
         }
     }
@@ -50,7 +49,10 @@ final class ProductViewController: UIViewController {
         setupNavBar()
         setupTextField()
         setupPrice()
-        
+        setupAddition()
+    }
+    
+    func setupAddition(){
         view.addSubview(titleLabel)
         view.addSubview(productImageView)
         view.addSubview(nowPrice)
@@ -59,9 +61,8 @@ final class ProductViewController: UIViewController {
         view.addSubview(question)
         view.addSubview(priceFild)
         view.addSubview(changeButton)
-        
     }
-    
+
     func setupPrice() {
         var now = priceLabel.text ?? ""
         let nowNumStat = Int(now) ?? 0
@@ -73,12 +74,9 @@ final class ProductViewController: UIViewController {
             priceArray[i] = now
             k += 100
         }
-        
     }
     
-    
     func setupTextField() {
-        
             // MARK: - картнка стереть
         priceFild.clearButtonMode = .whileEditing
         priceFild.font = .systemFont(ofSize: 20)
@@ -89,9 +87,7 @@ final class ProductViewController: UIViewController {
         priceFild.translatesAutoresizingMaskIntoConstraints = false
         priceFild.inputView = priceChange
         priceFild.textAlignment = .center
-        
     }
-    
     
     func setupView() {
         view.backgroundColor = .white
@@ -137,7 +133,6 @@ final class ProductViewController: UIViewController {
         priceChange.translatesAutoresizingMaskIntoConstraints = false
         
         productImageView.translatesAutoresizingMaskIntoConstraints = false
-
     }
     
     func configure(with product: Product) {
@@ -184,7 +179,6 @@ final class ProductViewController: UIViewController {
             changeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             changeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             changeButton.topAnchor.constraint(equalTo: priceFild.bottomAnchor, constant: 10),
-            
             
         ])
     }
