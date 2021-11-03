@@ -43,6 +43,7 @@ class ExhibitionCell: UICollectionViewCell {
         imageExhib.isUserInteractionEnabled = true
         
         imageExhib.clipsToBounds = true
+        imageExhib.contentMode = .scaleAspectFill
         imageExhib.layer.cornerRadius = 20
         imageExhib.translatesAutoresizingMaskIntoConstraints = false
         

@@ -32,6 +32,9 @@ final class ProductViewController: UIViewController {
     private let priceChange = UIPickerView()
     private let priceFild = UITextField()
     private let question = UILabel()
+        
+    private let toolBar = UIToolbar()
+    private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     
     private var priceArray = ["","",""]
     private let screenWidth = UIScreen.main.bounds.width
@@ -61,6 +64,8 @@ final class ProductViewController: UIViewController {
         view.addSubview(question)
         view.addSubview(priceFild)
         view.addSubview(changeButton)
+        toolBar.setItems([doneButton], animated: false)
+        priceChange.addSubview(toolBar)
     }
 
     func setupPrice() {
@@ -130,7 +135,15 @@ final class ProductViewController: UIViewController {
         question.text = "Want to place a bet?"
         question.textColor = UIColor.lightCornflowerBlue
         
+        priceChange.backgroundColor = .white
         priceChange.translatesAutoresizingMaskIntoConstraints = false
+        
+        toolBar.backgroundColor = .systemGray
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        toolBar.isMultipleTouchEnabled = true
+        //priceChange.isUserInteractionEnabled = true
+        
+        doneButton.tintColor = UIColor.blueGreen
         
         productImageView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -180,7 +193,15 @@ final class ProductViewController: UIViewController {
             changeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             changeButton.topAnchor.constraint(equalTo: priceFild.bottomAnchor, constant: 10),
             
+            toolBar.leadingAnchor.constraint(equalTo: priceChange.leadingAnchor),
+            toolBar.trailingAnchor.constraint(equalTo: priceChange.trailingAnchor),
+            toolBar.topAnchor.constraint(equalTo: priceChange.topAnchor),
         ])
+    }
+    
+    @objc
+    func doneButtonTapped() {
+        priceChange.isHidden = true
     }
     
     @objc
@@ -195,6 +216,7 @@ final class ProductViewController: UIViewController {
         }
         delegate?.didTapChatButton(productViewController: self, productId: productId, priceTextFild: priceFild.text ?? "")
     }
+    
 }
 
 extension ProductViewController: UIPickerViewDataSource {
@@ -212,7 +234,7 @@ extension ProductViewController: UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         priceFild.text = priceArray[row]
-        priceFild.resignFirstResponder()
+        //priceFild.resignFirstResponder()
     }
 }
 

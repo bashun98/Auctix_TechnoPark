@@ -40,6 +40,7 @@ class ProductCell: UITableViewCell {
         cost.textColor = UIColor.honeyYellow
         cost.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         
+        imageProd.contentMode = .scaleAspectFill
         imageProd.clipsToBounds = true
         imageProd.layer.cornerRadius = 5
         imageProd.isUserInteractionEnabled = true
