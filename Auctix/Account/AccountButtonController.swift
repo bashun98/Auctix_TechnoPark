@@ -8,6 +8,21 @@
 import UIKit
 
 class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    //MARK: тестовая кнопка входа в аккаунт
+    private let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 33/255, green: 158/255, blue: 188/255, alpha: 1), .font: UIFont.boldSystemFont(ofSize: 16)]
+        
+        let attriburedTitle = NSMutableAttributedString(string: "Log In",
+                                                        attributes: atts)
+        
+        button.setAttributedTitle(attriburedTitle, for: .normal)
+        
+        button.addTarget(self, action: #selector(showLoginController), for: .touchUpInside)
+        
+        return button
+    }()
     
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
@@ -31,6 +46,9 @@ class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UIT
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //MARK: тестовая кнопка входа в аккаунт
+        view.addSubview(loginButton)
+        loginButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor, paddingTop: 16, paddingRight: 16)
         
         setupNavigationTitle()
         setupImage()
@@ -182,6 +200,11 @@ extension AccountButtonTabViewController {
                 
             })
         ]))
+    }
+    
+    @objc func showLoginController() {
+        let controller = LoginController()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }
