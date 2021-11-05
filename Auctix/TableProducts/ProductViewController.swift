@@ -65,7 +65,7 @@ final class ProductViewController: UIViewController {
         view.addSubview(priceFild)
         view.addSubview(changeButton)
         toolBar.setItems([doneButton], animated: false)
-        priceChange.addSubview(toolBar)
+        //priceChange.addSubview(toolBar)
     }
 
     func setupPrice() {
@@ -87,10 +87,10 @@ final class ProductViewController: UIViewController {
         priceFild.font = .systemFont(ofSize: 20)
         priceFild.placeholder = "New price..."
         priceFild.layer.cornerRadius = 10
-            // TODO: В константу цвет (так точно)
         priceFild.layer.backgroundColor = UIColor.searchColor.cgColor
         priceFild.translatesAutoresizingMaskIntoConstraints = false
         priceFild.inputView = priceChange
+        priceFild.inputAccessoryView = toolBar
         priceFild.textAlignment = .center
     }
     
@@ -139,12 +139,10 @@ final class ProductViewController: UIViewController {
         priceChange.translatesAutoresizingMaskIntoConstraints = false
         
         toolBar.backgroundColor = .systemGray
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
-        toolBar.isMultipleTouchEnabled = true
-        //priceChange.isUserInteractionEnabled = true
-        
+        toolBar.sizeToFit()
+
         doneButton.tintColor = UIColor.blueGreen
-        
+
         productImageView.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -192,16 +190,12 @@ final class ProductViewController: UIViewController {
             changeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             changeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             changeButton.topAnchor.constraint(equalTo: priceFild.bottomAnchor, constant: 10),
-            
-            toolBar.leadingAnchor.constraint(equalTo: priceChange.leadingAnchor),
-            toolBar.trailingAnchor.constraint(equalTo: priceChange.trailingAnchor),
-            toolBar.topAnchor.constraint(equalTo: priceChange.topAnchor),
         ])
     }
     
     @objc
     func doneButtonTapped() {
-        priceChange.isHidden = true
+        priceFild.resignFirstResponder()
     }
     
     @objc
@@ -234,7 +228,6 @@ extension ProductViewController: UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         priceFild.text = priceArray[row]
-        //priceFild.resignFirstResponder()
     }
 }
 
