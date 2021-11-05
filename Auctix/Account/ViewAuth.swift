@@ -9,7 +9,7 @@ import Firebase
 import UIKit
 
 protocol GoToLogin: AnyObject {
-    func loginButtonTapped()
+    func loginButtonTapped(sender: UIButton)
 }
 
 class ViewAuth: UIView{
@@ -26,7 +26,7 @@ class ViewAuth: UIView{
         addSubview(requestLabel)
         addSubview(questionLabel)
         addSubview(nextButton)
-        
+        self.isUserInteractionEnabled = true
     }
     required init?(coder: NSCoder) {
         super .init(coder: coder)
@@ -36,8 +36,8 @@ class ViewAuth: UIView{
         setupLayuot()
     }
     @objc
-    private func loginButtonTapped() {
-        delegate?.loginButtonTapped()
+    func loginButtonTapped() {
+        delegate?.loginButtonTapped(sender: nextButton)
     }
     
 }

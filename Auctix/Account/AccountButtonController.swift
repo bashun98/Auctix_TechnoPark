@@ -71,11 +71,8 @@ class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UIT
     
     func setupAuthView(){
         viewAuth.translatesAutoresizingMaskIntoConstraints = false
-        viewAuth.isUserInteractionEnabled = true
         view.addSubview(viewAuth)
         NSLayoutConstraint.activate([
-            //viewAuth.heightAnchor.constraint(equalToConstant: 200),
-            //viewAuth.widthAnchor.constraint(equalToConstant: 200),
             viewAuth.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             viewAuth.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             viewAuth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -88,7 +85,7 @@ class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UIT
 }
 
 extension AccountButtonTabViewController: GoToLogin {
-    func loginButtonTapped(){
+    func loginButtonTapped(sender: UIButton){
         navigationController?.pushViewController(LoginController(), animated: false)
     }
 }
