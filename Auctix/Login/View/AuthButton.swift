@@ -17,13 +17,10 @@ class AuthButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         layer.cornerRadius = 25
-        
         backgroundColor = UIColor.honeyYellow
         setTitleColor(UIColor(white: 1, alpha: 1.0), for: .normal)
         setHeight(height: 50)
-        isEnabled = false
     }
     
     required init?(coder: NSCoder) {
