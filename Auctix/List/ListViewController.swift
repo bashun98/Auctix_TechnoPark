@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ListButtonTabViewController: UIViewController {
+class ListViewController: UIViewController {
     
     private var exhibitions: [Exhibition] = []
     private var header: ListTableHeader!
@@ -18,40 +18,40 @@ class ListButtonTabViewController: UIViewController {
     private let toolBar = UIToolbar()
     private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     private var sortLabel: String = " "
-    
-    let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(ExhibitionTableViewCell.self, forCellReuseIdentifier: ExhibitionTableViewCell.identifier)
-        tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: ListTableHeader.identifier)
-        return tableView
-    }()
-    
+    private let tableView = UITableView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        picker.delegate = self
-        picker.dataSource = self
-        header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader
-        header.delegate = self
-        
-        navigationController?.view.tintColor = UIColor.blueGreen
-        navigationItem.title = "LIST"
-        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .black, size: 40)]
-        
-        exhibitions = ExhibitionManager.shared.loadExhibition()
         self.view.addSubview(tableView)
-        tableView.separatorStyle = .none
+        setupTableView()
+        setupHeader()
         setupPickerView()
+        setupNavBar()
+        exhibitions = ExhibitionManager.shared.loadExhibition().sorted(by: {$0.title < $1.title})
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tableView.frame = view.bounds
-        setupPickerViewConstaraints()
+        setupPickerViewConstraints()
+    }
+    
+    private func setupTableView() {
+        tableView.register(ExhibitionTableViewCell.self, forCellReuseIdentifier: ExhibitionTableViewCell.identifier)
+        tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: ListTableHeader.identifier)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+    }
+    
+    private func setupHeader() {
+        header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader
+        header.delegate = self
     }
     
     private func setupPickerView() {
+        picker.delegate = self
+        picker.dataSource = self
         view.addSubview(container)
         container.addSubview(picker)
         container.addSubview(toolBar)
@@ -59,22 +59,28 @@ class ListButtonTabViewController: UIViewController {
         toolBar.setItems([doneButton], animated: false)
         container.isUserInteractionEnabled = true
         container.isHidden = true
+    
     }
     
-    private func setupPickerViewConstaraints() {
+    private func setupNavBar() {
+        navigationController?.view.tintColor = UIColor.blueGreen
+        navigationItem.title = "LIST"
+        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .black, size: 40)]
+    }
+    
+    private func setupPickerViewConstraints() {
         container.snp.makeConstraints { make in
+            make.height.equalTo(UIScreen.main.bounds.height/3)
+            make.width.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.height.equalTo(UIScreen.main.bounds.height/3) // иправьте
+        }
+        picker.snp.makeConstraints { make in
+            make.height.equalToSuperview()
+            make.bottom.equalToSuperview()
             make.width.equalToSuperview()
         }
         toolBar.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.width.equalToSuperview()
-        }
-
-        picker.snp.makeConstraints { make in
-            make.top.equalTo(toolBar)
-            make.bottom.equalToSuperview()
+            make.top.equalTo(picker)
             make.width.equalToSuperview()
         }
     }
@@ -95,27 +101,16 @@ class ListButtonTabViewController: UIViewController {
     }
 }
 
-extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exhibitions.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ExhibitionTableViewCell.identifier, for: indexPath) as? ExhibitionTableViewCell else { return UITableViewCell()}
-        let exhibition = exhibitions[indexPath.row]
-        cell.configure(with: exhibition)
-        cell.backgroundColor = .clear
-        return cell
-    }
+//MARK: - Table View Delegate
+
+extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 180
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let rootVC = TableProductsController()
-        navigationController?.pushViewController(rootVC, animated: true)
+        pushVC()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -124,18 +119,31 @@ extension ListButtonTabViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
+    
+    private func pushVC() {
+        let rootVC = TableProductsController()
+        navigationController?.pushViewController(rootVC, animated: true)
+    }
 }
 
-extension ListButtonTabViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+//MARK: - Table View DataSource
+
+extension ListViewController: UITableViewDataSource {
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return exhibitions.count
     }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return sortingData.count
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ExhibitionTableViewCell.identifier, for: indexPath) as? ExhibitionTableViewCell else { return UITableViewCell()}
+        let exhibition = exhibitions[indexPath.row]
+        cell.configure(with: exhibition)
+        return cell
     }
-    
+}
+
+//MARK: - Picker View Delegate
+
+extension ListViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return sortingData[row]
     }
@@ -143,18 +151,25 @@ extension ListButtonTabViewController: UIPickerViewDelegate, UIPickerViewDataSou
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         header.setupLabel(sortingData[row])
         sortLabel = sortingData[row]
-  //      tableView.reloadData()
     }
-    
 }
 
-extension ListButtonTabViewController: HeaderOutput {
+//MARK: - Picker View DataSource
+
+extension ListViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return sortingData.count
+    }
+}
+
+//MARK: -
+
+extension ListViewController: HeaderOutput {
     func sortButtonTapped() {
         container.isHidden = false
         tabBarController?.tabBar.isHidden = true
     }
-    
-//    func filterButtonTapped(_ buttonLabel: UILabel) {
-//        
-//    }
 }

@@ -10,6 +10,5 @@ import UIKit
 
 protocol HeaderOutput: AnyObject {
     func sortButtonTapped()
-  //  func filterButtonTapped(_ buttonLabel: UILabel)
 }
 

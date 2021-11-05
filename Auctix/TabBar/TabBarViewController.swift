@@ -9,10 +9,10 @@ import UIKit
 
 class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
     
-    private let listVC = UINavigationController(rootViewController: ListButtonTabViewController())
+    private let listVC = UINavigationController(rootViewController: ListViewController())
     private let homeVC = UINavigationController(rootViewController: HomeButtonTabViewController())
     private let accVC = UINavigationController(rootViewController: AccountButtonTabViewController())
-    private let bidVC = UINavigationController(rootViewController: BidButtonTabViewController())
+    private let bidVC = UINavigationController(rootViewController: BidViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()

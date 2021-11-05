@@ -15,7 +15,6 @@ final class OnboardingViewController: UIViewController {
     private let buttonContinue = UIButton()
     private let buttonSignUp = UIButton()
   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
@@ -39,46 +38,35 @@ final class OnboardingViewController: UIViewController {
         static let bottomOrTop: CGFloat = 70
     }
     
-    
     private func setupButtons() {
-        
         buttonContinue.setTitle("Register later", for: .normal)
         buttonContinue.titleLabel?.numberOfLines = 0
         buttonContinue.titleLabel?.font = UIFont(name: FontsName.regular.rawValue, size: 14)
-        view.addSubview(buttonContinue)
-        
         buttonContinue.addTarget(self, action: #selector(buttonContinueTapped), for: .touchUpInside)
-
         buttonSignUp.backgroundColor = UIColor.honeyYellow
         buttonSignUp.setTitle("Sign Up", for: .normal)
         buttonSignUp.titleLabel?.font = UIFont(name: FontsName.regular.rawValue, size: 20)
         buttonSignUp.titleLabel?.adjustsFontSizeToFitWidth = true
         buttonSignUp.layer.cornerRadius = 20
+        view.addSubview(buttonContinue)
         view.addSubview(buttonSignUp)
-       
-   //     buttonSignUp.addTarget(self, action: #selector(buttonSignUpTapped), for: .touchUpInside)
     }
     
     private func setupLabels() {
-        
         label.text = "🎉 Welcome! 🎉"
         label.font = UIFont(name: FontsName.black.rawValue, size: 26)
         label.textColor = .white
         label.adjustsFontSizeToFitWidth = true
-        view.addSubview(label)
-        
-       
         extralabel.text = "We are happy to welcome you! Using our application, you can buy rare paintings that are shown at exhibitions. Register in the app to bid on the paintings you like."
         extralabel.font = UIFont(name: FontsName.regular.rawValue, size: 24)
         extralabel.numberOfLines = 0
         extralabel.textColor = .white
         extralabel.adjustsFontSizeToFitWidth = true
+        view.addSubview(label)
         view.addSubview(extralabel)
-        
     }
     
     private func setupLayout() {
-        
         buttonContinue.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(UIScreen.main.bounds.height/20)
             make.leading.trailing.equalToSuperview().inset(Constants.leading)
@@ -100,19 +88,9 @@ final class OnboardingViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(Constants.leading)
             make.top.equalTo(label).inset(Constants.bottomOrTop)
             make.bottom.lessThanOrEqualTo(buttonSignUp).inset(Constants.bottomOrTop)
-            
         }
-        
     }
     
-    
-//    @objc private func buttonSignUpTapped() {
-//        let signUpVC = SignUpViewController()
-//        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-//        sceneDelegate.window?.rootViewController = signUpVC
-//        UserDefaults.standard.set(true, forKey: "isFirstStart")
-//    }
-
     @objc private func buttonContinueTapped() {
         let tabBarVC = TabBarViewController()
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }

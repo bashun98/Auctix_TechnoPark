@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BidButtonTabViewController: UIViewController {
+class BidViewController: UIViewController {
 
     let label = UILabel()
     override func viewDidLoad() {
