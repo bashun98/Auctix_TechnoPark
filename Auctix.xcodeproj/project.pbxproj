@@ -76,8 +76,8 @@
 		FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */; };
 		FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */; };
 		FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */; };
-		FCFCE7D9271EB94300A59AA0 /* ListButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D8271EB94300A59AA0 /* ListButtonController.swift */; };
-		FCFCE7DB271EB9DC00A59AA0 /* BidButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7DA271EB9DC00A59AA0 /* BidButtonController.swift */; };
+		FCFCE7D9271EB94300A59AA0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D8271EB94300A59AA0 /* ListViewController.swift */; };
+		FCFCE7DB271EB9DC00A59AA0 /* BidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7DA271EB9DC00A59AA0 /* BidViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,8 +143,8 @@
 		FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIColor.swift"; sourceTree = "<group>"; };
 		FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonController.swift; sourceTree = "<group>"; };
 		FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		FCFCE7D8271EB94300A59AA0 /* ListButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonController.swift; sourceTree = "<group>"; };
-		FCFCE7DA271EB9DC00A59AA0 /* BidButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidButtonController.swift; sourceTree = "<group>"; };
+		FCFCE7D8271EB94300A59AA0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		FCFCE7DA271EB9DC00A59AA0 /* BidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,7 +354,7 @@
 		FCFCE7E02721EFD300A59AA0 /* Bid */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE7DA271EB9DC00A59AA0 /* BidButtonController.swift */,
+				FCFCE7DA271EB9DC00A59AA0 /* BidViewController.swift */,
 			);
 			path = Bid;
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 		FCFCE7E12721EFE400A59AA0 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE7D8271EB94300A59AA0 /* ListButtonController.swift */,
+				FCFCE7D8271EB94300A59AA0 /* ListViewController.swift */,
 				208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */,
 				208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */,
 			);
@@ -555,7 +555,7 @@
 				208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC1C80662714B223005185D6 /* HomeButtonController.swift in Sources */,
 				FCAD16B927255052009140BF /* Product.swift in Sources */,
-				FCFCE7D9271EB94300A59AA0 /* ListButtonController.swift in Sources */,
+				FCFCE7D9271EB94300A59AA0 /* ListViewController.swift in Sources */,
 				04764CBC272C2B2F0094114C /* SettingTableViewCell.swift in Sources */,
 				04764CC0272C2B6F0094114C /* Data.swift in Sources */,
 				FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */,
@@ -582,7 +582,7 @@
 				FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */,
 				04764D1A2733CD4A0094114C /* AuthButton.swift in Sources */,
 				FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */,
-				FCFCE7DB271EB9DC00A59AA0 /* BidButtonController.swift in Sources */,
+				FCFCE7DB271EB9DC00A59AA0 /* BidViewController.swift in Sources */,
 				04764D142733CCF90094114C /* RegistrationController.swift in Sources */,
 				FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */,
 			);

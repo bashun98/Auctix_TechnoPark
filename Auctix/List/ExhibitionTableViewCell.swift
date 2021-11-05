@@ -14,11 +14,11 @@ class ExhibitionTableViewCell: UITableViewCell {
     private let container = UIView()
     private let gradient = CAGradientLayer()
     
-    private let myImage: UIImageView = {
+    private let exhibitionImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = 5
         return imageView
     }()
     
@@ -45,6 +45,8 @@ class ExhibitionTableViewCell: UITableViewCell {
     
     private struct Constraints {
         static let labelPosition: CGFloat = 20
+        static let imageFromLeftRight: CGFloat = 12
+        static let imageFromTopBottom: CGFloat = 5
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -56,6 +58,7 @@ class ExhibitionTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     override func layoutSubviews() {
@@ -64,19 +67,19 @@ class ExhibitionTableViewCell: UITableViewCell {
     }
     
     func configure(with exhibition: Exhibition) {
-        myImage.image = exhibition.titleImg
+        exhibitionImage.image = exhibition.titleImg
         exhibitionName.text = exhibition.title
         exhibitionCity.text = exhibition.city + ","
         exhibitionCountry.text = exhibition.country
     }
     
     private func setupViews() {
-        addSubview(myImage)
-        myImage.addSubview(container)
+        addSubview(exhibitionImage)
+        exhibitionImage.addSubview(container)
         container.layer.addSublayer(gradient)
-        myImage.addSubview(exhibitionName)
-        myImage.addSubview(exhibitionCity)
-        myImage.addSubview(exhibitionCountry)
+        exhibitionImage.addSubview(exhibitionName)
+        exhibitionImage.addSubview(exhibitionCity)
+        exhibitionImage.addSubview(exhibitionCountry)
     }
     
     private func setupGradient() {
@@ -86,15 +89,19 @@ class ExhibitionTableViewCell: UITableViewCell {
         gradient.endPoint = CGPoint(x: 0.75, y: 0.5)
         gradient.cornerRadius = layer.cornerRadius
         gradient.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: -1, b: 0, c: 0, d: -5.8, tx: 1, ty: 3.4))
-        gradient.bounds = bounds.insetBy(dx: -0.5*bounds.size.width, dy: -0.5*bounds.size.height)
+        gradient.bounds = bounds.insetBy(dx: -0.5 * bounds.size.width, dy: -0.5 * bounds.size.height)
         gradient.position = center
     }
     
     private func setupLayout() {
-        myImage.frame = contentView.bounds.inset(by: UIEdgeInsets(top: 5, left: 12, bottom: 5, right: 12))
+  //      exhibitionImage.frame = contentView.bounds.inset(by: UIEdgeInsets(top: 5, left: 12, bottom: 5, right: 12))
+        exhibitionImage.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(Constraints.imageFromLeftRight)
+            make.top.bottom.equalToSuperview().inset(Constraints.imageFromTopBottom)
+        }
         exhibitionName.snp.makeConstraints { make in
-            make.top.equalTo(myImage).inset(Constraints.labelPosition)
-            make.trailing.equalTo(myImage).inset(Constraints.labelPosition / 2)
+            make.top.equalTo(exhibitionImage).inset(Constraints.labelPosition)
+            make.trailing.equalTo(exhibitionImage).inset(Constraints.labelPosition / 2)
         }
         exhibitionCity.snp.makeConstraints { make in
             make.top.equalTo(exhibitionName).inset(Constraints.labelPosition * 2)
