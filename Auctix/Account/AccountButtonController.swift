@@ -72,6 +72,7 @@ class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UIT
     func setupAuthView(){
         viewAuth.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewAuth)
+        viewAuth.delegate = self
         NSLayoutConstraint.activate([
             viewAuth.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             viewAuth.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

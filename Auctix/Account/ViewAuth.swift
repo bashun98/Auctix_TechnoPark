@@ -13,20 +13,20 @@ protocol GoToLogin: AnyObject {
 }
 
 class ViewAuth: UIView{
-    
+        
     private let requestLabel = UILabel()
     private let questionLabel = UILabel()
-    private let nextButton = AuthButton()
+    private let nextButton = UIButton(type: .system)
     
     weak var delegate: GoToLogin?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupElements()
         addSubview(requestLabel)
         addSubview(questionLabel)
         addSubview(nextButton)
-        self.isUserInteractionEnabled = true
+        setupElements()
+
     }
     required init?(coder: NSCoder) {
         super .init(coder: coder)
@@ -59,10 +59,21 @@ extension ViewAuth {
         requestLabel.translatesAutoresizingMaskIntoConstraints = false
         requestLabel.textAlignment = .center
         
+//        nextButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+//        nextButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+//        nextButton.title = "Log in"
+//        nextButton.translatesAutoresizingMaskIntoConstraints = false
+//        nextButton.buttonType = .system
+        
+        nextButton.backgroundColor = UIColor.blueGreen
+        nextButton.layer.cornerRadius = 8
+        nextButton.setTitle("Log in", for: .normal)
+        nextButton.setTitleColor(.white, for: .normal)
         nextButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        nextButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        nextButton.title = "Log in"
+        nextButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+        nextButton.isUserInteractionEnabled = true
         nextButton.translatesAutoresizingMaskIntoConstraints = false
+        
     }
 }
 
@@ -77,6 +88,7 @@ extension ViewAuth {
             questionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 35),
             questionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -35),
             
+            nextButton.heightAnchor.constraint(equalToConstant: 50),
             nextButton.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 25),
             nextButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             nextButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
