@@ -11,9 +11,7 @@ class ExhibitionCell: UICollectionViewCell {
     
     // TODO: Нейминг поменяй (поменял)
     private let imageExhib = UIImageView()
-    
-    //private let jumpButton = UIButton (type: .system)
-     lazy var jumpButton: UIButton = {
+    lazy var jumpButton: UIButton = {
          let button = UIButton(type: .system)
             button.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
             button.setImage(UIImage(named: "reset"), for: .normal)
@@ -21,19 +19,14 @@ class ExhibitionCell: UICollectionViewCell {
             
             return button
         }()
-//    weak var delegate: ButtonClic?
 
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //self.contentView.isUserInteractionEnabled = true
         setupViews()
         setupElements()
     }
     required init?(coder: NSCoder) {
-        // TODO: никаких фаталов  (исправил)
         super .init(coder: coder)
-        
     }
     
     func setupElements() {
@@ -50,6 +43,7 @@ class ExhibitionCell: UICollectionViewCell {
         imageExhib.isUserInteractionEnabled = true
         
         imageExhib.clipsToBounds = true
+        imageExhib.contentMode = .scaleAspectFill
         imageExhib.layer.cornerRadius = 20
         imageExhib.translatesAutoresizingMaskIntoConstraints = false
         
@@ -72,20 +66,12 @@ class ExhibitionCell: UICollectionViewCell {
     private func setupViews() {
         contentView.addSubview(imageExhib)
         imageExhib.addSubview(jumpButton)
-        //jumpButton.addTarget(self, action: #selector(didTabButton(sender:)), for: .touchUpInside)
-        
     }
-    
-//    @objc func didTabButton(sender: UIButton) {
-//        delegate?.didTabButton(sender: jumpButton)
-//    }
 }
 
 extension ExhibitionCell {
     
     func setupLayuot() {
-        // TODO: Переделай на setupLayout и делай по одному образцу, чтобы все едино было  (сделал)
-        // TODO: зачем self ? Тут итак нет разногласий (сделал)
         NSLayoutConstraint.activate([
             imageExhib.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             imageExhib.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

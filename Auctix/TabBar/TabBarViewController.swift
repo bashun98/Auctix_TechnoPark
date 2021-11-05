@@ -8,7 +8,6 @@
 import UIKit
 
 class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
-
     
     private let listVC = UINavigationController(rootViewController: ListButtonTabViewController())
     private let homeVC = UINavigationController(rootViewController: HomeButtonTabViewController())
@@ -17,49 +16,36 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewControllers = [homeVC, listVC, bidVC, accVC]
-        self.delegate = self
-        self.selectedIndex = 0
+        firstSetup()
         setupView()
         setupButton()
         setupTabBarLayer()
     }
 
+    func firstSetup(){
+        viewControllers = [homeVC, listVC, bidVC, accVC]
+        self.delegate = self
+        self.selectedIndex = 0
+    }
+    
     func setupButton(){
-        
         //активный цвет
-        
         UITabBar.appearance().tintColor = .honeyYellow
-        
         //пассивный цвет
-        
         UITabBar.appearance().unselectedItemTintColor = .lightCornflowerBlue
-        
         //домашняя кнопка
-        
         homeVC.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "HomeTabBar"), tag: 0)
-        
         //кнопка списка
-
         listVC.tabBarItem = UITabBarItem(title: "List", image: #imageLiteral(resourceName: "ListTabBar"), tag: 0)
-        
         //кнопка торгов
-        
         bidVC.tabBarItem = UITabBarItem(title: "Bid", image: #imageLiteral(resourceName: "BidTabBar"), tag: 0)
-
         //кнопка аккаунта
-        
         accVC.tabBarItem = UITabBarItem(title: "Acc", image: #imageLiteral(resourceName: "AccTabBar"), tag: 0)
-        
     }
     
     func setupView() {
-        
         view.backgroundColor = .white
-        
     }
-    
     // настройка градиента(тени) для бара кнопок
     func setupTabBarLayer() {
 
@@ -78,9 +64,7 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
         self.tabBar.clipsToBounds = false
         self.tabBar.backgroundImage = UIImage()
         self.tabBar.shadowImage = UIImage()
-        //tabBar.layer.shadowColor = UIColor.black.cgColor
     }
-
 }
 
 extension UITabBar {

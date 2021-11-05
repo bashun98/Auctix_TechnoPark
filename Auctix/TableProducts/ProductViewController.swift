@@ -19,7 +19,6 @@ final class ProductViewController: UIViewController {
             guard let product = product else {
                 return
             }
-            
             configure(with: product)
         }
     }
@@ -33,6 +32,9 @@ final class ProductViewController: UIViewController {
     private let priceChange = UIPickerView()
     private let priceFild = UITextField()
     private let question = UILabel()
+        
+    private let toolBar = UIToolbar()
+    private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     
     private var priceArray = ["","",""]
     private let screenWidth = UIScreen.main.bounds.width
@@ -50,7 +52,10 @@ final class ProductViewController: UIViewController {
         setupNavBar()
         setupTextField()
         setupPrice()
-        
+        setupAddition()
+    }
+    
+    func setupAddition(){
         view.addSubview(titleLabel)
         view.addSubview(productImageView)
         view.addSubview(nowPrice)
@@ -59,9 +64,10 @@ final class ProductViewController: UIViewController {
         view.addSubview(question)
         view.addSubview(priceFild)
         view.addSubview(changeButton)
-        
+        toolBar.setItems([doneButton], animated: false)
+        //priceChange.addSubview(toolBar)
     }
-    
+
     func setupPrice() {
         var now = priceLabel.text ?? ""
         let nowNumStat = Int(now) ?? 0
@@ -73,25 +79,20 @@ final class ProductViewController: UIViewController {
             priceArray[i] = now
             k += 100
         }
-        
     }
     
-    
     func setupTextField() {
-        
             // MARK: - картнка стереть
         priceFild.clearButtonMode = .whileEditing
         priceFild.font = .systemFont(ofSize: 20)
         priceFild.placeholder = "New price..."
         priceFild.layer.cornerRadius = 10
-            // TODO: В константу цвет (так точно)
         priceFild.layer.backgroundColor = UIColor.searchColor.cgColor
         priceFild.translatesAutoresizingMaskIntoConstraints = false
         priceFild.inputView = priceChange
+        priceFild.inputAccessoryView = toolBar
         priceFild.textAlignment = .center
-        
     }
-    
     
     func setupView() {
         view.backgroundColor = .white
@@ -134,10 +135,15 @@ final class ProductViewController: UIViewController {
         question.text = "Want to place a bet?"
         question.textColor = UIColor.lightCornflowerBlue
         
+        priceChange.backgroundColor = .white
         priceChange.translatesAutoresizingMaskIntoConstraints = false
         
-        productImageView.translatesAutoresizingMaskIntoConstraints = false
+        toolBar.backgroundColor = .systemGray
+        toolBar.sizeToFit()
 
+        doneButton.tintColor = UIColor.blueGreen
+
+        productImageView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func configure(with product: Product) {
@@ -184,9 +190,12 @@ final class ProductViewController: UIViewController {
             changeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             changeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             changeButton.topAnchor.constraint(equalTo: priceFild.bottomAnchor, constant: 10),
-            
-            
         ])
+    }
+    
+    @objc
+    func doneButtonTapped() {
+        priceFild.resignFirstResponder()
     }
     
     @objc
@@ -201,6 +210,7 @@ final class ProductViewController: UIViewController {
         }
         delegate?.didTapChatButton(productViewController: self, productId: productId, priceTextFild: priceFild.text ?? "")
     }
+    
 }
 
 extension ProductViewController: UIPickerViewDataSource {
@@ -218,7 +228,6 @@ extension ProductViewController: UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         priceFild.text = priceArray[row]
-        priceFild.resignFirstResponder()
     }
 }
 
