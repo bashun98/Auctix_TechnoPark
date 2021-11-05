@@ -84,6 +84,7 @@
 		FC7428C527358E830005C2C3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FC7428C427358E830005C2C3 /* FirebaseStorage */; };
 		FC7428C727358E830005C2C3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FC7428C627358E830005C2C3 /* FirebaseStorageCombine-Community */; };
 		FC7428C927358E830005C2C3 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = FC7428C827358E830005C2C3 /* FirebaseStorageSwift-Beta */; };
+		FC7428CB2735B3E40005C2C3 /* ViewAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7428CA2735B3E40005C2C3 /* ViewAuth.swift */; };
 		FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
@@ -163,6 +164,7 @@
 		FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibition.swift; sourceTree = "<group>"; };
 		FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionManager.swift; sourceTree = "<group>"; };
 		FC74289327358E390005C2C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FC7428CA2735B3E40005C2C3 /* ViewAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAuth.swift; sourceTree = "<group>"; };
 		FCAD16AB27254FF6009140BF /* TableProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductsController.swift; sourceTree = "<group>"; };
 		FCAD16B02725502C009140BF /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		FCAD16B427255041009140BF /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */,
+				FC7428CA2735B3E40005C2C3 /* ViewAuth.swift */,
 				04764CBF272C2B6F0094114C /* Data.swift */,
 				04764CC1272C2B7E0094114C /* TableViewCell */,
 			);
@@ -645,6 +648,7 @@
 				FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */,
 				04764D162733CD130094114C /* ResetPasswordController.swift in Sources */,
 				04764D1E2733CD790094114C /* DividerView.swift in Sources */,
+				FC7428CB2735B3E40005C2C3 /* ViewAuth.swift in Sources */,
 				205443D7272DA3A40079D152 /* Protocols.swift in Sources */,
 				FC555534272ADAFB005E697F /* HomeTableLayout.swift in Sources */,
 				FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */,

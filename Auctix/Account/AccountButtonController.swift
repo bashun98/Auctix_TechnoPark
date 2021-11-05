@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: тестовая кнопка входа в аккаунт
@@ -14,7 +15,7 @@ class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UIT
         
         let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 33/255, green: 158/255, blue: 188/255, alpha: 1), .font: UIFont.boldSystemFont(ofSize: 16)]
         
-        let attriburedTitle = NSMutableAttributedString(string: "Log In",
+        let attriburedTitle = NSMutableAttributedString(string: "Log Out",
                                                         attributes: atts)
         
         button.setAttributedTitle(attriburedTitle, for: .normal)
@@ -41,12 +42,20 @@ class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UIT
     var userNameTitle = UILabel()
     let label = UILabel()
     let appearance = UINavigationBarAppearance()
-
-
+    let viewAuth = ViewAuth()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         //MARK: тестовая кнопка входа в аккаунт
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupAuth()
+    }
+    
+    func setupAccView(){
         view.addSubview(loginButton)
         loginButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, right: view.rightAnchor, paddingTop: 16, paddingRight: 16)
         
@@ -59,8 +68,31 @@ class AccountButtonTabViewController: UIViewController, UITableViewDelegate, UIT
         setupTable()
         addConstraints()
     }
+    
+    func setupAuthView(){
+        viewAuth.translatesAutoresizingMaskIntoConstraints = false
+        viewAuth.isUserInteractionEnabled = true
+        view.addSubview(viewAuth)
+        NSLayoutConstraint.activate([
+            //viewAuth.heightAnchor.constraint(equalToConstant: 200),
+            //viewAuth.widthAnchor.constraint(equalToConstant: 200),
+            viewAuth.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            viewAuth.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            viewAuth.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            viewAuth.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+        
+        
+    }
 
 }
+
+extension AccountButtonTabViewController: GoToLogin {
+    func loginButtonTapped(){
+        navigationController?.pushViewController(LoginController(), animated: false)
+    }
+}
+
 extension AccountButtonTabViewController {
     //MARK: настраиваем изображение аккаунта
     func setupImage(){
@@ -202,9 +234,25 @@ extension AccountButtonTabViewController {
         ]))
     }
     
+    func setupAuth() {
+        let user = Auth.auth().currentUser
+        if user == nil {
+            setupAuthView()
+        } else {
+            setupAccView()
+        }
+    }
+    
     @objc func showLoginController() {
-        let controller = LoginController()
-        navigationController?.pushViewController(controller, animated: true)
+        let firebaseAutch = Auth.auth()
+        do{
+            try firebaseAutch.signOut()
+        } catch let _ as NSError {
+            print("не вышел из аакаунта")
+        }
+//        
+//        let controller = LoginController()
+//        navigationController?.pushViewController(controller, animated: true)
     }
     
 }

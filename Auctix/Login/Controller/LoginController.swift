@@ -93,6 +93,8 @@ class LoginController: UIViewController {
                 print("loh")
             } else {
                 print("norm")
+                //self.navigationController?.pushViewController(AccountButtonTabViewController(), animated: false)
+                
             }
             print("DEBUG: Handle login")
         }
