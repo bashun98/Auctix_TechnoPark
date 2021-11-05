@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
@@ -14,11 +15,38 @@ class RegistrationController: UIViewController {
     private let iconImage = UIImageView(image: UIImage(named: "Image3"))
     private let auctixLabel = UILabel()
     private let singUpLabel = UILabel()
-    private let emailTextField = CustomTextField(placeholder: "Email")
-    private let fullnameTextField = CustomTextField(placeholder: "Fullname")
     
+    private let numberTextField: CustomTextField = {
+    let tf = CustomTextField(placeholder: "Phone")
+        tf.returnKeyType = .done
+        tf.textContentType = .telephoneNumber
+        return tf
+    }()
+    
+    private let cityTextField: CustomTextField = {
+    let tf = CustomTextField(placeholder: "City")
+        tf.returnKeyType = .done
+        tf.textContentType = .addressCity
+        return tf
+    }()
+    
+    private let fullnameTextField: CustomTextField = {
+    let tf = CustomTextField(placeholder: "Fullname")
+        tf.returnKeyType = .done
+        tf.textContentType = .name
+        return tf
+    }()
+    
+    private let emailTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "email")
+        tf.returnKeyType = .done
+        tf.textContentType = .emailAddress
+        return tf
+    }()
     private let passwordTextFiel: CustomTextField = {
         let tf = CustomTextField(placeholder: "Password")
+        tf.returnKeyType = .done
+        tf.textContentType = .password
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -51,10 +79,44 @@ class RegistrationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setupDelegate()
+    }
+    
+    func setupDelegate(){
+        cityTextField.delegate = self
+        fullnameTextField.delegate = self
+        passwordTextFiel.delegate = self
+        numberTextField.delegate = self
+        emailTextField.delegate = self
     }
     //MARK: Selectors
-    
+
     @objc func handleSignUp() {
+        let name = fullnameTextField.text!
+        let email = emailTextField.text!
+        let password = passwordTextFiel.text!
+        let number = numberTextField.text!
+        let city = cityTextField.text!
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if error != nil{
+                
+            } else {
+                let db = Firestore.firestore()
+                db.collection("users").addDocument(data: [
+                    "name": name,
+                    "password": password,
+                    "email": email,
+                    "phone": number,
+                    "city": city,
+                    "uid": result!.user.uid
+                ]){ (error) in
+                    if error != nil {
+                        print("loh")
+                    }
+                }
+            }
+        
+        }
         
     }
     
@@ -96,11 +158,24 @@ class RegistrationController: UIViewController {
         let stack = UIStackView(arrangedSubviews: [emailTextField,
                                                    passwordTextFiel,
                                                    fullnameTextField,
+                                                   cityTextField,
+                                                   numberTextField,
                                                    signUpButton])
         stack.axis = .vertical
         stack.spacing = 20
         
         view.addSubview(stack)
         stack.anchor(top: logInButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+    }
+}
+
+extension RegistrationController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        cityTextField.resignFirstResponder()
+        fullnameTextField.resignFirstResponder()
+        passwordTextFiel.resignFirstResponder()
+        numberTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        return true
     }
 }

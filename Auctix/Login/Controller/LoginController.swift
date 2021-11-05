@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginController: UIViewController {
     
@@ -14,10 +15,16 @@ class LoginController: UIViewController {
     private let iconImage = UIImageView(image: UIImage(named: "Image3"))
     private let auctixLabel = UILabel()
     private let logInLabel = UILabel()
-    private let emailTextField = CustomTextField(placeholder: "Email")
-    
+    private let emailTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "email")
+        tf.returnKeyType = .done
+        tf.textContentType = .emailAddress
+        return tf
+    }()
     private let passwordTextFiel: CustomTextField = {
         let tf = CustomTextField(placeholder: "Password")
+        tf.returnKeyType = .done
+        tf.textContentType = .password
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -68,14 +75,27 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupDelegate()
         configureUI()
     }
     
+    func setupDelegate(){
+        passwordTextFiel.delegate = self
+        emailTextField.delegate = self
+    }
     //MARK: Selectord
     
     @objc func handleLogin() {
-        print("DEBUG: Handle login")
+        let email = emailTextField.text!
+        let password = passwordTextFiel.text!
+        Auth.auth().signIn(withEmail: email, password: password) { (result,error) in
+            if error != nil {
+                print("loh")
+            } else {
+                print("norm")
+            }
+            print("DEBUG: Handle login")
+        }
     }
     
     @objc func showForgotPassword() {
@@ -132,5 +152,12 @@ class LoginController: UIViewController {
         
         view.addSubview(forgotPasswordButton)
         forgotPasswordButton.anchor(top: stack.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 32, paddingRight: 32)
+    }
+}
+extension LoginController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        passwordTextFiel.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        return true
     }
 }
