@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import PinLayout
+import Firebase
 
 protocol ProductViewControllerDelegate: AnyObject {
     func didTapChatButton(productViewController: UIViewController, productId: String, priceTextFild: String)
@@ -32,6 +33,7 @@ final class ProductViewController: UIViewController {
     private let priceChange = UIPickerView()
     private let priceFild = UITextField()
     private let question = UILabel()
+    private var flag: Bool?
         
     private let toolBar = UIToolbar()
     private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
@@ -46,13 +48,26 @@ final class ProductViewController: UIViewController {
         
         priceChange.delegate = self
         priceChange.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupAuth()
         setupView()
         setupElement()
         setupNavBar()
         setupTextField()
         setupPrice()
         setupAddition()
+    }
+    
+    func setupAuth() {
+        let user = Auth.auth().currentUser
+        if user == nil {
+            flag = false
+        } else {
+            flag = true
+        }
     }
     
     func setupAddition(){
@@ -107,9 +122,9 @@ final class ProductViewController: UIViewController {
         changeButton.backgroundColor = UIColor.blueGreen
         changeButton.layer.cornerRadius = 8
         changeButton.setTitle("Place a bet", for: .normal)
-        changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
         changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         changeButton.translatesAutoresizingMaskIntoConstraints = false
+        changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
         
         priceLabel.font = .systemFont(ofSize: 24, weight: .regular)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +147,6 @@ final class ProductViewController: UIViewController {
         
         question.font = .systemFont(ofSize: 24, weight: .regular)
         question.translatesAutoresizingMaskIntoConstraints = false
-        question.text = "Want to place a bet?"
         question.textColor = UIColor.lightCornflowerBlue
         
         priceChange.backgroundColor = .white
@@ -144,6 +158,20 @@ final class ProductViewController: UIViewController {
         doneButton.tintColor = UIColor.blueGreen
 
         productImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        if flag ?? false {
+            question.text = "Want to place a bet?"
+            //priceFild.isHidden = false
+            //doneButton.customView?.isHidden = false
+            
+        } else {
+            question.text = "Sign in to change the price"
+            priceFild.isHidden = true
+            changeButton.isEnabled = false
+            changeButton.setTitle("Go to account page", for: .normal)
+            changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+            
+        }
     }
     
     func configure(with product: Product) {
@@ -186,11 +214,16 @@ final class ProductViewController: UIViewController {
             priceFild.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             priceFild.topAnchor.constraint(equalTo: question.bottomAnchor, constant: 10),
             
-            changeButton.heightAnchor.constraint(equalToConstant: 40),
+            changeButton.heightAnchor.constraint(equalToConstant: 50),
             changeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             changeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             changeButton.topAnchor.constraint(equalTo: priceFild.bottomAnchor, constant: 10),
         ])
+    }
+    
+    @objc
+    func loginButtonTapped(sender: UIButton){
+        navigationController?.pushViewController(LoginController(), animated: false)
     }
     
     @objc

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeButtonTabViewController: UIViewController {
     
@@ -38,7 +39,6 @@ class HomeButtonTabViewController: UIViewController {
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         loadetDatasourse()
         setupNavBar()
         setupLabel()
@@ -47,9 +47,34 @@ class HomeButtonTabViewController: UIViewController {
         setupAddition()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupAuth()
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupLayuot()
+    }
+    
+    func setupAuth() {
+        let user = Auth.auth().currentUser
+        if user == nil {
+            nameLabel.text = "Sign in to your account"
+        } else {
+            let db = Firestore.firestore()
+            db.collection("users").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        if document.get("uid") as? String == user?.uid {
+                            self.nameLabel.text = "Good day, \(document.get("name") ?? " ")!"
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 // обработчик нажатия кнопки на ячейке коллекции (открывает таблицу продуктов)
@@ -78,7 +103,6 @@ extension HomeButtonTabViewController {
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        nameLabel.text = "Good day, Иван Петров!"
         nameLabel.font = .systemFont(ofSize: 20)
         nameLabel.textColor = UIColor.lightCornflowerBlue
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +168,7 @@ extension HomeButtonTabViewController {
             
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
             searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
-            searchTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            searchTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
             searchTextField.heightAnchor.constraint(equalTo: nameLabel.heightAnchor, constant: 40),
             
             newExhibitions.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 41),
@@ -153,7 +177,7 @@ extension HomeButtonTabViewController {
             
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             collectionView.topAnchor.constraint(equalTo: newExhibitions.bottomAnchor, constant: 10)
         ])
     }
@@ -210,7 +234,7 @@ extension HomeButtonTabViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 20, left: 25, bottom: 50, right: 25)
+        return .init(top: 50, left: 25, bottom: 50, right: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

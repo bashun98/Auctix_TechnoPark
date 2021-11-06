@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
     
@@ -21,12 +22,18 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
         setupButton()
         setupTabBarLayer()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
 
     func firstSetup(){
         viewControllers = [homeVC, listVC, bidVC, accVC]
         self.delegate = self
         self.selectedIndex = 0
     }
+    
     
     func setupButton(){
         //активный цвет
