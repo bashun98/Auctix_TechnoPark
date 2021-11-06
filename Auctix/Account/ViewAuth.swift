@@ -65,8 +65,8 @@ extension ViewAuth {
 //        nextButton.translatesAutoresizingMaskIntoConstraints = false
 //        nextButton.buttonType = .system
         
-        nextButton.backgroundColor = UIColor.blueGreen
-        nextButton.layer.cornerRadius = 8
+        nextButton.backgroundColor = UIColor.honeyYellow
+        nextButton.layer.cornerRadius = 25
         nextButton.setTitle("Log in", for: .normal)
         nextButton.setTitleColor(.white, for: .normal)
         nextButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)

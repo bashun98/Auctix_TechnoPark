@@ -112,6 +112,8 @@ class RegistrationController: UIViewController {
                 ]){ (error) in
                     if error != nil {
                         print("loh")
+                    } else {
+                        self.navigationController?.popToRootViewController(animated: false)
                     }
                 }
             }

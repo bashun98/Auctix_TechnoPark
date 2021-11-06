@@ -109,7 +109,19 @@ extension AccountButtonTabViewController {
     }
     //MARK: настраиваем отображение Username
     func setupUserNameLabel(){
-        label.text = "UserName"
+        let user = Auth.auth().currentUser
+        let db = Firestore.firestore()
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    if document.get("uid") as? String == user?.uid {
+                        self.label.text = "\(document.get("name") ?? " ")!"
+                    }
+                }
+            }
+        }
         label.textColor = UIColor.lightCornflowerBlue
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -245,6 +257,7 @@ extension AccountButtonTabViewController {
         let firebaseAutch = Auth.auth()
         do{
             try firebaseAutch.signOut()
+            self.navigationController?.pushViewController(AccountButtonTabViewController(), animated: false)
         } catch let _ as NSError {
             print("не вышел из аакаунта")
         }
