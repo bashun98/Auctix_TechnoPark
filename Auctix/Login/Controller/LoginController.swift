@@ -18,6 +18,7 @@ class LoginController: UIViewController {
     private let emailTextField: CustomTextField = {
         let tf = CustomTextField(placeholder: "email")
         tf.returnKeyType = .done
+        tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
         return tf
     }()
@@ -157,7 +158,7 @@ class LoginController: UIViewController {
     }
 }
 extension LoginController: UITextFieldDelegate {
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         passwordTextFiel.resignFirstResponder()
         emailTextField.resignFirstResponder()
         return true
