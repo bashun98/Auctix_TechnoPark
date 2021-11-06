@@ -94,7 +94,7 @@ class LoginController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (result,error) in
             if error != nil {
                 print("loh")
-                self.custumAlert.showAlert(title: "Fatal", message: "kokokokok", viewController: self)
+                self.custumAlert.showAlert(title: "Error", message: "We entered an incorrect password or mail", viewController: self)
             } else {
                 print("norm")
                 self.navigationController?.popToRootViewController(animated: false)
