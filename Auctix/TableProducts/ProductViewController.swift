@@ -124,6 +124,7 @@ final class ProductViewController: UIViewController {
         changeButton.setTitle("Place a bet", for: .normal)
         changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         changeButton.translatesAutoresizingMaskIntoConstraints = false
+        changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
         
         priceLabel.font = .systemFont(ofSize: 24, weight: .regular)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -162,16 +163,14 @@ final class ProductViewController: UIViewController {
             question.text = "Want to place a bet?"
             //priceFild.isHidden = false
             //doneButton.customView?.isHidden = false
-            changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
+            
         } else {
             question.text = "Sign in to change the price"
             priceFild.isHidden = true
-            changeButton.backgroundColor = UIColor.honeyYellow
-            changeButton.layer.cornerRadius = 25
-            changeButton.setTitle("Log in", for: .normal)
-            changeButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+            changeButton.isEnabled = false
+            changeButton.setTitle("Go to account page", for: .normal)
             changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
-            changeButton.translatesAutoresizingMaskIntoConstraints = false
+            
         }
     }
     

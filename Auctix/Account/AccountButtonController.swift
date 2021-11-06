@@ -43,7 +43,6 @@ class AccountButtonTabViewController: UIViewController{
 //    let label = UILabel()
 //    let appearance = UINavigationBarAppearance()
     let viewAuth = ViewAuth()
-    let viewAcc = ViewAccount()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +55,7 @@ class AccountButtonTabViewController: UIViewController{
     }
     
     func setupAccView(){
+        let viewAcc = ViewAccount()
         viewAcc.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewAcc)
         viewAcc.delegate = self
