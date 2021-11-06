@@ -22,6 +22,7 @@ class ViewAuth: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
         addSubview(requestLabel)
         addSubview(questionLabel)
         addSubview(nextButton)
@@ -80,7 +81,7 @@ extension ViewAuth {
 extension ViewAuth {
     func setupLayuot(){
         NSLayoutConstraint.activate([
-            requestLabel.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height/3),
+            requestLabel.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height/4),
             requestLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             requestLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
         
