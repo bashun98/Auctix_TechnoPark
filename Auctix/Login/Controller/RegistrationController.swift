@@ -40,6 +40,7 @@ class RegistrationController: UIViewController {
     private let emailTextField: CustomTextField = {
         let tf = CustomTextField(placeholder: "email")
         tf.returnKeyType = .done
+        tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
         return tf
     }()
@@ -172,7 +173,7 @@ class RegistrationController: UIViewController {
 }
 
 extension RegistrationController: UITextFieldDelegate {
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cityTextField.resignFirstResponder()
         fullnameTextField.resignFirstResponder()
         passwordTextFiel.resignFirstResponder()
