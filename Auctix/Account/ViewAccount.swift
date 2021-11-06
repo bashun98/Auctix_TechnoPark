@@ -105,7 +105,7 @@ extension ViewAccount {
             } else {
                 for document in querySnapshot!.documents {
                     if document.get("uid") as? String == user?.uid {
-                        self.label.text = "\(document.get("name") ?? " ")!"
+                        self.label.text = "Hey, \(document.get("name") ?? " ")!"
                     }
                 }
             }
