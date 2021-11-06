@@ -72,6 +72,8 @@ class LoginController: UIViewController {
         return button
     }()
     
+    private let custumAlert = CustomAlert()
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -92,6 +94,7 @@ class LoginController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (result,error) in
             if error != nil {
                 print("loh")
+                self.custumAlert.showAlert(title: "Fatal", message: "kokokokok", viewController: self)
             } else {
                 print("norm")
                 self.navigationController?.popToRootViewController(animated: false)
