@@ -8,10 +8,8 @@
 import UIKit
 
 struct Exhibition{
-    let titleImg: UIImage
-    let title: String
-    let textOpis: String
-    let status: String
+    let name: String
     let city: String
     let country: String
+    let exhImage: URL?
 }

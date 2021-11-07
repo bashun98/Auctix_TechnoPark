@@ -54,8 +54,8 @@ class ExhibitionCell: UICollectionViewCell {
     }
     
     func configure(with data: Exhibition){
-        imageExhib.image = data.titleImg
-        jumpButton.setTitle(data.title, for: .normal)
+       // imageExhib.image = data.titleImg
+        jumpButton.setTitle(data.name, for: .normal)
     }
     
     override func layoutSubviews() {
