@@ -49,11 +49,7 @@ final class ProductViewController: UIViewController {
         
         priceChange.delegate = self
         priceChange.dataSource = self
-        setupNavBar()
-        setupTextField()
-        setupPrice()
-        setupAddition()
-        setupView()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,13 +57,17 @@ final class ProductViewController: UIViewController {
         setupAuth()
         sendVerificationMail()
         setupElement()
-        
+        setupNavBar()
+        setupTextField()
+        setupPrice()
+        setupAddition()
+        setupView()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        viewWillAppear(true)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        viewWillAppear(true)
+//    }
     
     func setupAuth() {
         let user = Auth.auth().currentUser
@@ -79,6 +79,7 @@ final class ProductViewController: UIViewController {
     }
     
     public func sendVerificationMail() {
+        Auth.auth().currentUser?.reload()
         let authUser = Auth.auth().currentUser
         if authUser != nil && !authUser!.isEmailVerified {
             flagAuth = false
