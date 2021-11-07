@@ -56,7 +56,6 @@ final class ProductViewController: UIViewController {
         super.viewWillAppear(animated)
         setupAuth()
         sendVerificationMail()
-        setupElement()
         setupNavBar()
         setupTextField()
         setupPrice()
@@ -64,6 +63,10 @@ final class ProductViewController: UIViewController {
         setupView()
     }
     
+    override func reloadInputViews() {
+        super.reloadInputViews()
+        sendVerificationMail()
+    }
 //    override func viewWillDisappear(_ animated: Bool) {
 //        super.viewWillDisappear(animated)
 //        viewWillAppear(true)
@@ -88,6 +91,7 @@ final class ProductViewController: UIViewController {
             //если адрес почты подтвержден
             flagAuth = true
         }
+        setupElement()
     }
     
     func setupAddition(){
@@ -181,7 +185,7 @@ final class ProductViewController: UIViewController {
         
         if flag ?? false {
             question.text = "Want to place a bet?"
-            //priceFild.isHidden = false
+            priceFild.isHidden = false
             //doneButton.customView?.isHidden = false
             
         } else {
