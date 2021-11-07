@@ -75,6 +75,11 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    private let custumAlert = CustomAlert()
+    
+    private var authUser : User? {
+        return Auth.auth().currentUser
+    }
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -98,9 +103,10 @@ class RegistrationController: UIViewController {
         let password = passwordTextFiel.text!
         let number = numberTextField.text!
         let city = cityTextField.text!
+        if (!name.isEmpty && !email.isEmpty && !password.isEmpty && !number.isEmpty && !city.isEmpty) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error != nil{
-                
+                self.custumAlert.showAlert(title: "Error", message: "This mail is already registered", viewController: self)
             } else {
                 let db = Firestore.firestore()
                 db.collection("users").addDocument(data: [
@@ -114,13 +120,17 @@ class RegistrationController: UIViewController {
                     if error != nil {
                         print("loh")
                     } else {
+                        self.sendVerificationMail()
                         self.navigationController?.popToRootViewController(animated: false)
+                        
                     }
                 }
             }
         
         }
-        
+        } else {
+            self.custumAlert.showAlert(title: "Error", message: "Not all fields were entered correctly", viewController: self)
+        }
     }
     
     @objc func showLoginController() {
@@ -169,6 +179,22 @@ class RegistrationController: UIViewController {
         
         view.addSubview(stack)
         stack.anchor(top: logInButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+    }
+    
+    public func sendVerificationMail() {
+        if self.authUser != nil && !self.authUser!.isEmailVerified {
+            self.authUser!.sendEmailVerification(completion: { (error) in
+                //Сообщите пользователю, что письмо отправлено или не может быть отправлено из-за ошибки.
+                if error != nil {
+                    
+                } else {
+                    self.custumAlert.showAlert(title: "Super", message: "Your account has been created! We sent you an email, do not forget to confirm it", viewController: self)
+                }
+            })
+        }
+        else {
+            //Либо пользователь недоступен, либо пользователь уже верифицирован.
+        }
     }
 }
 

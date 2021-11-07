@@ -63,7 +63,7 @@ class CustomAlert {
         messageLabel.text = message
         messageLabel.textAlignment = .center
         messageLabel.textColor = UIColor.lightCornflowerBlue
-        messageLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        messageLabel.font = UIFont.boldSystemFont(ofSize: 18)
         messageLabel.numberOfLines = 0
         alertView.addSubview(messageLabel)
         

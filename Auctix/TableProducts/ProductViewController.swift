@@ -34,6 +34,7 @@ final class ProductViewController: UIViewController {
     private let priceFild = UITextField()
     private let question = UILabel()
     private var flag: Bool?
+    private var flagAuth: Bool?
         
     private let toolBar = UIToolbar()
     private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
@@ -48,17 +49,24 @@ final class ProductViewController: UIViewController {
         
         priceChange.delegate = self
         priceChange.dataSource = self
+        setupNavBar()
+        setupTextField()
+        setupPrice()
+        setupAddition()
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAuth()
-        setupView()
+        sendVerificationMail()
         setupElement()
-        setupNavBar()
-        setupTextField()
-        setupPrice()
-        setupAddition()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewWillAppear(true)
     }
     
     func setupAuth() {
@@ -67,6 +75,17 @@ final class ProductViewController: UIViewController {
             flag = false
         } else {
             flag = true
+        }
+    }
+    
+    public func sendVerificationMail() {
+        let authUser = Auth.auth().currentUser
+        if authUser != nil && !authUser!.isEmailVerified {
+            flagAuth = false
+        }
+        else {
+            //если адрес почты подтвержден
+            flagAuth = true
         }
     }
     
@@ -170,7 +189,13 @@ final class ProductViewController: UIViewController {
             changeButton.isEnabled = false
             changeButton.setTitle("Go to account page", for: .normal)
             changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
-            
+        }
+        if flagAuth == false {
+            question.text = "Your mail is not confirmed"
+            priceFild.isHidden = true
+            changeButton.isEnabled = false
+            changeButton.setTitle("Check your mail", for: .normal)
+            changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         }
     }
     
