@@ -77,7 +77,7 @@ final class ProductViewController: UIViewController {
             flag = true
         }
     }
-    
+    // длф Вовы, данная функция проверяет, подтверждена ли почта
     public func sendVerificationMail() {
         Auth.auth().currentUser?.reload()
         let authUser = Auth.auth().currentUser
