@@ -49,6 +49,13 @@ final class ProductViewController: UIViewController {
         
         priceChange.delegate = self
         priceChange.dataSource = self
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupAuth()
+        sendVerificationMail()
         setupNavBar()
         setupTextField()
         setupPrice()
@@ -56,18 +63,15 @@ final class ProductViewController: UIViewController {
         setupView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    public func reloadUI() {
+        super.reloadInputViews()
         setupAuth()
         sendVerificationMail()
-        setupElement()
-        
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        viewWillAppear(true)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        viewWillAppear(true)
+//    }
     
     func setupAuth() {
         let user = Auth.auth().currentUser
@@ -77,8 +81,8 @@ final class ProductViewController: UIViewController {
             flag = true
         }
     }
-    
-    public func sendVerificationMail() {
+    // длф Вовы, данная функция проверяет, подтверждена ли почта
+    func sendVerificationMail() {
         let authUser = Auth.auth().currentUser
         if authUser != nil && !authUser!.isEmailVerified {
             flagAuth = false
@@ -87,6 +91,7 @@ final class ProductViewController: UIViewController {
             //если адрес почты подтвержден
             flagAuth = true
         }
+        setupElement()
     }
     
     func setupAddition(){
@@ -180,7 +185,7 @@ final class ProductViewController: UIViewController {
         
         if flag ?? false {
             question.text = "Want to place a bet?"
-            //priceFild.isHidden = false
+            priceFild.isHidden = false
             //doneButton.customView?.isHidden = false
             
         } else {
