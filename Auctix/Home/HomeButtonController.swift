@@ -8,6 +8,10 @@
 import UIKit
 import Firebase
 
+protocol HomeViewControllerInput: AnyObject {
+    func didReceive(_ exhibitions: [Exhibition])
+}
+
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
@@ -24,13 +28,14 @@ class HomeViewController: UIViewController {
         layout.scrollDirection = .horizontal
         
         let collection = UICollectionView(frame: .init(), collectionViewLayout: layout)
-        collection.translatesAutoresizingMaskIntoConstraints = false 
+        collection.translatesAutoresizingMaskIntoConstraints = false
         collection.isPagingEnabled = false
        
         collection.showsHorizontalScrollIndicator = false
         collection.showsVerticalScrollIndicator = false
         return collection
     }()
+    private let model: CollectionModelDescription = CollectionModel()
     
     private let delegateExhib = ExhibitionCell()
     
@@ -45,6 +50,7 @@ class HomeViewController: UIViewController {
         setupCollectionView()
         setupTextField()
         setupAddition()
+        setupModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +81,11 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func setupModel() {
+        model.loadProducts()
+        model.output = self
     }
 }
 // обработчик нажатия кнопки на ячейке коллекции (открывает таблицу продуктов)
@@ -241,5 +252,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         // TODO: В константы
         let width = UIScreen.main.bounds.width - 50
         return .init(width: width, height: collectionView.bounds.height)
+    }
+}
+
+//MARK: - List View Controller Input
+
+extension HomeViewController: HomeViewControllerInput {
+    func didReceive(_ exhibitions: [Exhibition]) {
+        self.datasource = exhibitions
+        collectionView.reloadData()
     }
 }
