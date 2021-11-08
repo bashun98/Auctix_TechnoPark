@@ -6,23 +6,67 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
-protocol ExhibitionManagerProtokol{
-    func loadExhibition()->[Exhibition]
+protocol ExhibitionManagerProtocol {
+    var output: ExhibitionManagerOutput? { get set }
+    func observeExhibitions()
 }
 
-class ExhibitionManager: ExhibitionManagerProtokol {
+protocol ExhibitionManagerOutput: AnyObject {
+    func didReceive(_ exhibitions: [Exhibition])
+    func didFail(with error: Error)
+}
+
+enum NetworkError: Error {
+    case unexpected
+}
+
+class ExhibitionManager: ExhibitionManagerProtocol {
+    var output: ExhibitionManagerOutput?
+    static let shared: ExhibitionManagerProtocol = ExhibitionManager()
+    private let database = Firestore.firestore()
+    private let exhibitionConverter = ExhibitionConverter()
     
-    static let shared: ExhibitionManagerProtokol = ExhibitionManager()
-
     private init(){}
+    
+    func observeExhibitions() {
+        database.collection("exhibitions").addSnapshotListener { [weak self] querySnapshot, error in
+            if let error = error {
+                self?.output?.didFail(with: error)
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                self?.output?.didFail(with: NetworkError.unexpected)
+                return
+            }
+            
+            let exhibition = documents.compactMap { self?.exhibitionConverter.exhibition(from: $0) }
+            self?.output?.didReceive(exhibition)
+        }
+    }
+}
 
-    func loadExhibition() -> [Exhibition] {
-        return [
-            Exhibition(titleImg: #imageLiteral(resourceName: "artist's_house_on_Kuznetsky"), title: "Kuznetsky Most", textOpis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "old", city: "Moscow", country: "Russia"),
-            Exhibition(titleImg: #imageLiteral(resourceName: "central_artist's_house"), title: "Park of Culture", textOpis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "new", city: "Paris", country: "France"),
-            Exhibition(titleImg: #imageLiteral(resourceName: "AccTabBar"), title: "House Kult", textOpis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "new", city: "Cairo", country: "Egypt"),
-            Exhibition(titleImg: #imageLiteral(resourceName: "AccTabBar"), title: "House Kult", textOpis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", status: "old", city: "Cairo", country: "Egypt")
-        ]
+private final class ExhibitionConverter {
+    enum Key: String {
+        case name
+        case city
+        case country
+        case image
+    }
+    
+    func exhibition(from document: DocumentSnapshot) -> Exhibition? {
+        guard let dict = document.data(),
+              let name = dict[Key.name.rawValue] as? String,
+              let city = dict[Key.city.rawValue] as? String,
+              let country = dict[Key.country.rawValue] as? String else {
+                  return nil
+              }
+
+        return Exhibition(name: name,
+                          city: city,
+                          country: country,
+                          exhImage: URL(string: "https://www.iphones.ru/wp-content/uploads/2018/11/01FBA0D1-393D-4E9F-866C-F26F60722480.jpeg"))
     }
 }

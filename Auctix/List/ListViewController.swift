@@ -8,26 +8,30 @@
 import UIKit
 import SnapKit
 
+protocol ListViewControllerInput: AnyObject {
+    func didReceive(_ exhibitions: [Exhibition])
+}
+
 class ListViewController: UIViewController {
     
     private var exhibitions: [Exhibition] = []
     private var header: ListTableHeader!
-    private let sortingData = ["Name","City","Country","New"]
+    private let sortingData = ["Name","City","Country"]
     private let container = UIView()
     private let picker = UIPickerView()
     private let toolBar = UIToolbar()
     private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     private var sortLabel: String = " "
     private let tableView = UITableView()
+    private let model: TableModelDescription = TableModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(tableView)
         setupTableView()
         setupHeader()
         setupPickerView()
         setupNavBar()
-        exhibitions = ExhibitionManager.shared.loadExhibition().sorted(by: {$0.title < $1.title})
+        setupModel()
     }
     
     override func viewWillLayoutSubviews() {
@@ -37,6 +41,7 @@ class ListViewController: UIViewController {
     }
     
     private func setupTableView() {
+        self.view.addSubview(tableView)
         tableView.register(ExhibitionTableViewCell.self, forCellReuseIdentifier: ExhibitionTableViewCell.identifier)
         tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: ListTableHeader.identifier)
         tableView.dataSource = self
@@ -59,13 +64,17 @@ class ListViewController: UIViewController {
         toolBar.setItems([doneButton], animated: false)
         container.isUserInteractionEnabled = true
         container.isHidden = true
-    
     }
     
     private func setupNavBar() {
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "LIST"
         navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .black, size: 40)]
+    }
+    
+    private func setupModel() {
+        model.loadProducts()
+        model.output = self
     }
     
     private func setupPickerViewConstraints() {
@@ -88,16 +97,23 @@ class ListViewController: UIViewController {
     @objc func doneButtonTapped() {
         container.isHidden = true
         if sortLabel == sortingData[0] {
-            exhibitions.sort(by: {$0.title < $1.title})
+            exhibitions.sort(by: {$0.name < $1.name})
         } else if sortLabel == sortingData[1] {
             exhibitions.sort(by: {$0.city < $1.city})
-        } else if sortLabel == sortingData[2]{
-            exhibitions.sort(by: {$0.country < $1.country})
         } else {
-            exhibitions.sort(by: {$0.status < $1.status})
+            exhibitions.sort(by: {$0.country < $1.country})
         }
         tableView.reloadData()
         tabBarController?.tabBar.isHidden = false
+    }
+}
+
+//MARK: - List View Controller Input
+
+extension ListViewController: ListViewControllerInput {
+    func didReceive(_ exhibitions: [Exhibition]) {
+        self.exhibitions = exhibitions
+        tableView.reloadData()
     }
 }
 
@@ -165,7 +181,7 @@ extension ListViewController: UIPickerViewDataSource {
     }
 }
 
-//MARK: -
+//MARK: - Table Header Output
 
 extension ListViewController: HeaderOutput {
     func sortButtonTapped() {
