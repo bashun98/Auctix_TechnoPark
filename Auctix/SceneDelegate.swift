@@ -46,7 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             switch topController {
             case is ProductViewController:
-                topController.reloadInputViews()
+                topController.reloadUI()
             default:
                 break
             }

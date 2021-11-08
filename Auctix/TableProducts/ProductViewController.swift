@@ -63,8 +63,9 @@ final class ProductViewController: UIViewController {
         setupView()
     }
     
-    override func reloadInputViews() {
+    public func reloadUI() {
         super.reloadInputViews()
+        setupAuth()
         sendVerificationMail()
     }
 //    override func viewWillDisappear(_ animated: Bool) {
@@ -81,7 +82,7 @@ final class ProductViewController: UIViewController {
         }
     }
     // длф Вовы, данная функция проверяет, подтверждена ли почта
-    public func sendVerificationMail() {
+    func sendVerificationMail() {
         Auth.auth().currentUser?.reload()
         let authUser = Auth.auth().currentUser
         if authUser != nil && !authUser!.isEmailVerified {
