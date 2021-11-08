@@ -18,6 +18,7 @@ class LoginController: UIViewController {
     private let emailTextField: CustomTextField = {
         let tf = CustomTextField(placeholder: "email")
         tf.returnKeyType = .done
+        tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
         return tf
     }()
@@ -71,6 +72,8 @@ class LoginController: UIViewController {
         return button
     }()
     
+    private let custumAlert = CustomAlert()
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -91,6 +94,7 @@ class LoginController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (result,error) in
             if error != nil {
                 print("loh")
+                self.custumAlert.showAlert(title: "Error", message: "We entered an incorrect password or mail", viewController: self)
             } else {
                 print("norm")
                 self.navigationController?.popToRootViewController(animated: false)
@@ -157,7 +161,7 @@ class LoginController: UIViewController {
     }
 }
 extension LoginController: UITextFieldDelegate {
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         passwordTextFiel.resignFirstResponder()
         emailTextField.resignFirstResponder()
         return true

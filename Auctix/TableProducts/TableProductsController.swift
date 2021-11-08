@@ -9,7 +9,8 @@ import UIKit
 
 class TableProductsController: UITableViewController {
     private var products: [Product] = []
-
+    private let custumAlert = CustomAlert()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -76,9 +77,6 @@ extension TableProductsController: ProductViewControllerDelegate {
             }
         }
         productViewController.dismiss(animated: true)
-        
-        let alertVC = UIAlertController(title: "Wow!", message: "Your bet has been placed", preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alertVC, animated: true, completion: nil)
+        self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
     }
 }

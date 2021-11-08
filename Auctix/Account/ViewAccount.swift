@@ -46,7 +46,7 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource{
     var models = [Section]()
     var image = UIImageView()
     var userNameTitle = UILabel()
-    let label = UILabel()
+    var emailVerificaionTitle = UILabel()
     let appearance = UINavigationBarAppearance()
     let viewAuth = ViewAuth()
 
@@ -64,10 +64,16 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource{
         loginButton.anchor(top: safeAreaLayoutGuide.topAnchor, right: rightAnchor, paddingTop: 16, paddingRight: 16)
         
         setupNavigationTitle()
+        
         setupImage()
         addSubview(image)
+        
         setupUserNameLabel()
-        addSubview(label)
+        addSubview(userNameTitle)
+        
+        addSubview(emailVerificaionTitle)
+        setupEmailVerLabel()
+        
         addSubview(tableView)
         setupTable()
         addConstraints()
@@ -105,15 +111,24 @@ extension ViewAccount {
             } else {
                 for document in querySnapshot!.documents {
                     if document.get("uid") as? String == user?.uid {
-                        self.label.text = "Hey, \(document.get("name") ?? " ")!"
+                        self.userNameTitle.text = "Hey, \(document.get("name") ?? " ")!"
                     }
                 }
             }
         }
-        label.textColor = UIColor.lightCornflowerBlue
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
+       // userNameTitle.text = "User"
+        userNameTitle.textColor = UIColor.lightCornflowerBlue
+        userNameTitle.textAlignment = .center
+        userNameTitle.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    func setupEmailVerLabel(){
+        emailVerificaionTitle.text = "Account verified"
+        emailVerificaionTitle.textColor = UIColor.lightCornflowerBlue
+        emailVerificaionTitle.textAlignment = .center
+        emailVerificaionTitle.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     //MARK: настраиваем надписть Account
     func setupNavigationTitle(){
         let attrs = [
@@ -128,14 +143,6 @@ extension ViewAccount {
     private func addConstraints() {
         var constraints = [NSLayoutConstraint]()
         //add
-        constraints.append(tableView.leadingAnchor.constraint(
-            equalTo: safeAreaLayoutGuide.leadingAnchor))
-        constraints.append(tableView.trailingAnchor.constraint(
-            equalTo:safeAreaLayoutGuide.trailingAnchor))
-       constraints.append(tableView.bottomAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.bottomAnchor))
-        constraints.append(tableView.topAnchor.constraint(
-            equalTo: label.bottomAnchor, constant: 10))
         
         constraints.append(image.leadingAnchor.constraint(
             equalTo: leadingAnchor, constant: UIScreen.main.bounds.width/3))
@@ -145,11 +152,24 @@ extension ViewAccount {
             equalTo: safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.width/3))
         constraints.append(image.topAnchor.constraint(
             equalTo: safeAreaLayoutGuide.topAnchor))
-         
-        constraints.append(label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10))
-        constraints.append(label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor))
-        constraints.append(label.trailingAnchor.constraint(equalTo: trailingAnchor))
-
+ 
+        constraints.append(userNameTitle.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10))
+        constraints.append(userNameTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor))
+        constraints.append(userNameTitle.trailingAnchor.constraint(equalTo: trailingAnchor))
+        
+        constraints.append(emailVerificaionTitle.topAnchor.constraint(equalTo: userNameTitle.bottomAnchor, constant: 10))
+        constraints.append(emailVerificaionTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor))
+        constraints.append(emailVerificaionTitle.trailingAnchor.constraint(equalTo: trailingAnchor))
+    
+        constraints.append(tableView.leadingAnchor.constraint(
+            equalTo: safeAreaLayoutGuide.leadingAnchor))
+        constraints.append(tableView.trailingAnchor.constraint(
+            equalTo:safeAreaLayoutGuide.trailingAnchor))
+       constraints.append(tableView.bottomAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.bottomAnchor))
+        constraints.append(tableView.topAnchor.constraint(
+            equalTo: emailVerificaionTitle.bottomAnchor))
+     
         //Activate
         NSLayoutConstraint.activate(constraints)
     }
