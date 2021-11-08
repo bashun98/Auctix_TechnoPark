@@ -67,8 +67,8 @@ class ExhibitionTableViewCell: UITableViewCell {
     }
     
     func configure(with exhibition: Exhibition) {
-        exhibitionImage.image = exhibition.titleImg
-        exhibitionName.text = exhibition.title
+        //exhibitionImage.image = exhibition.titleImg
+        exhibitionName.text = exhibition.name
         exhibitionCity.text = exhibition.city + ","
         exhibitionCountry.text = exhibition.country
     }
@@ -94,7 +94,6 @@ class ExhibitionTableViewCell: UITableViewCell {
     }
     
     private func setupLayout() {
-  //      exhibitionImage.frame = contentView.bounds.inset(by: UIEdgeInsets(top: 5, left: 12, bottom: 5, right: 12))
         exhibitionImage.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(Constraints.imageFromLeftRight)
             make.top.bottom.equalToSuperview().inset(Constraints.imageFromTopBottom)

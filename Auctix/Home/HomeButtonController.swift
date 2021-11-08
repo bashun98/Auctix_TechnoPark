@@ -8,7 +8,11 @@
 import UIKit
 import Firebase
 
-class HomeButtonTabViewController: UIViewController {
+protocol HomeViewControllerInput: AnyObject {
+    func didReceive(_ exhibitions: [Exhibition])
+}
+
+class HomeViewController: UIViewController {
     
     // MARK: - Properties
     private let imageIconSearch = UIImageView()
@@ -24,13 +28,14 @@ class HomeButtonTabViewController: UIViewController {
         layout.scrollDirection = .horizontal
         
         let collection = UICollectionView(frame: .init(), collectionViewLayout: layout)
-        collection.translatesAutoresizingMaskIntoConstraints = false 
+        collection.translatesAutoresizingMaskIntoConstraints = false
         collection.isPagingEnabled = false
        
         collection.showsHorizontalScrollIndicator = false
         collection.showsVerticalScrollIndicator = false
         return collection
     }()
+    private let model: CollectionModelDescription = CollectionModel()
     
     private let delegateExhib = ExhibitionCell()
     
@@ -39,12 +44,13 @@ class HomeButtonTabViewController: UIViewController {
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadetDatasourse()
+      //  loadetDatasourse()
         setupNavBar()
         setupLabel()
         setupCollectionView()
         setupTextField()
         setupAddition()
+        setupModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,9 +82,14 @@ class HomeButtonTabViewController: UIViewController {
             }
         }
     }
+    
+    private func setupModel() {
+        model.loadProducts()
+        model.output = self
+    }
 }
 // обработчик нажатия кнопки на ячейке коллекции (открывает таблицу продуктов)
-extension HomeButtonTabViewController  {
+extension HomeViewController  {
     
     @objc
     func didTabButton(sender: UIButton) {
@@ -88,7 +99,7 @@ extension HomeButtonTabViewController  {
     
 }
 // MARK: - Setups
-extension HomeButtonTabViewController {
+extension HomeViewController {
     
     func setupAddition() {
         view.addSubview(titleLabel)
@@ -145,16 +156,16 @@ extension HomeButtonTabViewController {
         navigationController?.navigationBar.isHidden = true
     }
     // загрузка выставок в массив выставок
-    func loadetDatasourse(){
-        var datasourceAll: [Exhibition] = []
-        datasourceAll = ExhibitionManager.shared.loadExhibition()
-        for i  in 1...datasourceAll.count {
-            if datasourceAll[i-1].status == "new"
-            {
-                datasource.append(datasourceAll[i-1])
-            }
-        }
-    }
+//    func loadetDatasourse(){
+//        var datasourceAll: [Exhibition] = []
+//        datasourceAll = ExhibitionManager.shared.loadExhibition()
+//        for i  in 1...datasourceAll.count {
+//            if datasourceAll[i-1].status == "new"
+//            {
+//                datasource.append(datasourceAll[i-1])
+//            }
+//        }
+//    }
   
     func setupLayuot(){
         NSLayoutConstraint.activate([
@@ -185,7 +196,7 @@ extension HomeButtonTabViewController {
 
 // MARK: - Get Methods
 // расширение контроллера настройки названия приложения
-extension HomeButtonTabViewController {
+extension HomeViewController {
     
     private func getAttrTitle() -> NSAttributedString {
         let aWord = NSAttributedString(string: "A", attributes: [
@@ -205,7 +216,7 @@ extension HomeButtonTabViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-extension HomeButtonTabViewController: UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.identifire, for: indexPath) as? ExhibitionCell {
@@ -219,7 +230,7 @@ extension HomeButtonTabViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension HomeButtonTabViewController: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return datasource.count
@@ -227,7 +238,7 @@ extension HomeButtonTabViewController: UICollectionViewDataSource {
 }
 
 // MARK: - Flow Layout
-extension HomeButtonTabViewController: UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 15
@@ -241,5 +252,14 @@ extension HomeButtonTabViewController: UICollectionViewDelegateFlowLayout {
         // TODO: В константы
         let width = UIScreen.main.bounds.width - 50
         return .init(width: width, height: collectionView.bounds.height)
+    }
+}
+
+//MARK: - List View Controller Input
+
+extension HomeViewController: HomeViewControllerInput {
+    func didReceive(_ exhibitions: [Exhibition]) {
+        self.datasource = exhibitions
+        collectionView.reloadData()
     }
 }
