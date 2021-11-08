@@ -49,6 +49,7 @@ class ResetPasswordController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
         configureUI()
 
     }
@@ -117,5 +118,11 @@ class ResetPasswordController: UIViewController {
         messageLabel.anchor(top: attentionLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingLeft: 50, paddingRight: 30)
 
         
+    }
+}
+extension ResetPasswordController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        return true
     }
 }

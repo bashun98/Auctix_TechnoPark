@@ -20,6 +20,9 @@ class RegistrationController: UIViewController {
     let tf = CustomTextField(placeholder: "Phone")
         tf.returnKeyType = .done
         tf.textContentType = .telephoneNumber
+        tf.keyboardType = .numberPad
+        tf.addDoneCanselToolBar()
+        
         return tf
     }()
     
@@ -80,6 +83,10 @@ class RegistrationController: UIViewController {
     private var authUser : User? {
         return Auth.auth().currentUser
     }
+    
+    //для форматирования строки телефона
+    private let maxNumberCount = 11
+    private let regex = try! NSRegularExpression(pattern: "[\\+\\s-\\(\\)]", options: .caseInsensitive)
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -95,6 +102,7 @@ class RegistrationController: UIViewController {
         numberTextField.delegate = self
         emailTextField.delegate = self
     }
+    
     //MARK: Selectors
 
     @objc func handleSignUp() {
@@ -104,14 +112,16 @@ class RegistrationController: UIViewController {
         let number = numberTextField.text!
         let city = cityTextField.text!
         if (!name.isEmpty && !email.isEmpty && !password.isEmpty && !number.isEmpty && !city.isEmpty) {
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            
+        
+            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error != nil{
                 self.custumAlert.showAlert(title: "Error", message: "This mail is already registered", viewController: self)
             } else {
                 let db = Firestore.firestore()
                 db.collection("users").addDocument(data: [
                     "name": name,
-                    "password": password,
+                    //"password": password,
                     "email": email,
                     "phone": number,
                     "city": city,
@@ -194,6 +204,41 @@ class RegistrationController: UIViewController {
             //Либо пользователь недоступен, либо пользователь уже верифицирован.
         }
     }
+    
+    //для форматирования строки телефона
+    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool) -> String {
+        guard !(shouldRemoveLastDigit && phoneNumber.count <= 2) else { return "+" }
+               
+        let range = NSString(string: phoneNumber).range(of: phoneNumber)
+        var number = regex.stringByReplacingMatches(in: phoneNumber, options: [], range: range, withTemplate: "")
+        
+        if number.count > maxNumberCount {
+            let maxIndex = number.index(number.startIndex, offsetBy: maxNumberCount)
+            number = String(number[number.startIndex..<maxIndex])
+        }
+        
+        if shouldRemoveLastDigit {
+            let maxIndex = number.index(number.startIndex, offsetBy: number.count - 1)
+            number = String(number[number.startIndex..<maxIndex])
+        }
+            
+        let maxIndex = number.index(number.startIndex, offsetBy: number.count)
+        let regRange = number.startIndex..<maxIndex
+        
+        if number.count < 7 {
+            let pattern = "(\\d)(\\d{3})(\\d+)"
+            number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3", options: .regularExpression, range: regRange)
+        } else {
+            let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+            number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3-$4-$5", options: .regularExpression, range: regRange)
+        }
+        
+        if number.count == 1 {
+            return "+" + "7"
+        } else {
+            return "+" + number
+        }
+    }
 }
 
 extension RegistrationController: UITextFieldDelegate {
@@ -204,5 +249,41 @@ extension RegistrationController: UITextFieldDelegate {
         numberTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == numberTextField {
+            let fullString = (textField.text ?? "") + string
+            textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
+            return false
+        } else {
+        return true
+        }
+    }
+}
+//расширение текстфилда для добавление тулбара на циферную клавиатуру
+extension UITextField {
+    func addDoneCanselToolBar(onDone: (target: Any, action: Selector)? = nil, onCansle: (target: Any, action: Selector)? = nil) {
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+        let onCansle = onCansle ?? (target: self, action: #selector(canselButtonTapped))
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.items = [
+            UIBarButtonItem(title: "Cansel", style: .plain, target: onCansle.target, action: onCansle.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: onDone.target, action: onDone.action)
+        ]
+        toolBar.sizeToFit()
+        self.inputAccessoryView = toolBar
+    }
+    
+    @objc
+    func doneButtonTapped() {
+        self.resignFirstResponder()
+    }
+    @objc
+    func canselButtonTapped() {
+        self.resignFirstResponder()
     }
 }
