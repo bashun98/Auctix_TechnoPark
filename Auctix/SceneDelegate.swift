@@ -47,7 +47,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             switch topController {
             case is ProductViewController:
                 if let topControlller = topController as? ProductViewController {
-                    topControlller.reloadUI()
+                    Auth.auth().currentUser?.reload( completion: { (error) in
+                        if error == nil {
+                            topControlller.reloadUI()
+                        }
+                    })
                 }
             default:
                 break

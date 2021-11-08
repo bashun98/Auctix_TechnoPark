@@ -55,9 +55,13 @@ class AccountButtonTabViewController: UIViewController{
     }
     
     func setupAccView(){
+        if let viewWithTag = self.view.viewWithTag(20) {
+            viewWithTag.removeFromSuperview()
+        }
         let viewAcc = ViewAccount()
         viewAcc.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewAcc)
+        viewAcc.tag = 20
         viewAcc.delegate = self
         NSLayoutConstraint.activate([
             viewAcc.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -68,8 +72,12 @@ class AccountButtonTabViewController: UIViewController{
     }
     
     func setupAuthView(){
+        if let viewWithTag = self.view.viewWithTag(10) {
+                viewWithTag.removeFromSuperview()
+        }
         viewAuth.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(viewAuth)
+        viewAuth.tag = 10
         viewAuth.delegate = self
         NSLayoutConstraint.activate([
             viewAuth.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
