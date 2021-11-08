@@ -122,11 +122,9 @@ class RegistrationController: UIViewController {
                     } else {
                         self.sendVerificationMail()
                         self.navigationController?.popToRootViewController(animated: false)
-                        
                     }
                 }
             }
-        
         }
         } else {
             self.custumAlert.showAlert(title: "Error", message: "Not all fields were entered correctly", viewController: self)
@@ -188,7 +186,7 @@ class RegistrationController: UIViewController {
                 if error != nil {
                     
                 } else {
-                    self.custumAlert.showAlert(title: "Super", message: "Your account has been created! We sent you an email, do not forget to confirm it", viewController: self)
+                    //self.custumAlert.showAlert(title: "Super", message: "Your account has been created! We sent you an email, do not forget to confirm it", viewController: self)
                 }
             })
         }

@@ -123,7 +123,14 @@ extension ViewAccount {
     }
     
     func setupEmailVerLabel(){
-        emailVerificaionTitle.text = "Account verified"
+        Auth.auth().currentUser?.reload()
+        let user = Auth.auth().currentUser
+        if (user != nil && user!.isEmailVerified) {
+            emailVerificaionTitle.text = " "
+            emailVerificaionTitle.text = "Account verified"
+        } else {
+            emailVerificaionTitle.text = "Account not verified"
+        }
         emailVerificaionTitle.textColor = UIColor.lightCornflowerBlue
         emailVerificaionTitle.textAlignment = .center
         emailVerificaionTitle.translatesAutoresizingMaskIntoConstraints = false
