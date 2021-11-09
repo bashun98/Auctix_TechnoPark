@@ -263,14 +263,14 @@ extension RegistrationController: UITextFieldDelegate {
 }
 //расширение текстфилда для добавление тулбара на циферную клавиатуру
 extension UITextField {
-    func addDoneCanselToolBar(onDone: (target: Any, action: Selector)? = nil, onCansle: (target: Any, action: Selector)? = nil) {
+    func addDoneCanselToolBar(onDone: (target: Any, action: Selector)? = nil, onCancle: (target: Any, action: Selector)? = nil) {
         let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
-        let onCansle = onCansle ?? (target: self, action: #selector(canselButtonTapped))
+        let onCancle = onCancle ?? (target: self, action: #selector(canselButtonTapped))
         
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.items = [
-            UIBarButtonItem(title: "Cansel", style: .plain, target: onCansle.target, action: onCansle.action),
+            UIBarButtonItem(title: "Cancel", style: .plain, target: onCancle.target, action: onCancle.action),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
             UIBarButtonItem(title: "Done", style: .plain, target: onDone.target, action: onDone.action)
         ]
