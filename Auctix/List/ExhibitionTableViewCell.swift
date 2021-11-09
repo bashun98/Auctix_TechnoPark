@@ -43,6 +43,13 @@ class ExhibitionTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let exhibitionExpirationDate: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
     private struct Constraints {
         static let labelPosition: CGFloat = 20
         static let imageFromLeftRight: CGFloat = 12
@@ -71,6 +78,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         exhibitionName.text = exhibition.name
         exhibitionCity.text = exhibition.city + ","
         exhibitionCountry.text = exhibition.country
+        exhibitionExpirationDate.text = "Exhibition closing date: " + exhibition.expirationDate
     }
     
     private func setupViews() {
@@ -80,6 +88,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         exhibitionImage.addSubview(exhibitionName)
         exhibitionImage.addSubview(exhibitionCity)
         exhibitionImage.addSubview(exhibitionCountry)
+        exhibitionImage.addSubview(exhibitionExpirationDate)
     }
     
     private func setupGradient() {
@@ -109,6 +118,10 @@ class ExhibitionTableViewCell: UITableViewCell {
         exhibitionCountry.snp.makeConstraints { make in
             make.top.equalTo(exhibitionCity).inset(Constraints.labelPosition)
             make.trailing.equalTo(exhibitionCity)
+        }
+        exhibitionExpirationDate.snp.makeConstraints { make in
+            make.top.equalTo(exhibitionCountry).inset(Constraints.labelPosition)
+            make.trailing.equalTo(exhibitionCountry)
         }
     }
 }

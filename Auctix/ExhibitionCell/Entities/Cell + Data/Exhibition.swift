@@ -11,5 +11,7 @@ struct Exhibition{
     let name: String
     let city: String
     let country: String
+    let startDate: String
+    let expirationDate: String
     let exhImage: URL?
 }
