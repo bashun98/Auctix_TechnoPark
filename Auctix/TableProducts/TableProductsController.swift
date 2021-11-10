@@ -13,7 +13,10 @@ protocol TableProductControllerInput: AnyObject {
 }
 
 class TableProductsController: UITableViewController {
+    
+    var nameExhibition = ""
     private var products: [Product] = []
+    private var productsNew: [Product] = []
     private let custumAlert = CustomAlert()
     private let model: TableProductModelDescription = TableProductModel()
     
@@ -60,7 +63,12 @@ class TableProductsController: UITableViewController {
 }
 extension TableProductsController: TableProductControllerInput {
     func didReceive(_ products: [Product]) {
-        self.products = products
+        for i in 0...(products.count-1) {
+            if products[i].idExhibition == nameExhibition{
+                productsNew.append(products[i])
+            }
+        }
+        self.products = productsNew
         tableView.reloadData()
     }
 }

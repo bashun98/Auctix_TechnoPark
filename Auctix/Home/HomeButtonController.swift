@@ -97,6 +97,7 @@ extension HomeViewController  {
     @objc
     func didTabButton(sender: UIButton) {
         let vc = TableProductsController()
+        vc.nameExhibition = sender.titleLabel?.text ?? ""
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -114,7 +115,10 @@ extension HomeViewController {
     }
     
     func setupLabel(){
+        //navigationItem.title = "HOME"
+        
         titleLabel.attributedText = getAttrTitle()
+        titleLabel.font = UIFont(name: "Nunito-Regular", size: 25)
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
