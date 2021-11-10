@@ -6,17 +6,27 @@
 //
 
 import UIKit
+import Firebase
+
+protocol TableProductControllerInput: AnyObject {
+    func didReceive(_ products: [Product])
+}
 
 class TableProductsController: UITableViewController {
+    
+    var nameExhibition = ""
     private var products: [Product] = []
+    private var productsNew: [Product] = []
     private let custumAlert = CustomAlert()
+    private let model: TableProductModelDescription = TableProductModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         setupTableView()
         setupTableCell()
-        products = ProductManager.shared.loadProducts()
+        setupModel()
+        //products = ProductManager.shared.loadProducts()
     }
     // настройка навигационного бара
     func setupNavBar(){
@@ -25,6 +35,11 @@ class TableProductsController: UITableViewController {
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "Products"
         navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont(name: "Nunito-Regular", size: 36) ?? UIFont.systemFont(ofSize: 36) ]
+    }
+    
+    private func setupModel() {
+        model.loadProducts()
+        model.output = self
     }
     
     func setupTableCell() {
@@ -44,6 +59,17 @@ class TableProductsController: UITableViewController {
         viewController.delegate = self
 
         present(navigationController, animated: true, completion: nil)
+    }
+}
+extension TableProductsController: TableProductControllerInput {
+    func didReceive(_ products: [Product]) {
+        for i in 0...(products.count-1) {
+            if products[i].idExhibition == nameExhibition{
+                productsNew.append(products[i])
+            }
+        }
+        self.products = productsNew
+        tableView.reloadData()
     }
 }
 // MARK: - Table view data source
@@ -70,13 +96,14 @@ extension TableProductsController {
 // настройка сообщения при нажатии на кнопку
 extension TableProductsController: ProductViewControllerDelegate {
     func didTapChatButton(productViewController: UIViewController, productId: String, priceTextFild: String) {
-        for i in 0...products.count {
-            if productId == products[i].id {
-                products[i].cost = priceTextFild
-                break
-            }
-        }
+//        for i in 0...products.count {
+//            if productId == products[i].id {
+//                products[i].cost = priceTextFild
+//                break
+//            }
+//        }
         productViewController.dismiss(animated: true)
         self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
     }
 }
+

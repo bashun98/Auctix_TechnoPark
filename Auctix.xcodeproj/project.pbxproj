@@ -63,6 +63,7 @@
 		FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80782714B225005185D6 /* AuctixTests.swift */; };
 		FC1C80832714B225005185D6 /* AuctixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80822714B225005185D6 /* AuctixUITests.swift */; };
 		FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */; };
+		FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC391819273BD0B900828F1B /* TableProductModel.swift */; };
 		FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */; };
 		FC555534272ADAFB005E697F /* HomeTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC555533272ADAFB005E697F /* HomeTableLayout.swift */; };
 		FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */; };
@@ -174,6 +175,7 @@
 		FC1C807E2714B225005185D6 /* AuctixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuctixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80822714B225005185D6 /* AuctixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITests.swift; sourceTree = "<group>"; };
 		FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FC391819273BD0B900828F1B /* TableProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductModel.swift; sourceTree = "<group>"; };
 		FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Onboarding/OnboardingViewController.swift; sourceTree = "<group>"; };
 		FC555533272ADAFB005E697F /* HomeTableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableLayout.swift; sourceTree = "<group>"; };
 		FC5EB4BB271B0B8B000EA4C1 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 			children = (
 				FCAD16AF27255006009140BF /* Cell + Data */,
 				FCAD16AB27254FF6009140BF /* TableProductsController.swift */,
+				FC391819273BD0B900828F1B /* TableProductModel.swift */,
 				FCAD16BC272969E6009140BF /* ProductViewController.swift */,
 			);
 			path = TableProducts;
@@ -662,6 +665,7 @@
 			files = (
 				FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */,
 				208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
+				FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */,
 				FCAD16B927255052009140BF /* Product.swift in Sources */,
 				FCFCE7D9271EB94300A59AA0 /* ListViewController.swift in Sources */,
 				04764CBC272C2B2F0094114C /* SettingTableViewCell.swift in Sources */,

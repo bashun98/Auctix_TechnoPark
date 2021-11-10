@@ -21,6 +21,9 @@ class HomeViewController: UIViewController {
     private let nameLabel = UILabel()
     private let searchTextField = UITextField()
     private let newExhibitions = UILabel()
+    private let warningLabel = UILabel()
+    private var flag = Bool()
+    private var exbitionsNewest: [Exhibition] = []
     private let collectionViewLayout = UICollectionViewFlowLayout()
     private var indexOfCellBeforeDragging = 0
     private lazy var collectionView: UICollectionView = {
@@ -94,6 +97,7 @@ extension HomeViewController  {
     @objc
     func didTabButton(sender: UIButton) {
         let vc = TableProductsController()
+        vc.nameExhibition = sender.titleLabel?.text ?? ""
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -106,11 +110,15 @@ extension HomeViewController {
         view.addSubview(nameLabel)
         view.addSubview(searchTextField)
         view.addSubview(newExhibitions)
+        //view.addSubview(warningLabel)
         view.addSubview(collectionView)
     }
     
     func setupLabel(){
+        //navigationItem.title = "HOME"
+        
         titleLabel.attributedText = getAttrTitle()
+        titleLabel.font = UIFont(name: "Nunito-Regular", size: 25)
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -118,10 +126,15 @@ extension HomeViewController {
         nameLabel.textColor = UIColor.lightCornflowerBlue
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        newExhibitions.text = "Newest"
         newExhibitions.font = .systemFont(ofSize: 36)
         newExhibitions.textColor = UIColor.honeyYellow
         newExhibitions.translatesAutoresizingMaskIntoConstraints = false
+        
+//        warningLabel.text = "As soon as new exhibitions open, we will inform you. Now go to the List."
+//        warningLabel.font = .systemFont(ofSize: 20)
+//        warningLabel.numberOfLines = 0
+//        warningLabel.textColor = UIColor.blueGreen
+//        warningLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     // MARK: - настройка строки поиска
     func setupTextField() {
@@ -191,6 +204,7 @@ extension HomeViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             collectionView.topAnchor.constraint(equalTo: newExhibitions.bottomAnchor, constant: 10)
         ])
+
     }
 }
 
@@ -223,6 +237,7 @@ extension HomeViewController: UICollectionViewDelegate {
             let data = datasource[indexPath.row]
             cell.configure(with: data)
             cell.jumpButton.addTarget(self, action: #selector(didTabButton(sender:)), for: .touchUpInside)
+            //setupCollectionOrMessage()
             return cell
         }
         return .init()
@@ -259,7 +274,97 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: HomeViewControllerInput {
     func didReceive(_ exhibitions: [Exhibition]) {
-        self.datasource = exhibitions
+        
+        let data = exhibitions
+
+        let dateWithTime = Date()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMyy"
+
+        let date = dateFormatter.string(from: dateWithTime) // 2/10/17
+        let num = Int(date) ?? 0
+        let numDay = num/10000
+        let numMonth = -((numDay*100) - (num/100))
+        let numYear = (num - (num/100)*100)
+            
+        var numMonthExample = 0
+        var numDayExample = 0
+        var numYearExample = 0
+        
+        for i in 0...(data.count - 1) {
+            let startDateFirebase = data[i].startDate.removeCharacters(from: CharacterSet.decimalDigits.inverted)
+            let numStartDateFirebase = Int(startDateFirebase) ?? 0
+            let numStartDateDay = numStartDateFirebase/10000
+            let numStartDateMonth = -((numStartDateDay*100) - (numStartDateFirebase/100))
+            let numStartDateYear = (numStartDateFirebase - (numStartDateFirebase/100)*100)
+
+            let expirationDateFirebase = data[i].expirationDate.removeCharacters(from: CharacterSet.decimalDigits.inverted)
+            let numExpirationDateFirebase = Int(expirationDateFirebase) ?? 0
+            let numExpirationDateDay = numExpirationDateFirebase/10000
+            let numExpirationDateMonth = -((numExpirationDateDay*100) - (numExpirationDateFirebase/100))
+            let numExpirationDateYear = (numExpirationDateFirebase - (numExpirationDateFirebase/100)*100)
+
+            if (numStartDateYear <= numYear && numExpirationDateYear >= numYear) {
+                if (numStartDateMonth <= numMonth && numExpirationDateMonth >= numMonth) {
+                    if (abs(numStartDateDay - numDay) <= 2) {
+                        exbitionsNewest.append(data[i])
+                        flag = true
+                    }
+                }
+            }
+        }
+        if flag {
+            newExhibitions.text = "Newest"
+        } else {
+            for i in 0...(data.count - 1) {
+                let startDateFirebase = data[i].startDate.removeCharacters(from: CharacterSet.decimalDigits.inverted)
+                let numStartDateFirebase = Int(startDateFirebase) ?? 0
+                let numStartDateDay = numStartDateFirebase/10000
+                let numStartDateMonth = -((numStartDateDay*100) - (numStartDateFirebase/100))
+                let numStartDateYear = (numStartDateFirebase - (numStartDateFirebase/100)*100)
+
+                let expirationDateFirebase = data[i].expirationDate.removeCharacters(from: CharacterSet.decimalDigits.inverted)
+                let numExpirationDateFirebase = Int(expirationDateFirebase) ?? 0
+                let numExpirationDateDay = numExpirationDateFirebase/10000
+                let numExpirationDateMonth = -((numExpirationDateDay*100) - (numExpirationDateFirebase/100))
+                let numExpirationDateYear = (numExpirationDateFirebase - (numExpirationDateFirebase/100)*100)
+
+                if (numStartDateYear <= numYear && numExpirationDateYear >= numYear) {
+                    if (numStartDateMonth <= numMonth && numExpirationDateMonth >= numMonth) {
+                        if ((numYearExample < numStartDateYear)) {
+                            numYearExample = numStartDateYear
+                            numMonthExample = numStartDateMonth
+                            numDayExample = numStartDateDay
+                        }
+                        if ((numMonthExample < numStartDateMonth) && (numYearExample == numStartDateYear)) {
+                            numYearExample = numStartDateYear
+                            numMonthExample = numStartDateMonth
+                            numDayExample = numStartDateDay
+                        }
+                        if ((numDayExample < numStartDateDay) && (numMonthExample == numStartDateMonth)) {
+                            numYearExample = numStartDateYear
+                            numMonthExample = numStartDateMonth
+                            numDayExample = numStartDateDay
+                        }
+                    }
+                }
+            }
+            var stringData = String(numDayExample)+"."+String(numMonthExample)+"."+String(numYearExample)
+            if numDayExample < 10{
+                stringData = "0" + stringData
+            }
+            for i in 0...(data.count - 1) {
+                if data[i].startDate == stringData{
+                    exbitionsNewest.append(data[i])
+                    newExhibitions.text = "Recently opened exhibitions"
+                    newExhibitions.numberOfLines = 0
+                }
+            }
+            
+        }
+        
+        self.datasource = exbitionsNewest
         collectionView.reloadData()
     }
 }

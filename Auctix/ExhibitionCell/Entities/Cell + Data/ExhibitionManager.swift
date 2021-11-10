@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+import Firebase
 
 protocol ExhibitionManagerProtocol {
     var output: ExhibitionManagerOutput? { get set }
@@ -54,19 +54,25 @@ private final class ExhibitionConverter {
         case city
         case country
         case image
+        case startDate
+        case expirationDate
     }
     
     func exhibition(from document: DocumentSnapshot) -> Exhibition? {
         guard let dict = document.data(),
               let name = dict[Key.name.rawValue] as? String,
               let city = dict[Key.city.rawValue] as? String,
-              let country = dict[Key.country.rawValue] as? String else {
+              let country = dict[Key.country.rawValue] as? String,
+              let expirationDate = dict[Key.expirationDate.rawValue] as? String,
+              let startDate = dict[Key.startDate.rawValue] as? String else {
                   return nil
               }
 
         return Exhibition(name: name,
                           city: city,
                           country: country,
+                          startDate: startDate,
+                          expirationDate: expirationDate,
                           exhImage: URL(string: "https://www.iphones.ru/wp-content/uploads/2018/11/01FBA0D1-393D-4E9F-866C-F26F60722480.jpeg"))
     }
 }

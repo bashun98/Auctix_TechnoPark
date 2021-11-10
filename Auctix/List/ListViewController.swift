@@ -138,6 +138,7 @@ extension ListViewController: UITableViewDelegate {
     
     private func pushVC() {
         let rootVC = TableProductsController()
+        //rootVC.nameExhibition 
         navigationController?.pushViewController(rootVC, animated: true)
     }
 }
