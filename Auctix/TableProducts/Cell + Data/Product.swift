@@ -8,11 +8,11 @@
 import UIKit
 
 struct Product{
-    let id: String = UUID().uuidString
-    let productImg: UIImage
-    let title: String
-    let text_opis: String
-    let exhibition: String
-    let status: String
-    var cost: String
+    let name: String
+    let currentPrice: Int
+    let startingPrice: Int
+    let idExhibition: String
+    let currentIdClient: String
+    let idClient: String
+    let productImage: URL?
 }

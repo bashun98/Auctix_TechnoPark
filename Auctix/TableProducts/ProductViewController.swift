@@ -205,9 +205,9 @@ final class ProductViewController: UIViewController {
     }
     
     func configure(with product: Product) {
-        productImageView.image = product.productImg
-        titleLabel.text = product.title
-        priceLabel.text = product.cost
+//        productImageView.image = product.productImg
+//        titleLabel.text = product.title
+//        priceLabel.text = product.cost
     }
     
     override func viewDidLayoutSubviews() {
@@ -268,10 +268,10 @@ final class ProductViewController: UIViewController {
     
     @objc
     private func didTapChangeButton() {
-        guard let productId = product?.id else {
-            return
-        }
-        delegate?.didTapChatButton(productViewController: self, productId: productId, priceTextFild: priceFild.text ?? "")
+//        guard let productId = product?.id else {
+//            return
+//        }
+//        delegate?.didTapChatButton(productViewController: self, productId: productId, priceTextFild: priceFild.text ?? "")
     }
     
 }
