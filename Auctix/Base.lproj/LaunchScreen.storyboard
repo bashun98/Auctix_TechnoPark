@@ -8,8 +8,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Nunito-ExtraLight.ttf">
-            <string>Nunito-ExtraLight</string>
+        <array key="Nunito-Light.ttf">
+            <string>Nunito-Light</string>
         </array>
     </customFonts>
     <scenes>
@@ -32,14 +32,14 @@
                                 <rect key="frame" x="85" y="518" width="210" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UCTIX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dr-VM-Ivl">
-                                        <rect key="frame" x="59" y="0.0" width="156" height="57"/>
-                                        <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="55"/>
+                                        <rect key="frame" x="57.5" y="0.0" width="157.5" height="57"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="55"/>
                                         <color key="textColor" red="0.44022848001333753" green="0.82746428579036824" blue="0.87058818339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdi-KZ-bNZ">
                                         <rect key="frame" x="11" y="4" width="40" height="49"/>
-                                        <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="55"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="55"/>
                                         <color key="textColor" red="1" green="0.76621277590286674" blue="0.27689847393781286" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
