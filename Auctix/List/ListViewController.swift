@@ -126,7 +126,11 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pushVC()
+        
+        let currentCellTxt = tableView.cellForRow(at: indexPath as IndexPath)! as? ExhibitionTableViewCell
+        let rootVC = TableProductsController()
+        rootVC.nameExhibition = currentCellTxt?.exhibitionName.text ?? ""
+        navigationController?.pushViewController(rootVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -134,12 +138,6 @@ extension ListViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
-    }
-    
-    private func pushVC() {
-        let rootVC = TableProductsController()
-        //rootVC.nameExhibition 
-        navigationController?.pushViewController(rootVC, animated: true)
     }
 }
 
@@ -156,6 +154,7 @@ extension ListViewController: UITableViewDataSource {
         cell.configure(with: exhibition)
         return cell
     }
+    
 }
 
 //MARK: - Picker View Delegate
