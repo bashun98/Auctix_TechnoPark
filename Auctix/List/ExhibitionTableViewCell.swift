@@ -43,6 +43,13 @@ class ExhibitionTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let exhibitionExpirationDate: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
     private struct Constraints {
         static let labelPosition: CGFloat = 20
         static let imageFromLeftRight: CGFloat = 12
@@ -71,6 +78,40 @@ class ExhibitionTableViewCell: UITableViewCell {
         exhibitionName.text = exhibition.name
         exhibitionCity.text = exhibition.city + ","
         exhibitionCountry.text = exhibition.country
+        let days = calculateTimeDifference(from: exhibition.expirationDate)
+        exhibitionExpirationDate.text = "\(days) days left until closing"
+    }
+    
+    func calculateTimeDifference(from dateTime1: String) -> String {
+        let dateWithTime = Date()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy"
+
+        let date = dateFormatter.string(from: dateWithTime) // 2/10/17
+        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                
+        let dateAsString = dateTime1
+        let date1 = dateFormatter.date(from: dateAsString)!
+                                
+        let dateAsString2 = date
+        let date2 = dateFormatter.date(from: date)!
+                                
+        let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
+        let difference = (Calendar.current as NSCalendar).components(components, from: date2, to: date1, options: [])
+                                
+        var dateTimeDifferenceString = "\(difference.day!)"
+                                
+//        if difference.day != 0 {
+//            dateTimeDifferenceString = "\(difference.day!)d \(difference.hour!)h \(difference.minute!)m"
+//        } else if  difference.day == 0 {
+//            dateTimeDifferenceString = "\(difference.hour!)h \(difference.minute!)m"
+//        }
+                                
+        return dateTimeDifferenceString
+                                
     }
     
     private func setupViews() {
@@ -80,6 +121,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         exhibitionImage.addSubview(exhibitionName)
         exhibitionImage.addSubview(exhibitionCity)
         exhibitionImage.addSubview(exhibitionCountry)
+        exhibitionImage.addSubview(exhibitionExpirationDate)
     }
     
     private func setupGradient() {
@@ -109,6 +151,10 @@ class ExhibitionTableViewCell: UITableViewCell {
         exhibitionCountry.snp.makeConstraints { make in
             make.top.equalTo(exhibitionCity).inset(Constraints.labelPosition)
             make.trailing.equalTo(exhibitionCity)
+        }
+        exhibitionExpirationDate.snp.makeConstraints { make in
+            make.top.equalTo(exhibitionCountry).inset(Constraints.labelPosition)
+            make.trailing.equalTo(exhibitionCountry)
         }
     }
 }

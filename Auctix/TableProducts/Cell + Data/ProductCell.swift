@@ -65,9 +65,9 @@ class ProductCell: UITableViewCell {
     }
     
     func configure(with data: Product){
-        imageProd.image = data.productImg
-        nameProd.text = data.title
-        cost.text = data.cost + "$"
+        //imageProd.image = data.productImg
+        nameProd.text = data.name
+        cost.text = String(data.currentPrice) + "$"
         time.text = "1 work 3 tausent"
     }
     

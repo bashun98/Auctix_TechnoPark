@@ -6,26 +6,76 @@
 //
 
 import UIKit
+import Firebase
 
-protocol ProductManagerProtokol{
-    func loadProducts()->[Product]
+protocol ProductManagerProtocol {
+    var output: ProductManagerOutput? { get set }
+    func observeProducts()
 }
 
-class ProductManager: ProductManagerProtokol {
-    
-    static let shared: ProductManagerProtokol = ProductManager()
+protocol ProductManagerOutput: AnyObject {
+    func didReceive(_ products: [Product])
+    func didFail(with error: Error)
+}
 
+enum NetworkErrorProduct: Error {
+    case unexpected
+}
+
+class ProductManager: ProductManagerProtocol {
+    var output: ProductManagerOutput?
+    static let shared: ProductManagerProtocol = ProductManager()
+    private let database = Firestore.firestore()
+    private let productConverter = ProductConverter()
+    
     private init(){}
-
-    func loadProducts() -> [Product] {
-        return [
-            Product(productImg:  #imageLiteral(resourceName: "ListTabBar"), title: "Kuznetsky Most", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", exhibition: "", status: "new", cost: "10"),
-            Product(productImg:  #imageLiteral(resourceName: "central_artist's_house"), title: "Kuznetsky Most", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", exhibition: "", status: "new", cost: "10"),
-            Product(productImg:  #imageLiteral(resourceName: "artist's_house_on_Kuznetsky"), title: "Kuznetsky Most", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", exhibition: "", status: "new", cost: "10"),
-            Product(productImg:  #imageLiteral(resourceName: "Search"), title: "Kuznetsky Most", text_opis: "dsfghj sdhfjikf hjkh sdfhjk f hjksdf  sdhhsd hsdfhfhjks  dhhd", exhibition: "", status: "new", cost: "10"),
-        ]
     
+    func observeProducts() {
+        database.collection("products").addSnapshotListener { [weak self] querySnapshot, error in
+            if let error = error {
+                self?.output?.didFail(with: error)
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                self?.output?.didFail(with: NetworkErrorProduct.unexpected)
+                return
+            }
+            
+            let product = documents.compactMap { self?.productConverter.product(from: $0) }
+            self?.output?.didReceive(product)
+        }
     }
-
-    
 }
+
+private final class ProductConverter {
+    enum Key: String {
+        case name
+        case currentPrice
+        case startingPrice
+        case idExhibition
+        case currentIdClient
+        case idClient
+    }
+    
+    func product(from document: DocumentSnapshot) -> Product? {
+        guard let dict = document.data(),
+              let name = dict[Key.name.rawValue] as? String,
+              let currentPrice = dict[Key.currentPrice.rawValue] as? Int,
+              let startingPrice = dict[Key.startingPrice.rawValue] as? Int,
+              let idExhibition = dict[Key.idExhibition.rawValue] as? String,
+              let currentIdClient = dict[Key.currentIdClient.rawValue] as? String,
+              let idClient = dict[Key.idClient.rawValue] as? String else {
+                  return nil
+              }
+
+        return Product(name: name,
+                       currentPrice: currentPrice,
+                       startingPrice: startingPrice,
+                       idExhibition: idExhibition,
+                       currentIdClient: currentIdClient,
+                       idClient:idClient,
+                       productImage: URL(string: "https://www.iphones.ru/wp-content/uploads/2018/11/01FBA0D1-393D-4E9F-866C-F26F60722480.jpeg"))
+    }
+}
+
