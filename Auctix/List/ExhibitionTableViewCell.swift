@@ -22,7 +22,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let exhibitionName: UILabel = {
+    let exhibitionName: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
@@ -79,7 +79,11 @@ class ExhibitionTableViewCell: UITableViewCell {
         exhibitionCity.text = exhibition.city + ","
         exhibitionCountry.text = exhibition.country
         let days = calculateTimeDifference(from: exhibition.expirationDate)
-        exhibitionExpirationDate.text = "\(days) days left until closing"
+        if Int(days) == 1 {
+            exhibitionExpirationDate.text = "Trading ends today!"
+        } else {
+            exhibitionExpirationDate.text = "\(days) days left until closing"
+        }
     }
     
     func calculateTimeDifference(from dateTime1: String) -> String {
@@ -102,7 +106,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
         let difference = (Calendar.current as NSCalendar).components(components, from: date2, to: date1, options: [])
                                 
-        var dateTimeDifferenceString = "\(difference.day!)"
+        let dateTimeDifferenceString = "\(difference.day!)"
                                 
 //        if difference.day != 0 {
 //            dateTimeDifferenceString = "\(difference.day!)d \(difference.hour!)h \(difference.minute!)m"
