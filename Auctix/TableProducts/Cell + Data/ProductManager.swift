@@ -50,6 +50,7 @@ class ProductManager: ProductManagerProtocol {
 
 private final class ProductConverter {
     enum Key: String {
+        case id
         case name
         case currentPrice
         case startingPrice
@@ -60,6 +61,7 @@ private final class ProductConverter {
     
     func product(from document: DocumentSnapshot) -> Product? {
         guard let dict = document.data(),
+              let id = dict[Key.id.rawValue] as? String,
               let name = dict[Key.name.rawValue] as? String,
               let currentPrice = dict[Key.currentPrice.rawValue] as? Int,
               let startingPrice = dict[Key.startingPrice.rawValue] as? Int,
@@ -69,7 +71,8 @@ private final class ProductConverter {
                   return nil
               }
 
-        return Product(name: name,
+        return Product(id: id,
+                       name: name,
                        currentPrice: currentPrice,
                        startingPrice: startingPrice,
                        idExhibition: idExhibition,

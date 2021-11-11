@@ -8,6 +8,7 @@
 import UIKit
 
 struct Product{
+    let id: String
     let name: String
     var currentPrice: Int
     let startingPrice: Int

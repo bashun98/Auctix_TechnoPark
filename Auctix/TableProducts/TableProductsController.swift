@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+@testable import FirebaseMLModelDownloader
 
 protocol TableProductControllerInput: AnyObject {
     func didReceive(_ products: [Product])
@@ -97,15 +98,27 @@ extension TableProductsController {
 // настройка сообщения при нажатии на кнопку
 extension TableProductsController: ProductViewControllerDelegate {
     func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String) {
-        for i in 0...products.count {
-            if productName == products[i].name {
-                products[i].currentPrice = Int(priceTextFild) ?? 0
-                tableView.reloadData()
-                break
+        if priceTextFild.isEmpty == false {
+            var idProduct: String = ""
+            for i in 0...products.count {
+                if productName == products[i].name {
+                    idProduct = products[i].id
+                    break
+                }
             }
+            let db = Firestore.firestore()
+            db.collection("products").document("\(idProduct)").updateData([
+                "currentPrice": Int(priceTextFild) ?? 0,
+                "currentIdClient": Auth.auth().currentUser?.uid ?? ""
+            ], completion: { (error) in
+                if error == nil {
+                    //self.tableView.removeDa
+                    productViewController.dismiss(animated: true)
+                    self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
+                    self.tableView.reloadData()                        
+                }
+            })
         }
-        productViewController.dismiss(animated: true)
-        self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
     }
 }
 

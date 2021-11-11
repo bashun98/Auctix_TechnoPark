@@ -172,6 +172,7 @@ final class ProductViewController: UIViewController {
         question.font = .systemFont(ofSize: 24, weight: .regular)
         question.translatesAutoresizingMaskIntoConstraints = false
         question.textColor = UIColor.lightCornflowerBlue
+        question.numberOfLines = 0
         
         priceChange.backgroundColor = .white
         priceChange.translatesAutoresizingMaskIntoConstraints = false
@@ -186,6 +187,13 @@ final class ProductViewController: UIViewController {
         if flag ?? false {
             question.text = "Want to place a bet?"
             priceFild.isHidden = false
+            if Auth.auth().currentUser?.uid == product?.currentIdClient {
+                question.text = "The last price is yours. As soon as it changes, we will let you know!"
+                priceFild.isHidden = true
+                changeButton.isEnabled = false
+                changeButton.setTitle("View other products", for: .normal)
+                changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+            }
             //doneButton.customView?.isHidden = false
             
         } else {
