@@ -71,6 +71,10 @@ class ProductCell: UITableViewCell {
         time.text = "1 work 3 tausent"
     }
     
+    public func setupCurrentPrice(currentPrice: String){
+        cost.text = currentPrice + "$"
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupLayuot()

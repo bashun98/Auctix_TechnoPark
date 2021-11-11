@@ -11,6 +11,7 @@ import Firebase
 protocol ProductManagerProtocol {
     var output: ProductManagerOutput? { get set }
     func observeProducts()
+    func update(product: Product)
 }
 
 protocol ProductManagerOutput: AnyObject {
@@ -46,6 +47,16 @@ class ProductManager: ProductManagerProtocol {
             self?.output?.didReceive(product)
         }
     }
+    
+    func update(product: Product){
+        database.collection("products").document(product.id).updateData(productConverter.dict(from: product)) { [weak self] error in
+            if let error = error {
+                
+            } else {
+                
+            }
+        }
+    }
 }
 
 private final class ProductConverter {
@@ -67,7 +78,7 @@ private final class ProductConverter {
               let startingPrice = dict[Key.startingPrice.rawValue] as? Int,
               let idExhibition = dict[Key.idExhibition.rawValue] as? String,
               let currentIdClient = dict[Key.currentIdClient.rawValue] as? String,
-              let idClient = dict[Key.idClient.rawValue] as? String else {
+              let idClient = dict[Key.idClient.rawValue] as? [String] else {
                   return nil
               }
 
@@ -77,8 +88,18 @@ private final class ProductConverter {
                        startingPrice: startingPrice,
                        idExhibition: idExhibition,
                        currentIdClient: currentIdClient,
-                       idClient:idClient,
+                       idClient: idClient,
                        productImage: URL(string: "https://www.iphones.ru/wp-content/uploads/2018/11/01FBA0D1-393D-4E9F-866C-F26F60722480.jpeg"))
     }
+    
+    func dict(from product: Product) -> [String: Any] {
+            var data: [String: Any] = [:]
+            
+            data[Key.currentPrice.rawValue] = product.currentPrice
+            data[Key.idClient.rawValue] = product.idClient
+            data[Key.currentIdClient.rawValue] = product.currentIdClient
+    
+            return data
+        }
 }
 

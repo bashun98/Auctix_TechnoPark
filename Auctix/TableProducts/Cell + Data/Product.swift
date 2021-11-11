@@ -14,6 +14,6 @@ struct Product{
     let startingPrice: Int
     let idExhibition: String
     var currentIdClient: String
-    var idClient: String
+    var idClient: [String]
     let productImage: URL?
 }
