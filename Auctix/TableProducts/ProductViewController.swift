@@ -11,7 +11,7 @@ import PinLayout
 import Firebase
 
 protocol ProductViewControllerDelegate: AnyObject {
-    func didTapChatButton(productViewController: UIViewController, productId: String, priceTextFild: String)
+    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String)
 }
 
 final class ProductViewController: UIViewController {
@@ -205,9 +205,9 @@ final class ProductViewController: UIViewController {
     }
     
     func configure(with product: Product) {
-//        productImageView.image = product.productImg
-//        titleLabel.text = product.title
-//        priceLabel.text = product.cost
+        //productImageView.image = product.productImg
+        titleLabel.text = product.name
+        priceLabel.text = String(product.currentPrice)
     }
     
     override func viewDidLayoutSubviews() {
@@ -268,10 +268,10 @@ final class ProductViewController: UIViewController {
     
     @objc
     private func didTapChangeButton() {
-//        guard let productId = product?.id else {
-//            return
-//        }
-//        delegate?.didTapChatButton(productViewController: self, productId: productId, priceTextFild: priceFild.text ?? "")
+        guard let productName = product?.name else {
+            return
+        }
+        delegate?.didTapChatButton(productViewController: self, productName: productName, priceTextFild: priceFild.text ?? "")
     }
     
 }

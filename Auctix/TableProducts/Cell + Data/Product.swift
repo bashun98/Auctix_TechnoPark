@@ -9,10 +9,10 @@ import UIKit
 
 struct Product{
     let name: String
-    let currentPrice: Int
+    var currentPrice: Int
     let startingPrice: Int
     let idExhibition: String
-    let currentIdClient: String
-    let idClient: String
+    var currentIdClient: String
+    var idClient: String
     let productImage: URL?
 }

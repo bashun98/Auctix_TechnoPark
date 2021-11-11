@@ -51,6 +51,7 @@ class TableProductsController: UITableViewController {
     }
     // открытие страницы продукта
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let product = products[indexPath.row]
 
         let viewController = ProductViewController()
@@ -95,13 +96,14 @@ extension TableProductsController {
 }
 // настройка сообщения при нажатии на кнопку
 extension TableProductsController: ProductViewControllerDelegate {
-    func didTapChatButton(productViewController: UIViewController, productId: String, priceTextFild: String) {
-//        for i in 0...products.count {
-//            if productId == products[i].id {
-//                products[i].cost = priceTextFild
-//                break
-//            }
-//        }
+    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String) {
+        for i in 0...products.count {
+            if productName == products[i].name {
+                products[i].currentPrice = Int(priceTextFild) ?? 0
+                tableView.reloadData()
+                break
+            }
+        }
         productViewController.dismiss(animated: true)
         self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
     }
