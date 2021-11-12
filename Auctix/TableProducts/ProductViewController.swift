@@ -11,7 +11,7 @@ import PinLayout
 import Firebase
 
 protocol ProductViewControllerDelegate: AnyObject {
-    func didTapChatButton(productViewController: UIViewController, productId: String, priceTextFild: String)
+    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String)
 }
 
 final class ProductViewController: UIViewController {
@@ -172,6 +172,7 @@ final class ProductViewController: UIViewController {
         question.font = .systemFont(ofSize: 24, weight: .regular)
         question.translatesAutoresizingMaskIntoConstraints = false
         question.textColor = UIColor.lightCornflowerBlue
+        question.numberOfLines = 0
         
         priceChange.backgroundColor = .white
         priceChange.translatesAutoresizingMaskIntoConstraints = false
@@ -186,6 +187,13 @@ final class ProductViewController: UIViewController {
         if flag ?? false {
             question.text = "Want to place a bet?"
             priceFild.isHidden = false
+//            if Auth.auth().currentUser?.uid == product?.currentIdClient {
+//                question.text = "The last price is yours. As soon as it changes, we will let you know!"
+//                priceFild.isHidden = true
+//                changeButton.isEnabled = false
+//                changeButton.setTitle("View other products", for: .normal)
+//                changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+//            }
             //doneButton.customView?.isHidden = false
             
         } else {
@@ -205,9 +213,9 @@ final class ProductViewController: UIViewController {
     }
     
     func configure(with product: Product) {
-//        productImageView.image = product.productImg
-//        titleLabel.text = product.title
-//        priceLabel.text = product.cost
+        //productImageView.image = product.productImg
+        titleLabel.text = product.name
+        priceLabel.text = String(product.currentPrice)
     }
     
     override func viewDidLayoutSubviews() {
@@ -268,10 +276,10 @@ final class ProductViewController: UIViewController {
     
     @objc
     private func didTapChangeButton() {
-//        guard let productId = product?.id else {
-//            return
-//        }
-//        delegate?.didTapChatButton(productViewController: self, productId: productId, priceTextFild: priceFild.text ?? "")
+        guard let productName = product?.name else {
+            return
+        }
+        delegate?.didTapChatButton(productViewController: self, productName: productName, priceTextFild: priceFild.text ?? "")
     }
     
 }

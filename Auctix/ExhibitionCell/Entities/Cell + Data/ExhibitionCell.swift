@@ -73,8 +73,8 @@ extension ExhibitionCell {
     
     func setupLayuot() {
         NSLayoutConstraint.activate([
-            imageExhib.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50),
-            imageExhib.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50),
+            imageExhib.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            imageExhib.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             imageExhib.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageExhib.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         
