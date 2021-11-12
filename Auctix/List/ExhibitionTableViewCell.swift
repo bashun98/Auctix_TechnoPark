@@ -13,7 +13,8 @@ class ExhibitionTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     private let container = UIView()
     private let gradient = CAGradientLayer()
-    
+    private var netImage = ExhibitionsImageLoader.shared
+    private let exhName = UILabel()
     private let exhibitionImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -83,6 +84,10 @@ class ExhibitionTableViewCell: UITableViewCell {
             exhibitionExpirationDate.text = "Trading ends today!"
         } else {
             exhibitionExpirationDate.text = "\(days) days left until closing"
+        }
+        exhName.text = exhibitionName.text! + ".jpeg"
+        netImage.image(with: exhName.text!) { [weak self] image in
+            self?.exhibitionImage.image = image
         }
     }
     

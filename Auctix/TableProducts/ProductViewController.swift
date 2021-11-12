@@ -44,6 +44,9 @@ final class ProductViewController: UIViewController {
     
     weak var delegate: ProductViewControllerDelegate?
     
+    private var netImage = ExhibitionsImageLoader.shared
+    private let productName = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,6 +100,7 @@ final class ProductViewController: UIViewController {
     func setupAddition(){
         view.addSubview(titleLabel)
         view.addSubview(productImageView)
+        productImageView.contentMode = .scaleAspectFit
         view.addSubview(nowPrice)
         view.addSubview(currency)
         view.addSubview(priceLabel)
@@ -106,7 +110,7 @@ final class ProductViewController: UIViewController {
         toolBar.setItems([doneButton], animated: false)
         //priceChange.addSubview(toolBar)
     }
-
+    
     func setupPrice() {
         var now = priceLabel.text ?? ""
         let nowNumStat = Int(now) ?? 0
@@ -216,6 +220,11 @@ final class ProductViewController: UIViewController {
         //productImageView.image = product.productImg
         titleLabel.text = product.name
         priceLabel.text = String(product.currentPrice)
+        productName.text = product.name + ".jpeg"
+        netImage.image(with: productName.text!) { [weak self] image in
+            self?.productImageView.image = image
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {

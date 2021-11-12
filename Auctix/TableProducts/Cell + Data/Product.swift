@@ -15,5 +15,4 @@ struct Product{
     let idExhibition: String
     var currentIdClient: String
     var idClient: [String]
-    let productImage: URL?
 }
