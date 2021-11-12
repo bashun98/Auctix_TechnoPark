@@ -18,6 +18,8 @@ class ProductCell: UITableViewCell {
     private let nameProd = UILabel()
     private let time = UILabel()
     private let cost = UILabel()
+    private var netImage = ProductImageLoader.shared
+    private let prodName = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -69,7 +71,13 @@ class ProductCell: UITableViewCell {
         nameProd.text = data.name
         cost.text = String(data.currentPrice) + "$"
         time.text = "1 work 3 tausent"
+        prodName.text = data.name + ".jpeg"
+        netImage.image(with: prodName.text!) { [weak self] image in
+            self?.imageProd.image = image
+        }
     }
+    
+    
     
     public func setupCurrentPrice(currentPrice: String){
         cost.text = currentPrice + "$"

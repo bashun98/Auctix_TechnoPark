@@ -1,16 +1,16 @@
 //
-//  ExhibitionsImageLoader.swift
+//  ProductImageLoader.swift
 //  Auctix
 //
-//  Created by Евгений Башун on 07.11.2021.
+//  Created by Евгений Башун on 12.11.2021.
 //
 
 import UIKit
 import FirebaseStorage
 
-final class ExhibitionsImageLoader {
+final class ProductImageLoader {
     let storage = Storage.storage().reference()
-    static let shared = ExhibitionsImageLoader()
+    static let shared = ProductImageLoader()
  
     func image(with name: String, completion: @escaping (UIImage?) -> Void) {
         storage.child(name).getData(maxSize: 15 * 1024 * 1024) { data, error in

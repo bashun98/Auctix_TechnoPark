@@ -53,7 +53,6 @@ private final class ExhibitionConverter {
         case name
         case city
         case country
-        case image
         case startDate
         case expirationDate
     }
@@ -72,7 +71,6 @@ private final class ExhibitionConverter {
                           city: city,
                           country: country,
                           startDate: startDate,
-                          expirationDate: expirationDate,
-                          exhImage: URL(string: "https://www.iphones.ru/wp-content/uploads/2018/11/01FBA0D1-393D-4E9F-866C-F26F60722480.jpeg"))
+                          expirationDate: expirationDate)
     }
 }

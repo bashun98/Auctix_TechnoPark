@@ -88,8 +88,7 @@ private final class ProductConverter {
                        startingPrice: startingPrice,
                        idExhibition: idExhibition,
                        currentIdClient: currentIdClient,
-                       idClient: idClient,
-                       productImage: URL(string: "https://www.iphones.ru/wp-content/uploads/2018/11/01FBA0D1-393D-4E9F-866C-F26F60722480.jpeg"))
+                       idClient: idClient)
     }
     
     func dict(from product: Product) -> [String: Any] {
