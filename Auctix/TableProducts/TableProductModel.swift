@@ -10,9 +10,11 @@ import UIKit
 protocol TableProductModelDescription: AnyObject {
     var output: TableProductControllerInput? { get set }
     func loadProducts()
+    func update(product: Product)
 }
 
 final class TableProductModel: TableProductModelDescription {
+    
     private var productManager: ProductManagerProtocol = ProductManager.shared
     
     weak var output: TableProductControllerInput?
@@ -20,6 +22,10 @@ final class TableProductModel: TableProductModelDescription {
     func loadProducts() {
         productManager.observeProducts()
         productManager.output = self
+    }
+    
+    func update(product: Product) {
+        productManager.update(product: product)
     }
 }
 

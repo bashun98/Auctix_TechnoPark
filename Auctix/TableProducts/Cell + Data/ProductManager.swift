@@ -11,6 +11,7 @@ import Firebase
 protocol ProductManagerProtocol {
     var output: ProductManagerOutput? { get set }
     func observeProducts()
+    func update(product: Product)
 }
 
 protocol ProductManagerOutput: AnyObject {
@@ -46,10 +47,21 @@ class ProductManager: ProductManagerProtocol {
             self?.output?.didReceive(product)
         }
     }
+    
+    func update(product: Product){
+        database.collection("products").document(product.id).updateData(productConverter.dict(from: product)) { [weak self] error in
+            if let error = error {
+                
+            } else {
+                
+            }
+        }
+    }
 }
 
 private final class ProductConverter {
     enum Key: String {
+        case id
         case name
         case currentPrice
         case startingPrice
@@ -60,22 +72,34 @@ private final class ProductConverter {
     
     func product(from document: DocumentSnapshot) -> Product? {
         guard let dict = document.data(),
+              let id = dict[Key.id.rawValue] as? String,
               let name = dict[Key.name.rawValue] as? String,
               let currentPrice = dict[Key.currentPrice.rawValue] as? Int,
               let startingPrice = dict[Key.startingPrice.rawValue] as? Int,
               let idExhibition = dict[Key.idExhibition.rawValue] as? String,
               let currentIdClient = dict[Key.currentIdClient.rawValue] as? String,
-              let idClient = dict[Key.idClient.rawValue] as? String else {
+              let idClient = dict[Key.idClient.rawValue] as? [String] else {
                   return nil
               }
 
-        return Product(name: name,
+        return Product(id: id,
+                       name: name,
                        currentPrice: currentPrice,
                        startingPrice: startingPrice,
                        idExhibition: idExhibition,
                        currentIdClient: currentIdClient,
-                       idClient:idClient,
+                       idClient: idClient,
                        productImage: URL(string: "https://www.iphones.ru/wp-content/uploads/2018/11/01FBA0D1-393D-4E9F-866C-F26F60722480.jpeg"))
     }
+    
+    func dict(from product: Product) -> [String: Any] {
+            var data: [String: Any] = [:]
+            
+            data[Key.currentPrice.rawValue] = product.currentPrice
+            data[Key.idClient.rawValue] = product.idClient
+            data[Key.currentIdClient.rawValue] = product.currentIdClient
+    
+            return data
+        }
 }
 

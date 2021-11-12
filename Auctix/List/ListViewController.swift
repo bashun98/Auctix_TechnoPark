@@ -126,7 +126,7 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         let currentCellTxt = tableView.cellForRow(at: indexPath as IndexPath)! as? ExhibitionTableViewCell
         let rootVC = TableProductsController()
         rootVC.nameExhibition = currentCellTxt?.exhibitionName.text ?? ""
@@ -152,6 +152,7 @@ extension ListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ExhibitionTableViewCell.identifier, for: indexPath) as? ExhibitionTableViewCell else { return UITableViewCell()}
         let exhibition = exhibitions[indexPath.row]
         cell.configure(with: exhibition)
+        cell.selectionStyle = .default
         return cell
     }
     
