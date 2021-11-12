@@ -101,7 +101,7 @@ extension AccountButtonTabViewController: GoFuncAccount {
             try firebaseAutch.signOut()
             viewWillAppear(false)
             //navigationController?.popToRootViewController(animated: false)
-        } catch let _ as NSError {
+        } catch _ as NSError {
             print("не вышел из аакаунта")
         }
     }

@@ -157,6 +157,7 @@ extension HomeViewController {
         // TODO: В константу цвет (так точно)
         searchTextField.layer.backgroundColor = UIColor.searchColor.cgColor
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     // настройка коллекции
     func setupCollectionView(){

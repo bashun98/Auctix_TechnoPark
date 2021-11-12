@@ -72,6 +72,11 @@ extension TableProductsController: TableProductControllerInput {
         }
         self.products = productsNew
         tableView.reloadData()
+//        tableView.reloadData(completion: { (error) in
+//                if error == nil {
+//
+//                }
+//            })
     }
 }
 // MARK: - Table view data source
@@ -124,6 +129,7 @@ extension TableProductsController: ProductViewControllerDelegate {
 //                }
 //            })
             model.update(product: product ?? products[0])
+            
         }
     }
 }
