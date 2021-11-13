@@ -67,7 +67,7 @@ class ProductCell: UITableViewCell {
     }
     
     func configure(with data: Product){
-        //imageProd.image = data.productImg
+        imageProd.image = #imageLiteral(resourceName: "VK")
         nameProd.text = data.name
         cost.text = String(data.currentPrice) + "$"
         time.text = "1 work 3 tausent"

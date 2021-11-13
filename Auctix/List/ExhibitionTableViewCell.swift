@@ -103,28 +103,17 @@ class ExhibitionTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy"
         
-        let date = dateFormatter.string(from: dateWithTime) // 2/10/17
-        
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
+        let date = dateFormatter.string(from: dateWithTime) // 02.10.17
+
         let dateAsString = dateTime1
         let date1 = dateFormatter.date(from: dateAsString)!
                                 
-        //let dateAsString2 = date
         let date2 = dateFormatter.date(from: date)!
         
         let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
         let difference = (Calendar.current as NSCalendar).components(components, from: date2, to: date1, options: [])
         
         let dateTimeDifferenceString = "\(difference.day!)"
-        
-        //        if difference.day != 0 {
-        //            dateTimeDifferenceString = "\(difference.day!)d \(difference.hour!)h \(difference.minute!)m"
-        //        } else if  difference.day == 0 {
-        //            dateTimeDifferenceString = "\(difference.hour!)h \(difference.minute!)m"
-        //        }
-        
         return dateTimeDifferenceString
         
     }

@@ -17,6 +17,13 @@ class BidViewController: UIViewController {
     //var nameExhibition = ""
     private var products: [Product] = []
     private var productsNew: [Product] = []
+//    
+//    private var products: [Product] = [] {
+//            didSet {
+//                tableView.reloadData()
+//            }
+//        }
+    
     private let custumAlert = CustomAlert()
     private let model: BidTableProductModelDescription = BidTableProductModel()
     private let productsTableView = UITableView()
@@ -145,6 +152,15 @@ extension BidViewController: BidTableProductControllerInput {
         }
         productsTableView.reloadData()
     }
+    
+//    self.products = products.compactMap {
+//             if $0.idExhibition == nameExhibition {
+//                 return $0
+//             } else {
+//                 return nil
+//             }
+//         }
+//     }
 }
 
 extension BidViewController: UITableViewDelegate {

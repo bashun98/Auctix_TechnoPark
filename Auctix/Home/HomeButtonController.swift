@@ -169,18 +169,7 @@ extension HomeViewController {
     func setupNavBar() {
         navigationController?.navigationBar.isHidden = true
     }
-    // загрузка выставок в массив выставок
-//    func loadetDatasourse(){
-//        var datasourceAll: [Exhibition] = []
-//        datasourceAll = ExhibitionManager.shared.loadExhibition()
-//        for i  in 1...datasourceAll.count {
-//            if datasourceAll[i-1].status == "new"
-//            {
-//                datasource.append(datasourceAll[i-1])
-//            }
-//        }
-//    }
-  
+
     func setupLayuot(){
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
@@ -367,5 +356,43 @@ extension HomeViewController: HomeViewControllerInput {
         
         self.datasource = exbitionsNewest
         collectionView.reloadData()
+    }
+}
+
+
+extension UITextField {
+    
+    public func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView   = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView     = paddingView
+        self.leftViewMode = .always
+    }
+    
+    public func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView    = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView     = paddingView
+        self.rightViewMode = .always
+    }
+    
+    public func setImage(_ image: UIImage?, imageWidth: CGFloat, padding: CGFloat, isLeft: Bool) {
+        let imageView   = UIImageView(image: image)
+        imageView.frame = .init(x      : padding,
+                                y      : 0,
+                                width  : imageWidth,
+                                height : frame.height)
+        imageView.contentMode = .center
+        
+        let containerView = UIView(frame: .init(x      : 0,
+                                                y      : 0,
+                                                width  : imageWidth + 2 * padding,
+                                                height : frame.height))
+        containerView.addSubview(imageView)
+        if isLeft {
+            leftView      = containerView
+            leftViewMode  = .always
+        } else {
+            rightView     = containerView
+            rightViewMode = .always
+        }
     }
 }
