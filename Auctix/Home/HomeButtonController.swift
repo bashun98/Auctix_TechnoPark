@@ -145,10 +145,13 @@ extension HomeViewController {
         contentViewSearch.addSubview(imageIconSearch)
         contentViewSearch.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
-        imageIconSearch.frame = CGRect(x: 2, y: 0, width: 30, height: 30)
-        searchTextField.leftView = contentViewSearch
-        searchTextField.leftViewMode = .always
+//        imageIconSearch.frame = CGRect(x: 2, y: 0, width: 30, height: 30)
+//        searchTextField.leftView = contentViewSearch
+//        searchTextField.leftViewMode = .always
+//
         
+        searchTextField.delegate = self
+        searchTextField.returnKeyType = .done
         // MARK: - картнка стереть
         searchTextField.setImage(UIImage(named: "Search"), imageWidth: 20, padding: 20, isLeft: true)
         //searchTextField.setRightPaddingPoints(20)
@@ -396,5 +399,11 @@ extension UITextField {
             rightView     = containerView
             rightViewMode = .always
         }
+    }
+}
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        return true
     }
 }
