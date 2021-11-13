@@ -75,7 +75,7 @@ class ExhibitionTableViewCell: UITableViewCell {
     }
     
     func configure(with exhibition: Exhibition) {
-        //exhibitionImage.image = exhibition.titleImg
+        exhibitionImage.image = #imageLiteral(resourceName: "VK")
         exhibitionName.text = exhibition.name
         exhibitionCity.text = exhibition.city + ","
         exhibitionCountry.text = exhibition.country
@@ -85,42 +85,48 @@ class ExhibitionTableViewCell: UITableViewCell {
         } else {
             exhibitionExpirationDate.text = "\(days) days left until closing"
         }
-        exhName.text = exhibitionName.text! + ".jpeg"
-        netImage.image(with: exhName.text!) { [weak self] image in
-            self?.exhibitionImage.image = image
+        DispatchQueue.global(qos: .utility).async {
+            DispatchQueue.main.async {
+                [self] in
+                exhName.text = self.exhibitionName.text! + ".jpeg"
+                netImage.image(with: exhName.text!) { [weak self] image in
+                    self?.exhibitionImage.image = image
+                }
+            }
         }
+        
     }
     
     func calculateTimeDifference(from dateTime1: String) -> String {
         let dateWithTime = Date()
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy"
-
+        
         let date = dateFormatter.string(from: dateWithTime) // 2/10/17
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
         let dateAsString = dateTime1
         let date1 = dateFormatter.date(from: dateAsString)!
                                 
         //let dateAsString2 = date
         let date2 = dateFormatter.date(from: date)!
-                                
+        
         let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
         let difference = (Calendar.current as NSCalendar).components(components, from: date2, to: date1, options: [])
-                                
+        
         let dateTimeDifferenceString = "\(difference.day!)"
-                                
-//        if difference.day != 0 {
-//            dateTimeDifferenceString = "\(difference.day!)d \(difference.hour!)h \(difference.minute!)m"
-//        } else if  difference.day == 0 {
-//            dateTimeDifferenceString = "\(difference.hour!)h \(difference.minute!)m"
-//        }
-                                
+        
+        //        if difference.day != 0 {
+        //            dateTimeDifferenceString = "\(difference.day!)d \(difference.hour!)h \(difference.minute!)m"
+        //        } else if  difference.day == 0 {
+        //            dateTimeDifferenceString = "\(difference.hour!)h \(difference.minute!)m"
+        //        }
+        
         return dateTimeDifferenceString
-                                
+        
     }
     
     private func setupViews() {

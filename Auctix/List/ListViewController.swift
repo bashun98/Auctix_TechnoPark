@@ -70,6 +70,7 @@ class ListViewController: UIViewController {
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "LIST"
         navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .black, size: 40)]
+        navigationItem.backButtonTitle = "Back"
     }
     
     private func setupModel() {
