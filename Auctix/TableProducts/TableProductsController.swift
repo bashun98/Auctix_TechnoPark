@@ -65,6 +65,7 @@ class TableProductsController: UITableViewController {
 }
 extension TableProductsController: TableProductControllerInput {
     func didReceive(_ products: [Product]) {
+        productsNew.removeAll()
         for i in 0...(products.count-1) {
             if products[i].idExhibition == nameExhibition {
                 productsNew.append(products[i])
@@ -72,11 +73,6 @@ extension TableProductsController: TableProductControllerInput {
         }
         self.products = productsNew
         tableView.reloadData()
-//        tableView.reloadData(completion: { (error) in
-//                if error == nil {
-//
-//                }
-//            })
     }
 }
 // MARK: - Table view data source

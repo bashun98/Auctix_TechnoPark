@@ -12,13 +12,16 @@ protocol BidTableProductControllerInput: AnyObject {
     func didReceive(_ products: [Product])
 }
 
-class BidViewController: UITableViewController {
+class BidViewController: UIViewController {
 
     //var nameExhibition = ""
     private var products: [Product] = []
     private var productsNew: [Product] = []
     private let custumAlert = CustomAlert()
     private let model: BidTableProductModelDescription = BidTableProductModel()
+    private let productsTableView = UITableView()
+    private let viewNoProducts = ViewNoProducts()
+    private var flag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,79 @@ class BidViewController: UITableViewController {
         setupTableView()
         setupTableCell()
         setupModel()
-        //products = ProductManager.shared.loadProducts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupAuth()
+        setupView()
+    }
+    
+    func setupAuth() {
+        if Auth.auth().currentUser != nil {
+            flag = true
+        } else {
+            flag = false
+        }
+        
+    }
+    
+    func setupView() {
+        defaultView()
+        if flag {
+            if let viewWithTag = self.view.viewWithTag(10) {
+                viewWithTag.removeFromSuperview()
+                setupModel()
+                if products.count == 0 {
+                    flag = false
+                } else {
+                    view.addSubview(productsTableView)
+                    productsTableView.translatesAutoresizingMaskIntoConstraints = false
+                    productsTableView.tag = 20
+                    setupLayoutTable()
+                }
+            } else {
+                setupModel()
+            }
+        }
+        if flag == false {
+            if let viewWithTag = self.view.viewWithTag(20) {
+                viewWithTag.removeFromSuperview()
+                view.addSubview(viewNoProducts)
+                viewNoProducts.translatesAutoresizingMaskIntoConstraints = false
+                viewNoProducts.tag = 10
+                setupLayoutView()
+            } else {
+                defaultView()
+            }
+        }
+    }
+    
+    func defaultView() {
+        if self.view.viewWithTag(10) == nil && self.view.viewWithTag(20) == nil {
+            view.addSubview(viewNoProducts)
+            viewNoProducts.translatesAutoresizingMaskIntoConstraints = false
+            viewNoProducts.tag = 10
+            setupLayoutView()
+        }
+    }
+    
+    func setupLayoutView() {
+        NSLayoutConstraint.activate([
+            viewNoProducts.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewNoProducts.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewNoProducts.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            viewNoProducts.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        ])
+    }
+    
+    func setupLayoutTable() {
+        NSLayoutConstraint.activate([
+            productsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            productsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            productsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            productsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        ])
     }
     
     func setupNavBar(){
@@ -43,14 +118,38 @@ class BidViewController: UITableViewController {
     }
     
     func setupTableCell() {
-        tableView.separatorStyle = .none
+        productsTableView.translatesAutoresizingMaskIntoConstraints = false
+        productsTableView.delegate = self
+        productsTableView.dataSource = self
+        productsTableView.separatorStyle = .none
     }
     // настройка ячеек таблицы (их регистрация)
     func setupTableView() {
-        tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifireProd)
+        productsTableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifireProd)
     }
+}
+
+extension BidViewController: BidTableProductControllerInput {
+    func didReceive(_ products: [Product]) {
+
+        productsNew.removeAll()
+        for i in 0...(products.count-1) {
+            let cliets = products[i].idClient
+            if cliets.first(where: { $0 == Auth.auth().currentUser?.uid}) != nil {
+                productsNew.append(products[i])
+            }
+        }
+        self.products = productsNew
+        if products.count == 0 {
+            
+        }
+        productsTableView.reloadData()
+    }
+}
+
+extension BidViewController: UITableViewDelegate {
     // открытие страницы продукта
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let product = products[indexPath.row]
 
@@ -63,34 +162,18 @@ class BidViewController: UITableViewController {
     }
 }
 
-extension BidViewController: BidTableProductControllerInput {
-    func didReceive(_ products: [Product]) {
-
-        for i in 0...(products.count-1) {
-            let cliets = products[i].idClient
-            if cliets.first(where: { $0 == Auth.auth().currentUser?.uid}) != nil {
-                productsNew.append(products[i])
-            }
-        }
-        self.products = productsNew
-        if products.count == 0 {
-            
-        }
-        tableView.reloadData()
-    }
-}
 // MARK: - Table view data source
-extension BidViewController {
+extension BidViewController: UITableViewDataSource{
   
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 180
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifireProd, for: indexPath) as? ProductCell {
             let product = products[indexPath.row]
             cell.configure(with: product)
