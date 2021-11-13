@@ -139,7 +139,7 @@ extension HomeViewController {
     // MARK: - настройка строки поиска
     func setupTextField() {
         // MARK: - картинка поиска
-        imageIconSearch.image = UIImage(named: "Search")
+        //imageIconSearch.image = UIImage(named: "Search")
         
         let contentViewSearch = UIView()
         contentViewSearch.addSubview(imageIconSearch)
@@ -150,6 +150,8 @@ extension HomeViewController {
         searchTextField.leftViewMode = .always
         
         // MARK: - картнка стереть
+        searchTextField.setImage(UIImage(named: "Search"), imageWidth: 20, padding: 20, isLeft: true)
+        //searchTextField.setRightPaddingPoints(20)
         searchTextField.clearButtonMode = .whileEditing
         searchTextField.font = .systemFont(ofSize: 20)
         searchTextField.placeholder = "Search..."
