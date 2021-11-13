@@ -59,13 +59,7 @@ extension ViewAuth {
         requestLabel.textColor = UIColor.blueGreen
         requestLabel.translatesAutoresizingMaskIntoConstraints = false
         requestLabel.textAlignment = .center
-        
-//        nextButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-//        nextButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-//        nextButton.title = "Log in"
-//        nextButton.translatesAutoresizingMaskIntoConstraints = false
-//        nextButton.buttonType = .system
-        
+          
         nextButton.backgroundColor = UIColor.honeyYellow
         nextButton.layer.cornerRadius = 25
         nextButton.setTitle("Log in", for: .normal)

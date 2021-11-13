@@ -103,6 +103,7 @@
 		FC7428CB2735B3E40005C2C3 /* ViewAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7428CA2735B3E40005C2C3 /* ViewAuth.swift */; };
 		FC7428CD27367FAF0005C2C3 /* ViewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7428CC27367FAF0005C2C3 /* ViewAccount.swift */; };
 		FC7428D12736AA1D0005C2C3 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7428D02736AA1D0005C2C3 /* CustomAlert.swift */; };
+		FCA9E17D273FBEFF005C42B2 /* ViewNoProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E17C273FBEFF005C42B2 /* ViewNoProducts.swift */; };
 		FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
@@ -191,6 +192,7 @@
 		FC7428CA2735B3E40005C2C3 /* ViewAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAuth.swift; sourceTree = "<group>"; };
 		FC7428CC27367FAF0005C2C3 /* ViewAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAccount.swift; sourceTree = "<group>"; };
 		FC7428D02736AA1D0005C2C3 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		FCA9E17C273FBEFF005C42B2 /* ViewNoProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNoProducts.swift; sourceTree = "<group>"; };
 		FCAD16AB27254FF6009140BF /* TableProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductsController.swift; sourceTree = "<group>"; };
 		FCAD16B02725502C009140BF /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		FCAD16B427255041009140BF /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 			children = (
 				FCFCE7DA271EB9DC00A59AA0 /* BidViewController.swift */,
 				FC39181B273D8A8A00828F1B /* ProductBidModel.swift */,
+				FCA9E17C273FBEFF005C42B2 /* ViewNoProducts.swift */,
 			);
 			path = Bid;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
 				04764D182733CD330094114C /* CustomTextField.swift in Sources */,
 				208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
+				FCA9E17D273FBEFF005C42B2 /* ViewNoProducts.swift in Sources */,
 				FCAD16B12725502C009140BF /* ProductCell.swift in Sources */,
 				04764D102733CCA40094114C /* Extentions.swift in Sources */,
 				04764CBE272C2B5B0094114C /* SwitchTableViewCell.swift in Sources */,

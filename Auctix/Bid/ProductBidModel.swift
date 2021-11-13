@@ -5,31 +5,37 @@
 //  Created by Михаил Шаговитов on 11.11.2021.
 //
 
-//import UIKit
-//
-//protocol TableModelDescription: AnyObject {
-//    var output: ListViewControllerInput? { get set }
-//    func loadProducts()
-//}
-//
-//final class TableModel: TableModelDescription {
-//    private var exhibitionManager: ExhibitionManagerProtocol = ExhibitionManager.shared
-//    
-//    weak var output: ListViewControllerInput?
-//    
-//    func loadProducts() {
-//        exhibitionManager.observeExhibitions()
-//        exhibitionManager.output = self
-//    }
-//}
-//
-//
-//extension TableModel: ExhibitionManagerOutput {
-//    func didReceive(_ exhibitions: [Exhibition]) {
-//        output?.didReceive(exhibitions)
-//    }
-//
-//    func didFail(with error: Error) {
-//        // show error
-//    }
-//}
+import UIKit
+
+protocol BidTableProductModelDescription: AnyObject {
+    var output: BidTableProductControllerInput? { get set }
+    func loadProducts()
+    func update(product: Product)
+}
+
+final class BidTableProductModel: BidTableProductModelDescription {
+    
+    private var productManager: ProductManagerProtocol = ProductManager.shared
+    
+    weak var output: BidTableProductControllerInput?
+    
+    func loadProducts() {
+        productManager.observeProducts()
+        productManager.output = self
+    }
+    
+    func update(product: Product) {
+        productManager.update(product: product)
+    }
+}
+
+
+extension BidTableProductModel: ProductManagerOutput {
+    func didReceive(_ products: [Product]) {
+        output?.didReceive(products)
+    }
+
+    func didFail(with error: Error) {
+        // show error
+    }
+}

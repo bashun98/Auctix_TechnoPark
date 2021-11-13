@@ -157,6 +157,7 @@ extension HomeViewController {
         // TODO: В константу цвет (так точно)
         searchTextField.layer.backgroundColor = UIColor.searchColor.cgColor
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     // настройка коллекции
     func setupCollectionView(){
@@ -201,7 +202,7 @@ extension HomeViewController {
             
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             collectionView.topAnchor.constraint(equalTo: newExhibitions.bottomAnchor, constant: 10)
         ])
 

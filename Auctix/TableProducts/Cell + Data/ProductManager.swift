@@ -50,7 +50,7 @@ class ProductManager: ProductManagerProtocol {
     
     func update(product: Product){
         database.collection("products").document(product.id).updateData(productConverter.dict(from: product)) { [weak self] error in
-            if let error = error {
+            if error != nil {
                 
             } else {
                 

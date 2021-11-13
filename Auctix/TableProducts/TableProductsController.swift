@@ -65,6 +65,7 @@ class TableProductsController: UITableViewController {
 }
 extension TableProductsController: TableProductControllerInput {
     func didReceive(_ products: [Product]) {
+        productsNew.removeAll()
         for i in 0...(products.count-1) {
             if products[i].idExhibition == nameExhibition {
                 productsNew.append(products[i])
@@ -124,6 +125,7 @@ extension TableProductsController: ProductViewControllerDelegate {
 //                }
 //            })
             model.update(product: product ?? products[0])
+            
         }
     }
 }

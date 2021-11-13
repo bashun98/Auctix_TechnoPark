@@ -110,8 +110,8 @@ class ExhibitionTableViewCell: UITableViewCell {
         
         let dateAsString = dateTime1
         let date1 = dateFormatter.date(from: dateAsString)!
-        
-        let dateAsString2 = date
+                                
+        //let dateAsString2 = date
         let date2 = dateFormatter.date(from: date)!
         
         let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
