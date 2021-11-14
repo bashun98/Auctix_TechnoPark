@@ -85,8 +85,7 @@ class ResetPasswordController: UIViewController {
         iconImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
         
         view.addSubview(auctixLabel)
-        auctixLabel.text = "Auctix"
-        auctixLabel.textColor = UIColor.blueGreen
+        auctixLabel.attributedText = getAttrTitle()
         auctixLabel.centerX(inView: view)
         auctixLabel.anchor(top: iconImage.bottomAnchor, paddingTop: 20)
         
@@ -114,7 +113,7 @@ class ResetPasswordController: UIViewController {
         messageLabel.numberOfLines = 0
         messageLabel.font = .systemFont(ofSize: 20)
         messageLabel.centerX(inView: view)
-        //messageLabel.anchor(top: attentionLabel.bottomAnchor, paddingTop: 10)
+        messageLabel.anchor(top: attentionLabel.bottomAnchor, paddingTop: 5)
         messageLabel.anchor(top: attentionLabel.bottomAnchor, left: view.safeAreaLayoutGuide.leftAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingLeft: 50, paddingRight: 30)
 
         

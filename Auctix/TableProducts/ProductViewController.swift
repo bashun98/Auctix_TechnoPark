@@ -11,10 +11,10 @@ import PinLayout
 import Firebase
 
 protocol ProductViewControllerDelegate: AnyObject {
-    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String)
+    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String, currentPrice: String)
 }
 
-final class ProductViewController: UIViewController {
+class ProductViewController: UIViewController {
     var product: Product? {
         didSet {
             guard let product = product else {
@@ -24,21 +24,17 @@ final class ProductViewController: UIViewController {
         }
     }
     
-    private let changeButton = UIButton()
+    private let changeButton = UIButton(type: .system)
     private let productImageView = UIImageView()
     private let priceLabel = UILabel()
     private let titleLabel = UILabel()
     private let nowPrice = UILabel()
     private let currency = UILabel()
-    private let priceChange = UIPickerView()
     private let priceFild = UITextField()
     private let question = UILabel()
     private var flag: Bool?
     private var flagAuth: Bool?
         
-    private let toolBar = UIToolbar()
-    private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
-    
     private var priceArray = ["","",""]
     private let screenWidth = UIScreen.main.bounds.width
     
@@ -47,12 +43,18 @@ final class ProductViewController: UIViewController {
     private var netImage = ExhibitionsImageLoader.shared
     private let productName = UILabel()
     
+    var activeTextField : UITextField? = nil
+    
+    public var custumAlert = CustomAlert()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        priceChange.delegate = self
-        priceChange.dataSource = self
-
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupLayuot()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,8 +62,8 @@ final class ProductViewController: UIViewController {
         setupAuth()
         sendVerificationMail()
         setupNavBar()
-        setupTextField()
         setupPrice()
+        setupTextField()
         setupAddition()
         setupView()
     }
@@ -71,11 +73,7 @@ final class ProductViewController: UIViewController {
         setupAuth()
         sendVerificationMail()
     }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        viewWillAppear(true)
-//    }
-    
+ 
     func setupAuth() {
         let user = Auth.auth().currentUser
         if user == nil {
@@ -107,33 +105,34 @@ final class ProductViewController: UIViewController {
         view.addSubview(question)
         view.addSubview(priceFild)
         view.addSubview(changeButton)
-        toolBar.setItems([doneButton], animated: false)
-        //priceChange.addSubview(toolBar)
     }
     
     func setupPrice() {
         var now = priceLabel.text ?? ""
         let nowNumStat = Int(now) ?? 0
         var nowNum: Int?
-        var k = 100
-        for i in 0...2 {
+        var k = 1000
+        for i in 0...1 {
             nowNum = nowNumStat + k
             now = nowNum?.description ?? ""
             priceArray[i] = now
-            k += 100
+            k += 1000
         }
     }
     
     func setupTextField() {
             // MARK: - картнка стереть
         priceFild.clearButtonMode = .whileEditing
+        priceFild.delegate = self
         priceFild.font = .systemFont(ofSize: 20)
         priceFild.placeholder = "New price..."
         priceFild.layer.cornerRadius = 10
         priceFild.layer.backgroundColor = UIColor.searchColor.cgColor
         priceFild.translatesAutoresizingMaskIntoConstraints = false
-        priceFild.inputView = priceChange
-        priceFild.inputAccessoryView = toolBar
+        priceFild.keyboardType = .numberPad
+        priceFild.addDonePriceToolBar(array: priceArray)
+        //priceFild.inputView =
+        //priceFild.inputAccessoryView = toolBar
         priceFild.textAlignment = .center
     }
     
@@ -151,6 +150,7 @@ final class ProductViewController: UIViewController {
         changeButton.layer.cornerRadius = 8
         changeButton.setTitle("Place a bet", for: .normal)
         changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+        changeButton.setTitleColor(.white, for: .normal)
         changeButton.translatesAutoresizingMaskIntoConstraints = false
         changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
         
@@ -177,30 +177,12 @@ final class ProductViewController: UIViewController {
         question.translatesAutoresizingMaskIntoConstraints = false
         question.textColor = UIColor.lightCornflowerBlue
         question.numberOfLines = 0
-        
-        priceChange.backgroundColor = .white
-        priceChange.translatesAutoresizingMaskIntoConstraints = false
-        
-        toolBar.backgroundColor = .systemGray
-        toolBar.sizeToFit()
-
-        doneButton.tintColor = UIColor.blueGreen
 
         productImageView.translatesAutoresizingMaskIntoConstraints = false
-        //productImageView.contentMode = .scaleAspectFill
-        //productImageView.contentMode = .scaleAspectFit
         
         if flag ?? false {
             question.text = "Want to place a bet?"
             priceFild.isHidden = false
-//            if Auth.auth().currentUser?.uid == product?.currentIdClient {
-//                question.text = "The last price is yours. As soon as it changes, we will let you know!"
-//                priceFild.isHidden = true
-//                changeButton.isEnabled = false
-//                changeButton.setTitle("View other products", for: .normal)
-//                changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
-//            }
-            //doneButton.customView?.isHidden = false
             
         } else {
             question.text = "Sign in to change the price"
@@ -227,11 +209,6 @@ final class ProductViewController: UIViewController {
             self?.productImageView.image = image
         }
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupLayuot()
     }
     
     func setupLayuot(){
@@ -274,12 +251,7 @@ final class ProductViewController: UIViewController {
     func loginButtonTapped(sender: UIButton){
         navigationController?.pushViewController(LoginController(), animated: false)
     }
-    
-    @objc
-    func doneButtonTapped() {
-        priceFild.resignFirstResponder()
-    }
-    
+
     @objc
     private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
@@ -290,26 +262,87 @@ final class ProductViewController: UIViewController {
         guard let productName = product?.name else {
             return
         }
-        delegate?.didTapChatButton(productViewController: self, productName: productName, priceTextFild: priceFild.text ?? "")
+        delegate?.didTapChatButton(productViewController: self, productName: productName, priceTextFild: priceFild.text ?? .init(), currentPrice: priceLabel.text ?? .init())
     }
     
 }
 
-extension ProductViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+extension UITextField {
+    
+    func addDonePriceToolBar(array: [String], onDone: (target: Any, action: Selector)? = nil, onFirstPrice: (target: Any, action: Selector)? = nil, onSecondPrice: (target: Any, action: Selector)? = nil) {
+        let array = array
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+        let onFirstPrice = onFirstPrice ?? (target: self, action: #selector(firstPriceButtonTapped(_ :)))
+        let onSecondPrice = onSecondPrice ?? (target: self, action: #selector(secondPriceButtonTapped(_ :)))
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.items = [
+            UIBarButtonItem(title: "\(array[0])", style: .plain, target: onFirstPrice.target, action: onFirstPrice.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "\(array[1])", style: .plain, target: onSecondPrice.target, action: onSecondPrice.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: onDone.target, action: onDone.action)
+        ]
+        toolBar.sizeToFit()
+        self.inputAccessoryView = toolBar
     }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-         return priceArray.count
+    
+    @objc
+    func firstPriceButtonTapped(_ sender: UIBarButtonItem) {
+        self.text = sender.title
+        self.resignFirstResponder()
+    }
+    
+    @objc
+    func secondPriceButtonTapped(_ sender: UIBarButtonItem) {
+        self.text = sender.title
+        self.resignFirstResponder()
     }
 }
 
-extension ProductViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return priceArray[row]
+
+extension ProductViewController {
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(ProductViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProductViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        priceFild.text = priceArray[row]
+    
+    @objc
+    func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            // if keyboard size is not available for some reason, dont do anything
+           return
+        }
+        
+        var shouldMoveViewUp = false
+        
+        // if active text field is not nil
+        if let activeTextField = activeTextField {
+            
+            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
+            let topOfKeyboard = self.view.frame.height - keyboardSize.height
+            
+            if bottomOfTextField > topOfKeyboard {
+                shouldMoveViewUp = true
+            }
+        }
+        
+        if(shouldMoveViewUp) {
+            self.view.frame.origin.y = 0 - keyboardSize.height/8
+        }
     }
+    
+    @objc
+    func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+ 
 }
 
+extension ProductViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+
+}

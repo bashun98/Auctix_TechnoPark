@@ -12,6 +12,8 @@ class RegistrationController: UIViewController {
     
     //MARK: Properties
     
+    var activeTextField : UITextField? = nil
+    
     private let iconImage = UIImageView(image: UIImage(named: "Image3"))
     private let auctixLabel = UILabel()
     private let singUpLabel = UILabel()
@@ -91,6 +93,7 @@ class RegistrationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForKeyboardNotifications()
         configureUI()
         setupDelegate()
     }
@@ -157,8 +160,7 @@ class RegistrationController: UIViewController {
         iconImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
         
         view.addSubview(auctixLabel)
-        auctixLabel.text = "Auctix"
-        auctixLabel.textColor = UIColor.blueGreen
+        auctixLabel.attributedText = getAttrTitle()
         auctixLabel.centerX(inView: view)
         auctixLabel.anchor(top: iconImage.bottomAnchor, paddingTop: 20)
         
@@ -260,6 +262,10 @@ extension RegistrationController: UITextFieldDelegate {
         return true
         }
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
 }
 //расширение текстфилда для добавление тулбара на циферную клавиатуру
 extension UITextField {
@@ -287,3 +293,52 @@ extension UITextField {
         self.resignFirstResponder()
     }
 }
+
+extension RegistrationController {
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(RegistrationController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RegistrationController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            // if keyboard size is not available for some reason, dont do anything
+           return
+        }
+        
+        var shouldMoveViewUpCity = false
+        var scholdMoveViewUpNum = false
+        
+        // if active text field is not nil
+        if let activeTextField = activeTextField {
+            let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
+            let topOfKeyboard = self.view.frame.height - keyboardSize.height
+            
+            if activeTextField == cityTextField {
+                if bottomOfTextField > topOfKeyboard {
+                    shouldMoveViewUpCity = true
+                }
+            }
+            if activeTextField == numberTextField {
+                if bottomOfTextField > topOfKeyboard {
+                    scholdMoveViewUpNum = true
+                }
+            }
+        }
+        
+        if(shouldMoveViewUpCity) {
+            self.view.frame.origin.y = 0 - keyboardSize.height/8
+        }
+        if(scholdMoveViewUpNum) {
+            self.view.frame.origin.y = 0 - keyboardSize.height/3
+        }
+
+    }
+    
+    @objc
+    func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+}
+
