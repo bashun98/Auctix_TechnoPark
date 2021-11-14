@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
-                        if document.get("uid") as? String == user?.uid {
+                        if document.get("id") as? String == user?.uid {
                             self.nameLabel.text = "Good day, \(document.get("name") ?? " ")!"
                         }
                     }

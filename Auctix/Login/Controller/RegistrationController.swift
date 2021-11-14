@@ -82,9 +82,9 @@ class RegistrationController: UIViewController {
     
     private let custumAlert = CustomAlert()
     
-    private var authUser : User? {
-        return Auth.auth().currentUser
-    }
+//    private var authUser : User? {
+//        return Auth.auth().currentUser
+//    }
     
     //для форматирования строки телефона
     private let maxNumberCount = 11
@@ -192,8 +192,8 @@ class RegistrationController: UIViewController {
     }
     
     public func sendVerificationMail() {
-        if self.authUser != nil && !self.authUser!.isEmailVerified {
-            self.authUser!.sendEmailVerification(completion: { (error) in
+        if Auth.auth().currentUser != nil && !Auth.auth().currentUser!.isEmailVerified {
+            Auth.auth().currentUser!.sendEmailVerification(completion: { (error) in
                 //Сообщите пользователю, что письмо отправлено или не может быть отправлено из-за ошибки.
                 if error != nil {
                     

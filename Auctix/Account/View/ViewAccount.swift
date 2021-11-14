@@ -12,9 +12,19 @@ protocol GoFuncAccount: AnyObject {
     func logoutButtonTapped(sender: UIButton)
 }
 
+protocol GoFuncEdit: AnyObject {
+    func editCellTapped()
+}
+
+protocol GoLetter: AnyObject {
+    func confirmationLetter()
+}
+
 class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource{
     
     weak var delegate: GoFuncAccount?
+    weak var delegateEdit: GoFuncEdit?
+    weak var delegateLetter: GoLetter?
     
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -78,9 +88,19 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource{
         setupTable()
         addConstraints()
     }
+    
+    @objc
+    func confirmationLetter() {
+        delegateLetter?.confirmationLetter()
+    }
+    
     @objc
     func logoutButtonTapped() {
         delegate?.logoutButtonTapped(sender: loginButton)
+    }
+    @objc
+    func editCellTapped() {
+        delegateEdit?.editCellTapped()
     }
 }
 
@@ -110,7 +130,7 @@ extension ViewAccount {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    if document.get("uid") as? String == user?.uid {
+                    if document.get("id") as? String == user?.uid {
                         self.userNameTitle.text = "Hey, \(document.get("name") ?? " ")!"
                     }
                 }
@@ -233,6 +253,7 @@ extension ViewAccount {
         case .switchCell(let model):
             model.handler()
         }
+        //viewController.delegate = self
     }
     //MARK: настраиваем наполнение каждой строки таблицы настроек
     func configure() {
@@ -242,11 +263,12 @@ extension ViewAccount {
             }, isOn: true))
         ]))
         models.append(Section(title: "General", options: [
-            .staticCell(model: SettingsOption(title: "Geolocation", icon: UIImage(systemName: "map"), iconBackgroundColor: .systemPink) {
+            .staticCell(model: SettingsOption(title: "Account editing", icon: UIImage(systemName: "map"), iconBackgroundColor: .systemPink) {
+                self.editCellTapped()
                 print("tapped first cell")
             }),
-            .staticCell(model: SettingsOption(title: "Notifications", icon: UIImage(systemName: "bell.badge"), iconBackgroundColor: .link) {
-                
+            .staticCell(model: SettingsOption(title: "Email confirmation letter", icon: UIImage(systemName: "bell.badge"), iconBackgroundColor: .link) {
+                self.confirmationLetter()
             }),
             .staticCell(model:SettingsOption(title: "Payment method", icon: UIImage(systemName: "creditcard"), iconBackgroundColor: .systemGreen) {
                 

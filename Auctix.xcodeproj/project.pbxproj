@@ -104,6 +104,10 @@
 		FC7428CD27367FAF0005C2C3 /* ViewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7428CC27367FAF0005C2C3 /* ViewAccount.swift */; };
 		FC7428D12736AA1D0005C2C3 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7428D02736AA1D0005C2C3 /* CustomAlert.swift */; };
 		FCA9E17D273FBEFF005C42B2 /* ViewNoProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E17C273FBEFF005C42B2 /* ViewNoProducts.swift */; };
+		FCA9E1812741807B005C42B2 /* EditingAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E1802741807B005C42B2 /* EditingAccountViewController.swift */; };
+		FCA9E1842741868A005C42B2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E1832741868A005C42B2 /* UserManager.swift */; };
+		FCA9E18627418693005C42B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E18527418693005C42B2 /* User.swift */; };
+		FCA9E189274189AE005C42B2 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E188274189AE005C42B2 /* UserModel.swift */; };
 		FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
@@ -193,6 +197,10 @@
 		FC7428CC27367FAF0005C2C3 /* ViewAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAccount.swift; sourceTree = "<group>"; };
 		FC7428D02736AA1D0005C2C3 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		FCA9E17C273FBEFF005C42B2 /* ViewNoProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNoProducts.swift; sourceTree = "<group>"; };
+		FCA9E1802741807B005C42B2 /* EditingAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingAccountViewController.swift; sourceTree = "<group>"; };
+		FCA9E1832741868A005C42B2 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		FCA9E18527418693005C42B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FCA9E188274189AE005C42B2 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FCAD16AB27254FF6009140BF /* TableProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductsController.swift; sourceTree = "<group>"; };
 		FCAD16B02725502C009140BF /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		FCAD16B427255041009140BF /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
@@ -390,6 +398,41 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		FCA9E17E27418008005C42B2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */,
+				FCA9E1802741807B005C42B2 /* EditingAccountViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FCA9E17F27418024005C42B2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC7428CC27367FAF0005C2C3 /* ViewAccount.swift */,
+				FC7428CA2735B3E40005C2C3 /* ViewAuth.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FCA9E1822741866F005C42B2 /* UserData */ = {
+			isa = PBXGroup;
+			children = (
+				FCA9E1832741868A005C42B2 /* UserManager.swift */,
+				FCA9E18527418693005C42B2 /* User.swift */,
+			);
+			path = UserData;
+			sourceTree = "<group>";
+		};
+		FCA9E187274189A1005C42B2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FCA9E188274189AE005C42B2 /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FCAD16AA27254FB1009140BF /* TableProducts */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,9 +476,10 @@
 		FCFCE7DF2721EFC700A59AA0 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */,
-				FC7428CA2735B3E40005C2C3 /* ViewAuth.swift */,
-				FC7428CC27367FAF0005C2C3 /* ViewAccount.swift */,
+				FCA9E187274189A1005C42B2 /* Model */,
+				FCA9E1822741866F005C42B2 /* UserData */,
+				FCA9E17F27418024005C42B2 /* View */,
+				FCA9E17E27418008005C42B2 /* Controller */,
 				04764CBF272C2B6F0094114C /* Data.swift */,
 				04764CC1272C2B7E0094114C /* TableViewCell */,
 			);
@@ -676,6 +720,7 @@
 			files = (
 				20ECC333273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */,
 				FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */,
+				FCA9E18627418693005C42B2 /* User.swift in Sources */,
 				208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */,
 				FCAD16B927255052009140BF /* Product.swift in Sources */,
@@ -683,12 +728,14 @@
 				04764CBC272C2B2F0094114C /* SettingTableViewCell.swift in Sources */,
 				FC7428D12736AA1D0005C2C3 /* CustomAlert.swift in Sources */,
 				04764CC0272C2B6F0094114C /* Data.swift in Sources */,
+				FCA9E189274189AE005C42B2 /* UserModel.swift in Sources */,
 				FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */,
 				04764D162733CD130094114C /* ResetPasswordController.swift in Sources */,
 				FC39181C273D8A8A00828F1B /* ProductBidModel.swift in Sources */,
 				04764D1E2733CD790094114C /* DividerView.swift in Sources */,
 				FC7428CB2735B3E40005C2C3 /* ViewAuth.swift in Sources */,
+				FCA9E1812741807B005C42B2 /* EditingAccountViewController.swift in Sources */,
 				205443D7272DA3A40079D152 /* Protocols.swift in Sources */,
 				FC555534272ADAFB005E697F /* HomeTableLayout.swift in Sources */,
 				20660F6F2738054200E6E808 /* TableModel.swift in Sources */,
@@ -703,6 +750,7 @@
 				2097AA81272DBC0900FA6292 /* TestViewController.swift in Sources */,
 				204D684C27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */,
 				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
+				FCA9E1842741868A005C42B2 /* UserManager.swift in Sources */,
 				04764D182733CD330094114C /* CustomTextField.swift in Sources */,
 				208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
 				FCA9E17D273FBEFF005C42B2 /* ViewNoProducts.swift in Sources */,

@@ -63,6 +63,8 @@ class BidViewController: UIViewController {
                 productsTableView.translatesAutoresizingMaskIntoConstraints = false
                 productsTableView.tag = 20
                 setupLayoutTable()
+            } else {
+                setupModel()
             }
         }
         if flag == false {
@@ -141,8 +143,9 @@ extension BidViewController: BidTableProductControllerInput {
             }
         }
         self.products = productsNew
-        if products.count == 0 {
-            
+        if self.products.count == 0 {
+            flag = false
+            setupView()
         }
         productsTableView.reloadData()
         //setupView()
