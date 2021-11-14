@@ -352,7 +352,7 @@ extension HomeViewController: HomeViewControllerInput {
             for i in 0...(data.count - 1) {
                 if data[i].startDate == stringData{
                     exbitionsNewest.append(data[i])
-                    newExhibitions.text = "Recently opened exhibitions"
+                    newExhibitions.text = "Added earlier"
                     newExhibitions.numberOfLines = 0
                 }
             }

@@ -126,19 +126,57 @@ extension UIViewController {
 
 extension LoginController {
 
-func getAttrTitle() -> NSAttributedString {
-    let aWord = NSAttributedString(string: "A", attributes: [
-        .font: UIFont.systemFont(ofSize: 25, weight: .regular),
-        .foregroundColor: UIColor.honeyYellow
-    ])
-    
-    let ctixWords = NSAttributedString(string: "UCTIX", attributes: [
-        .font: UIFont.systemFont(ofSize: 25, weight: .regular),
-        .foregroundColor: UIColor.lightCornflowerBlue
-    ])
-    
-    let mutable = NSMutableAttributedString(attributedString: aWord)
-    mutable.append(ctixWords)
-    return mutable
+    func getAttrTitle() -> NSAttributedString {
+        let aWord = NSAttributedString(string: "A", attributes: [
+            .font: UIFont.systemFont(ofSize: 25, weight: .regular),
+            .foregroundColor: UIColor.honeyYellow
+        ])
+        
+        let ctixWords = NSAttributedString(string: "UCTIX", attributes: [
+            .font: UIFont.systemFont(ofSize: 25, weight: .regular),
+            .foregroundColor: UIColor.lightCornflowerBlue
+        ])
+        
+        let mutable = NSMutableAttributedString(attributedString: aWord)
+        mutable.append(ctixWords)
+        return mutable
     }   
+}
+
+extension RegistrationController {
+
+    func getAttrTitle() -> NSAttributedString {
+        let aWord = NSAttributedString(string: "A", attributes: [
+            .font: UIFont.systemFont(ofSize: 25, weight: .regular),
+            .foregroundColor: UIColor.honeyYellow
+        ])
+        
+        let ctixWords = NSAttributedString(string: "UCTIX", attributes: [
+            .font: UIFont.systemFont(ofSize: 25, weight: .regular),
+            .foregroundColor: UIColor.lightCornflowerBlue
+        ])
+        
+        let mutable = NSMutableAttributedString(attributedString: aWord)
+        mutable.append(ctixWords)
+        return mutable
+    }
+}
+
+extension ResetPasswordController {
+
+    func getAttrTitle() -> NSAttributedString {
+        let aWord = NSAttributedString(string: "A", attributes: [
+            .font: UIFont.systemFont(ofSize: 25, weight: .regular),
+            .foregroundColor: UIColor.honeyYellow
+        ])
+        
+        let ctixWords = NSAttributedString(string: "UCTIX", attributes: [
+            .font: UIFont.systemFont(ofSize: 25, weight: .regular),
+            .foregroundColor: UIColor.lightCornflowerBlue
+        ])
+        
+        let mutable = NSMutableAttributedString(attributedString: aWord)
+        mutable.append(ctixWords)
+        return mutable
+    }
 }

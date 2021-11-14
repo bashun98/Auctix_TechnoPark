@@ -103,10 +103,10 @@ extension TableProductsController: ProductViewControllerDelegate {
     func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String, currentPrice: String) {
         
         if ((Int(priceTextFild) ?? 0) - (Int(currentPrice) ?? 0)) < 100 {
-            self.custumAlert.showAlert(title: "Error!", message: "You cannot make a stack without a specified value", viewController: self)
+            self.custumAlert.showAlert(title: "Error!", message: "You cannot make a stack without a specified value", viewController: productViewController)
         } else {
             if priceTextFild.isEmpty {
-                self.custumAlert.showAlert(title: "Error!", message: "You cannot make a stack without a specified value", viewController: self)
+                self.custumAlert.showAlert(title: "Error!", message: "You cannot make a stack without a specified value", viewController: productViewController)
             } else {
                 var product = products.first { $0.name == productName }
                 product?.currentIdClient = Auth.auth().currentUser?.uid ?? ""

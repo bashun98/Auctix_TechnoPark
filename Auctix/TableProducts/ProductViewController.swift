@@ -24,7 +24,7 @@ class ProductViewController: UIViewController {
         }
     }
     
-    private let changeButton = UIButton()
+    private let changeButton = UIButton(type: .system)
     private let productImageView = UIImageView()
     private let priceLabel = UILabel()
     private let titleLabel = UILabel()
@@ -150,6 +150,7 @@ class ProductViewController: UIViewController {
         changeButton.layer.cornerRadius = 8
         changeButton.setTitle("Place a bet", for: .normal)
         changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+        changeButton.setTitleColor(.white, for: .normal)
         changeButton.translatesAutoresizingMaskIntoConstraints = false
         changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
         

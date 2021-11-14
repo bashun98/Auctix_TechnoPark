@@ -160,8 +160,7 @@ class RegistrationController: UIViewController {
         iconImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
         
         view.addSubview(auctixLabel)
-        auctixLabel.text = "Auctix"
-        auctixLabel.textColor = UIColor.blueGreen
+        auctixLabel.attributedText = getAttrTitle()
         auctixLabel.centerX(inView: view)
         auctixLabel.anchor(top: iconImage.bottomAnchor, paddingTop: 20)
         
