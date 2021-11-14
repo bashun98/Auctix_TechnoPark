@@ -100,21 +100,26 @@ extension TableProductsController {
 }
 // настройка сообщения при нажатии на кнопку
 extension TableProductsController: ProductViewControllerDelegate {
-    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String) {
+    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String, currentPrice: String) {
         
-        if priceTextFild.isEmpty == false {
-            var product = products.first { $0.name == productName }
-            product?.currentIdClient = Auth.auth().currentUser?.uid ?? ""
-            if ((product?.idClient.first { $0 == Auth.auth().currentUser?.uid}) == nil) {
-                product?.idClient.append(Auth.auth().currentUser?.uid ?? "")
-            }
-            product?.currentPrice = Int(priceTextFild) ?? 0
+        if ((Int(priceTextFild) ?? 0) - (Int(currentPrice) ?? 0)) < 100 {
+            self.custumAlert.showAlert(title: "Error!", message: "You cannot make a stack without a specified value", viewController: self)
+        } else {
+            if priceTextFild.isEmpty {
+                self.custumAlert.showAlert(title: "Error!", message: "You cannot make a stack without a specified value", viewController: self)
+            } else {
+                var product = products.first { $0.name == productName }
+                product?.currentIdClient = Auth.auth().currentUser?.uid ?? ""
+                if ((product?.idClient.first { $0 == Auth.auth().currentUser?.uid}) == nil) {
+                    product?.idClient.append(Auth.auth().currentUser?.uid ?? "")
+                }
+                product?.currentPrice = Int(priceTextFild) ?? 0
 
-            productViewController.dismiss(animated: true)
-            self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
+                productViewController.dismiss(animated: true)
+                self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
             
-            model.update(product: product ?? products[0])
-            
+                model.update(product: product ?? products[0])
+            }
         }
     }
 }

@@ -196,7 +196,7 @@ extension BidViewController: UITableViewDataSource{
 }
 // настройка сообщения при нажатии на кнопку
 extension BidViewController: ProductViewControllerDelegate {
-    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String) {
+    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String, currentPrice: String) {
         
         if priceTextFild.isEmpty == false {
             var product = products.first { $0.name == productName }
