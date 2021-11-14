@@ -56,7 +56,7 @@ class ExhibitionCell: UICollectionViewCell {
     }
     
     func configure(with data: Exhibition){
-       // imageExhib.image = data.titleImg
+        imageExhib.image = #imageLiteral(resourceName: "VK")
         jumpButton.setTitle(data.name, for: .normal)
         exhName.text = data.name + ".jpeg"
         netImage.image(with: exhName.text!) { [weak self] image in

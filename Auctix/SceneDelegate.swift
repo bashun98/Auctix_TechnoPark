@@ -58,12 +58,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         // topController should now be your topmost view controller
         }
+        
+        self.window?.viewWithTag(221122)?.removeFromSuperview()
         print("sceneDidBecomeActive")
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        
+        blurEffectView.frame = window?.frame ?? .init()
+        blurEffectView.tag = 221122
+        
+        self.window?.addSubview(blurEffectView)
+        
+        
         print("sceneWillResignActive")
     }
 

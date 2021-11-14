@@ -139,17 +139,22 @@ extension HomeViewController {
     // MARK: - настройка строки поиска
     func setupTextField() {
         // MARK: - картинка поиска
-        imageIconSearch.image = UIImage(named: "Search")
+        //imageIconSearch.image = UIImage(named: "Search")
         
         let contentViewSearch = UIView()
         contentViewSearch.addSubview(imageIconSearch)
         contentViewSearch.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
-        imageIconSearch.frame = CGRect(x: 2, y: 0, width: 30, height: 30)
-        searchTextField.leftView = contentViewSearch
-        searchTextField.leftViewMode = .always
+//        imageIconSearch.frame = CGRect(x: 2, y: 0, width: 30, height: 30)
+//        searchTextField.leftView = contentViewSearch
+//        searchTextField.leftViewMode = .always
+//
         
+        searchTextField.delegate = self
+        searchTextField.returnKeyType = .done
         // MARK: - картнка стереть
+        searchTextField.setImage(UIImage(named: "Search"), imageWidth: 20, padding: 20, isLeft: true)
+        //searchTextField.setRightPaddingPoints(20)
         searchTextField.clearButtonMode = .whileEditing
         searchTextField.font = .systemFont(ofSize: 20)
         searchTextField.placeholder = "Search..."
@@ -169,18 +174,7 @@ extension HomeViewController {
     func setupNavBar() {
         navigationController?.navigationBar.isHidden = true
     }
-    // загрузка выставок в массив выставок
-//    func loadetDatasourse(){
-//        var datasourceAll: [Exhibition] = []
-//        datasourceAll = ExhibitionManager.shared.loadExhibition()
-//        for i  in 1...datasourceAll.count {
-//            if datasourceAll[i-1].status == "new"
-//            {
-//                datasource.append(datasourceAll[i-1])
-//            }
-//        }
-//    }
-  
+
     func setupLayuot(){
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
@@ -367,5 +361,49 @@ extension HomeViewController: HomeViewControllerInput {
         
         self.datasource = exbitionsNewest
         collectionView.reloadData()
+    }
+}
+
+
+extension UITextField {
+    
+    public func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView   = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView     = paddingView
+        self.leftViewMode = .always
+    }
+    
+    public func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView    = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView     = paddingView
+        self.rightViewMode = .always
+    }
+    
+    public func setImage(_ image: UIImage?, imageWidth: CGFloat, padding: CGFloat, isLeft: Bool) {
+        let imageView   = UIImageView(image: image)
+        imageView.frame = .init(x      : padding,
+                                y      : 0,
+                                width  : imageWidth,
+                                height : frame.height)
+        imageView.contentMode = .center
+        
+        let containerView = UIView(frame: .init(x      : 0,
+                                                y      : 0,
+                                                width  : imageWidth + 2 * padding,
+                                                height : frame.height))
+        containerView.addSubview(imageView)
+        if isLeft {
+            leftView      = containerView
+            leftViewMode  = .always
+        } else {
+            rightView     = containerView
+            rightViewMode = .always
+        }
+    }
+}
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        return true
     }
 }

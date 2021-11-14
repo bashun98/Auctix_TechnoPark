@@ -187,6 +187,8 @@ final class ProductViewController: UIViewController {
         doneButton.tintColor = UIColor.blueGreen
 
         productImageView.translatesAutoresizingMaskIntoConstraints = false
+        //productImageView.contentMode = .scaleAspectFill
+        //productImageView.contentMode = .scaleAspectFit
         
         if flag ?? false {
             question.text = "Want to place a bet?"

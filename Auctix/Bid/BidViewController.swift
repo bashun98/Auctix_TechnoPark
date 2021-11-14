@@ -17,6 +17,13 @@ class BidViewController: UIViewController {
     //var nameExhibition = ""
     private var products: [Product] = []
     private var productsNew: [Product] = []
+//    
+//    private var products: [Product] = [] {
+//            didSet {
+//                tableView.reloadData()
+//            }
+//        }
+    
     private let custumAlert = CustomAlert()
     private let model: BidTableProductModelDescription = BidTableProductModel()
     private let productsTableView = UITableView()
@@ -52,16 +59,10 @@ class BidViewController: UIViewController {
             if let viewWithTag = self.view.viewWithTag(10) {
                 viewWithTag.removeFromSuperview()
                 setupModel()
-                if products.count == 0 {
-                    flag = false
-                } else {
-                    view.addSubview(productsTableView)
-                    productsTableView.translatesAutoresizingMaskIntoConstraints = false
-                    productsTableView.tag = 20
-                    setupLayoutTable()
-                }
-            } else {
-                setupModel()
+                view.addSubview(productsTableView)
+                productsTableView.translatesAutoresizingMaskIntoConstraints = false
+                productsTableView.tag = 20
+                setupLayoutTable()
             }
         }
         if flag == false {
@@ -144,7 +145,17 @@ extension BidViewController: BidTableProductControllerInput {
             
         }
         productsTableView.reloadData()
+        //setupView()
     }
+    
+//    self.products = products.compactMap {
+//             if $0.idExhibition == nameExhibition {
+//                 return $0
+//             } else {
+//                 return nil
+//             }
+//         }
+//     }
 }
 
 extension BidViewController: UITableViewDelegate {

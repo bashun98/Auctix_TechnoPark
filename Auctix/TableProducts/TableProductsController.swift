@@ -16,8 +16,11 @@ protocol TableProductControllerInput: AnyObject {
 class TableProductsController: UITableViewController {
     
     var nameExhibition = ""
-    private var products: [Product] = []
-    private var productsNew: [Product] = []
+    private var products: [Product] = [] {
+            didSet {
+                tableView.reloadData()
+            }
+        }
     private let custumAlert = CustomAlert()
     private let model: TableProductModelDescription = TableProductModel()
     
@@ -65,15 +68,14 @@ class TableProductsController: UITableViewController {
 }
 extension TableProductsController: TableProductControllerInput {
     func didReceive(_ products: [Product]) {
-        productsNew.removeAll()
-        for i in 0...(products.count-1) {
-            if products[i].idExhibition == nameExhibition {
-                productsNew.append(products[i])
-            }
-        }
-        self.products = productsNew
-        tableView.reloadData()
-    }
+        self.products = products.compactMap {
+                 if $0.idExhibition == nameExhibition {
+                     return $0
+                 } else {
+                     return nil
+                 }
+             }
+         }
 }
 // MARK: - Table view data source
 extension TableProductsController {
@@ -107,23 +109,10 @@ extension TableProductsController: ProductViewControllerDelegate {
                 product?.idClient.append(Auth.auth().currentUser?.uid ?? "")
             }
             product?.currentPrice = Int(priceTextFild) ?? 0
-            
-        
-            
-            
-//            let db = Firestore.firestore()
-//            db.collection("products").document("\(idProduct)").updateData([
-//                "currentPrice": Int(priceTextFild) ?? 0,
-//                "currentIdClient": Auth.auth().currentUser?.uid ?? "",
-//                "idClient": FieldValue.arrayUnion(["\(Auth.auth().currentUser?.uid ?? "")"])
-//            ], completion: { (error) in
-//                if error == nil {
-                    //self.tableView.removeDa
+
             productViewController.dismiss(animated: true)
             self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
-                    //self.tableView.reloadData()
-//                }
-//            })
+            
             model.update(product: product ?? products[0])
             
         }
