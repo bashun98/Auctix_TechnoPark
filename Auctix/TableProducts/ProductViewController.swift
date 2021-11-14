@@ -30,14 +30,14 @@ final class ProductViewController: UIViewController {
     private let titleLabel = UILabel()
     private let nowPrice = UILabel()
     private let currency = UILabel()
-    private let priceChange = UIPickerView()
+    //private let priceChange = UIPickerView()
     private let priceFild = UITextField()
     private let question = UILabel()
     private var flag: Bool?
     private var flagAuth: Bool?
         
-    private let toolBar = UIToolbar()
-    private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
+    //private let toolBar = UIToolbar()
+    //private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     
     private var priceArray = ["","",""]
     private let screenWidth = UIScreen.main.bounds.width
@@ -47,12 +47,23 @@ final class ProductViewController: UIViewController {
     private var netImage = ExhibitionsImageLoader.shared
     private let productName = UILabel()
     
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        priceChange.delegate = self
-        priceChange.dataSource = self
+        registerForKeyboardNotifications()
+//        priceChange.delegate = self
+//        priceChange.dataSource = self
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupLayuot()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,8 +71,8 @@ final class ProductViewController: UIViewController {
         setupAuth()
         sendVerificationMail()
         setupNavBar()
-        setupTextField()
         setupPrice()
+        setupTextField()
         setupAddition()
         setupView()
     }
@@ -75,6 +86,10 @@ final class ProductViewController: UIViewController {
 //        super.viewWillDisappear(animated)
 //        viewWillAppear(true)
 //    }
+    
+    deinit {
+        removeKeyboardNotification()
+    }
     
     func setupAuth() {
         let user = Auth.auth().currentUser
@@ -107,7 +122,7 @@ final class ProductViewController: UIViewController {
         view.addSubview(question)
         view.addSubview(priceFild)
         view.addSubview(changeButton)
-        toolBar.setItems([doneButton], animated: false)
+        //toolBar.setItems([doneButton], animated: false)
         //priceChange.addSubview(toolBar)
     }
     
@@ -116,24 +131,27 @@ final class ProductViewController: UIViewController {
         let nowNumStat = Int(now) ?? 0
         var nowNum: Int?
         var k = 100
-        for i in 0...2 {
+        for i in 0...1 {
             nowNum = nowNumStat + k
             now = nowNum?.description ?? ""
             priceArray[i] = now
-            k += 100
+            k += 1000
         }
     }
     
     func setupTextField() {
             // MARK: - картнка стереть
         priceFild.clearButtonMode = .whileEditing
+        //priceFild.delegate = self
         priceFild.font = .systemFont(ofSize: 20)
         priceFild.placeholder = "New price..."
         priceFild.layer.cornerRadius = 10
         priceFild.layer.backgroundColor = UIColor.searchColor.cgColor
         priceFild.translatesAutoresizingMaskIntoConstraints = false
-        priceFild.inputView = priceChange
-        priceFild.inputAccessoryView = toolBar
+        priceFild.keyboardType = .numberPad
+        priceFild.addDonePriceToolBar(array: priceArray)
+        //priceFild.inputView =
+        //priceFild.inputAccessoryView = toolBar
         priceFild.textAlignment = .center
     }
     
@@ -178,13 +196,13 @@ final class ProductViewController: UIViewController {
         question.textColor = UIColor.lightCornflowerBlue
         question.numberOfLines = 0
         
-        priceChange.backgroundColor = .white
-        priceChange.translatesAutoresizingMaskIntoConstraints = false
+//        priceChange.backgroundColor = .white
+//        priceChange.translatesAutoresizingMaskIntoConstraints = false
         
-        toolBar.backgroundColor = .systemGray
-        toolBar.sizeToFit()
+//        toolBar.backgroundColor = .systemGray
+//        toolBar.sizeToFit()
 
-        doneButton.tintColor = UIColor.blueGreen
+        //doneButton.tintColor = UIColor.blueGreen
 
         productImageView.translatesAutoresizingMaskIntoConstraints = false
         //productImageView.contentMode = .scaleAspectFill
@@ -229,11 +247,6 @@ final class ProductViewController: UIViewController {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupLayuot()
-    }
-    
     func setupLayuot(){
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -275,10 +288,10 @@ final class ProductViewController: UIViewController {
         navigationController?.pushViewController(LoginController(), animated: false)
     }
     
-    @objc
-    func doneButtonTapped() {
-        priceFild.resignFirstResponder()
-    }
+//    @objc
+//    func doneButtonTapped() {
+//        priceFild.resignFirstResponder()
+//    }
     
     @objc
     private func didTapCloseButton() {
@@ -295,21 +308,75 @@ final class ProductViewController: UIViewController {
     
 }
 
-extension ProductViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+//extension ProductViewController: UIPickerViewDataSource {
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//         return priceArray.count
+//    }
+//}
+//
+//extension ProductViewController: UIPickerViewDelegate {
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return priceArray[row]
+//    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        priceFild.text = priceArray[row]
+//    }
+//}
+
+extension UITextField {
+    func addDonePriceToolBar(array: [String], onDone: (target: Any, action: Selector)? = nil, onFirstPrice: (target: Any, action: Selector)? = nil, onSecondPrice: (target: Any, action: Selector)? = nil) {
+        let onDone = onDone ?? (target: self, action: #selector(doneButtonTapped))
+        let onFirstPrice = onFirstPrice ?? (target: self, action: #selector(firstPriceButtonTapped))
+        let onSecondPrice = onSecondPrice ?? (target: self, action: #selector(secondPriceButtonTapped))
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.items = [
+            UIBarButtonItem(title: "\(array[0])", style: .plain, target: onFirstPrice.target, action: onFirstPrice.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "\(array[1])", style: .plain, target: onSecondPrice.target, action: onSecondPrice.action),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: onDone.target, action: onDone.action)
+        ]
+        toolBar.sizeToFit()
+        self.inputAccessoryView = toolBar
     }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-         return priceArray.count
+    
+    @objc
+    func firstPriceButtonTapped() {
+        
+    }
+    
+    @objc
+    func secondPriceButtonTapped() {
+        
     }
 }
 
-extension ProductViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return priceArray[row]
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        priceFild.text = priceArray[row]
-    }
-}
 
+extension ProductViewController {
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: NSNotification.Name., object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    func removeKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    @objc
+    func kbWillShow() {
+        
+    }
+    
+    @objc
+    func kbWillHide() {
+        
+    }
+ 
+}
