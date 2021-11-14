@@ -59,16 +59,10 @@ class BidViewController: UIViewController {
             if let viewWithTag = self.view.viewWithTag(10) {
                 viewWithTag.removeFromSuperview()
                 setupModel()
-                if products.count == 0 {
-                    flag = false
-                } else {
-                    view.addSubview(productsTableView)
-                    productsTableView.translatesAutoresizingMaskIntoConstraints = false
-                    productsTableView.tag = 20
-                    setupLayoutTable()
-                }
-            } else {
-                setupModel()
+                view.addSubview(productsTableView)
+                productsTableView.translatesAutoresizingMaskIntoConstraints = false
+                productsTableView.tag = 20
+                setupLayoutTable()
             }
         }
         if flag == false {
@@ -151,6 +145,7 @@ extension BidViewController: BidTableProductControllerInput {
             
         }
         productsTableView.reloadData()
+        //setupView()
     }
     
 //    self.products = products.compactMap {
