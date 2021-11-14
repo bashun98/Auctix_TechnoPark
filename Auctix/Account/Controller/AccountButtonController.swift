@@ -13,15 +13,21 @@ class AccountButtonTabViewController: UIViewController{
     private var flag = false
     private let viewAuth = ViewAuth()
     private let viewAcc = ViewAccount()
+    private let custumAlert = CustomAlert()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAuth()
+    }
+    
+    func setupNavBar() {
+        navigationController?.view.backgroundColor = UIColor.white
+        navigationController?.view.tintColor = UIColor.blueGreen
     }
     
     func setupView() {
@@ -33,8 +39,12 @@ class AccountButtonTabViewController: UIViewController{
                 viewAcc.translatesAutoresizingMaskIntoConstraints = false
                 viewAcc.tag = 20
                 viewAcc.delegate = self
+                viewAcc.delegateEdit = self
+                viewAcc.delegateLetter = self
                 setupLayoutAcc()
             }
+            viewAcc.setupUserNameLabel()
+            viewAcc.setupEmailVerLabel()
         }
         if flag == false {
             if let viewWithTag = self.view.viewWithTag(20) {
@@ -90,6 +100,30 @@ extension AccountButtonTabViewController: GoFuncAccount {
         } catch _ as NSError {
             print("не вышел из аакаунта")
         }
+    }
+}
+
+extension AccountButtonTabViewController: GoFuncEdit {
+    func confirmationLetter() {
+        if Auth.auth().currentUser != nil && !Auth.auth().currentUser!.isEmailVerified {
+            Auth.auth().currentUser!.sendEmailVerification(completion: { (error) in
+                //Сообщите пользователю, что письмо отправлено или не может быть отправлено из-за ошибки.
+                if error != nil {
+                    
+                } else {
+                    self.custumAlert.showAlert(title: "Super", message: "We sent you an email, do not forget to confirm it.", viewController: self)
+                }
+            })
+        }
+        else {
+            //Либо пользователь недоступен, либо пользователь уже верифицирован.
+        }
+    }
+}
+
+extension AccountButtonTabViewController: GoLetter {
+    func editCellTapped() {
+        navigationController?.pushViewController(EditingAccountViewController(), animated: true)
     }
 }
 
