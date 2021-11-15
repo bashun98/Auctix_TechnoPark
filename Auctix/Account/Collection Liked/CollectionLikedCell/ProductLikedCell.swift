@@ -85,13 +85,13 @@ class ProductLikedCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        addSubview(imageProd)
-        imageProd.addSubview(containerView)
-        containerView.layer.addSublayer(gradient)
-
-        imageProd.addSubview(nameProd)
-        imageProd.addSubview(time)
-        imageProd.addSubview(cost)
+        contentView.addSubview(imageProd)
+//        imageProd.addSubview(containerView)
+//        containerView.layer.addSublayer(gradient)
+//
+//        imageProd.addSubview(nameProd)
+//        imageProd.addSubview(time)
+//        imageProd.addSubview(cost)
     }
 }
 
@@ -105,19 +105,19 @@ extension ProductLikedCell {
             imageProd.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageProd.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            containerView.topAnchor.constraint(equalTo: imageProd.topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: imageProd.bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: imageProd.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: imageProd.trailingAnchor),
-      
-            nameProd.topAnchor.constraint(equalTo: imageProd.topAnchor, constant: 10),
-            nameProd.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            
-            cost.topAnchor.constraint(equalTo: nameProd.bottomAnchor, constant: 5),
-            cost.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            
-            time.topAnchor.constraint(equalTo: cost.bottomAnchor, constant: 5),
-            time.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+//            containerView.topAnchor.constraint(equalTo: imageProd.topAnchor),
+//            containerView.bottomAnchor.constraint(equalTo: imageProd.bottomAnchor),
+//            containerView.leadingAnchor.constraint(equalTo: imageProd.leadingAnchor),
+//            containerView.trailingAnchor.constraint(equalTo: imageProd.trailingAnchor),
+//
+//            nameProd.topAnchor.constraint(equalTo: imageProd.topAnchor, constant: 10),
+//            nameProd.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+//
+//            cost.topAnchor.constraint(equalTo: nameProd.bottomAnchor, constant: 5),
+//            cost.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+//
+//            time.topAnchor.constraint(equalTo: cost.bottomAnchor, constant: 5),
+//            time.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
        ])
   }
 }

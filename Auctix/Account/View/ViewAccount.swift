@@ -81,8 +81,8 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupAccView()
         setupModel()
+        setupAccView()
     }
     required init?(coder: NSCoder) {
         super .init(coder: coder)
@@ -155,6 +155,8 @@ extension ViewAccount {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ProductLikedCell.self, forCellWithReuseIdentifier: ProductLikedCell.identifireProdLiked)
+        collectionView.reloadData()
+        
     }
     
     //MARK: настраиваем отображение Username
@@ -229,7 +231,7 @@ extension ViewAccount {
         constraints.append(tableView.trailingAnchor.constraint(
             equalTo:safeAreaLayoutGuide.trailingAnchor))
        constraints.append(tableView.bottomAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.bottomAnchor))
+        equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -190))
         constraints.append(tableView.topAnchor.constraint(
             equalTo: emailVerificaionTitle.bottomAnchor))
      
@@ -370,7 +372,6 @@ extension ViewAccount: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // TODO: В константы
         let width = UIScreen.main.bounds.width - 50
         return .init(width: width, height: collectionView.bounds.height)
     }

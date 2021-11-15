@@ -45,6 +45,7 @@ class AccountButtonTabViewController: UIViewController{
             }
             viewAcc.setupUserNameLabel()
             viewAcc.setupEmailVerLabel()
+            viewAcc.setupCollectionView()
         }
         if flag == false {
             if let viewWithTag = self.view.viewWithTag(20) {

@@ -270,6 +270,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: HomeViewControllerInput {
     func didReceive(_ exhibitions: [Exhibition]) {
         
+        exbitionsNewest.removeAll()
         let data = exhibitions
 
         let dateWithTime = Date()
