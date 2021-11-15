@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import PinLayout
 import Firebase
+import SDWebImage
 
 protocol ProductViewControllerDelegate: AnyObject {
     func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String, currentPrice: String)
@@ -34,14 +35,14 @@ class ProductViewController: UIViewController {
     private let question = UILabel()
     private var flag: Bool?
     private var flagAuth: Bool?
+    private var productUrl = UILabel()
         
     private var priceArray = ["","",""]
     private let screenWidth = UIScreen.main.bounds.width
     
     weak var delegate: ProductViewControllerDelegate?
     
-    private var netImage = ExhibitionsImageLoader.shared
-    private let productName = UILabel()
+    private var imageLoader = ProductImageLoader.shared
     
     var activeTextField : UITextField? = nil
     
@@ -201,14 +202,14 @@ class ProductViewController: UIViewController {
     }
     
     func configure(with product: Product) {
-        //productImageView.image = product.productImg
         titleLabel.text = product.name
         priceLabel.text = String(product.currentPrice)
-        productName.text = product.name + ".jpeg"
-        netImage.image(with: productName.text!) { [weak self] image in
-            self?.productImageView.image = image
+        productUrl.text = product.name + ".jpeg"
+        productImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+     //   productImageView.image =
+        imageLoader.getReference(with: productUrl.text ?? "vk.jpeg") { reference in
+            self.productImageView.sd_setImage(with: reference, placeholderImage: nil)
         }
-        
     }
     
     func setupLayuot(){

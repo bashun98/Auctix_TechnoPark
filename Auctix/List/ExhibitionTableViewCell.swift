@@ -10,12 +10,18 @@ import SnapKit
 
 class ExhibitionTableViewCell: UITableViewCell {
     
+    private struct Constants {
+        static let labelPosition: CGFloat = 20
+        static let imageFromLeftRight: CGFloat = 12
+        static let imageFromTopBottom: CGFloat = 5
+    }
+    
     static let identifier = "CustomTableViewCell"
     private let container = UIView()
     private let gradient = CAGradientLayer()
-    private var netImage = ExhibitionsImageLoader.shared
-    private let exhName = UILabel()
-    private let exhibitionImage: UIImageView = {
+
+    
+    private let mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -23,39 +29,35 @@ class ExhibitionTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    let exhibitionName: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
         return label
     }()
     
-    private let exhibitionCity: UILabel = {
+    private let cityLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
         return label
     }()
     
-    private let exhibitionCountry: UILabel = {
+    private let countryLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
         return label
     }()
     
-    private let exhibitionExpirationDate: UILabel = {
+    private let dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
         return label
     }()
     
-    private struct Constraints {
-        static let labelPosition: CGFloat = 20
-        static let imageFromLeftRight: CGFloat = 12
-        static let imageFromTopBottom: CGFloat = 5
-    }
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -65,7 +67,6 @@ class ExhibitionTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
         return nil
     }
     
@@ -74,27 +75,21 @@ class ExhibitionTableViewCell: UITableViewCell {
         setupLayout()
     }
     
+    func getImageView() -> UIImageView {
+        return mainImageView
+    }
+    
     func configure(with exhibition: Exhibition) {
-        exhibitionImage.image = #imageLiteral(resourceName: "VK")
-        exhibitionName.text = exhibition.name
-        exhibitionCity.text = exhibition.city + ","
-        exhibitionCountry.text = exhibition.country
+        nameLabel.text = exhibition.name
+        cityLabel.text = exhibition.city
+        countryLabel.text = exhibition.country
+        
         let days = calculateTimeDifference(from: exhibition.expirationDate)
         if Int(days) == 1 {
-            exhibitionExpirationDate.text = "Trading ends today!"
+            dateLabel.text = "Trading ends today!"
         } else {
-            exhibitionExpirationDate.text = "\(days) days left until closing"
+            dateLabel.text = "\(days) days left until closing"
         }
-        DispatchQueue.global(qos: .utility).async {
-            DispatchQueue.main.async {
-                [self] in
-                exhName.text = self.exhibitionName.text! + ".jpeg"
-                netImage.image(with: exhName.text!) { [weak self] image in
-                    self?.exhibitionImage.image = image
-                }
-            }
-        }
-        
     }
     
     func calculateTimeDifference(from dateTime1: String) -> String {
@@ -119,13 +114,13 @@ class ExhibitionTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
-        addSubview(exhibitionImage)
-        exhibitionImage.addSubview(container)
+        addSubview(mainImageView)
+        mainImageView.addSubview(container)
         container.layer.addSublayer(gradient)
-        exhibitionImage.addSubview(exhibitionName)
-        exhibitionImage.addSubview(exhibitionCity)
-        exhibitionImage.addSubview(exhibitionCountry)
-        exhibitionImage.addSubview(exhibitionExpirationDate)
+        mainImageView.addSubview(nameLabel)
+        mainImageView.addSubview(cityLabel)
+        mainImageView.addSubview(countryLabel)
+        mainImageView.addSubview(dateLabel)
     }
     
     private func setupGradient() {
@@ -140,25 +135,25 @@ class ExhibitionTableViewCell: UITableViewCell {
     }
     
     private func setupLayout() {
-        exhibitionImage.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(Constraints.imageFromLeftRight)
-            make.top.bottom.equalToSuperview().inset(Constraints.imageFromTopBottom)
+        mainImageView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(Constants.imageFromLeftRight)
+            make.top.bottom.equalToSuperview().inset(Constants.imageFromTopBottom)
         }
-        exhibitionName.snp.makeConstraints { make in
-            make.top.equalTo(exhibitionImage).inset(Constraints.labelPosition)
-            make.trailing.equalTo(exhibitionImage).inset(Constraints.labelPosition / 2)
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(mainImageView).inset(Constants.labelPosition)
+            make.trailing.equalTo(mainImageView).inset(Constants.labelPosition / 2)
         }
-        exhibitionCity.snp.makeConstraints { make in
-            make.top.equalTo(exhibitionName).inset(Constraints.labelPosition * 2)
-            make.trailing.equalTo(exhibitionName)
+        cityLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel).inset(Constants.labelPosition * 2)
+            make.trailing.equalTo(nameLabel)
         }
-        exhibitionCountry.snp.makeConstraints { make in
-            make.top.equalTo(exhibitionCity).inset(Constraints.labelPosition)
-            make.trailing.equalTo(exhibitionCity)
+        countryLabel.snp.makeConstraints { make in
+            make.top.equalTo(cityLabel).inset(Constants.labelPosition)
+            make.trailing.equalTo(cityLabel)
         }
-        exhibitionExpirationDate.snp.makeConstraints { make in
-            make.top.equalTo(exhibitionCountry).inset(Constraints.labelPosition)
-            make.trailing.equalTo(exhibitionCountry)
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(countryLabel).inset(Constants.labelPosition)
+            make.trailing.equalTo(countryLabel)
         }
     }
 }
