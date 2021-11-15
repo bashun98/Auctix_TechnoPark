@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 protocol HomeViewControllerInput: AnyObject {
     func didReceive(_ exhibitions: [Exhibition])
@@ -39,6 +40,8 @@ class HomeViewController: UIViewController {
         return collection
     }()
     private let model: CollectionModelDescription = CollectionModel()
+    
+    private var imageLoader = ExhibitionsImageLoader.shared
     
     private let delegateExhib = ExhibitionCell()
     
@@ -89,6 +92,13 @@ class HomeViewController: UIViewController {
     private func setupModel() {
         model.loadProducts()
         model.output = self
+    }
+    
+    private func setImage(for imageView: UIImageView, with name: String) {
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        imageLoader.getReference(with: name) { reference in
+            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil)
+        }
     }
 }
 // обработчик нажатия кнопки на ячейке коллекции (открывает таблицу продуктов)
@@ -231,6 +241,13 @@ extension HomeViewController: UICollectionViewDelegate {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExhibitionCell.identifire, for: indexPath) as? ExhibitionCell {
             let data = datasource[indexPath.row]
             cell.configure(with: data)
+            let imageView = cell.getImageView()
+            let imageURL: UILabel = {
+                let label = UILabel()
+                label.text = data.name + ".jpeg"
+                return label
+            }()
+            setImage(for: imageView, with: imageURL.text ?? "vk.jpeg")
             cell.jumpButton.addTarget(self, action: #selector(didTabButton(sender:)), for: .touchUpInside)
             //setupCollectionOrMessage()
             return cell

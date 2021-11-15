@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 @testable import FirebaseMLModelDownloader
+import SDWebImage
 
 protocol TableProductControllerInput: AnyObject {
     func didReceive(_ products: [Product])
@@ -23,6 +24,7 @@ class TableProductsController: UITableViewController {
         }
     private let custumAlert = CustomAlert()
     private let model: TableProductModelDescription = TableProductModel()
+    private var imageLoader = ProductImageLoader.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +67,13 @@ class TableProductsController: UITableViewController {
 
         present(navigationController, animated: true, completion: nil)
     }
+    
+    private func setImage(for imageView: UIImageView, with name: String) {
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        imageLoader.getReference(with: name) { reference in
+            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil)
+        }
+    }
 }
 extension TableProductsController: TableProductControllerInput {
     func didReceive(_ products: [Product]) {
@@ -92,6 +101,13 @@ extension TableProductsController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifireProd, for: indexPath) as? ProductCell {
             let product = products[indexPath.row]
             cell.configure(with: product)
+            let imageView = cell.getImageView()
+            let imageURL: UILabel = {
+                let label = UILabel()
+                label.text = product.name + ".jpeg"
+                return label
+            }()
+            setImage(for: imageView, with: imageURL.text ?? "vk.jpeg")
             return cell
         }
         return .init()

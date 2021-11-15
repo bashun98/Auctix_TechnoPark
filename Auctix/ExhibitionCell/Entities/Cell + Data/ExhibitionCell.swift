@@ -11,7 +11,6 @@ class ExhibitionCell: UICollectionViewCell {
     
     // TODO: Нейминг поменяй (поменял)
     private let imageExhib = UIImageView()
-    private let exhName = UILabel()
     lazy var jumpButton: UIButton = {
          let button = UIButton(type: .system)
             button.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
@@ -60,7 +59,6 @@ class ExhibitionCell: UICollectionViewCell {
     
     func configure(with data: Exhibition){
         jumpButton.setTitle(data.name, for: .normal)
-        exhName.text = data.name + ".jpeg"
     }
     
     override func layoutSubviews() {

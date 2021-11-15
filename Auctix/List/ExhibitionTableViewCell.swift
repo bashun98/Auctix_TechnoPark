@@ -19,8 +19,7 @@ class ExhibitionTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     private let container = UIView()
     private let gradient = CAGradientLayer()
- //   private var netImage = ExhibitionsImageLoader.shared
-    private let exhName = UILabel()
+
     
     private let mainImageView: UIImageView = {
         let imageView = UIImageView()
