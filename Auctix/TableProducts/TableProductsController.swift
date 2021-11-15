@@ -32,7 +32,6 @@ class TableProductsController: UITableViewController {
         setupTableView()
         setupTableCell()
         setupModel()
-        //products = ProductManager.shared.loadProducts()
     }
     // настройка навигационного бара
     func setupNavBar(){
@@ -71,7 +70,11 @@ class TableProductsController: UITableViewController {
     private func setImage(for imageView: UIImageView, with name: String) {
         imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         imageLoader.getReference(with: name) { reference in
-            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil)
+            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil) { image, error, SDImageCacheType, StorageReference in
+                if error != nil {
+                    imageView.image = #imageLiteral(resourceName: "VK")
+                }
+            }
         }
     }
 }

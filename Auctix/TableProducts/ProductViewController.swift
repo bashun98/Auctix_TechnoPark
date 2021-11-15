@@ -206,6 +206,7 @@ class ProductViewController: UIViewController {
         priceLabel.text = String(product.currentPrice)
         productUrl.text = product.name + ".jpeg"
         productImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+     //   productImageView.image =
         imageLoader.getReference(with: productUrl.text ?? "vk.jpeg") { reference in
             self.productImageView.sd_setImage(with: reference, placeholderImage: nil)
         }
