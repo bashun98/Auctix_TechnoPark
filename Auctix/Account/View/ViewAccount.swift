@@ -155,6 +155,7 @@ extension ViewAccount {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ProductLikedCell.self, forCellWithReuseIdentifier: ProductLikedCell.identifireProdLiked)
+        setupModel()
         collectionView.reloadData()
         
     }
@@ -231,7 +232,7 @@ extension ViewAccount {
         constraints.append(tableView.trailingAnchor.constraint(
             equalTo:safeAreaLayoutGuide.trailingAnchor))
        constraints.append(tableView.bottomAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -190))
+        equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -220))
         constraints.append(tableView.topAnchor.constraint(
             equalTo: emailVerificaionTitle.bottomAnchor))
      

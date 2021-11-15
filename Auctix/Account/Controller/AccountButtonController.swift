@@ -17,17 +17,17 @@ class AccountButtonTabViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAuth()
+        setupNavBar()
     }
     
     func setupNavBar() {
-        navigationController?.view.backgroundColor = UIColor.white
-        navigationController?.view.tintColor = UIColor.blueGreen
+        navigationController?.navigationBar.isHidden = true
     }
     
     func setupView() {
