@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 protocol ListViewControllerInput: AnyObject {
     func didReceive(_ exhibitions: [Exhibition])
@@ -24,7 +25,8 @@ class ListViewController: UIViewController {
     private var sortLabel: String = " "
     private let tableView = UITableView()
     private let model: TableModelDescription = TableModel()
-
+    private var imageLoader = ExhibitionsImageLoader.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -95,6 +97,13 @@ class ListViewController: UIViewController {
         }
     }
     
+    private func setImage(for imageView: UIImageView, with name: String) {
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        imageLoader.getReference(with: name) { reference in
+            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil)
+        }
+    }
+    
     @objc func doneButtonTapped() {
         container.isHidden = true
         if sortLabel == sortingData[0] {
@@ -130,7 +139,7 @@ extension ListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let currentCellTxt = tableView.cellForRow(at: indexPath as IndexPath)! as? ExhibitionTableViewCell
         let rootVC = TableProductsController()
-        rootVC.nameExhibition = currentCellTxt?.exhibitionName.text ?? ""
+        rootVC.nameExhibition = currentCellTxt?.nameLabel.text ?? ""
         navigationController?.pushViewController(rootVC, animated: true)
     }
     
@@ -153,6 +162,13 @@ extension ListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ExhibitionTableViewCell.identifier, for: indexPath) as? ExhibitionTableViewCell else { return UITableViewCell()}
         let exhibition = exhibitions[indexPath.row]
         cell.configure(with: exhibition)
+        let imageView = cell.getImageView()
+        let imageURL: UILabel = {
+            let label = UILabel()
+            label.text = exhibition.name + ".jpeg"
+            return label
+        }()
+        setImage(for: imageView, with: imageURL.text ?? "vk.jpeg")
         cell.selectionStyle = .default
         return cell
     }
@@ -165,7 +181,7 @@ extension ListViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return sortingData[row]
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         header.setupLabel(sortingData[row])
         sortLabel = sortingData[row]

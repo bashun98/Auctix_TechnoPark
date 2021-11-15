@@ -40,7 +40,7 @@ class ProductViewController: UIViewController {
     
     weak var delegate: ProductViewControllerDelegate?
     
-    private var netImage = ExhibitionsImageLoader.shared
+    private var netImage = ProductImageLoader.shared
     private let productName = UILabel()
     
     var activeTextField : UITextField? = nil

@@ -11,7 +11,6 @@ class ExhibitionCell: UICollectionViewCell {
     
     // TODO: Нейминг поменяй (поменял)
     private let imageExhib = UIImageView()
-    private var netImage = ExhibitionsImageLoader.shared
     private let exhName = UILabel()
     lazy var jumpButton: UIButton = {
          let button = UIButton(type: .system)
@@ -55,13 +54,13 @@ class ExhibitionCell: UICollectionViewCell {
         layer.shadowOpacity = 0.3
     }
     
+    func getImageView() -> UIImageView {
+        return imageExhib
+    }
+    
     func configure(with data: Exhibition){
-        imageExhib.image = #imageLiteral(resourceName: "VK")
         jumpButton.setTitle(data.name, for: .normal)
         exhName.text = data.name + ".jpeg"
-        netImage.image(with: exhName.text!) { [weak self] image in
-            self?.imageExhib.image = image
-        }
     }
     
     override func layoutSubviews() {
