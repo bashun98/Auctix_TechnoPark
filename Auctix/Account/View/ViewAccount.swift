@@ -8,6 +8,10 @@
 import Firebase
 import UIKit
 
+protocol AccountControllerInput: AnyObject {
+    func didReceive(_ products: [Product])
+}
+
 protocol GoFuncAccount: AnyObject {
     func logoutButtonTapped(sender: UIButton)
 }
@@ -20,12 +24,13 @@ protocol GoLetter: AnyObject {
     func confirmationLetter()
 }
 
-class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource{
+class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     
     weak var delegate: GoFuncAccount?
     weak var delegateEdit: GoFuncEdit?
     weak var delegateLetter: GoLetter?
-    
+    private var products: [Product] = []
+    private var productsNew: [Product] = []
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         
@@ -53,7 +58,21 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource{
         return table
     }()
     
+    private lazy var collectionView: UICollectionView = {
+        let layout = AccountTableLayout()
+        layout.scrollDirection = .horizontal
+        
+        let collection = UICollectionView(frame: .init(), collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.isPagingEnabled = false
+       
+        collection.showsHorizontalScrollIndicator = false
+        collection.showsVerticalScrollIndicator = false
+        return collection
+    }()
+    
     var models = [Section]()
+    private let model: CollectionLikedModelDescription = CollectionLikedModel()
     var image = UIImageView()
     var userNameTitle = UILabel()
     var emailVerificaionTitle = UILabel()
@@ -63,11 +82,16 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource{
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupAccView()
+        setupModel()
     }
     required init?(coder: NSCoder) {
         super .init(coder: coder)
     }
     
+    private func setupModel() {
+        model.loadProducts()
+        model.output = self
+    }
     
     func setupAccView(){
         addSubview(loginButton)
@@ -86,6 +110,10 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource{
         
         addSubview(tableView)
         setupTable()
+        
+        addSubview(collectionView)
+        setupCollectionView()
+        
         addConstraints()
     }
     
@@ -121,6 +149,14 @@ extension ViewAccount {
         tableView.frame = UIScreen.main.bounds
         tableView.backgroundColor = .white
     }
+    
+    func setupCollectionView(){
+        //collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(ProductLikedCell.self, forCellWithReuseIdentifier: ProductLikedCell.identifireProdLiked)
+    }
+    
     //MARK: настраиваем отображение Username
     func setupUserNameLabel(){
         let user = Auth.auth().currentUser
@@ -197,6 +233,14 @@ extension ViewAccount {
         constraints.append(tableView.topAnchor.constraint(
             equalTo: emailVerificaionTitle.bottomAnchor))
      
+        constraints.append(collectionView.leadingAnchor.constraint(
+            equalTo: leadingAnchor))
+        constraints.append(collectionView.trailingAnchor.constraint(
+            equalTo: trailingAnchor))
+       constraints.append(collectionView.bottomAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -5))
+        constraints.append(collectionView.topAnchor.constraint(
+            equalTo: tableView.bottomAnchor, constant: 5))
         //Activate
         NSLayoutConstraint.activate(constraints)
     }
@@ -253,7 +297,6 @@ extension ViewAccount {
         case .switchCell(let model):
             model.handler()
         }
-        //viewController.delegate = self
     }
     //MARK: настраиваем наполнение каждой строки таблицы настроек
     func configure() {
@@ -280,19 +323,6 @@ extension ViewAccount {
             })
         ]))
     }
-    
-//    @objc func showLoginController() {
-//        let firebaseAutch = Auth.auth()
-//        do{
-//            try firebaseAutch.signOut()
-//        } catch let _ as NSError {
-//            print("не вышел из аакаунта")
-//        }
-////
-////        let controller = LoginController()
-////        navigationController?.pushViewController(controller, animated: true)
-//    }
-    
 }
 
 extension UIImageView {
@@ -304,6 +334,65 @@ extension UIImageView {
         self.layer.cornerRadius = self.bounds.width / 2
         self.clipsToBounds = true
         self.contentMode = .scaleAspectFill
-      }
+    }
+
 }
 
+
+extension ViewAccount: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductLikedCell.identifireProdLiked, for: indexPath) as? ProductLikedCell {
+            let data = products[indexPath.row]
+            cell.configure(with: data)
+            //setupCollectionOrMessage()
+            return cell
+        }
+        return .init()
+    }
+}
+
+extension ViewAccount: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return products.count
+    }
+    
+}
+
+extension ViewAccount: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 15
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 50, left: 25, bottom: 50, right: 25)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // TODO: В константы
+        let width = UIScreen.main.bounds.width - 50
+        return .init(width: width, height: collectionView.bounds.height)
+    }
+}
+
+extension ViewAccount: AccountControllerInput {
+    func didReceive(_ products: [Product]) {
+    
+        productsNew.removeAll()
+        if products.count != 0 {
+        for i in 0...(products.count-1) {
+            let cliets = products[i].idClientLiked
+            if cliets.first(where: { $0 == Auth.auth().currentUser?.uid}) != nil {
+                productsNew.append(products[i])
+            }
+        }
+        self.products = productsNew
+        if self.products.count == 0 {
+
+        }
+        }
+        collectionView.reloadData()
+    }
+    
+}
