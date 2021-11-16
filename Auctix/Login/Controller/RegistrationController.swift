@@ -70,6 +70,14 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    private let leterButton: AuthButton = {
+        let button = AuthButton(type: .system)
+        button.addTarget(self, action: #selector(handleLeter), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.title = "Register later"
+        return button
+    }()
+    
     private let logInButton: UIButton = {
         let button = UIButton(type: .system)
         
@@ -113,6 +121,13 @@ class RegistrationController: UIViewController {
     
     //MARK: Selectors
 
+    @objc func handleLeter() {
+        let tabBarVC = TabBarViewController()
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.window?.rootViewController = tabBarVC
+        UserDefaults.standard.set(true, forKey: "isFirstStart")
+    }
+    
     @objc func handleSignUp() {
         let name = fullnameTextField.text!
         let email = emailTextField.text!
@@ -177,19 +192,24 @@ class RegistrationController: UIViewController {
         auctixLabel.centerX(inView: view)
         auctixLabel.anchor(top: iconImage.bottomAnchor, paddingTop: 20)
         
-        view.addSubview(logInButton)
-        view.addSubview(singUpLabel)
+        let controller = self.navigationController?.parent
         
-        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
-        let underlineAttributedString = NSAttributedString(string: "StringWithUnderLine", attributes: underlineAttribute)
-        singUpLabel.attributedText = underlineAttributedString
-        singUpLabel.text = "Sign Up"
-        singUpLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        singUpLabel.textColor = UIColor.blueGreen
+        if controller?.superclass?.description() == Optional<String>.some("UITabBarController") {
         
-        logInButton.anchor(top: auctixLabel.bottomAnchor, left: view.leftAnchor, paddingTop: 32, paddingLeft: 32)
-        singUpLabel.anchor(top: auctixLabel.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingRight: 32)
+            view.addSubview(logInButton)
+            view.addSubview(singUpLabel)
         
+            let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+            let underlineAttributedString = NSAttributedString(string: "StringWithUnderLine", attributes: underlineAttribute)
+            singUpLabel.attributedText = underlineAttributedString
+            singUpLabel.text = "Sign Up"
+            singUpLabel.font = UIFont.boldSystemFont(ofSize: 16)
+            singUpLabel.textColor = UIColor.blueGreen
+        
+            logInButton.anchor(top: auctixLabel.bottomAnchor, left: view.leftAnchor, paddingTop: 32, paddingLeft: 32)
+            singUpLabel.anchor(top: auctixLabel.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingRight: 32)
+        
+        }
         
         let stack = UIStackView(arrangedSubviews: [emailTextField,
                                                    passwordTextFiel,
@@ -201,7 +221,15 @@ class RegistrationController: UIViewController {
         stack.spacing = 20
         
         view.addSubview(stack)
-        stack.anchor(top: logInButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+        if controller?.superclass?.description() == Optional<String>.some("UITabBarController") {
+            stack.anchor(top: logInButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+        } else {
+            stack.anchor(top: auctixLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+            view.addSubview(leterButton)
+            leterButton.anchor(top: stack.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+        }
+        
+        
     }
     
     public func sendVerificationMail() {
