@@ -80,6 +80,7 @@ class EditingAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         registerForKeyboardNotifications()
         setupImage()
         setupEmailVerLabel()
@@ -93,6 +94,16 @@ class EditingAccountViewController: UIViewController {
     private func setupModel() {
         model.loadUsers()
         model.output = self
+    }
+    
+    func setupNavBar() {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.view.backgroundColor = UIColor.white
+        navigationController?.view.tintColor = UIColor.blueGreen
+    }
+    
+    func setupNavBarHiden() {
+        navigationController?.navigationBar.isHidden = true
     }
     
     func configure() {
@@ -156,6 +167,7 @@ class EditingAccountViewController: UIViewController {
             numberTextField.text = ""
             cityTextField.text = ""
             self.custumAlert.showAlert(title: "Ready", message: "Your data has been successfully updated", viewController: self)
+            setupNavBarHiden()
         } else {
             self.custumAlert.showAlert(title: "Error", message: "Not all fields were entered correctly", viewController: self)
         }
