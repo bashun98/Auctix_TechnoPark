@@ -23,6 +23,7 @@ class RegistrationController: UIViewController {
         tf.returnKeyType = .done
         tf.textContentType = .telephoneNumber
         tf.keyboardType = .numberPad
+        tf.keyboardAppearance = .light
         tf.addDoneCanselToolBar()
         
         return tf
@@ -32,6 +33,7 @@ class RegistrationController: UIViewController {
     let tf = CustomTextField(placeholder: "City")
         tf.returnKeyType = .done
         tf.textContentType = .addressCity
+        tf.keyboardAppearance = .light
         return tf
     }()
     
@@ -39,6 +41,7 @@ class RegistrationController: UIViewController {
     let tf = CustomTextField(placeholder: "Fullname")
         tf.returnKeyType = .done
         tf.textContentType = .name
+        tf.keyboardAppearance = .light
         return tf
     }()
     
@@ -47,6 +50,7 @@ class RegistrationController: UIViewController {
         tf.returnKeyType = .done
         tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
+        tf.keyboardAppearance = .light
         return tf
     }()
     private let passwordTextFiel: CustomTextField = {
@@ -54,6 +58,7 @@ class RegistrationController: UIViewController {
         tf.returnKeyType = .done
         tf.textContentType = .password
         tf.isSecureTextEntry = true
+        tf.keyboardAppearance = .light
         return tf
     }()
 
@@ -62,6 +67,14 @@ class RegistrationController: UIViewController {
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.title = "Sign Up"
+        return button
+    }()
+    
+    private let leterButton: AuthButton = {
+        let button = AuthButton(type: .system)
+        button.addTarget(self, action: #selector(handleLeter), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.title = "Register later"
         return button
     }()
     
@@ -108,6 +121,13 @@ class RegistrationController: UIViewController {
     
     //MARK: Selectors
 
+    @objc func handleLeter() {
+        let tabBarVC = TabBarViewController()
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.window?.rootViewController = tabBarVC
+        UserDefaults.standard.set(true, forKey: "isFirstStart")
+    }
+    
     @objc func handleSignUp() {
         let name = fullnameTextField.text!
         let email = emailTextField.text!
@@ -128,13 +148,21 @@ class RegistrationController: UIViewController {
                     "email": email,
                     "phone": number,
                     "city": city,
-                    "uid": result!.user.uid
+                    "id": result!.user.uid
                 ]){ (error) in
                     if error != nil {
                         print("loh")
                     } else {
                         self.sendVerificationMail()
-                        self.navigationController?.popToRootViewController(animated: false)
+                        let controller = self.navigationController?.parent
+                        if controller?.superclass?.description() == Optional<String>.some("UITabBarController") {
+                            self.navigationController?.popToRootViewController(animated: false)
+                        } else {
+                            let tabBarVC = TabBarViewController()
+                            guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                            sceneDelegate.window?.rootViewController = tabBarVC
+                            UserDefaults.standard.set(true, forKey: "isFirstStart")
+                        }
                     }
                 }
             }
@@ -164,19 +192,24 @@ class RegistrationController: UIViewController {
         auctixLabel.centerX(inView: view)
         auctixLabel.anchor(top: iconImage.bottomAnchor, paddingTop: 20)
         
-        view.addSubview(logInButton)
-        view.addSubview(singUpLabel)
+        let controller = self.navigationController?.parent
         
-        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
-        let underlineAttributedString = NSAttributedString(string: "StringWithUnderLine", attributes: underlineAttribute)
-        singUpLabel.attributedText = underlineAttributedString
-        singUpLabel.text = "Sign Up"
-        singUpLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        singUpLabel.textColor = UIColor.blueGreen
+        if controller?.superclass?.description() == Optional<String>.some("UITabBarController") {
         
-        logInButton.anchor(top: auctixLabel.bottomAnchor, left: view.leftAnchor, paddingTop: 32, paddingLeft: 32)
-        singUpLabel.anchor(top: auctixLabel.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingRight: 32)
+            view.addSubview(logInButton)
+            view.addSubview(singUpLabel)
         
+            let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+            let underlineAttributedString = NSAttributedString(string: "StringWithUnderLine", attributes: underlineAttribute)
+            singUpLabel.attributedText = underlineAttributedString
+            singUpLabel.text = "Sign Up"
+            singUpLabel.font = UIFont.boldSystemFont(ofSize: 16)
+            singUpLabel.textColor = UIColor.blueGreen
+        
+            logInButton.anchor(top: auctixLabel.bottomAnchor, left: view.leftAnchor, paddingTop: 32, paddingLeft: 32)
+            singUpLabel.anchor(top: auctixLabel.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingRight: 32)
+        
+        }
         
         let stack = UIStackView(arrangedSubviews: [emailTextField,
                                                    passwordTextFiel,
@@ -188,7 +221,15 @@ class RegistrationController: UIViewController {
         stack.spacing = 20
         
         view.addSubview(stack)
-        stack.anchor(top: logInButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+        if controller?.superclass?.description() == Optional<String>.some("UITabBarController") {
+            stack.anchor(top: logInButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+        } else {
+            stack.anchor(top: auctixLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+            view.addSubview(leterButton)
+            leterButton.anchor(top: stack.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 32, paddingRight: 32)
+        }
+        
+        
     }
     
     public func sendVerificationMail() {
