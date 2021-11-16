@@ -20,12 +20,14 @@ class LoginController: UIViewController {
         tf.returnKeyType = .done
         tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
+        tf.keyboardAppearance = .light
         return tf
     }()
     private let passwordTextFiel: CustomTextField = {
         let tf = CustomTextField(placeholder: "Password")
         tf.returnKeyType = .done
         tf.textContentType = .password
+        tf.keyboardAppearance = .light
         tf.isSecureTextEntry = true
         return tf
     }()

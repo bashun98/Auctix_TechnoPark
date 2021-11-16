@@ -23,6 +23,7 @@ class RegistrationController: UIViewController {
         tf.returnKeyType = .done
         tf.textContentType = .telephoneNumber
         tf.keyboardType = .numberPad
+        tf.keyboardAppearance = .light
         tf.addDoneCanselToolBar()
         
         return tf
@@ -32,6 +33,7 @@ class RegistrationController: UIViewController {
     let tf = CustomTextField(placeholder: "City")
         tf.returnKeyType = .done
         tf.textContentType = .addressCity
+        tf.keyboardAppearance = .light
         return tf
     }()
     
@@ -39,6 +41,7 @@ class RegistrationController: UIViewController {
     let tf = CustomTextField(placeholder: "Fullname")
         tf.returnKeyType = .done
         tf.textContentType = .name
+        tf.keyboardAppearance = .light
         return tf
     }()
     
@@ -47,6 +50,7 @@ class RegistrationController: UIViewController {
         tf.returnKeyType = .done
         tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
+        tf.keyboardAppearance = .light
         return tf
     }()
     private let passwordTextFiel: CustomTextField = {
@@ -54,6 +58,7 @@ class RegistrationController: UIViewController {
         tf.returnKeyType = .done
         tf.textContentType = .password
         tf.isSecureTextEntry = true
+        tf.keyboardAppearance = .light
         return tf
     }()
 
@@ -128,13 +133,21 @@ class RegistrationController: UIViewController {
                     "email": email,
                     "phone": number,
                     "city": city,
-                    "uid": result!.user.uid
+                    "id": result!.user.uid
                 ]){ (error) in
                     if error != nil {
                         print("loh")
                     } else {
                         self.sendVerificationMail()
-                        self.navigationController?.popToRootViewController(animated: false)
+                        let controller = self.navigationController?.parent
+                        if controller?.superclass?.description() == Optional<String>.some("UITabBarController") {
+                            self.navigationController?.popToRootViewController(animated: false)
+                        } else {
+                            let tabBarVC = TabBarViewController()
+                            guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                            sceneDelegate.window?.rootViewController = tabBarVC
+                            UserDefaults.standard.set(true, forKey: "isFirstStart")
+                        }
                     }
                 }
             }

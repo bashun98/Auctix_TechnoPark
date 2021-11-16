@@ -25,6 +25,7 @@ class ResetPasswordController: UIViewController {
         tf.returnKeyType = .done
         tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
+        tf.keyboardAppearance = .light
         return tf
     }()
     
