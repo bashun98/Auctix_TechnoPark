@@ -8,6 +8,10 @@
 import Firebase
 import UIKit
 
+protocol SelectCollectionCell: AnyObject {
+    func inputCell(product: Product, products: [Product])
+}
+
 protocol AccountControllerInput: AnyObject {
     func didReceive(_ products: [Product])
 }
@@ -25,7 +29,8 @@ protocol GoLetter: AnyObject {
 }
 
 class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
-    
+        
+    weak var delegateCell: SelectCollectionCell?
     weak var delegate: GoFuncAccount?
     weak var delegateEdit: GoFuncEdit?
     weak var delegateLetter: GoLetter?
@@ -129,6 +134,10 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     @objc
     func editCellTapped() {
         delegateEdit?.editCellTapped()
+    }
+    @objc
+    func CellTapped() {
+        
     }
 }
 
@@ -352,6 +361,12 @@ extension ViewAccount: UICollectionViewDelegate {
         }
         return .init()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let product = products[indexPath.row]
+        delegateCell?.inputCell(product: product, products: products)
+    }
 }
 
 extension ViewAccount: UICollectionViewDataSource {
@@ -383,16 +398,16 @@ extension ViewAccount: AccountControllerInput {
     
         productsNew.removeAll()
         if products.count != 0 {
-        for i in 0...(products.count-1) {
-            let cliets = products[i].idClientLiked
-            if cliets.first(where: { $0 == Auth.auth().currentUser?.uid}) != nil {
-                productsNew.append(products[i])
+            for i in 0...(products.count-1) {
+                let cliets = products[i].idClientLiked
+                if cliets.first(where: { $0 == Auth.auth().currentUser?.uid}) != nil {
+                    productsNew.append(products[i])
+                }
             }
-        }
-        self.products = productsNew
-        if self.products.count == 0 {
+            self.products = productsNew
+            if self.products.count == 0 {
 
-        }
+            }
         }
         collectionView.reloadData()
     }

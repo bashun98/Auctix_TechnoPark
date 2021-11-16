@@ -8,12 +8,15 @@
 import UIKit
 import Firebase
 
-class AccountButtonTabViewController: UIViewController{
+class AccountButtonTabViewController: UIViewController {
     
     private var flag = false
     private let viewAuth = ViewAuth()
     private let viewAcc = ViewAccount()
     private let custumAlert = CustomAlert()
+    private let model: TableProductModelDescription = TableProductModel()
+    private var products: [Product] = []
+    //weak var delegate: ProductViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,7 @@ class AccountButtonTabViewController: UIViewController{
                 viewAcc.delegate = self
                 viewAcc.delegateEdit = self
                 viewAcc.delegateLetter = self
+                viewAcc.delegateCell = self
                 setupLayoutAcc()
             }
             viewAcc.setupUserNameLabel()
@@ -141,3 +145,38 @@ extension AccountButtonTabViewController {
     }
 }
 
+extension AccountButtonTabViewController: SelectCollectionCell {
+    func inputCell(product: Product, products: [Product]) {
+        let viewController = ProductViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        viewController.product = product
+        viewController.delegate = self
+        self.products = products
+        present(navigationController, animated: true, completion: nil)
+    }
+}
+
+extension AccountButtonTabViewController: ProductViewControllerDelegate {
+    func didTapChatButton(productViewController: UIViewController, productName: String, priceTextFild: String, currentPrice: String) {
+
+        if ((Int(priceTextFild) ?? 0) - (Int(currentPrice) ?? 0)) < 100 {
+            self.custumAlert.showAlert(title: "Error!", message: "You cannot make a stack without a specified value", viewController: productViewController)
+        } else {
+            if priceTextFild.isEmpty {
+                self.custumAlert.showAlert(title: "Error!", message: "You cannot make a stack without a specified value", viewController: productViewController)
+            } else {
+                var product = products.first { $0.name == productName }
+                product?.currentIdClient = Auth.auth().currentUser?.uid ?? ""
+                if ((product?.idClient.first { $0 == Auth.auth().currentUser?.uid}) == nil) {
+                    product?.idClient.append(Auth.auth().currentUser?.uid ?? "")
+                }
+                product?.currentPrice = Int(priceTextFild) ?? 0
+
+                productViewController.dismiss(animated: true)
+                self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
+
+                model.update(product: product ?? products[0])
+            }
+        }
+    }
+}
