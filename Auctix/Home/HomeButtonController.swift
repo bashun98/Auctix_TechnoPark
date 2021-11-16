@@ -308,7 +308,7 @@ extension HomeViewController: HomeViewControllerInput {
         var numMonthExample = 0
         var numDayExample = 0
         var numYearExample = 0
-        
+        if data.count > 0 {
         for i in 0...(data.count - 1) {
             let startDateFirebase = data[i].startDate.removeCharacters(from: CharacterSet.decimalDigits.inverted)
             let numStartDateFirebase = Int(startDateFirebase) ?? 0
@@ -331,9 +331,11 @@ extension HomeViewController: HomeViewControllerInput {
                 }
             }
         }
+        }
         if flag {
             newExhibitions.text = "Newest"
         } else {
+            if data.count > 0 {
             for i in 0...(data.count - 1) {
                 let startDateFirebase = data[i].startDate.removeCharacters(from: CharacterSet.decimalDigits.inverted)
                 let numStartDateFirebase = Int(startDateFirebase) ?? 0
@@ -367,16 +369,19 @@ extension HomeViewController: HomeViewControllerInput {
                     }
                 }
             }
+            
             var stringData = String(numDayExample)+"."+String(numMonthExample)+"."+String(numYearExample)
             if numDayExample < 10{
                 stringData = "0" + stringData
             }
+            
             for i in 0...(data.count - 1) {
                 if data[i].startDate == stringData{
                     exbitionsNewest.append(data[i])
                     newExhibitions.text = "Added earlier"
                     newExhibitions.numberOfLines = 0
                 }
+            }
             }
             
         }

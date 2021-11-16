@@ -8,6 +8,10 @@
 import Firebase
 import UIKit
 
+protocol inputImage: AnyObject {
+    func inputImage(_ imageView: UIImageView,_ imageURL: String)
+}
+
 protocol SelectCollectionCell: AnyObject {
     func inputCell(product: Product, products: [Product])
 }
@@ -34,6 +38,7 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     weak var delegate: GoFuncAccount?
     weak var delegateEdit: GoFuncEdit?
     weak var delegateLetter: GoLetter?
+    weak var delegateImage: inputImage?
     private var products: [Product] = []
     private var productsNew: [Product] = []
     private let loginButton: UIButton = {
@@ -356,7 +361,16 @@ extension ViewAccount: UICollectionViewDelegate {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductLikedCell.identifireProdLiked, for: indexPath) as? ProductLikedCell {
             let data = products[indexPath.row]
             cell.configure(with: data)
+            let imageView = cell.getImageView()
+            let imageURL: UILabel = {
+                let label = UILabel()
+                label.text = data.name + ".jpeg"
+                return label
+            }()
+            delegateImage?.inputImage(imageView, imageURL.text ?? "vk.jpeg")
             //setupCollectionOrMessage()
+            
+            
             return cell
         }
         return .init()
@@ -413,3 +427,4 @@ extension ViewAccount: AccountControllerInput {
     }
     
 }
+

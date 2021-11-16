@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class AccountButtonTabViewController: UIViewController {
     
@@ -16,7 +17,7 @@ class AccountButtonTabViewController: UIViewController {
     private let custumAlert = CustomAlert()
     private let model: TableProductModelDescription = TableProductModel()
     private var products: [Product] = []
-    //weak var delegate: ProductViewControllerDelegate?
+    private var imageLoader = ProductImageLoader.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,7 @@ class AccountButtonTabViewController: UIViewController {
                 viewAcc.delegateEdit = self
                 viewAcc.delegateLetter = self
                 viewAcc.delegateCell = self
+                viewAcc.delegateImage = self
                 setupLayoutAcc()
             }
             viewAcc.setupUserNameLabel()
@@ -87,6 +89,11 @@ class AccountButtonTabViewController: UIViewController {
             viewAuth.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
+    
+//    private func setImage(for imageView: UIImageView, with name: String) {
+//        
+//    }
+    
 }
 
 extension AccountButtonTabViewController: GoToLogin {
@@ -176,6 +183,19 @@ extension AccountButtonTabViewController: ProductViewControllerDelegate {
                 self.custumAlert.showAlert(title: "Wow!", message: "Your bet has been placed", viewController: self)
 
                 model.update(product: product ?? products[0])
+            }
+        }
+    }
+}
+
+extension AccountButtonTabViewController: inputImage {
+    func inputImage(_ imageView: UIImageView,_ imageURL: String) {
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        imageLoader.getReference(with: imageURL) { reference in
+            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil) { image, error, SDImageCacheType, StorageReference in
+                if error != nil {
+                    imageView.image = #imageLiteral(resourceName: "VK")
+                }
             }
         }
     }
