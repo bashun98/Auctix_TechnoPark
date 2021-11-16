@@ -18,6 +18,7 @@ class ProductLikedCell: UICollectionViewCell {
     private var netImage = ProductImageLoader.shared
     private let prodName = UILabel()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -93,6 +94,10 @@ class ProductLikedCell: UICollectionViewCell {
 //        imageProd.addSubview(time)
 //        imageProd.addSubview(cost)
     }
+
+    public func getImageView() -> UIImageView {
+            return imageProd
+        }
 }
 
 extension ProductLikedCell {

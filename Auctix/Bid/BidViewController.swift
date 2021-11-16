@@ -136,11 +136,13 @@ extension BidViewController: BidTableProductControllerInput {
     func didReceive(_ products: [Product]) {
 
         productsNew.removeAll()
+        if products.count > 0 {
         for i in 0...(products.count-1) {
             let cliets = products[i].idClient
             if cliets.first(where: { $0 == Auth.auth().currentUser?.uid}) != nil {
                 productsNew.append(products[i])
             }
+        }
         }
         self.products = productsNew
         if self.products.count == 0 {
