@@ -74,7 +74,9 @@ class ProductCell: UITableViewCell {
         time.text = "1 work 3 tausent"
     }
     
-    
+    public func getImage() -> UIImage? {
+        return imageProd.image
+    }
     
     public func setupCurrentPrice(currentPrice: String){
         cost.text = currentPrice + "$"
