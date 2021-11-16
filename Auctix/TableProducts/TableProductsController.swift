@@ -56,14 +56,16 @@ class TableProductsController: UITableViewController {
     }
     // открытие страницы продукта
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
         let product = products[indexPath.row]
-
+        guard let cell = tableView.cellForRow(at: indexPath) as? ProductCell else { return }
+        let imageCell = cell.getImage()
         let viewController = ProductViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         viewController.product = product
         viewController.delegate = self
-
+        viewController.productImageView.image = imageCell
         present(navigationController, animated: true, completion: nil)
     }
     

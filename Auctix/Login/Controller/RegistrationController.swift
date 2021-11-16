@@ -161,7 +161,6 @@ class RegistrationController: UIViewController {
                             let tabBarVC = TabBarViewController()
                             guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                             sceneDelegate.window?.rootViewController = tabBarVC
-                            UserDefaults.standard.set(true, forKey: "isFirstStart")
                         }
                     }
                 }
