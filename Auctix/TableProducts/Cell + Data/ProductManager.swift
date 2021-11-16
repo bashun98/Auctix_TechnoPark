@@ -68,6 +68,7 @@ private final class ProductConverter {
         case idExhibition
         case currentIdClient
         case idClient
+        case idClientLiked
     }
     
     func product(from document: DocumentSnapshot) -> Product? {
@@ -78,7 +79,8 @@ private final class ProductConverter {
               let startingPrice = dict[Key.startingPrice.rawValue] as? Int,
               let idExhibition = dict[Key.idExhibition.rawValue] as? String,
               let currentIdClient = dict[Key.currentIdClient.rawValue] as? String,
-              let idClient = dict[Key.idClient.rawValue] as? [String] else {
+              let idClient = dict[Key.idClient.rawValue] as? [String],
+              let idClientLiked = dict[Key.idClientLiked.rawValue] as? [String] else {
                   return nil
               }
 
@@ -88,7 +90,8 @@ private final class ProductConverter {
                        startingPrice: startingPrice,
                        idExhibition: idExhibition,
                        currentIdClient: currentIdClient,
-                       idClient: idClient)
+                       idClient: idClient,
+                       idClientLiked: idClientLiked)
     }
     
     func dict(from product: Product) -> [String: Any] {

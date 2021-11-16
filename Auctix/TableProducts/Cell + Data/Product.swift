@@ -16,4 +16,5 @@ struct Product{
     let idExhibition: String
     var currentIdClient: String
     var idClient: [String]
+    var idClientLiked: [String]
 }

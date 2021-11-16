@@ -111,6 +111,9 @@
 		FCA9E1842741868A005C42B2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E1832741868A005C42B2 /* UserManager.swift */; };
 		FCA9E18627418693005C42B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E18527418693005C42B2 /* User.swift */; };
 		FCA9E189274189AE005C42B2 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E188274189AE005C42B2 /* UserModel.swift */; };
+		FCA9E18D274253A0005C42B2 /* ProductLikedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E18C2742539F005C42B2 /* ProductLikedCell.swift */; };
+		FCA9E18F274255CC005C42B2 /* AccountTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E18E274255CC005C42B2 /* AccountTableLayout.swift */; };
+		FCA9E191274258D6005C42B2 /* CollectionLikedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E190274258D5005C42B2 /* CollectionLikedModel.swift */; };
 		FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
@@ -213,6 +216,9 @@
 		FCA9E1832741868A005C42B2 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FCA9E18527418693005C42B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FCA9E188274189AE005C42B2 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FCA9E18C2742539F005C42B2 /* ProductLikedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLikedCell.swift; sourceTree = "<group>"; };
+		FCA9E18E274255CC005C42B2 /* AccountTableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableLayout.swift; sourceTree = "<group>"; };
+		FCA9E190274258D5005C42B2 /* CollectionLikedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLikedModel.swift; sourceTree = "<group>"; };
 		FCAD16AB27254FF6009140BF /* TableProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductsController.swift; sourceTree = "<group>"; };
 		FCAD16B02725502C009140BF /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		FCAD16B427255041009140BF /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
@@ -473,6 +479,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FCA9E18A2742532C005C42B2 /* Collection Liked */ = {
+			isa = PBXGroup;
+			children = (
+				FCA9E18B27425381005C42B2 /* CollectionLikedCell */,
+				FCA9E18E274255CC005C42B2 /* AccountTableLayout.swift */,
+			);
+			path = "Collection Liked";
+			sourceTree = "<group>";
+		};
+		FCA9E18B27425381005C42B2 /* CollectionLikedCell */ = {
+			isa = PBXGroup;
+			children = (
+				FCA9E18C2742539F005C42B2 /* ProductLikedCell.swift */,
+				FCA9E190274258D5005C42B2 /* CollectionLikedModel.swift */,
+			);
+			path = CollectionLikedCell;
+			sourceTree = "<group>";
+		};
 		FCAD16AA27254FB1009140BF /* TableProducts */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +540,7 @@
 		FCFCE7DF2721EFC700A59AA0 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				FCA9E18A2742532C005C42B2 /* Collection Liked */,
 				FCA9E187274189A1005C42B2 /* Model */,
 				FCA9E1822741866F005C42B2 /* UserData */,
 				FCA9E17F27418024005C42B2 /* View */,
@@ -869,6 +894,7 @@
 				20ECC333273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */,
 				FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */,
 				FCA9E18627418693005C42B2 /* User.swift in Sources */,
+				FCA9E18D274253A0005C42B2 /* ProductLikedCell.swift in Sources */,
 				208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */,
 				FCAD16B927255052009140BF /* Product.swift in Sources */,
@@ -883,6 +909,7 @@
 				FC39181C273D8A8A00828F1B /* ProductBidModel.swift in Sources */,
 				04764D1E2733CD790094114C /* DividerView.swift in Sources */,
 				FC7428CB2735B3E40005C2C3 /* ViewAuth.swift in Sources */,
+				FCA9E18F274255CC005C42B2 /* AccountTableLayout.swift in Sources */,
 				FCA9E1812741807B005C42B2 /* EditingAccountViewController.swift in Sources */,
 				205443D7272DA3A40079D152 /* Protocols.swift in Sources */,
 				FC555534272ADAFB005E697F /* HomeTableLayout.swift in Sources */,
@@ -912,6 +939,7 @@
 				FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */,
 				2053404B27385DF400B9008B /* CollectionModel.swift in Sources */,
 				FCFCE7DB271EB9DC00A59AA0 /* BidViewController.swift in Sources */,
+				FCA9E191274258D6005C42B2 /* CollectionLikedModel.swift in Sources */,
 				04764D142733CCF90094114C /* RegistrationController.swift in Sources */,
 				FC5EB4BD271B0B8B000EA4C1 /* LoadingScreenViewController.swift in Sources */,
 			);
