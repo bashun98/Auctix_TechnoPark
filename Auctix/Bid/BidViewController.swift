@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 protocol BidTableProductControllerInput: AnyObject {
     func didReceive(_ products: [Product])
@@ -17,6 +18,7 @@ class BidViewController: UIViewController {
     //var nameExhibition = ""
     private var products: [Product] = []
     private var productsNew: [Product] = []
+    private var imageLoader = ProductImageLoader.shared
 //    
 //    private var products: [Product] = [] {
 //            didSet {
@@ -130,6 +132,17 @@ class BidViewController: UIViewController {
     func setupTableView() {
         productsTableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifireProd)
     }
+    
+    private func setImage(for imageView: UIImageView, with name: String) {
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        imageLoader.getReference(with: name) { reference in
+            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil) { image, error, SDImageCacheType, StorageReference in
+                if error != nil {
+                    imageView.image = #imageLiteral(resourceName: "VK")
+                }
+            }
+        }
+    }
 }
 
 extension BidViewController: BidTableProductControllerInput {
@@ -166,12 +179,13 @@ extension BidViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let product = products[indexPath.row]
-
+        guard let cell = tableView.cellForRow(at: indexPath) as? ProductCell else { return }
+        let imageCell = cell.getImage()
         let viewController = ProductViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         viewController.product = product
         viewController.delegate = self
-
+        viewController.productImageView.image = imageCell
         present(navigationController, animated: true, completion: nil)
     }
 }
@@ -191,6 +205,13 @@ extension BidViewController: UITableViewDataSource{
         if let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifireProd, for: indexPath) as? ProductCell {
             let product = products[indexPath.row]
             cell.configure(with: product)
+            let imageView = cell.getImageView()
+            let imageURL: UILabel = {
+                let label = UILabel()
+                label.text = product.name + ".jpeg"
+                return label
+            }()
+            setImage(for: imageView, with: imageURL.text ?? "vk.jpeg")
             return cell
         }
         return .init()

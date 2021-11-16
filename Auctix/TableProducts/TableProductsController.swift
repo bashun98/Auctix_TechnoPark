@@ -59,15 +59,13 @@ class TableProductsController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         let product = products[indexPath.row]
-       // let cell = tableView.cellForRow(at: indexPath)
-        
+        guard let cell = tableView.cellForRow(at: indexPath) as? ProductCell else { return }
+        let imageCell = cell.getImage()
         let viewController = ProductViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         viewController.product = product
         viewController.delegate = self
-        
-        
-        
+        viewController.productImageView.image = imageCell
         present(navigationController, animated: true, completion: nil)
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class AccountButtonTabViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class AccountButtonTabViewController: UIViewController {
     private let custumAlert = CustomAlert()
     private let model: TableProductModelDescription = TableProductModel()
     private var products: [Product] = []
+    private var imageLoader = ExhibitionsImageLoader.shared
     //weak var delegate: ProductViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -87,6 +89,7 @@ class AccountButtonTabViewController: UIViewController {
             viewAuth.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
+    
 }
 
 extension AccountButtonTabViewController: GoToLogin {

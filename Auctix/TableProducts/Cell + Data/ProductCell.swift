@@ -64,7 +64,7 @@ class ProductCell: UITableViewCell {
         gradient.position = center
     }
     
-    func getImageView() -> UIImageView {
+    public func getImageView() -> UIImageView {
         return imageProd
     }
     

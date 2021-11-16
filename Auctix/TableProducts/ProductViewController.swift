@@ -26,7 +26,6 @@ class ProductViewController: UIViewController {
     }
     
     private let changeButton = UIButton(type: .system)
-    private let productImageView = UIImageView()
     private let priceLabel = UILabel()
     private let titleLabel = UILabel()
     private let nowPrice = UILabel()
@@ -36,6 +35,7 @@ class ProductViewController: UIViewController {
     private var flag: Bool?
     private var flagAuth: Bool?
     private var productUrl = UILabel()
+    var productImageView = UIImageView()
         
     private var priceArray = ["","",""]
     private let screenWidth = UIScreen.main.bounds.width
@@ -204,12 +204,12 @@ class ProductViewController: UIViewController {
     func configure(with product: Product) {
         titleLabel.text = product.name
         priceLabel.text = String(product.currentPrice)
-        productUrl.text = product.name + ".jpeg"
-        productImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-     //   productImageView.image =
-        imageLoader.getReference(with: productUrl.text ?? "vk.jpeg") { reference in
-            self.productImageView.sd_setImage(with: reference, placeholderImage: nil)
-        }
+       // productUrl.text = product.name + ".jpeg"
+//        productImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//     //   productImageView.image =
+//        imageLoader.getReference(with: productUrl.text ?? "vk.jpeg") { reference in
+//            self.productImageView.sd_setImage(with: reference, placeholderImage: nil)
+//        }
     }
     
     func setupLayuot(){
