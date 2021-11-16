@@ -68,9 +68,9 @@ class ProductLikedCell: UICollectionViewCell {
         cost.text = String(data.currentPrice) + "$"
         time.text = "1 work 3 tausent"
         prodName.text = data.name + ".jpeg"
-        netImage.image(with: prodName.text!) { [weak self] image in
-            self?.imageProd.image = image
-        }
+        //netImage.image(with: prodName.text!) { [weak self] image in
+//            self?.imageProd.image = image
+//        }
     }
     
     
