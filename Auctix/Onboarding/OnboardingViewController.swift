@@ -47,6 +47,7 @@ final class OnboardingViewController: UIViewController {
         buttonSignUp.setTitle("Sign Up", for: .normal)
         buttonSignUp.titleLabel?.font = UIFont(name: FontsName.regular.rawValue, size: 20)
         buttonSignUp.titleLabel?.adjustsFontSizeToFitWidth = true
+        buttonSignUp.addTarget(self, action: #selector(buttonSignUpTapped), for: .touchUpInside)
         buttonSignUp.layer.cornerRadius = 20
         view.addSubview(buttonContinue)
         view.addSubview(buttonSignUp)
@@ -91,10 +92,19 @@ final class OnboardingViewController: UIViewController {
         }
     }
     
-    @objc private func buttonContinueTapped() {
+    @objc
+    private func buttonContinueTapped() {
         let tabBarVC = TabBarViewController()
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         sceneDelegate.window?.rootViewController = tabBarVC
+        UserDefaults.standard.set(true, forKey: "isFirstStart")
+    }
+    
+    @objc
+    private func buttonSignUpTapped() {
+        let VC = RegistrationController()
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.window?.rootViewController = VC
         UserDefaults.standard.set(true, forKey: "isFirstStart")
     }
 }

@@ -1,3 +1,4 @@
+
 //
 //  Goods.swift
 //  Auctix

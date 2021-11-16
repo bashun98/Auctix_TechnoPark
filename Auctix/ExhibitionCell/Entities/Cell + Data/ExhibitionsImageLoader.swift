@@ -7,18 +7,15 @@
 
 import UIKit
 import FirebaseStorage
+import FirebaseStorageUI
+
 
 final class ExhibitionsImageLoader {
     let storage = Storage.storage().reference()
     static let shared = ExhibitionsImageLoader()
- 
-    func image(with name: String, completion: @escaping (UIImage?) -> Void) {
-        storage.child(name).getData(maxSize: 15 * 1024 * 1024) { data, error in
-            if let data = data {
-                completion(UIImage(data: data))
-            } else {
-                completion(nil)
-            }
-        }
+    
+    func getReference(with name: String, completion: @escaping (StorageReference) -> Void) {
+        let reference = storage.child(name)
+        completion(reference)
     }
 }

@@ -18,8 +18,6 @@ class ProductCell: UITableViewCell {
     private let nameProd = UILabel()
     private let time = UILabel()
     private let cost = UILabel()
-    private var netImage = ProductImageLoader.shared
-    private let prodName = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,15 +64,14 @@ class ProductCell: UITableViewCell {
         gradient.position = center
     }
     
+    func getImageView() -> UIImageView {
+        return imageProd
+    }
+    
     func configure(with data: Product){
-        imageProd.image = #imageLiteral(resourceName: "VK")
         nameProd.text = data.name
         cost.text = String(data.currentPrice) + "$"
         time.text = "1 work 3 tausent"
-        prodName.text = data.name + ".jpeg"
-        netImage.image(with: prodName.text!) { [weak self] image in
-            self?.imageProd.image = image
-        }
     }
     
     
