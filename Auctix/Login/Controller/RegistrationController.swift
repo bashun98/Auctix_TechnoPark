@@ -350,7 +350,6 @@ extension RegistrationController {
         var shouldMoveViewUpCity = false
         var scholdMoveViewUpNum = false
         
-        // if active text field is not nil
         if let activeTextField = activeTextField {
             let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
             let topOfKeyboard = self.view.frame.height - keyboardSize.height

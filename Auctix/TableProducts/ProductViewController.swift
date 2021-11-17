@@ -324,9 +324,7 @@ extension ProductViewController {
             let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
             let topOfKeyboard = self.view.frame.height - keyboardSize.height
             
-            if bottomOfTextField > topOfKeyboard {
-                shouldMoveViewUp = true
-            }
+            shouldMoveViewUp = bottomOfTextField > topOfKeyboard ? true : false
         }
         
         if(shouldMoveViewUp) {

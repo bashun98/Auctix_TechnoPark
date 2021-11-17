@@ -34,6 +34,7 @@ class EditingAccountViewController: UIViewController {
         tf.returnKeyType = .done
         tf.textContentType = .telephoneNumber
         tf.keyboardType = .numberPad
+        tf.keyboardAppearance = .light
         tf.addDoneCanselToolBar()
         return tf
     }()
@@ -42,6 +43,7 @@ class EditingAccountViewController: UIViewController {
     let tf = CustomTextField(placeholder: "City")
         tf.returnKeyType = .done
         tf.textContentType = .addressCity
+        tf.keyboardAppearance = .light
         return tf
     }()
     
@@ -49,6 +51,7 @@ class EditingAccountViewController: UIViewController {
     let tf = CustomTextField(placeholder: "Fullname")
         tf.returnKeyType = .done
         tf.textContentType = .name
+        tf.keyboardAppearance = .light
         return tf
     }()
     
@@ -57,6 +60,7 @@ class EditingAccountViewController: UIViewController {
         tf.returnKeyType = .done
         tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
+        tf.keyboardAppearance = .light
         return tf
     }()
 
@@ -168,6 +172,7 @@ class EditingAccountViewController: UIViewController {
             cityTextField.text = ""
             self.custumAlert.showAlert(title: "Ready", message: "Your data has been successfully updated", viewController: self)
             setupNavBarHiden()
+            navigationController?.popToRootViewController(animated: true)
         } else {
             self.custumAlert.showAlert(title: "Error", message: "Not all fields were entered correctly", viewController: self)
         }

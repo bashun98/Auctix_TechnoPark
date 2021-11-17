@@ -7,13 +7,14 @@ target 'Auctix' do
 
   # Pods for Auctix
   pod 'FirebaseUI/Storage'
-  target 'AuctixTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'PinLayout'
+  pod 'SnapKit'
+end
 
-  target 'AuctixUITests' do
-    # Pods for testing
-  end
-
+post_install do |installer|
+ installer.pods_project.build_configurations.each do |config|
+   config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+ end
 end
