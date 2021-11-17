@@ -21,8 +21,8 @@
 		204D684C27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */; };
 		2053404B27385DF400B9008B /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053404A27385DF400B9008B /* CollectionModel.swift */; };
 		205443D7272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
-		20660F6D27369C0700E6E808 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20660F6C27369C0700E6E808 /* GoogleService-Info.plist */; };
 		20660F6F2738054200E6E808 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660F6E2738054200E6E808 /* TableModel.swift */; };
+		2066C3552745797B0060FBBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2066C3542745797B0060FBBB /* GoogleService-Info.plist */; };
 		208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
 		208FCA03272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
@@ -83,8 +83,8 @@
 		204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionsImageLoader.swift; sourceTree = "<group>"; };
 		2053404A27385DF400B9008B /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
 		205443D6272DA3A40079D152 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		20660F6C27369C0700E6E808 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		20660F6E2738054200E6E808 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
+		2066C3542745797B0060FBBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewCell.swift; sourceTree = "<group>"; };
 		208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeader.swift; sourceTree = "<group>"; };
 		208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 				FC1C806F2714B225005185D6 /* Info.plist */,
 				205443D6272DA3A40079D152 /* Protocols.swift */,
 				2097AA80272DBC0900FA6292 /* TestViewController.swift */,
-				20660F6C27369C0700E6E808 /* GoogleService-Info.plist */,
+				2066C3542745797B0060FBBB /* GoogleService-Info.plist */,
 			);
 			path = Auctix;
 			sourceTree = "<group>";
@@ -527,7 +527,7 @@
 				314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */,
 				FC1C80692714B223005185D6 /* Main.storyboard in Resources */,
 				208FCA03272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */,
-				20660F6D27369C0700E6E808 /* GoogleService-Info.plist in Resources */,
+				2066C3552745797B0060FBBB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,7 +780,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BL67M76RZ8;
+				DEVELOPMENT_TEAM = HPFL4V5BSY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Auctix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -793,7 +793,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = test.anwendung;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technopark.auctix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -810,7 +810,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BL67M76RZ8;
+				DEVELOPMENT_TEAM = HPFL4V5BSY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Auctix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -823,7 +823,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = test.anwendung;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technopark.auctix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
