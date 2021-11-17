@@ -18,54 +18,25 @@
 		04764D1A2733CD4A0094114C /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04764D192733CD4A0094114C /* AuthButton.swift */; };
 		04764D1E2733CD790094114C /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04764D1D2733CD790094114C /* DividerView.swift */; };
 		2039BA99272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
-		2039BA9A272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
-		2039BA9B272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
 		204D684C27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */; };
-		204D684D27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */; };
-		204D684E27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */; };
 		2053404B27385DF400B9008B /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053404A27385DF400B9008B /* CollectionModel.swift */; };
-		2053404C27385DF400B9008B /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053404A27385DF400B9008B /* CollectionModel.swift */; };
-		2053404D27385DF400B9008B /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053404A27385DF400B9008B /* CollectionModel.swift */; };
 		205443D7272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
-		205443D8272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
-		205443D9272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
 		20660F6D27369C0700E6E808 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20660F6C27369C0700E6E808 /* GoogleService-Info.plist */; };
 		20660F6F2738054200E6E808 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660F6E2738054200E6E808 /* TableModel.swift */; };
-		20660F702738054300E6E808 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660F6E2738054200E6E808 /* TableModel.swift */; };
-		20660F712738054300E6E808 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660F6E2738054200E6E808 /* TableModel.swift */; };
 		208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
-		208FC9F8272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
-		208FC9F9272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
-		208FC9FC272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
-		208FC9FD272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
 		208FCA03272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
-		208FCA04272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
-		208FCA05272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
 		2092674327390B13002E5DE6 /* HomeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092674227390B13002E5DE6 /* HomeButtonController.swift */; };
-		2092674427390B13002E5DE6 /* HomeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092674227390B13002E5DE6 /* HomeButtonController.swift */; };
-		2092674527390B13002E5DE6 /* HomeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092674227390B13002E5DE6 /* HomeButtonController.swift */; };
 		2097AA81272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
-		2097AA82272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
-		2097AA83272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
 		20ECC333273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECC332273E7CC500CA1E00 /* ProductImageLoader.swift */; };
-		20ECC334273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECC332273E7CC500CA1E00 /* ProductImageLoader.swift */; };
-		20ECC335273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECC332273E7CC500CA1E00 /* ProductImageLoader.swift */; };
 		314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
-		314E554027242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
-		314E554127242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554327242CA000A45903 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E554227242CA000A45903 /* Nunito-Light.ttf */; };
-		314E554427242CA000A45903 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E554227242CA000A45903 /* Nunito-Light.ttf */; };
-		314E554527242CA000A45903 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E554227242CA000A45903 /* Nunito-Light.ttf */; };
-		75F8E8DCB2CD67B34373886C /* Pods_Auctix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 062AE331DA03E9473DC2ABE3 /* Pods_Auctix.framework */; };
+		D08169CBA0061ACFDB7A8772 /* Pods_Auctix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFA7995220C4A0751791EEA /* Pods_Auctix.framework */; };
 		FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80612714B223005185D6 /* AppDelegate.swift */; };
 		FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80632714B223005185D6 /* SceneDelegate.swift */; };
 		FC1C80692714B223005185D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C80672714B223005185D6 /* Main.storyboard */; };
 		FC1C806B2714B225005185D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806A2714B225005185D6 /* Assets.xcassets */; };
 		FC1C806E2714B225005185D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */; };
-		FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80782714B225005185D6 /* AuctixTests.swift */; };
-		FC1C80832714B225005185D6 /* AuctixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80822714B225005185D6 /* AuctixUITests.swift */; };
-		FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */; };
 		FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC391819273BD0B900828F1B /* TableProductModel.swift */; };
 		FC39181C273D8A8A00828F1B /* ProductBidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39181B273D8A8A00828F1B /* ProductBidModel.swift */; };
 		FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */; };
@@ -86,43 +57,16 @@
 		FCA9E18F274255CC005C42B2 /* AccountTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E18E274255CC005C42B2 /* AccountTableLayout.swift */; };
 		FCA9E191274258D6005C42B2 /* CollectionLikedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E190274258D5005C42B2 /* CollectionLikedModel.swift */; };
 		FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
-		FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
-		FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16AB27254FF6009140BF /* TableProductsController.swift */; };
 		FCAD16B12725502C009140BF /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B02725502C009140BF /* ProductCell.swift */; };
-		FCAD16B22725502C009140BF /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B02725502C009140BF /* ProductCell.swift */; };
-		FCAD16B32725502C009140BF /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B02725502C009140BF /* ProductCell.swift */; };
 		FCAD16B527255041009140BF /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B427255041009140BF /* ProductManager.swift */; };
-		FCAD16B627255041009140BF /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B427255041009140BF /* ProductManager.swift */; };
-		FCAD16B727255041009140BF /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B427255041009140BF /* ProductManager.swift */; };
 		FCAD16B927255052009140BF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B827255052009140BF /* Product.swift */; };
-		FCAD16BA27255052009140BF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B827255052009140BF /* Product.swift */; };
-		FCAD16BB27255052009140BF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16B827255052009140BF /* Product.swift */; };
 		FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16BC272969E6009140BF /* ProductViewController.swift */; };
-		FCAD16BE272969E6009140BF /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16BC272969E6009140BF /* ProductViewController.swift */; };
-		FCAD16BF272969E6009140BF /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAD16BC272969E6009140BF /* ProductViewController.swift */; };
 		FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CA271C128D00A59AA0 /* Ext+UIColor.swift */; };
 		FCFCE7CF271DD02700A59AA0 /* AccountButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */; };
 		FCFCE7D3271DD9E700A59AA0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D2271DD9E700A59AA0 /* TabBarViewController.swift */; };
 		FCFCE7D9271EB94300A59AA0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7D8271EB94300A59AA0 /* ListViewController.swift */; };
 		FCFCE7DB271EB9DC00A59AA0 /* BidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFCE7DA271EB9DC00A59AA0 /* BidViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		FC1C80752714B225005185D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FC1C80562714B223005185D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FC1C805D2714B223005185D6;
-			remoteInfo = Auctix;
-		};
-		FC1C807F2714B225005185D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FC1C80562714B223005185D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FC1C805D2714B223005185D6;
-			remoteInfo = Auctix;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		04764CBB272C2B2F0094114C /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -135,7 +79,6 @@
 		04764D172733CD330094114C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		04764D192733CD4A0094114C /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		04764D1D2733CD790094114C /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
-		062AE331DA03E9473DC2ABE3 /* Pods_Auctix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Auctix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2039BA98272AD3F800AD1A19 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionsImageLoader.swift; sourceTree = "<group>"; };
 		2053404A27385DF400B9008B /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
@@ -150,8 +93,9 @@
 		20ECC332273E7CC500CA1E00 /* ProductImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageLoader.swift; sourceTree = "<group>"; };
 		314E553E27242C9100A45903 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		314E554227242CA000A45903 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
-		7E4EDFFE311413C3AA6754FD /* Pods-Auctix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auctix.release.xcconfig"; path = "Target Support Files/Pods-Auctix/Pods-Auctix.release.xcconfig"; sourceTree = "<group>"; };
-		C523D87893DBEA5B1436D972 /* Pods-Auctix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auctix.debug.xcconfig"; path = "Target Support Files/Pods-Auctix/Pods-Auctix.debug.xcconfig"; sourceTree = "<group>"; };
+		3319A6CC7377ED55439DF7C3 /* Pods-Auctix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auctix.release.xcconfig"; path = "Target Support Files/Pods-Auctix/Pods-Auctix.release.xcconfig"; sourceTree = "<group>"; };
+		9DFA7995220C4A0751791EEA /* Pods_Auctix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Auctix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E195358302684F20DFF7EFE4 /* Pods-Auctix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auctix.debug.xcconfig"; path = "Target Support Files/Pods-Auctix/Pods-Auctix.debug.xcconfig"; sourceTree = "<group>"; };
 		FC1C805E2714B223005185D6 /* Auctix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auctix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80612714B223005185D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC1C80632714B223005185D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,9 +103,7 @@
 		FC1C806A2714B225005185D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC1C806D2714B225005185D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC1C806F2714B225005185D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC1C80742714B225005185D6 /* AuctixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuctixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80782714B225005185D6 /* AuctixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixTests.swift; sourceTree = "<group>"; };
-		FC1C807E2714B225005185D6 /* AuctixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuctixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80822714B225005185D6 /* AuctixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITests.swift; sourceTree = "<group>"; };
 		FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FC391819273BD0B900828F1B /* TableProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductModel.swift; sourceTree = "<group>"; };
@@ -200,21 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75F8E8DCB2CD67B34373886C /* Pods_Auctix.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC1C80712714B225005185D6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC1C807B2714B225005185D6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				D08169CBA0061ACFDB7A8772 /* Pods_Auctix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,10 +205,10 @@
 			name = Onboarding;
 			sourceTree = "<group>";
 		};
-		462CAC1891661D63DB04BB3C /* Frameworks */ = {
+		5988D1DE4EDEDC37352E8BC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				062AE331DA03E9473DC2ABE3 /* Pods_Auctix.framework */,
+				9DFA7995220C4A0751791EEA /* Pods_Auctix.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -288,8 +216,8 @@
 		9E678384C8CABC602CF72526 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C523D87893DBEA5B1436D972 /* Pods-Auctix.debug.xcconfig */,
-				7E4EDFFE311413C3AA6754FD /* Pods-Auctix.release.xcconfig */,
+				E195358302684F20DFF7EFE4 /* Pods-Auctix.debug.xcconfig */,
+				3319A6CC7377ED55439DF7C3 /* Pods-Auctix.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -302,7 +230,7 @@
 				FC1C80812714B225005185D6 /* AuctixUITests */,
 				FC1C805F2714B223005185D6 /* Products */,
 				9E678384C8CABC602CF72526 /* Pods */,
-				462CAC1891661D63DB04BB3C /* Frameworks */,
+				5988D1DE4EDEDC37352E8BC3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -310,8 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				FC1C805E2714B223005185D6 /* Auctix.app */,
-				FC1C80742714B225005185D6 /* AuctixTests.xctest */,
-				FC1C807E2714B225005185D6 /* AuctixUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -542,11 +468,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC1C80882714B225005185D6 /* Build configuration list for PBXNativeTarget "Auctix" */;
 			buildPhases = (
-				0055A9DB350D8E46566F3E87 /* [CP] Check Pods Manifest.lock */,
+				4F927563782B083235B5461F /* [CP] Check Pods Manifest.lock */,
 				FC1C805A2714B223005185D6 /* Sources */,
 				FC1C805B2714B223005185D6 /* Frameworks */,
 				FC1C805C2714B223005185D6 /* Resources */,
-				2350BB10B44AA68BC7181B19 /* [CP] Embed Pods Frameworks */,
+				BFA0340714EE85A34EED3B1B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -556,42 +482,6 @@
 			productName = Auctix;
 			productReference = FC1C805E2714B223005185D6 /* Auctix.app */;
 			productType = "com.apple.product-type.application";
-		};
-		FC1C80732714B225005185D6 /* AuctixTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FC1C808B2714B225005185D6 /* Build configuration list for PBXNativeTarget "AuctixTests" */;
-			buildPhases = (
-				FC1C80702714B225005185D6 /* Sources */,
-				FC1C80712714B225005185D6 /* Frameworks */,
-				FC1C80722714B225005185D6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FC1C80762714B225005185D6 /* PBXTargetDependency */,
-			);
-			name = AuctixTests;
-			productName = AuctixTests;
-			productReference = FC1C80742714B225005185D6 /* AuctixTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		FC1C807D2714B225005185D6 /* AuctixUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FC1C808E2714B225005185D6 /* Build configuration list for PBXNativeTarget "AuctixUITests" */;
-			buildPhases = (
-				FC1C807A2714B225005185D6 /* Sources */,
-				FC1C807B2714B225005185D6 /* Frameworks */,
-				FC1C807C2714B225005185D6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FC1C80802714B225005185D6 /* PBXTargetDependency */,
-			);
-			name = AuctixUITests;
-			productName = AuctixUITests;
-			productReference = FC1C807E2714B225005185D6 /* AuctixUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -605,14 +495,6 @@
 				TargetAttributes = {
 					FC1C805D2714B223005185D6 = {
 						CreatedOnToolsVersion = 13.0;
-					};
-					FC1C80732714B225005185D6 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = FC1C805D2714B223005185D6;
-					};
-					FC1C807D2714B225005185D6 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = FC1C805D2714B223005185D6;
 					};
 				};
 			};
@@ -630,8 +512,6 @@
 			projectRoot = "";
 			targets = (
 				FC1C805D2714B223005185D6 /* Auctix */,
-				FC1C80732714B225005185D6 /* AuctixTests */,
-				FC1C807D2714B225005185D6 /* AuctixUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -651,30 +531,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC1C80722714B225005185D6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				314E554427242CA000A45903 /* Nunito-Light.ttf in Resources */,
-				314E554027242C9100A45903 /* Nunito-Regular.ttf in Resources */,
-				208FCA04272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC1C807C2714B225005185D6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				314E554527242CA000A45903 /* Nunito-Light.ttf in Resources */,
-				314E554127242C9100A45903 /* Nunito-Regular.ttf in Resources */,
-				208FCA05272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0055A9DB350D8E46566F3E87 /* [CP] Check Pods Manifest.lock */ = {
+		4F927563782B083235B5461F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -696,7 +556,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2350BB10B44AA68BC7181B19 /* [CP] Embed Pods Frameworks */ = {
+		BFA0340714EE85A34EED3B1B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -774,67 +634,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC1C80702714B225005185D6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FCAD16BE272969E6009140BF /* ProductViewController.swift in Sources */,
-				FCAD16B627255041009140BF /* ProductManager.swift in Sources */,
-				2097AA82272DBC0900FA6292 /* TestViewController.swift in Sources */,
-				2053404C27385DF400B9008B /* CollectionModel.swift in Sources */,
-				208FC9FC272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
-				FC1C80792714B225005185D6 /* AuctixTests.swift in Sources */,
-				FCAD16AD27254FF6009140BF /* TableProductsController.swift in Sources */,
-				205443D8272DA3A40079D152 /* Protocols.swift in Sources */,
-				2039BA9A272AD3F800AD1A19 /* File.swift in Sources */,
-				20660F702738054300E6E808 /* TableModel.swift in Sources */,
-				FCAD16BA27255052009140BF /* Product.swift in Sources */,
-				204D684D27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */,
-				2092674427390B13002E5DE6 /* HomeButtonController.swift in Sources */,
-				208FC9F8272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
-				20ECC334273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */,
-				FCAD16B22725502C009140BF /* ProductCell.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC1C807A2714B225005185D6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				208FC9F9272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
-				208FC9FD272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
-				FC1C80852714B225005185D6 /* AuctixUITestsLaunchTests.swift in Sources */,
-				205443D9272DA3A40079D152 /* Protocols.swift in Sources */,
-				FCAD16AE27254FF6009140BF /* TableProductsController.swift in Sources */,
-				204D684E27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */,
-				FCAD16B727255041009140BF /* ProductManager.swift in Sources */,
-				20660F712738054300E6E808 /* TableModel.swift in Sources */,
-				FCAD16BF272969E6009140BF /* ProductViewController.swift in Sources */,
-				FCAD16B32725502C009140BF /* ProductCell.swift in Sources */,
-				FCAD16BB27255052009140BF /* Product.swift in Sources */,
-				2039BA9B272AD3F800AD1A19 /* File.swift in Sources */,
-				20ECC335273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */,
-				2097AA83272DBC0900FA6292 /* TestViewController.swift in Sources */,
-				FC1C80832714B225005185D6 /* AuctixUITests.swift in Sources */,
-				2092674527390B13002E5DE6 /* HomeButtonController.swift in Sources */,
-				2053404D27385DF400B9008B /* CollectionModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FC1C80762714B225005185D6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FC1C805D2714B223005185D6 /* Auctix */;
-			targetProxy = FC1C80752714B225005185D6 /* PBXContainerItemProxy */;
-		};
-		FC1C80802714B225005185D6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FC1C805D2714B223005185D6 /* Auctix */;
-			targetProxy = FC1C807F2714B225005185D6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FC1C80672714B223005185D6 /* Main.storyboard */ = {
@@ -974,7 +774,7 @@
 		};
 		FC1C80892714B225005185D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C523D87893DBEA5B1436D972 /* Pods-Auctix.debug.xcconfig */;
+			baseConfigurationReference = E195358302684F20DFF7EFE4 /* Pods-Auctix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1003,7 +803,7 @@
 		};
 		FC1C808A2714B225005185D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E4EDFFE311413C3AA6754FD /* Pods-Auctix.release.xcconfig */;
+			baseConfigurationReference = 3319A6CC7377ED55439DF7C3 /* Pods-Auctix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1032,98 +832,6 @@
 			};
 			name = Release;
 		};
-		FC1C808C2714B225005185D6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Test.AuctixTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Auctix.app/Auctix";
-			};
-			name = Debug;
-		};
-		FC1C808D2714B225005185D6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Test.AuctixTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Auctix.app/Auctix";
-			};
-			name = Release;
-		};
-		FC1C808F2714B225005185D6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Test.AuctixUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Auctix;
-			};
-			name = Debug;
-		};
-		FC1C80902714B225005185D6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Test.AuctixUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Auctix;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1141,24 +849,6 @@
 			buildConfigurations = (
 				FC1C80892714B225005185D6 /* Debug */,
 				FC1C808A2714B225005185D6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FC1C808B2714B225005185D6 /* Build configuration list for PBXNativeTarget "AuctixTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FC1C808C2714B225005185D6 /* Debug */,
-				FC1C808D2714B225005185D6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FC1C808E2714B225005185D6 /* Build configuration list for PBXNativeTarget "AuctixUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FC1C808F2714B225005185D6 /* Debug */,
-				FC1C80902714B225005185D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
