@@ -153,12 +153,13 @@ extension AccountButtonTabViewController {
 }
 
 extension AccountButtonTabViewController: SelectCollectionCell {
-    func inputCell(product: Product, products: [Product]) {
+    func inputCell(product: Product, products: [Product], imageCell: UIImage) {
         let viewController = ProductViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         viewController.product = product
         viewController.delegate = self
         self.products = products
+        viewController.productImageView.image = imageCell
         present(navigationController, animated: true, completion: nil)
     }
 }

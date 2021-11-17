@@ -170,7 +170,7 @@ class EditingAccountViewController: UIViewController {
             emailTextField.text = ""
             numberTextField.text = ""
             cityTextField.text = ""
-            self.custumAlert.showAlert(title: "Ready", message: "Your data has been successfully updated", viewController: self)
+            //self.custumAlert.showAlert(title: "Ready", message: "Your data has been successfully updated", viewController: self)
             setupNavBarHiden()
             navigationController?.popToRootViewController(animated: true)
         } else {

@@ -13,7 +13,7 @@ protocol inputImage: AnyObject {
 }
 
 protocol SelectCollectionCell: AnyObject {
-    func inputCell(product: Product, products: [Product])
+    func inputCell(product: Product, products: [Product], imageCell: UIImage)
 }
 
 protocol AccountControllerInput: AnyObject {
@@ -379,7 +379,9 @@ extension ViewAccount: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         let product = products[indexPath.row]
-        delegateCell?.inputCell(product: product, products: products)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ProductLikedCell else { return }
+        let imageCell = cell.getImage() ?? #imageLiteral(resourceName: "VK")
+        delegateCell?.inputCell(product: product, products: products, imageCell: imageCell)
     }
 }
 
