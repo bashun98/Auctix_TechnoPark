@@ -18,6 +18,8 @@ class RegistrationController: UIViewController {
     private let auctixLabel = UILabel()
     private let singUpLabel = UILabel()
     
+    var productController = ProductViewController()
+    
     private let numberTextField: CustomTextField = {
     let tf = CustomTextField(placeholder: "Phone")
         tf.returnKeyType = .done
@@ -109,6 +111,11 @@ class RegistrationController: UIViewController {
         registerForKeyboardNotifications()
         configureUI()
         setupDelegate()
+        //setupNavBar()
+    }
+    
+    func setupNavBar() {
+        navigationController?.navigationBar.tintColor = UIColor.blueGreen
     }
     
     func setupDelegate(){
@@ -122,10 +129,21 @@ class RegistrationController: UIViewController {
     //MARK: Selectors
 
     @objc func handleLeter() {
-        let tabBarVC = TabBarViewController()
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.window?.rootViewController = tabBarVC
-        UserDefaults.standard.set(true, forKey: "isFirstStart")
+        if ((self.navigationController?.viewControllers.first as? RegistrationController) != nil) {
+            self.dismiss(animated: true, completion: {
+                //sleep(2)
+                if Error.self == nil {
+                    
+                } else {
+                    
+                }
+            })
+        } else {
+            let tabBarVC = TabBarViewController()
+            guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+            sceneDelegate.window?.rootViewController = tabBarVC
+            UserDefaults.standard.set(true, forKey: "isFirstStart")
+        }
     }
     
     @objc func handleSignUp() {
@@ -157,6 +175,14 @@ class RegistrationController: UIViewController {
                         let controller = self.navigationController?.parent
                         if controller?.superclass?.description() == Optional<String>.some("UITabBarController") {
                             self.navigationController?.popToRootViewController(animated: false)
+                        } else if ((self.navigationController?.viewControllers.first as? RegistrationController) != nil) {
+                            self.dismiss(animated: true, completion: { 
+                                if error == nil {
+                                    self.productController.viewWillAppear(true)
+                                } else {
+                                    
+                                }
+                            })
                         } else {
                             let tabBarVC = TabBarViewController()
                             guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }

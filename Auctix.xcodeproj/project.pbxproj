@@ -17,6 +17,7 @@
 		04764D182733CD330094114C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04764D172733CD330094114C /* CustomTextField.swift */; };
 		04764D1A2733CD4A0094114C /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04764D192733CD4A0094114C /* AuthButton.swift */; };
 		04764D1E2733CD790094114C /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04764D1D2733CD790094114C /* DividerView.swift */; };
+		12D01D91F8BA49509AA17169 /* Pods_Auctix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA96ED6EABB39311E4DBEABB /* Pods_Auctix.framework */; };
 		2039BA99272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
 		204D684C27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */; };
 		2053404B27385DF400B9008B /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053404A27385DF400B9008B /* CollectionModel.swift */; };
@@ -31,7 +32,6 @@
 		20ECC333273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECC332273E7CC500CA1E00 /* ProductImageLoader.swift */; };
 		314E553F27242C9100A45903 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E553E27242C9100A45903 /* Nunito-Regular.ttf */; };
 		314E554327242CA000A45903 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 314E554227242CA000A45903 /* Nunito-Light.ttf */; };
-		D08169CBA0061ACFDB7A8772 /* Pods_Auctix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFA7995220C4A0751791EEA /* Pods_Auctix.framework */; };
 		FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80612714B223005185D6 /* AppDelegate.swift */; };
 		FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C80632714B223005185D6 /* SceneDelegate.swift */; };
 		FC1C80692714B223005185D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C80672714B223005185D6 /* Main.storyboard */; };
@@ -93,9 +93,9 @@
 		20ECC332273E7CC500CA1E00 /* ProductImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageLoader.swift; sourceTree = "<group>"; };
 		314E553E27242C9100A45903 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		314E554227242CA000A45903 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
-		3319A6CC7377ED55439DF7C3 /* Pods-Auctix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auctix.release.xcconfig"; path = "Target Support Files/Pods-Auctix/Pods-Auctix.release.xcconfig"; sourceTree = "<group>"; };
-		9DFA7995220C4A0751791EEA /* Pods_Auctix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Auctix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E195358302684F20DFF7EFE4 /* Pods-Auctix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auctix.debug.xcconfig"; path = "Target Support Files/Pods-Auctix/Pods-Auctix.debug.xcconfig"; sourceTree = "<group>"; };
+		9246E9A0C0DCCED5889C9512 /* Pods-Auctix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auctix.release.xcconfig"; path = "Target Support Files/Pods-Auctix/Pods-Auctix.release.xcconfig"; sourceTree = "<group>"; };
+		AA96ED6EABB39311E4DBEABB /* Pods_Auctix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Auctix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA6F8EC770958760262BCB5C /* Pods-Auctix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auctix.debug.xcconfig"; path = "Target Support Files/Pods-Auctix/Pods-Auctix.debug.xcconfig"; sourceTree = "<group>"; };
 		FC1C805E2714B223005185D6 /* Auctix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auctix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C80612714B223005185D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC1C80632714B223005185D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D08169CBA0061ACFDB7A8772 /* Pods_Auctix.framework in Frameworks */,
+				12D01D91F8BA49509AA17169 /* Pods_Auctix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,10 +205,10 @@
 			name = Onboarding;
 			sourceTree = "<group>";
 		};
-		5988D1DE4EDEDC37352E8BC3 /* Frameworks */ = {
+		4F5F0AF1CF00563A11D1B431 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9DFA7995220C4A0751791EEA /* Pods_Auctix.framework */,
+				AA96ED6EABB39311E4DBEABB /* Pods_Auctix.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -216,8 +216,8 @@
 		9E678384C8CABC602CF72526 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E195358302684F20DFF7EFE4 /* Pods-Auctix.debug.xcconfig */,
-				3319A6CC7377ED55439DF7C3 /* Pods-Auctix.release.xcconfig */,
+				BA6F8EC770958760262BCB5C /* Pods-Auctix.debug.xcconfig */,
+				9246E9A0C0DCCED5889C9512 /* Pods-Auctix.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -230,7 +230,7 @@
 				FC1C80812714B225005185D6 /* AuctixUITests */,
 				FC1C805F2714B223005185D6 /* Products */,
 				9E678384C8CABC602CF72526 /* Pods */,
-				5988D1DE4EDEDC37352E8BC3 /* Frameworks */,
+				4F5F0AF1CF00563A11D1B431 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -468,11 +468,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC1C80882714B225005185D6 /* Build configuration list for PBXNativeTarget "Auctix" */;
 			buildPhases = (
-				4F927563782B083235B5461F /* [CP] Check Pods Manifest.lock */,
+				5582C6636CACDA8505E41E33 /* [CP] Check Pods Manifest.lock */,
 				FC1C805A2714B223005185D6 /* Sources */,
 				FC1C805B2714B223005185D6 /* Frameworks */,
 				FC1C805C2714B223005185D6 /* Resources */,
-				BFA0340714EE85A34EED3B1B /* [CP] Embed Pods Frameworks */,
+				479B99D5FC8634FE5FD259C6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -534,7 +534,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4F927563782B083235B5461F /* [CP] Check Pods Manifest.lock */ = {
+		479B99D5FC8634FE5FD259C6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Auctix/Pods-Auctix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Auctix/Pods-Auctix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Auctix/Pods-Auctix-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5582C6636CACDA8505E41E33 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -554,23 +571,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BFA0340714EE85A34EED3B1B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Auctix/Pods-Auctix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Auctix/Pods-Auctix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Auctix/Pods-Auctix-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -774,13 +774,13 @@
 		};
 		FC1C80892714B225005185D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E195358302684F20DFF7EFE4 /* Pods-Auctix.debug.xcconfig */;
+			baseConfigurationReference = BA6F8EC770958760262BCB5C /* Pods-Auctix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPFL4V5BSY;
+				DEVELOPMENT_TEAM = BL67M76RZ8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Auctix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -793,7 +793,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.technopark.auctix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technopark.auctix.misha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -803,14 +803,14 @@
 		};
 		FC1C808A2714B225005185D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3319A6CC7377ED55439DF7C3 /* Pods-Auctix.release.xcconfig */;
+			baseConfigurationReference = 9246E9A0C0DCCED5889C9512 /* Pods-Auctix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPFL4V5BSY;
+				DEVELOPMENT_TEAM = BL67M76RZ8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Auctix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -823,7 +823,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.technopark.auctix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technopark.auctix.misha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
