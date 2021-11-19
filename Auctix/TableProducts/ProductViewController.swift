@@ -32,6 +32,7 @@ class ProductViewController: UIViewController {
     private let currency = UILabel()
     private let priceFild = UITextField()
     private let question = UILabel()
+    //private let emailLabel = UILabel()
     private var flag: Bool?
     private var flagAuth: Bool?
     private var productUrl = UILabel()
@@ -132,8 +133,6 @@ class ProductViewController: UIViewController {
         priceFild.translatesAutoresizingMaskIntoConstraints = false
         priceFild.keyboardType = .numberPad
         priceFild.addDonePriceToolBar(array: priceArray)
-        //priceFild.inputView =
-        //priceFild.inputAccessoryView = toolBar
         priceFild.textAlignment = .center
     }
     
@@ -153,7 +152,6 @@ class ProductViewController: UIViewController {
         changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         changeButton.setTitleColor(.white, for: .normal)
         changeButton.translatesAutoresizingMaskIntoConstraints = false
-        changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
         
         priceLabel.font = .systemFont(ofSize: 24, weight: .regular)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -183,33 +181,30 @@ class ProductViewController: UIViewController {
         
         if flag ?? false {
             question.text = "Want to place a bet?"
+            question.textAlignment = .left
             priceFild.isHidden = false
+            changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
             
         } else {
             question.text = "Sign in to change the price"
+            question.textAlignment = .left
             priceFild.isHidden = true
-            changeButton.isEnabled = false
-            changeButton.setTitle("Go to account page", for: .normal)
+            changeButton.setTitle("Sign in", for: .normal)
             changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+            changeButton.addTarget(self, action: #selector(didTapRegistrButton), for: .touchUpInside)
         }
         if flagAuth == false {
-            question.text = "Your mail is not confirmed"
+            question.text = "Your mail is not confirmed. Check your mail!"
+            question.textAlignment = .center
             priceFild.isHidden = true
+            changeButton.isHidden = true
             changeButton.isEnabled = false
-            changeButton.setTitle("Check your mail", for: .normal)
-            changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         }
     }
     
     func configure(with product: Product) {
         titleLabel.text = product.name
         priceLabel.text = String(product.currentPrice)
-       // productUrl.text = product.name + ".jpeg"
-//        productImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//     //   productImageView.image =
-//        imageLoader.getReference(with: productUrl.text ?? "vk.jpeg") { reference in
-//            self.productImageView.sd_setImage(with: reference, placeholderImage: nil)
-//        }
     }
     
     func setupLayuot(){
@@ -245,6 +240,7 @@ class ProductViewController: UIViewController {
             changeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             changeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             changeButton.topAnchor.constraint(equalTo: priceFild.bottomAnchor, constant: 10),
+            
         ])
     }
     
@@ -264,6 +260,14 @@ class ProductViewController: UIViewController {
             return
         }
         delegate?.didTapChatButton(productViewController: self, productName: productName, priceTextFild: priceFild.text ?? .init(), currentPrice: priceLabel.text ?? .init())
+    }
+    
+    @objc
+    private func didTapRegistrButton() {
+        let viewController = RegistrationController()
+        viewController.productController = self
+        let navigationController = UINavigationController(rootViewController: viewController)
+        present(navigationController, animated: true, completion: nil)
     }
     
 }
@@ -324,9 +328,7 @@ extension ProductViewController {
             let bottomOfTextField = activeTextField.convert(activeTextField.bounds, to: self.view).maxY;
             let topOfKeyboard = self.view.frame.height - keyboardSize.height
             
-            if bottomOfTextField > topOfKeyboard {
-                shouldMoveViewUp = true
-            }
+            shouldMoveViewUp = bottomOfTextField > topOfKeyboard ? true : false
         }
         
         if(shouldMoveViewUp) {

@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-@testable import FirebaseMLModelDownloader
+//@testable import FirebaseMLModelDownloader
 import SDWebImage
 
 protocol TableProductControllerInput: AnyObject {
