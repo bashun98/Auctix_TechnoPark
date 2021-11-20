@@ -19,18 +19,12 @@ class BidViewController: UIViewController {
     private var products: [Product] = []
     private var productsNew: [Product] = []
     private var imageLoader = ProductImageLoader.shared
-//    
-//    private var products: [Product] = [] {
-//            didSet {
-//                tableView.reloadData()
-//            }
-//        }
-    
     private let custumAlert = CustomAlert()
     private let model: BidTableProductModelDescription = BidTableProductModel()
     private let productsTableView = UITableView()
     private let viewNoProducts = ViewNoProducts()
     private var flag = false
+    private var flagIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +61,7 @@ class BidViewController: UIViewController {
                 setupLayoutTable()
             } else {
                 setupModel()
+                productsTableView.reloadData()
             }
         }
         if flag == false {
@@ -206,6 +201,14 @@ extension BidViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifireProd, for: indexPath) as? ProductCell {
             let product = products[indexPath.row]
+            cell.isFavorit = false
+            if product.idClientLiked.count != 0 {
+                for i in 0...(product.idClientLiked.count-1) {
+                    if Auth.auth().currentUser?.uid ?? "" == product.idClientLiked[i] {
+                        cell.isFavorit = true
+                    }
+                }
+            }
             cell.configure(with: product)
             let imageView = cell.getImageView()
             let imageURL: UILabel = {
@@ -214,6 +217,8 @@ extension BidViewController: UITableViewDataSource{
                 return label
             }()
             setImage(for: imageView, with: imageURL.text ?? "vk.jpeg")
+            cell.delegate = self
+            
             return cell
         }
         return .init()
@@ -241,4 +246,27 @@ extension BidViewController: ProductViewControllerDelegate {
 }
 
     
-
+extension BidViewController: ProductCellDescription {
+    func didTabButton(nameProduct: String, isFavorit: Bool) {
+        for i in 0...(products.count-1) {
+            if products[i].name == nameProduct {
+                if isFavorit {
+                    for j in 0...(products[i].idClientLiked.count-1) {
+                        if products[i].idClientLiked[j] == Auth.auth().currentUser?.uid ?? "" {
+                            products[i].idClientLiked.remove(at: j)
+                            flagIndex = i
+                        }
+                    }
+                     
+                } else {
+                    products[i].idClientLiked.append(Auth.auth().currentUser?.uid ?? "")
+                    flagIndex = i
+                }
+            }
+        }
+        model.update(product: products[flagIndex ?? 0])
+        flagIndex = nil
+        //tableView.reloadData()
+        print("gggggggggg")
+    }
+}

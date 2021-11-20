@@ -27,6 +27,11 @@ class ListViewController: UIViewController {
     private let model: TableModelDescription = TableModel()
     private var imageLoader = ExhibitionsImageLoader.shared
     
+    private let dateWithTime = Date()
+    
+    private let dateFormatter = DateFormatter()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -127,7 +132,17 @@ class ListViewController: UIViewController {
 
 extension ListViewController: ListViewControllerInput {
     func didReceive(_ exhibitions: [Exhibition]) {
-        self.exhibitions = exhibitions
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let date = dateFormatter.string(from: dateWithTime)
+        let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
+        let difference = Calendar.current as NSCalendar
+        self.exhibitions = exhibitions.compactMap {
+            if Int(difference.components(components, from: dateFormatter.date(from: date)!, to: dateFormatter.date(from: $0.expirationDate)!, options: []).day ?? 0) >= 0 {
+                     return $0
+                 } else {
+                     return nil
+                 }
+             }
         tableView.reloadData()
     }
 }

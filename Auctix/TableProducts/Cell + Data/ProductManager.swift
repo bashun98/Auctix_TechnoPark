@@ -100,6 +100,7 @@ private final class ProductConverter {
             data[Key.currentPrice.rawValue] = product.currentPrice
             data[Key.idClient.rawValue] = product.idClient
             data[Key.currentIdClient.rawValue] = product.currentIdClient
+            data[Key.idClientLiked.rawValue] = product.idClientLiked
     
             return data
         }

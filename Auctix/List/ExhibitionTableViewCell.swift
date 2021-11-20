@@ -85,7 +85,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         countryLabel.text = exhibition.country
         
         let days = calculateTimeDifference(from: exhibition.expirationDate)
-        if Int(days) == 1 {
+        if Int(days) == 0 {
             dateLabel.text = "Trading ends today!"
         } else {
             dateLabel.text = "\(days) days left until closing"

@@ -6,7 +6,11 @@
 //
 
 import UIKit
+import Firebase
 
+protocol ProductCellDescription: AnyObject {
+    func didTabButton(nameProduct: String, isFavorit: Bool)
+}
 
 class ProductCell: UITableViewCell {
     
@@ -15,9 +19,20 @@ class ProductCell: UITableViewCell {
     private let containerView = UIView()
     private let gradient = CAGradientLayer()
     private let imageProd = UIImageView()
+    private let likeImage = UIImageView()
     private let nameProd = UILabel()
     private let time = UILabel()
     private let cost = UILabel()
+    var isFavorit: Bool?
+
+    lazy var likeButton: UIButton = {
+         let button = UIButton(type: .system)
+            button.setImage(UIImage(named: "like_blue"), for: .normal)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            return button
+        }()
+    
+    unowned var delegate: ProductCellDescription?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,6 +65,7 @@ class ProductCell: UITableViewCell {
         cost.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        //containerView.isUserInteractionEnabled = false
     }
     // настройка градиента(тени) на ячейку
     func setupGradient(){
@@ -62,6 +78,7 @@ class ProductCell: UITableViewCell {
         gradient.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: -1, b: 0, c: 0, d: -5.8, tx: 1, ty: 3.4))
         gradient.bounds = bounds.insetBy(dx: -0.5*bounds.size.width, dy: -0.5*bounds.size.height)
         gradient.position = center
+        
     }
     
     public func getImageView() -> UIImageView {
@@ -72,6 +89,12 @@ class ProductCell: UITableViewCell {
         nameProd.text = data.name
         cost.text = String(data.currentPrice) + "$"
         time.text = "1 work 3 tausent"
+        if isFavorit ?? false {
+            likeButton.setImage(UIImage(named: "like_red"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(named: "like_blue"), for: .normal)
+        }
+        //isFavorit = false
     }
     
     public func getImage() -> UIImage? {
@@ -88,13 +111,20 @@ class ProductCell: UITableViewCell {
     }
     
     private func setupViews() {
-        addSubview(imageProd)
+        contentView.addSubview(imageProd)
         imageProd.addSubview(containerView)
         containerView.layer.addSublayer(gradient)
 
         imageProd.addSubview(nameProd)
         imageProd.addSubview(time)
         imageProd.addSubview(cost)
+        imageProd.addSubview(likeButton)
+        likeButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
+    }
+    
+    @objc
+    func didTabButton() {
+        delegate?.didTabButton(nameProduct: nameProd.text ?? "", isFavorit: isFavorit ?? false)
     }
 }
 
@@ -121,6 +151,11 @@ extension ProductCell {
             
             time.topAnchor.constraint(equalTo: cost.bottomAnchor, constant: 5),
             time.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            
+            likeButton.bottomAnchor.constraint(equalTo: imageProd.bottomAnchor, constant: -10),
+            likeButton.leadingAnchor.constraint(equalTo: imageProd.leadingAnchor, constant: 10),
+            likeButton.heightAnchor.constraint(equalToConstant: 30),
+            likeButton.widthAnchor.constraint(equalToConstant: 35),
        ])
   }
 }

@@ -18,7 +18,6 @@ class ProductLikedCell: UICollectionViewCell {
     private var netImage = ProductImageLoader.shared
     private let prodName = UILabel()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
