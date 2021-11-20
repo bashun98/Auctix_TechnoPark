@@ -49,6 +49,7 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupHeader() {
@@ -81,6 +82,9 @@ class ListViewController: UIViewController {
     }
     
     private func setupPickerViewConstraints() {
+        container.translatesAutoresizingMaskIntoConstraints = false
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
         container.snp.makeConstraints { make in
             make.height.equalTo(UIScreen.main.bounds.height/3)
             make.width.equalToSuperview()

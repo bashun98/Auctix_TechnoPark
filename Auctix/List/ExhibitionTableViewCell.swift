@@ -26,6 +26,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 5
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -33,6 +34,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -40,6 +42,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -47,6 +50,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -54,6 +58,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     

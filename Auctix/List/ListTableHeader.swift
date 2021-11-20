@@ -37,6 +37,7 @@ class ListTableHeader: UITableViewHeaderFooterView {
     }
     
     private func setupHeaderLabel() {
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.text = "Name" + arrow
         headerLabel.font = UIFont(name: "Nunito-Black" , size: 18)
         let tap = UITapGestureRecognizer(target: self, action: #selector(sortButtonTapped))
