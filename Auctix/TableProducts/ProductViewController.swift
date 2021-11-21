@@ -280,7 +280,7 @@ extension UITextField {
         let onFirstPrice = onFirstPrice ?? (target: self, action: #selector(firstPriceButtonTapped(_ :)))
         let onSecondPrice = onSecondPrice ?? (target: self, action: #selector(secondPriceButtonTapped(_ :)))
         
-        let toolBar = UIToolbar()
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         toolBar.barStyle = .default
         toolBar.items = [
             UIBarButtonItem(title: "\(array[0])", style: .plain, target: onFirstPrice.target, action: onFirstPrice.action),

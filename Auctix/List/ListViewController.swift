@@ -20,7 +20,7 @@ class ListViewController: UIViewController {
     private let sortingData = ["Name","City","Country"]
     private let container = UIView()
     private let picker = UIPickerView()
-    private let toolBar = UIToolbar()
+    private let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
     private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     private var sortLabel: String = " "
     private let tableView = UITableView()
@@ -64,7 +64,8 @@ class ListViewController: UIViewController {
         container.addSubview(picker)
         container.addSubview(toolBar)
         picker.backgroundColor = .white
-        toolBar.setItems([doneButton], animated: false)
+        toolBar.items = [doneButton]
+      //  toolBar.setItems([doneButton], animated: false)
         container.isUserInteractionEnabled = true
         container.isHidden = true
     }
@@ -72,7 +73,7 @@ class ListViewController: UIViewController {
     private func setupNavBar() {
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "LIST"
-        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .regular, size: 40)]
+        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .regular, size: 25)]
         navigationItem.backButtonTitle = "Back"
     }
     
