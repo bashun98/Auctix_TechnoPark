@@ -9,7 +9,7 @@ import UIKit
 
 protocol CollectionModelDescription: AnyObject {
     var output: HomeViewControllerInput? { get set }
-    func loadProducts()
+    func loadExhibitions()
 }
 
 final class CollectionModel: CollectionModelDescription {
@@ -17,7 +17,7 @@ final class CollectionModel: CollectionModelDescription {
     
     weak var output: HomeViewControllerInput?
     
-    func loadProducts() {
+    func loadExhibitions() {
         exhibitionManager.observeExhibitions()
         exhibitionManager.output = self
     }

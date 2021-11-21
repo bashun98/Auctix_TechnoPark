@@ -21,13 +21,15 @@ class ProductCell: UITableViewCell {
     private let imageProd = UIImageView()
     private let likeImage = UIImageView()
     private let nameProd = UILabel()
-    private let time = UILabel()
-    private let cost = UILabel()
+    private let actively = UILabel()
+    private let price = UILabel()
     var isFavorit: Bool?
+    var isActiv: Bool?
 
     lazy var likeButton: UIButton = {
          let button = UIButton(type: .system)
-            button.setImage(UIImage(named: "like_blue"), for: .normal)
+            button.setImage(UIImage(named: "like_red"), for: .normal)
+            button.tintColor = .white
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()
@@ -49,11 +51,11 @@ class ProductCell: UITableViewCell {
         nameProd.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         nameProd.textColor = .white
         
-        time.textColor = .white
-        time.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        actively.textColor = .white
+        actively.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         
-        cost.textColor = UIColor.honeyYellow
-        cost.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        price.textColor = UIColor.honeyYellow
+        price.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         
         imageProd.contentMode = .scaleAspectFill
         imageProd.clipsToBounds = true
@@ -61,8 +63,8 @@ class ProductCell: UITableViewCell {
         imageProd.isUserInteractionEnabled = true
         imageProd.translatesAutoresizingMaskIntoConstraints = false
         nameProd.translatesAutoresizingMaskIntoConstraints = false
-        time.translatesAutoresizingMaskIntoConstraints = false
-        cost.translatesAutoresizingMaskIntoConstraints = false
+        actively.translatesAutoresizingMaskIntoConstraints = false
+        price.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         //containerView.isUserInteractionEnabled = false
@@ -87,14 +89,20 @@ class ProductCell: UITableViewCell {
     
     func configure(with data: Product){
         nameProd.text = data.name
-        cost.text = String(data.currentPrice) + "$"
-        time.text = "1 work 3 tausent"
-        if isFavorit ?? false {
-            likeButton.setImage(UIImage(named: "like_red"), for: .normal)
+        //price.text = String(data.currentPrice) + "$"
+        if isActiv ?? false {
+            actively.text = "Bid: active"
+            price.attributedText = .none
+            price.text = (String(data.currentPrice) + "$")
         } else {
-            likeButton.setImage(UIImage(named: "like_blue"), for: .normal)
+            actively.text = "Bid: time is over"
+            price.attributedText = (String(data.currentPrice) + "$").strikeThrough()
         }
-        //isFavorit = false
+        if isFavorit ?? false {
+            likeButton.tintColor = .red
+        } else {
+            likeButton.tintColor = .white
+        }
     }
     
     public func getImage() -> UIImage? {
@@ -102,7 +110,7 @@ class ProductCell: UITableViewCell {
     }
     
     public func setupCurrentPrice(currentPrice: String){
-        cost.text = currentPrice + "$"
+        price.text = currentPrice + "$"
     }
     
     override func layoutSubviews() {
@@ -116,8 +124,8 @@ class ProductCell: UITableViewCell {
         containerView.layer.addSublayer(gradient)
 
         imageProd.addSubview(nameProd)
-        imageProd.addSubview(time)
-        imageProd.addSubview(cost)
+        imageProd.addSubview(actively)
+        imageProd.addSubview(price)
         imageProd.addSubview(likeButton)
         likeButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
     }
@@ -146,16 +154,16 @@ extension ProductCell {
             nameProd.topAnchor.constraint(equalTo: imageProd.topAnchor, constant: 10),
             nameProd.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             
-            cost.topAnchor.constraint(equalTo: nameProd.bottomAnchor, constant: 5),
-            cost.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            price.topAnchor.constraint(equalTo: nameProd.bottomAnchor, constant: 5),
+            price.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             
-            time.topAnchor.constraint(equalTo: cost.bottomAnchor, constant: 5),
-            time.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            actively.topAnchor.constraint(equalTo: price.bottomAnchor, constant: 5),
+            actively.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             
-            likeButton.bottomAnchor.constraint(equalTo: imageProd.bottomAnchor, constant: -10),
+            likeButton.topAnchor.constraint(equalTo: imageProd.topAnchor, constant: 10),
             likeButton.leadingAnchor.constraint(equalTo: imageProd.leadingAnchor, constant: 10),
-            likeButton.heightAnchor.constraint(equalToConstant: 30),
-            likeButton.widthAnchor.constraint(equalToConstant: 35),
+            likeButton.heightAnchor.constraint(equalToConstant: 24),
+            likeButton.widthAnchor.constraint(equalToConstant: 28),
        ])
   }
 }
@@ -169,5 +177,16 @@ extension ProductCell {
     
     static var identifireProd : String{
         return String(describing: self)
+    }
+}
+
+extension String {
+    func strikeThrough() -> NSAttributedString {
+        let attributeString =  NSMutableAttributedString(string: self)
+        attributeString.addAttribute(
+            NSAttributedString.Key.strikethroughStyle,
+               value: NSUnderlineStyle.single.rawValue,
+                   range:NSMakeRange(0,attributeString.length))
+        return attributeString
     }
 }

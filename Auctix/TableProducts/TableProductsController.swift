@@ -26,6 +26,7 @@ class TableProductsController: UITableViewController {
     private let model: TableProductModelDescription = TableProductModel()
     private var imageLoader = ProductImageLoader.shared
     private var flag: Int?
+    var isActiv: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +119,10 @@ extension TableProductsController {
                         cell.isFavorit = true
                     }
                 }
+            }
+            cell.isActiv = false
+            if isActiv ?? false {
+                cell.isActiv = true
             }
             cell.configure(with: product)
             let imageView = cell.getImageView()

@@ -160,7 +160,9 @@ extension ListViewController: UITableViewDelegate {
         let currentCellTxt = tableView.cellForRow(at: indexPath as IndexPath)! as? ExhibitionTableViewCell
         let rootVC = TableProductsController()
         rootVC.nameExhibition = currentCellTxt?.nameLabel.text ?? ""
+        rootVC.isActiv = true
         navigationController?.pushViewController(rootVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
