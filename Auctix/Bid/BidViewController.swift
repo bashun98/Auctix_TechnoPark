@@ -14,23 +14,23 @@ protocol BidTableProductControllerInput: AnyObject {
 }
 
 class BidViewController: UIViewController {
-
+    
     //var nameExhibition = ""
     private var products: [Product] = []
     private var productsNew: [Product] = []
+    private var exhibitions: [Exhibition] = []
     private var imageLoader = ProductImageLoader.shared
-//    
-//    private var products: [Product] = [] {
-//            didSet {
-//                tableView.reloadData()
-//            }
-//        }
-    
     private let custumAlert = CustomAlert()
     private let model: BidTableProductModelDescription = BidTableProductModel()
+    private let modelExhib: CollectionModelDescription = CollectionModel()
     private let productsTableView = UITableView()
     private let viewNoProducts = ViewNoProducts()
     private var flag = false
+    private var flagIndex: Int?
+    
+    private let dateWithTime = Date()
+    
+    private let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,7 @@ class BidViewController: UIViewController {
         setupTableView()
         setupTableCell()
         setupModel()
+        setupModelExhib()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +68,7 @@ class BidViewController: UIViewController {
                 setupLayoutTable()
             } else {
                 setupModel()
+                productsTableView.reloadData()
             }
         }
         if flag == false {
@@ -120,6 +122,11 @@ class BidViewController: UIViewController {
     private func setupModel() {
         model.loadProducts()
         model.output = self
+    }
+    
+    private func setupModelExhib() {
+        modelExhib.loadExhibitions()
+        modelExhib.output = self
     }
     
     func setupTableCell() {
@@ -184,7 +191,13 @@ extension BidViewController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? ProductCell else { return }
         let imageCell = cell.getImage()
         let viewController = ProductViewController()
+        viewController.flagActiv = false
         let navigationController = UINavigationController(rootViewController: viewController)
+        if cell.isActiv ?? false {
+            viewController.flagActiv = true
+        } else {
+            viewController.flagActiv = false
+        }
         viewController.product = product
         viewController.delegate = self
         viewController.productImageView.image = imageCell
@@ -206,6 +219,26 @@ extension BidViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifireProd, for: indexPath) as? ProductCell {
             let product = products[indexPath.row]
+            cell.isFavorit = false
+            if product.idClientLiked.count != 0 {
+                for i in 0...(product.idClientLiked.count-1) {
+                    if Auth.auth().currentUser?.uid ?? "" == product.idClientLiked[i] {
+                        cell.isFavorit = true
+                    }
+                }
+            }
+            cell.isActiv = false
+            dateFormatter.dateFormat = "dd.MM.yy"
+            let date = dateFormatter.string(from: dateWithTime)
+            let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
+            let difference = Calendar.current as NSCalendar
+            for i in 0...(exhibitions.count-1) {
+                if exhibitions[i].name == product.idExhibition {
+                    if Int(difference.components(components, from: dateFormatter.date(from: date)!, to: dateFormatter.date(from: exhibitions[i].expirationDate)!, options: []).day ?? 0) >= 0 {
+                        cell.isActiv = true
+                    }
+                }
+            }
             cell.configure(with: product)
             let imageView = cell.getImageView()
             let imageURL: UILabel = {
@@ -214,6 +247,8 @@ extension BidViewController: UITableViewDataSource{
                 return label
             }()
             setImage(for: imageView, with: imageURL.text ?? "vk.jpeg")
+            cell.delegate = self
+            
             return cell
         }
         return .init()
@@ -241,4 +276,34 @@ extension BidViewController: ProductViewControllerDelegate {
 }
 
     
+extension BidViewController: ProductCellDescription {
+    func didTabButton(nameProduct: String, isFavorit: Bool) {
+        for i in 0...(products.count-1) {
+            if products[i].name == nameProduct {
+                if isFavorit {
+                    for j in 0...(products[i].idClientLiked.count-1) {
+                        if products[i].idClientLiked[j] == Auth.auth().currentUser?.uid ?? "" {
+                            products[i].idClientLiked.remove(at: j)
+                            flagIndex = i
+                        }
+                    }
+                     
+                } else {
+                    products[i].idClientLiked.append(Auth.auth().currentUser?.uid ?? "")
+                    flagIndex = i
+                }
+            }
+        }
+        model.update(product: products[flagIndex ?? 0])
+        flagIndex = nil
+        //tableView.reloadData()
+        print("gggggggggg")
+    }
+}
 
+extension BidViewController: HomeViewControllerInput {
+    func didReceive(_ exhibitions: [Exhibition]) {
+        self.exhibitions = exhibitions
+    }
+
+}

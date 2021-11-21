@@ -13,11 +13,10 @@ class ProductLikedCell: UICollectionViewCell {
     private let gradient = CAGradientLayer()
     private let imageProd = UIImageView()
     private let nameProd = UILabel()
-    private let time = UILabel()
-    private let cost = UILabel()
+    private let actively = UILabel()
+    private let price = UILabel()
     private var netImage = ProductImageLoader.shared
     private let prodName = UILabel()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,11 +35,11 @@ class ProductLikedCell: UICollectionViewCell {
         nameProd.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         nameProd.textColor = .white
         
-        time.textColor = .white
-        time.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        actively.textColor = .white
+        actively.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         
-        cost.textColor = UIColor.honeyYellow
-        cost.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        price.textColor = UIColor.honeyYellow
+        price.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         
         imageProd.contentMode = .scaleAspectFill
         imageProd.clipsToBounds = true
@@ -48,8 +47,8 @@ class ProductLikedCell: UICollectionViewCell {
         imageProd.isUserInteractionEnabled = true
         imageProd.translatesAutoresizingMaskIntoConstraints = false
         nameProd.translatesAutoresizingMaskIntoConstraints = false
-        time.translatesAutoresizingMaskIntoConstraints = false
-        cost.translatesAutoresizingMaskIntoConstraints = false
+        actively.translatesAutoresizingMaskIntoConstraints = false
+        price.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -69,8 +68,8 @@ class ProductLikedCell: UICollectionViewCell {
     func configure(with data: Product){
         imageProd.image = #imageLiteral(resourceName: "VK")
         nameProd.text = data.name
-        cost.text = String(data.currentPrice) + "$"
-        time.text = "1 work 3 tausent"
+        price.text = String(data.currentPrice) + "$"
+        actively.text = "1 work 3 tausent"
         prodName.text = data.name + ".jpeg"
         //netImage.image(with: prodName.text!) { [weak self] image in
 //            self?.imageProd.image = image
@@ -80,7 +79,7 @@ class ProductLikedCell: UICollectionViewCell {
     
     
     public func setupCurrentPrice(currentPrice: String){
-        cost.text = currentPrice + "$"
+        price.text = currentPrice + "$"
     }
     
     override func layoutSubviews() {

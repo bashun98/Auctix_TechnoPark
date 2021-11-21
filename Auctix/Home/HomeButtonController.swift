@@ -90,7 +90,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupModel() {
-        model.loadProducts()
+        model.loadExhibitions()
         model.output = self
     }
     
@@ -112,6 +112,7 @@ extension HomeViewController  {
     func didTabButton(sender: UIButton) {
         let vc = TableProductsController()
         vc.nameExhibition = sender.titleLabel?.text ?? ""
+        vc.isActiv = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
