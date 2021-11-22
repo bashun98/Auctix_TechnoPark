@@ -120,7 +120,7 @@ class LoginController: UIViewController {
     func configureUI(){
         navigationController?.navigationBar.isHidden = true
 
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
 
         view.addSubview(iconImage)
         iconImage.centerX(inView: view)

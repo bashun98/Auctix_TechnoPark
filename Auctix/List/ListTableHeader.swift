@@ -32,7 +32,7 @@ class ListTableHeader: UITableViewHeaderFooterView {
     }
     
     private func setupContentView() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = UIColor.background
         contentView.addSubview(headerLabel)
     }
     

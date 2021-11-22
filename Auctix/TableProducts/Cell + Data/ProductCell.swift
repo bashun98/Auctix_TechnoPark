@@ -48,6 +48,7 @@ class ProductCell: UITableViewCell {
     }
     
     func setupElements() {
+        
         nameProd.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         nameProd.textColor = .white
         

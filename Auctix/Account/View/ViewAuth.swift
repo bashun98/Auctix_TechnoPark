@@ -22,7 +22,7 @@ class ViewAuth: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor.background
         addSubview(requestLabel)
         addSubview(questionLabel)
         addSubview(nextButton)
@@ -51,7 +51,7 @@ extension ViewAuth {
         questionLabel.textColor = UIColor.blueGreen
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         questionLabel.textAlignment = .center
-        questionLabel.lineBreakMode = .byCharWrapping
+        questionLabel.lineBreakMode = .byWordWrapping
         questionLabel.numberOfLines = 0
         
         requestLabel.text = "Sign in to your account."

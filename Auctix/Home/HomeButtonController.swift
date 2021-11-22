@@ -184,6 +184,7 @@ extension HomeViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ExhibitionCell.self, forCellWithReuseIdentifier: ExhibitionCell.identifire)
+        collectionView.backgroundColor = UIColor.background
     }
     // настройка навигационного бара
     func setupNavBar() {

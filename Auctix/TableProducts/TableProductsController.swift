@@ -43,7 +43,7 @@ class TableProductsController: UITableViewController {
     // настройка навигационного бара
     func setupNavBar(){
         navigationController?.navigationBar.isHidden = false
-        navigationController?.view.backgroundColor = UIColor.white
+        navigationController?.view.backgroundColor = UIColor.background
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "Products"
         navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont(name: "Nunito-Regular", size: 36) ?? UIFont.systemFont(ofSize: 36) ]
