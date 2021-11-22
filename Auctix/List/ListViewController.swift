@@ -16,12 +16,11 @@ protocol ListViewControllerInput: AnyObject {
 class ListViewController: UIViewController {
     
     private var exhibitions: [Exhibition] = []
-    private var header: ListTableHeader!
     private let sortingData = ["Name","City","Country"]
     private let container = UIView()
     private let picker = UIPickerView()
     private let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
-    private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
+    // private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     private var sortLabel: String = " "
     private let tableView = UITableView()
     private let model: TableModelDescription = TableModel()
@@ -30,8 +29,6 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupHeader()
-        setupPickerView()
         setupNavBar()
         setupModel()
     }
@@ -39,7 +36,6 @@ class ListViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tableView.frame = view.bounds
-        setupPickerViewConstraints()
     }
     
     private func setupTableView() {
@@ -50,24 +46,9 @@ class ListViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func setupHeader() {
-        header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader
-        header.delegate = self
-    }
-    
-    private func setupPickerView() {
-        picker.delegate = self
-        picker.dataSource = self
-        view.addSubview(container)
-        container.addSubview(picker)
-        container.addSubview(toolBar)
-        picker.backgroundColor = .white
-        toolBar.items = [doneButton]
-      //  toolBar.setItems([doneButton], animated: false)
-        container.isUserInteractionEnabled = true
-        container.isHidden = true
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     
     private func setupNavBar() {
@@ -82,26 +63,6 @@ class ListViewController: UIViewController {
         model.output = self
     }
     
-    private func setupPickerViewConstraints() {
-        container.translatesAutoresizingMaskIntoConstraints = false
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
-        container.snp.makeConstraints { make in
-            make.height.equalTo(UIScreen.main.bounds.height/3)
-            make.width.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-        picker.snp.makeConstraints { make in
-            make.height.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.width.equalToSuperview()
-        }
-        toolBar.snp.makeConstraints { make in
-            make.top.equalTo(picker)
-            make.width.equalToSuperview()
-        }
-    }
-    
     private func setImage(for imageView: UIImageView, with name: String) {
         imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
         imageLoader.getReference(with: name) { reference in
@@ -112,19 +73,6 @@ class ListViewController: UIViewController {
             }
         }
         
-    }
-    
-    @objc func doneButtonTapped() {
-        container.isHidden = true
-        if sortLabel == sortingData[0] {
-            exhibitions.sort(by: {$0.name < $1.name})
-        } else if sortLabel == sortingData[1] {
-            exhibitions.sort(by: {$0.city < $1.city})
-        } else {
-            exhibitions.sort(by: {$0.country < $1.country})
-        }
-        tableView.reloadData()
-        tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -154,6 +102,10 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? ListTableHeader else { return UITableViewHeaderFooterView()}
+        header.buttonDelegate = self
+        header.labelDelegate = self
+        header.configurePickerView(with: sortingData)
         return header
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -182,38 +134,24 @@ extension ListViewController: UITableViewDataSource {
         cell.selectionStyle = .default
         return cell
     }
-    
-}
-
-//MARK: - Picker View Delegate
-
-extension ListViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return sortingData[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        header.setupLabel(sortingData[row])
-        sortLabel = sortingData[row]
-    }
-}
-
-//MARK: - Picker View DataSource
-
-extension ListViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return sortingData.count
-    }
 }
 
 //MARK: - Table Header Output
 
 extension ListViewController: HeaderOutput {
-    func sortButtonTapped() {
-        container.isHidden = false
-        tabBarController?.tabBar.isHidden = true
+    func changeSortLabel(with label: String) {
+        sortLabel = label
+    }
+    
+    func doneButtonTapped() {
+        if sortLabel == sortingData[0] {
+            exhibitions.sort(by: {$0.name < $1.name})
+        } else if sortLabel == sortingData[1] {
+            exhibitions.sort(by: {$0.city < $1.city})
+        } else {
+            exhibitions.sort(by: {$0.country < $1.country})
+        }
+        tableView.reloadData()
     }
 }
+
