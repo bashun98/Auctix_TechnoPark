@@ -51,7 +51,7 @@ extension ViewAuth {
         questionLabel.textColor = UIColor.blueGreen
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         questionLabel.textAlignment = .center
-        questionLabel.lineBreakMode = .byCharWrapping
+        questionLabel.lineBreakMode = .byWordWrapping
         questionLabel.numberOfLines = 0
         
         requestLabel.text = "Sign in to your account."

@@ -140,7 +140,7 @@ class ProductViewController: UIViewController {
     }
     
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
     }
     
     func setupNavBar(){
