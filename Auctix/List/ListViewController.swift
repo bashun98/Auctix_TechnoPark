@@ -54,6 +54,7 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.background
     }
     
     private func setupHeader() {
@@ -67,7 +68,7 @@ class ListViewController: UIViewController {
         view.addSubview(container)
         container.addSubview(picker)
         container.addSubview(toolBar)
-        picker.backgroundColor = .white
+        picker.backgroundColor = UIColor.background
         toolBar.setItems([doneButton], animated: false)
         container.isUserInteractionEnabled = true
         container.isHidden = true

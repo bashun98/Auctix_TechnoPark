@@ -22,7 +22,7 @@ class ViewAuth: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor.background
         addSubview(requestLabel)
         addSubview(questionLabel)
         addSubview(nextButton)

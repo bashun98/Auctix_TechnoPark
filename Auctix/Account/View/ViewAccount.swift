@@ -161,7 +161,7 @@ extension ViewAccount {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = UIScreen.main.bounds
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor.background
         tableView.isScrollEnabled = false
     }
     
@@ -172,6 +172,7 @@ extension ViewAccount {
         collectionView.register(ProductLikedCell.self, forCellWithReuseIdentifier: ProductLikedCell.identifireProdLiked)
         setupModel()
         collectionView.reloadData()
+        collectionView.backgroundColor = UIColor.background
         
     }
     

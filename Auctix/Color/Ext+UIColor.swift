@@ -29,5 +29,8 @@ extension UIColor {
     public class var darkGrad : UIColor {
         return UIColor(named: "Grad2") ?? UIColor.white
     }
+    public class var background : UIColor {
+        return UIColor(named: "Background") ?? UIColor.white
+    }
 }
 

@@ -51,13 +51,13 @@ class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
     }
     
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
     }
     // настройка градиента(тени) для бара кнопок
     func setupTabBarLayer() {
 
         let tabGradientView = UIView(frame: self.tabBar.bounds)
-        tabGradientView.backgroundColor = UIColor.white
+        tabGradientView.backgroundColor = UIColor.background
         tabGradientView.translatesAutoresizingMaskIntoConstraints = false;
 
         self.tabBar.addSubview(tabGradientView)
