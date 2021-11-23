@@ -24,6 +24,7 @@
 		205443D7272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
 		20660F6F2738054200E6E808 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660F6E2738054200E6E808 /* TableModel.swift */; };
 		2066C3552745797B0060FBBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2066C3542745797B0060FBBB /* GoogleService-Info.plist */; };
+		208C81CE274D28E400E68417 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C81CD274D28E400E68417 /* NotificationService.swift */; };
 		208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
 		208FCA03272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
@@ -85,6 +86,7 @@
 		205443D6272DA3A40079D152 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		20660F6E2738054200E6E808 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		2066C3542745797B0060FBBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		208C81CD274D28E400E68417 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewCell.swift; sourceTree = "<group>"; };
 		208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeader.swift; sourceTree = "<group>"; };
 		208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				205443D6272DA3A40079D152 /* Protocols.swift */,
 				2097AA80272DBC0900FA6292 /* TestViewController.swift */,
 				2066C3542745797B0060FBBB /* GoogleService-Info.plist */,
+				208C81CD274D28E400E68417 /* NotificationService.swift */,
 			);
 			path = Auctix;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
+				208C81CE274D28E400E68417 /* NotificationService.swift in Sources */,
 				FCAD16B527255041009140BF /* ProductManager.swift in Sources */,
 				FC7428CD27367FAF0005C2C3 /* ViewAccount.swift in Sources */,
 				2092674327390B13002E5DE6 /* HomeButtonController.swift in Sources */,

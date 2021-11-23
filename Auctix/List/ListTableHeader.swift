@@ -9,7 +9,7 @@ import UIKit
 
 class ListTableHeader: UITableViewHeaderFooterView {
     
-    static let identifier = "header"
+    static let identifier = "ListTableHeader"
     
     private let textField = UITextField()
     private let pickerView = UIPickerView()
@@ -24,25 +24,28 @@ class ListTableHeader: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-      //  setupContentView()
-        contentView.addSubview(textField)
+        addMyView()
         setupTextField()
         setupToolBar()
-        pickerView.delegate = self
-        pickerView.dataSource = self
+        pickerViewDataAndSourse()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
         return nil
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        textField.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        //   setupButtons()
+        setupTextFieldLayout()
+    }
+    
+    private func addMyView() {
+        contentView.addSubview(textField)
+    }
+    
+    private func pickerViewDataAndSourse() {
+        pickerView.delegate = self
+        pickerView.dataSource = self
     }
     
     private func setupTextField() {
@@ -54,8 +57,14 @@ class ListTableHeader: UITableViewHeaderFooterView {
         textField.inputView = pickerView
         textField.inputAccessoryView = toolBar
         textField.tintColor = .clear
-        
     }
+    
+    private func setupTextFieldLayout() {
+        textField.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+    
     private func setupToolBar() {
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
@@ -66,13 +75,17 @@ class ListTableHeader: UITableViewHeaderFooterView {
     }
     
     public func configurePickerView(with data: [String]) {
-        for i in 0...data.count - 1 {
-            pickerData.append(data[i])
-        }
+        pickerData = data
     }
     
-    func setupLabel(_ text: String) {
+    private func setupLabel(_ text: String) {
         textField.text = text + arrow
+    }
+    
+    private func handleSelect(row: Int) {
+        let text = pickerData[row]
+        textField.text = text
+        labelDelegate?.changeSortLabel(with: text)
     }
     
     @objc
@@ -90,8 +103,7 @@ extension ListTableHeader: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        textField.text = pickerData[row]
-        labelDelegate?.changeSortLabel(with: textField.text ?? "")
+        handleSelect(row: row)
     }
 }
 

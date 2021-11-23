@@ -102,7 +102,7 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? ListTableHeader else { return UITableViewHeaderFooterView()}
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader else { return nil }
         header.buttonDelegate = self
         header.labelDelegate = self
         header.configurePickerView(with: sortingData)
@@ -144,12 +144,15 @@ extension ListViewController: HeaderOutput {
     }
     
     func doneButtonTapped() {
-        if sortLabel == sortingData[0] {
+        switch sortLabel {
+        case sortingData[0]:
             exhibitions.sort(by: {$0.name < $1.name})
-        } else if sortLabel == sortingData[1] {
+        case sortingData[1]:
             exhibitions.sort(by: {$0.city < $1.city})
-        } else {
+        case sortingData[2]:
             exhibitions.sort(by: {$0.country < $1.country})
+        default:
+            return
         }
         tableView.reloadData()
     }
