@@ -14,6 +14,8 @@ final class NotificationService {
     private let notificationIdentifier = ["notification"]
     static let shared = NotificationService()
     
+    private init(){}
+    
     func requestAuthorization() {
         notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _  in
             guard granted else { return }
@@ -36,7 +38,7 @@ final class NotificationService {
         content.title = "AUCTIX"
         content.body = "You haven't made a bet for a long time!\nLet's make it!"
         content.sound = UNNotificationSound.default
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: days * 24 * 60 * 60 , repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: days * 24 * 60 * 60, repeats: false)
         let request = UNNotificationRequest(identifier: notificationIdentifier[0], content: content, trigger: trigger)
         notificationCenter.add(request) { error in
             print(error?.localizedDescription)

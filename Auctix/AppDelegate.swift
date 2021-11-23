@@ -36,13 +36,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler(.banner)
-    }
-    
-    private func configureUserNotifications() {
-      UNUserNotificationCenter.current().delegate = self
-    }
-}
