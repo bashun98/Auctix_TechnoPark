@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListTableHeader: UITableViewHeaderFooterView {
+final class ListTableHeader: UITableViewHeaderFooterView {
     
     static let identifier = "ListTableHeader"
     
@@ -77,20 +77,19 @@ class ListTableHeader: UITableViewHeaderFooterView {
     public func configurePickerView(with data: [String]) {
         pickerData = data
     }
-    
-    private func setupLabel(_ text: String) {
-        textField.text = text + arrow
-    }
-    
+  
     private func handleSelect(row: Int) {
         let text = pickerData[row]
-        textField.text = text
+        textField.text = text + arrow
         labelDelegate?.changeSortLabel(with: text)
     }
     
     @objc
     private func doneTapped() {
         textField.resignFirstResponder()
+        if pickerView.selectedRow(inComponent: 0) == 0 {
+            handleSelect(row: 0)
+        }
         buttonDelegate?.doneButtonTapped()
     }
 }

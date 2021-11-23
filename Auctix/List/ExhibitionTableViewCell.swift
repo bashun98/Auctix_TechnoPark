@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ExhibitionTableViewCell: UITableViewCell {
+final class ExhibitionTableViewCell: UITableViewCell {
     
     private struct Constants {
         static let labelPosition: CGFloat = 20

@@ -13,14 +13,10 @@ protocol ListViewControllerInput: AnyObject {
     func didReceive(_ exhibitions: [Exhibition])
 }
 
-class ListViewController: UIViewController {
+final class ListViewController: UIViewController {
     
     private var exhibitions: [Exhibition] = []
     private let sortingData = ["Name","City","Country"]
-    private let container = UIView()
-    private let picker = UIPickerView()
-    private let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
-    // private let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
     private var sortLabel: String = " "
     private let tableView = UITableView()
     private let model: TableModelDescription = TableModel()
@@ -35,11 +31,11 @@ class ListViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        tableView.frame = view.bounds
+        setupTableViewLayout()
     }
     
     private func setupTableView() {
-        self.view.addSubview(tableView)
+        view.addSubview(tableView)
         tableView.register(ExhibitionTableViewCell.self, forCellReuseIdentifier: ExhibitionTableViewCell.identifier)
         tableView.register(ListTableHeader.self, forHeaderFooterViewReuseIdentifier: ListTableHeader.identifier)
         tableView.dataSource = self
@@ -49,6 +45,10 @@ class ListViewController: UIViewController {
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
+    }
+    
+    private func setupTableViewLayout() {
+        tableView.frame = view.bounds
     }
     
     private func setupNavBar() {
@@ -94,11 +94,7 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let currentCellTxt = tableView.cellForRow(at: indexPath as IndexPath)! as? ExhibitionTableViewCell
-        let rootVC = TableProductsController()
-        rootVC.nameExhibition = currentCellTxt?.nameLabel.text ?? ""
-        navigationController?.pushViewController(rootVC, animated: true)
+        handleSelect(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -108,8 +104,17 @@ extension ListViewController: UITableViewDelegate {
         header.configurePickerView(with: sortingData)
         return header
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
+    }
+    
+    private func handleSelect(indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let currentCellTxt = tableView.cellForRow(at: indexPath as IndexPath)! as? ExhibitionTableViewCell
+        let rootVC = TableProductsController()
+        rootVC.nameExhibition = currentCellTxt?.nameLabel.text ?? ""
+        navigationController?.pushViewController(rootVC, animated: true)
     }
 }
 
@@ -123,16 +128,20 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ExhibitionTableViewCell.identifier, for: indexPath) as? ExhibitionTableViewCell else { return UITableViewCell()}
         let exhibition = exhibitions[indexPath.row]
-        cell.configure(with: exhibition)
         let imageView = cell.getImageView()
+        cell.configure(with: exhibition)
+        cell.selectionStyle = .default
+        setCellsImage(imageView: imageView, name: exhibition.name)
+        return cell
+    }
+    
+    private func setCellsImage(imageView: UIImageView, name: String) {
         let imageURL: UILabel = {
             let label = UILabel()
-            label.text = exhibition.name + ".jpeg"
+            label.text = name + ".jpeg"
             return label
         }()
         setImage(for: imageView, with: imageURL.text ?? "vk.jpeg")
-        cell.selectionStyle = .default
-        return cell
     }
 }
 
