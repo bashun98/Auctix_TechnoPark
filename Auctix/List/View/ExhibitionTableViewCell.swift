@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol ExhibitionTableViewCellOutput: AnyObject {
+    func getSelectedCellName() -> UILabel
+}
+
 final class ExhibitionTableViewCell: UITableViewCell {
     
     private struct Constants {
@@ -19,6 +23,7 @@ final class ExhibitionTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     private let container = UIView()
     private let gradient = CAGradientLayer()
+    weak var labelDelegate: ExhibitionTableViewCellOutput?
 
     
     private let mainImageView: UIImageView = {
@@ -62,8 +67,6 @@ final class ExhibitionTableViewCell: UITableViewCell {
         return label
     }()
     
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .clear
@@ -97,7 +100,7 @@ final class ExhibitionTableViewCell: UITableViewCell {
         }
     }
     
-    func calculateTimeDifference(from dateTime1: String) -> String {
+    private func calculateTimeDifference(from dateTime1: String) -> String {
         let dateWithTime = Date()
         
         let dateFormatter = DateFormatter()

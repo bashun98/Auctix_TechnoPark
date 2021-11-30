@@ -8,16 +8,20 @@
 import UIKit
 
 protocol TableModelDescription: AnyObject {
-    var output: ListViewControllerInput? { get set }
+    var output: TableModelOutput? { get set }
     func loadProducts()
+}
+
+protocol TableModelOutput: AnyObject {
+    func didReceive(_ exhibitions: [Exhibition])
 }
 
 final class TableModel: TableModelDescription {
     private var exhibitionManager: ExhibitionManagerProtocol = ExhibitionManager.shared
     
-    weak var output: ListViewControllerInput?
+    weak var output: TableModelOutput?
     
-    func loadProducts() {
+    public func loadProducts() {
         exhibitionManager.observeExhibitions()
         exhibitionManager.output = self
     }

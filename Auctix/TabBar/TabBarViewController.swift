@@ -10,7 +10,7 @@ import Firebase
 
 class TabBarViewController: UITabBarController , UITabBarControllerDelegate {
     
-    private let listVC = UINavigationController(rootViewController: ListViewController())
+    private let listVC = UINavigationController(rootViewController: ListBuilder.createListVC())
     private let homeVC = UINavigationController(rootViewController: HomeViewController())
     private let accVC = UINavigationController(rootViewController: AccountButtonTabViewController())
     private let bidVC = UINavigationController(rootViewController: BidViewController())

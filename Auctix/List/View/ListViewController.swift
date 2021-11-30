@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-protocol ListViewControllerInput: AnyObject {
-    func didReceive(_ exhibitions: [Exhibition])
-}
+//protocol ListViewControllerInput: AnyObject {
+//    func didReceive(_ exhibitions: [Exhibition])
+//}
 
 final class ListViewController: UIViewController {
     
@@ -19,14 +19,15 @@ final class ListViewController: UIViewController {
     private let sortingData = ["Name","City","Country"]
     private var sortLabel: String = " "
     private let tableView = UITableView()
-    private let model: TableModelDescription = TableModel()
+   // private let model: TableModelDescription = TableModel()
     private var imageLoader = ExhibitionsImageLoader.shared
+    var presenter: ListPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNavBar()
-        setupModel()
+        presenter.getData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -58,9 +59,10 @@ final class ListViewController: UIViewController {
         navigationItem.backButtonTitle = "Back"
     }
     
-    private func setupModel() {
-        model.loadProducts()
-        model.output = self
+    private func callPresenter() {
+        presenter.getData()
+//        model.loadProducts()
+//        model.output = self
     }
     
     private func setImage(for imageView: UIImageView, with name: String) {
@@ -78,9 +80,9 @@ final class ListViewController: UIViewController {
 
 //MARK: - List View Controller Input
 
-extension ListViewController: ListViewControllerInput {
-    func didReceive(_ exhibitions: [Exhibition]) {
-        self.exhibitions = exhibitions
+extension ListViewController: ListViewControllerProtocol {
+    func setData(_ data: [Exhibition]) {
+        self.exhibitions = data
         tableView.reloadData()
     }
 }
@@ -94,6 +96,7 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         handleSelect(indexPath: indexPath)
     }
     
@@ -110,10 +113,9 @@ extension ListViewController: UITableViewDelegate {
     }
     
     private func handleSelect(indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let currentCellTxt = tableView.cellForRow(at: indexPath as IndexPath)! as? ExhibitionTableViewCell
+        guard let currentCell = tableView.cellForRow(at: indexPath) as? ExhibitionTableViewCell else { return }
         let rootVC = TableProductsController()
-        rootVC.nameExhibition = currentCellTxt?.nameLabel.text ?? ""
+        rootVC.nameExhibition = currentCell.nameLabel.text ?? ""
         navigationController?.pushViewController(rootVC, animated: true)
     }
 }
@@ -151,7 +153,6 @@ extension ListViewController: HeaderOutput {
     func changeSortLabel(with label: String) {
         sortLabel = label
     }
-    
     func doneButtonTapped() {
         switch sortLabel {
         case sortingData[0]:
@@ -166,4 +167,5 @@ extension ListViewController: HeaderOutput {
         tableView.reloadData()
     }
 }
+
 
