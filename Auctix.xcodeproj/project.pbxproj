@@ -491,8 +491,8 @@
 			children = (
 				FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */,
 				FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */,
-				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
 				204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */,
+				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
 			);
 			path = "Cell + Data";
 			sourceTree = "<group>";

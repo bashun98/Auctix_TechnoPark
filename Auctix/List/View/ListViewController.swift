@@ -9,19 +9,12 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-//protocol ListViewControllerInput: AnyObject {
-//    func didReceive(_ exhibitions: [Exhibition])
-//}
-
 final class ListViewController: UIViewController {
     
-    private var exhibitions: [Exhibition] = []
-    private let sortingData = ["Name","City","Country"]
     private var sortLabel: String = " "
     private let tableView = UITableView()
-   // private let model: TableModelDescription = TableModel()
     private var imageLoader = ExhibitionsImageLoader.shared
-    var presenter: ListPresenterProtocol!
+    var presenter: ListPresenterInput!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,33 +52,25 @@ final class ListViewController: UIViewController {
         navigationItem.backButtonTitle = "Back"
     }
     
-    private func callPresenter() {
-        presenter.getData()
-//        model.loadProducts()
-//        model.output = self
-    }
-    
-    private func setImage(for imageView: UIImageView, with name: String) {
+     func setImage(for imageView: UIImageView, with name: String) {
+        presenter.getReference(with: name)
         imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        imageLoader.getReference(with: name) { reference in
-            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil) { _, error, _, _ in
-                if error != nil {
-                    imageView.image = #imageLiteral(resourceName: "VK")
-                }
+        imageView.sd_setImage(with: presenter.reference!, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil) { _, error, _, _ in
+            if error != nil {
+                imageView.image = #imageLiteral(resourceName: "VK")
             }
         }
-        
     }
 }
 
 //MARK: - List View Controller Input
 
-extension ListViewController: ListViewControllerProtocol {
-    func setData(_ data: [Exhibition]) {
-        self.exhibitions = data
+extension ListViewController: ListPresenterOutput {
+    func reloadData() {
         tableView.reloadData()
     }
 }
+
 
 //MARK: - Table View Delegate
 
@@ -102,9 +87,8 @@ extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader else { return nil }
-        header.buttonDelegate = self
-        header.labelDelegate = self
-        header.configurePickerView(with: sortingData)
+        header.output = self
+        header.configurePickerView(with: presenter.pickerData)
         return header
     }
     
@@ -125,11 +109,11 @@ extension ListViewController: UITableViewDelegate {
 extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exhibitions.count
+        return presenter.itemsCount
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ExhibitionTableViewCell.identifier, for: indexPath) as? ExhibitionTableViewCell else { return UITableViewCell()}
-        let exhibition = exhibitions[indexPath.row]
+        let exhibition = presenter.item(at: indexPath.row)
         let imageView = cell.getImageView()
         cell.configure(with: exhibition)
         setCellsImage(imageView: imageView, name: exhibition.name)
@@ -149,21 +133,11 @@ extension ListViewController: UITableViewDataSource {
 //MARK: - Table Header Output
 
 extension ListViewController: HeaderOutput {
-    func changeSortLabel(with label: String) {
-        sortLabel = label
+    func changeSortLabel(with text: String) {
+        sortLabel = text
     }
     func doneButtonTapped() {
-        switch sortLabel {
-        case sortingData[0]:
-            exhibitions.sort(by: {$0.name < $1.name})
-        case sortingData[1]:
-            exhibitions.sort(by: {$0.city < $1.city})
-        case sortingData[2]:
-            exhibitions.sort(by: {$0.country < $1.country})
-        default:
-            return
-        }
-        tableView.reloadData()
+        presenter.sortData(by: sortLabel)
     }
 }
 

@@ -7,6 +7,6 @@
 
 protocol HeaderOutput: AnyObject {
     func doneButtonTapped()
-    func changeSortLabel(with label: String)
+    func changeSortLabel(with text: String)
 }
 

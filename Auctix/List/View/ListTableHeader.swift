@@ -19,8 +19,7 @@ final class ListTableHeader: UITableViewHeaderFooterView {
     
     private let contatiner = UIView()
     private let arrow: String = " ▼"
-    weak var buttonDelegate: HeaderOutput?
-    weak var labelDelegate: HeaderOutput?
+    weak var output: HeaderOutput?
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -81,7 +80,7 @@ final class ListTableHeader: UITableViewHeaderFooterView {
     private func handleSelect(row: Int) {
         let text = pickerData[row]
         textField.text = text + arrow
-        labelDelegate?.changeSortLabel(with: text)
+        output?.changeSortLabel(with: text)
     }
     
     @objc
@@ -90,7 +89,7 @@ final class ListTableHeader: UITableViewHeaderFooterView {
         if pickerView.selectedRow(inComponent: 0) == 0 {
             handleSelect(row: 0)
         }
-        buttonDelegate?.doneButtonTapped()
+        output?.doneButtonTapped()
     }
 }
 
