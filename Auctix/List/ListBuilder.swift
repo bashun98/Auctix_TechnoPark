@@ -17,6 +17,7 @@ class ListBuilder: Builder {
         let view = ListViewController()
         let presenter = ListPresenter(view: view, model: model)
         view.presenter = presenter
+        model.output = presenter
         return view
     }
 }

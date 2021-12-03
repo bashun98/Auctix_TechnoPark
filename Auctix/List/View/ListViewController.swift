@@ -132,7 +132,6 @@ extension ListViewController: UITableViewDataSource {
         let exhibition = exhibitions[indexPath.row]
         let imageView = cell.getImageView()
         cell.configure(with: exhibition)
-        cell.selectionStyle = .default
         setCellsImage(imageView: imageView, name: exhibition.name)
         return cell
     }

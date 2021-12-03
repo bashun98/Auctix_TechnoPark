@@ -30,7 +30,6 @@ class ListPresenter: ListPresenterProtocol {
     
     func getData() {
         model.loadProducts()
-        model.output = self
     }
 }
 
