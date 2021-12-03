@@ -14,13 +14,13 @@ final class ListViewController: UIViewController {
     private var sortLabel: String = " "
     private let tableView = UITableView()
     private var imageLoader = ExhibitionsImageLoader.shared
-    var presenter: ListPresenterInput!
+    var output: ListViewOutput!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNavBar()
-        presenter.getData()
+        output.getData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -52,20 +52,22 @@ final class ListViewController: UIViewController {
         navigationItem.backButtonTitle = "Back"
     }
     
-     func setImage(for imageView: UIImageView, with name: String) {
-        presenter.getReference(with: name)
-        imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        imageView.sd_setImage(with: presenter.reference!, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil) { _, error, _, _ in
-            if error != nil {
-                imageView.image = #imageLiteral(resourceName: "VK")
+    private func setImage(for imageView: UIImageView, with name: String) {
+        output.getReference(with: name) { reference in
+            imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            imageView.sd_setImage(with: reference, maxImageSize: 10 * 1024 * 1024, placeholderImage: nil) { _, error, _, _ in
+                if error != nil {
+                    imageView.image = #imageLiteral(resourceName: "VK")
+                }
             }
         }
+        
     }
 }
 
 //MARK: - List View Controller Input
 
-extension ListViewController: ListPresenterOutput {
+extension ListViewController: ListViewInput {
     func reloadData() {
         tableView.reloadData()
     }
@@ -88,7 +90,7 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTableHeader.identifier) as? ListTableHeader else { return nil }
         header.output = self
-        header.configurePickerView(with: presenter.pickerData)
+        header.configurePickerView(with: output.pickerData)
         return header
     }
     
@@ -109,11 +111,11 @@ extension ListViewController: UITableViewDelegate {
 extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.itemsCount
+        return output.itemsCount
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ExhibitionTableViewCell.identifier, for: indexPath) as? ExhibitionTableViewCell else { return UITableViewCell()}
-        let exhibition = presenter.item(at: indexPath.row)
+        let exhibition = output.item(at: indexPath.row)
         let imageView = cell.getImageView()
         cell.configure(with: exhibition)
         setCellsImage(imageView: imageView, name: exhibition.name)
@@ -137,7 +139,7 @@ extension ListViewController: HeaderOutput {
         sortLabel = text
     }
     func doneButtonTapped() {
-        presenter.sortData(by: sortLabel)
+        output.sortData(by: sortLabel)
     }
 }
 

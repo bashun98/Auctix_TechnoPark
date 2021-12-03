@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-protocol ExhibitionTableViewCellOutput: AnyObject {
-    func getSelectedCellName() -> UILabel
-}
+//protocol ExhibitionTableViewCellOutput: AnyObject {
+//    func getSelectedCellName() -> UILabel
+//}
 
 final class ExhibitionTableViewCell: UITableViewCell {
     
@@ -23,7 +23,7 @@ final class ExhibitionTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     private let container = UIView()
     private let gradient = CAGradientLayer()
-    weak var labelDelegate: ExhibitionTableViewCellOutput?
+  //  weak var labelDelegate: ExhibitionTableViewCellOutput?
 
     
     private let mainImageView: UIImageView = {

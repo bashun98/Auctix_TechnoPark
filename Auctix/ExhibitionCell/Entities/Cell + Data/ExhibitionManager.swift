@@ -8,23 +8,18 @@
 import UIKit
 import Firebase
 
-protocol ExhibitionManagerProtocol {
+protocol ExhibitionManagerDescription {
     var output: ExhibitionManagerOutput? { get set }
     func observeExhibitions()
-}
-
-protocol ExhibitionManagerOutput: AnyObject {
-    func didReceive(_ exhibitions: [Exhibition])
-    func didFail(with error: Error)
 }
 
 enum NetworkError: Error {
     case unexpected
 }
 
-class ExhibitionManager: ExhibitionManagerProtocol {
+class ExhibitionManager: ExhibitionManagerDescription {
     var output: ExhibitionManagerOutput?
-    static let shared: ExhibitionManagerProtocol = ExhibitionManager()
+    static let shared: ExhibitionManagerDescription = ExhibitionManager()
     private let database = Firestore.firestore()
     private let exhibitionConverter = ExhibitionConverter()
     

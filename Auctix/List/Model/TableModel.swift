@@ -5,33 +5,36 @@
 //  Created by Евгений Башун on 07.11.2021.
 //
 
-import UIKit
 import FirebaseStorage
-import FirebaseStorageUI
 
 protocol TableModelDescription: AnyObject {
-    var output: ListPresenterInput? { get set }
+    var output: ListModelOutput? { get set }
     func loadProducts()
-    func loadImage(with name: String)
+    func loadImage(with name: String, completion: @escaping (StorageReference) -> Void)
 }
 
 final class TableModel: TableModelDescription {
-    private var exhibitionManager: ExhibitionManagerProtocol = ExhibitionManager.shared
+    private var exhibitionManager: ExhibitionManagerDescription = ExhibitionManager.shared
     private var imageLoader = ExhibitionsImageLoader.shared
     
-    weak var output: ListPresenterInput?
+    weak var output: ListModelOutput?
     
     public func loadProducts() {
         exhibitionManager.observeExhibitions()
         exhibitionManager.output = self
     }
     
-    public func loadImage(with name: String)  {
-        imageLoader.getReference(with: name) { [weak output] reference in
-            output?.didRecieveReference(reference)
+//    public func loadImage(with name: String)  {
+//        imageLoader.getReference(with: name) { [weak output] reference in
+//            output?.didRecieveReference(reference)
+//        }
+//    }
+    
+    public func loadImage(with name: String, completion: @escaping (StorageReference) -> Void) {
+        imageLoader.getReference(with: name) { reference in
+            completion(reference)
         }
     }
-    
 }
 
 extension TableModel: ExhibitionManagerOutput {
