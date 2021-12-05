@@ -32,7 +32,6 @@
 		208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
 		208FCA03272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
-		2090F7E1274EA35F008A00FC /* UserImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090F7E0274EA35F008A00FC /* UserImageUploader.swift */; };
 		2092674327390B13002E5DE6 /* HomeButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092674227390B13002E5DE6 /* HomeButtonController.swift */; };
 		2097AA81272DBC0900FA6292 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AA80272DBC0900FA6292 /* TestViewController.swift */; };
 		20ECC333273E7CC500CA1E00 /* ProductImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECC332273E7CC500CA1E00 /* ProductImageLoader.swift */; };
@@ -99,7 +98,6 @@
 		208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewCell.swift; sourceTree = "<group>"; };
 		208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeader.swift; sourceTree = "<group>"; };
 		208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
-		2090F7E0274EA35F008A00FC /* UserImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageUploader.swift; sourceTree = "<group>"; };
 		2092674227390B13002E5DE6 /* HomeButtonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeButtonController.swift; sourceTree = "<group>"; };
 		2097AA80272DBC0900FA6292 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		20ECC332273E7CC500CA1E00 /* ProductImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageLoader.swift; sourceTree = "<group>"; };
@@ -440,7 +438,6 @@
 				FCA9E17E27418008005C42B2 /* Controller */,
 				04764CBF272C2B6F0094114C /* Data.swift */,
 				04764CC1272C2B7E0094114C /* TableViewCell */,
-				2090F7E0274EA35F008A00FC /* UserImageUploader.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -641,7 +638,6 @@
 				20672A732756767100CE2F67 /* ListBuilder.swift in Sources */,
 				FC39181C273D8A8A00828F1B /* ProductBidModel.swift in Sources */,
 				04764D1E2733CD790094114C /* DividerView.swift in Sources */,
-				2090F7E1274EA35F008A00FC /* UserImageUploader.swift in Sources */,
 				FC7428CB2735B3E40005C2C3 /* ViewAuth.swift in Sources */,
 				FCA9E18F274255CC005C42B2 /* AccountTableLayout.swift in Sources */,
 				FCA9E1812741807B005C42B2 /* EditingAccountViewController.swift in Sources */,
