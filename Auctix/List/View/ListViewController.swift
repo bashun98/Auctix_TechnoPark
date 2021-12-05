@@ -61,7 +61,6 @@ final class ListViewController: UIViewController {
                 }
             }
         }
-        
     }
 }
 
@@ -100,6 +99,7 @@ extension ListViewController: UITableViewDelegate {
     
     private func handleSelect(indexPath: IndexPath) {
         guard let currentCell = tableView.cellForRow(at: indexPath) as? ExhibitionTableViewCell else { return }
+       // output.cellTapped()
         let rootVC = TableProductsController()
         rootVC.nameExhibition = currentCell.nameLabel.text ?? ""
         navigationController?.pushViewController(rootVC, animated: true)

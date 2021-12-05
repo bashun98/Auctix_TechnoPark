@@ -28,6 +28,7 @@ protocol ListViewOutput: AnyObject {
     func getData()
     func sortData(by text: String)
     func item(at index: Int) -> Exhibition
+   // func cellTapped()
 }
 
 protocol ListViewInput: AnyObject {
@@ -37,4 +38,8 @@ protocol ListViewInput: AnyObject {
 protocol ExhibitionManagerOutput: AnyObject {
     func didReceive(_ exhibitions: [Exhibition])
     func didFail(with error: Error)
+}
+
+protocol ListRouterInput: AnyObject {
+  //  func showProducts()
 }

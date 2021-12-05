@@ -14,6 +14,7 @@ protocol ListPresenterDescription: AnyObject {
 class ListPresenter: ListPresenterDescription {
     let model: TableModelDescription!
     let view: ListViewInput!
+   // let router: ListRouterInput!
     
     var data: [Exhibition]?
     var reference: StorageReference?
@@ -28,7 +29,10 @@ class ListPresenter: ListPresenterDescription {
 }
 
 extension ListPresenter: ListViewOutput {
-   
+//    func cellTapped() {
+//        router.showProducts()
+//    }
+    
     var itemsCount: Int {
         return data?.count ?? 0
     }
@@ -58,9 +62,6 @@ extension ListPresenter: ListViewOutput {
                                           expirationDate: "")
     }
     
-//    func getReference(with name: String) {
-//        model.loadImage(with: name)
-//    }
     func getReference(with name: String, completion: @escaping (StorageReference) -> Void) {
         model.loadImage(with: name) { reference in
             completion(reference)
