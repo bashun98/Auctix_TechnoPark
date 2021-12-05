@@ -161,7 +161,8 @@ extension ViewAccount {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = UIScreen.main.bounds
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor.background
+        tableView.isScrollEnabled = false
     }
     
     func setupCollectionView(){
@@ -171,6 +172,7 @@ extension ViewAccount {
         collectionView.register(ProductLikedCell.self, forCellWithReuseIdentifier: ProductLikedCell.identifireProdLiked)
         setupModel()
         collectionView.reloadData()
+        collectionView.backgroundColor = UIColor.background
         
     }
     
@@ -245,8 +247,8 @@ extension ViewAccount {
             equalTo: safeAreaLayoutGuide.leadingAnchor))
         constraints.append(tableView.trailingAnchor.constraint(
             equalTo:safeAreaLayoutGuide.trailingAnchor))
-       constraints.append(tableView.bottomAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -220))
+        constraints.append(tableView.bottomAnchor.constraint(
+            equalTo: tableView.topAnchor, constant: 220))
         constraints.append(tableView.topAnchor.constraint(
             equalTo: emailVerificaionTitle.bottomAnchor))
      
@@ -254,10 +256,13 @@ extension ViewAccount {
             equalTo: leadingAnchor))
         constraints.append(collectionView.trailingAnchor.constraint(
             equalTo: trailingAnchor))
+        
        constraints.append(collectionView.bottomAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -5))
+        equalTo: tableView.bottomAnchor, constant: UIScreen.main.bounds.height/4))
+        
         constraints.append(collectionView.topAnchor.constraint(
-            equalTo: tableView.bottomAnchor, constant: 5))
+            equalTo: tableView.bottomAnchor))
+      
         //Activate
         NSLayoutConstraint.activate(constraints)
     }
@@ -317,26 +322,21 @@ extension ViewAccount {
     }
     //MARK: настраиваем наполнение каждой строки таблицы настроек
     func configure() {
-        models.append(Section(title: "Screen", options: [
-            .switchCell(model: SettingsSwitchOption(title: "Light/Dark mode", icon: UIImage(systemName: "airplane"), iconBackgroundColor: .systemRed, handler: {
-                
-            }, isOn: true))
-        ]))
+
         models.append(Section(title: "General", options: [
-            .staticCell(model: SettingsOption(title: "Account editing", icon: UIImage(systemName: "map"), iconBackgroundColor: .systemPink) {
+            .staticCell(model: SettingsOption(title: "Account editing", icon: UIImage(systemName: "person"), iconBackgroundColor: .systemPink) {
                 self.editCellTapped()
                 print("tapped first cell")
             }),
             .staticCell(model: SettingsOption(title: "Email confirmation letter", icon: UIImage(systemName: "bell.badge"), iconBackgroundColor: .link) {
                 self.confirmationLetter()
             }),
-            .staticCell(model:SettingsOption(title: "Payment method", icon: UIImage(systemName: "creditcard"), iconBackgroundColor: .systemGreen) {
+            .staticCell(model:SettingsOption(title: "Contact us", icon: UIImage(systemName: "questionmark.circle"), iconBackgroundColor: .systemGreen) {
                 
-            })
-        ]))
-        models.append(Section(title: "Favorites", options: [
-            .staticCell(model: SettingsOption(title: "favorites", icon: UIImage(systemName: "heart"), iconBackgroundColor: .systemRed) {
-                
+            }),
+            
+            .staticCell(model: SettingsOption(title: "Favorites", icon: UIImage(systemName: "heart"), iconBackgroundColor: .systemRed) {
+                    
             })
         ]))
     }
@@ -345,9 +345,9 @@ extension ViewAccount {
 extension UIImageView {
     //MARK: Функция позволяет сделать круглое изображение
     func makeRounded() {
-        self.layer.borderWidth = 1
+        self.layer.borderWidth = 0
         self.layer.masksToBounds = false
-        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderColor = UIColor.honeyYellow.cgColor
         self.layer.cornerRadius = self.bounds.width / 2
         self.clipsToBounds = true
         self.contentMode = .scaleAspectFill

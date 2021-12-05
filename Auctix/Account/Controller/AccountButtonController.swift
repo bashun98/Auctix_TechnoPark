@@ -16,8 +16,14 @@ class AccountButtonTabViewController: UIViewController {
     private let viewAcc = ViewAccount()
     private let custumAlert = CustomAlert()
     private let model: TableProductModelDescription = TableProductModel()
+    private let modelExhib: CollectionModelDescription = CollectionModel()
     private var products: [Product] = []
+    private var exhibitions: [Exhibition] = []
     private var imageLoader = ProductImageLoader.shared
+    
+    private let dateWithTime = Date()
+    
+    private let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +34,12 @@ class AccountButtonTabViewController: UIViewController {
         super.viewWillAppear(animated)
         setupAuth()
         setupNavBar()
+        setupModelExhib()
+    }
+    
+    private func setupModelExhib() {
+        modelExhib.loadExhibitions()
+        modelExhib.output = self
     }
     
     func setupNavBar() {
@@ -155,6 +167,19 @@ extension AccountButtonTabViewController {
 extension AccountButtonTabViewController: SelectCollectionCell {
     func inputCell(product: Product, products: [Product], imageCell: UIImage) {
         let viewController = ProductViewController()
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let date = dateFormatter.string(from: dateWithTime)
+        let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
+        let difference = Calendar.current as NSCalendar
+        for i in 0...(exhibitions.count-1) {
+            if exhibitions[i].name == product.idExhibition {
+                if Int(difference.components(components, from: dateFormatter.date(from: date)!, to: dateFormatter.date(from: exhibitions[i].expirationDate)!, options: []).day ?? 0) >= 0 {
+                    viewController.flagActiv = true
+                } else {
+                    viewController.flagActiv = false
+                }
+            }
+        }
         let navigationController = UINavigationController(rootViewController: viewController)
         viewController.product = product
         viewController.delegate = self
@@ -200,4 +225,11 @@ extension AccountButtonTabViewController: inputImage {
             }
         }
     }
+}
+
+extension AccountButtonTabViewController: HomeViewControllerInput {
+    func didReceive(_ exhibitions: [Exhibition]) {
+        self.exhibitions = exhibitions
+    }
+
 }

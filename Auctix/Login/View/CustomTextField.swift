@@ -19,11 +19,11 @@ class CustomTextField: UITextField {
         layer.cornerRadius = 10
         
         borderStyle = .none
-        textColor = .black
+        textColor = UIColor.prussianBlue.withAlphaComponent(0.6)
         keyboardAppearance = .dark
-        backgroundColor = UIColor.lightCornflowerBlue.withAlphaComponent(0.2)
+        backgroundColor = UIColor.searchColor.withAlphaComponent(0.5)
         setHeight(height: 50)
-        attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.prussianBlue.withAlphaComponent(0.5)])
+        attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor: UIColor.prussianBlue.withAlphaComponent(0.6)])
     }
     
     required init?(coder: NSCoder) {

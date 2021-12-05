@@ -35,6 +35,7 @@ class ProductViewController: UIViewController {
     //private let emailLabel = UILabel()
     private var flag: Bool?
     private var flagAuth: Bool?
+    
     private var productUrl = UILabel()
     var productImageView = UIImageView()
         
@@ -48,6 +49,8 @@ class ProductViewController: UIViewController {
     var activeTextField : UITextField? = nil
     
     public var custumAlert = CustomAlert()
+    
+    var flagActiv: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,7 +140,7 @@ class ProductViewController: UIViewController {
     }
     
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
     }
     
     func setupNavBar(){
@@ -178,23 +181,30 @@ class ProductViewController: UIViewController {
         question.numberOfLines = 0
 
         productImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        if flag ?? false {
-            question.text = "Want to place a bet?"
-            question.textAlignment = .left
-            priceFild.isHidden = false
-            changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
-            
+        if flagActiv ?? true {
+            if flag ?? false {
+                question.text = "Want to place a bet?"
+                question.textAlignment = .left
+                priceFild.isHidden = false
+                changeButton.addTarget(self, action: #selector(didTapChangeButton), for: .touchUpInside)
+                
+            } else {
+                question.text = "Sign in to change the price"
+                question.textAlignment = .left
+                priceFild.isHidden = true
+                changeButton.setTitle("Sign in", for: .normal)
+                changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+                changeButton.addTarget(self, action: #selector(didTapRegistrButton), for: .touchUpInside)
+            }
+            if flagAuth == false {
+                question.text = "Your mail is not confirmed. Check your mail!"
+                question.textAlignment = .center
+                priceFild.isHidden = true
+                changeButton.isHidden = true
+                changeButton.isEnabled = false
+            }
         } else {
-            question.text = "Sign in to change the price"
-            question.textAlignment = .left
-            priceFild.isHidden = true
-            changeButton.setTitle("Sign in", for: .normal)
-            changeButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
-            changeButton.addTarget(self, action: #selector(didTapRegistrButton), for: .touchUpInside)
-        }
-        if flagAuth == false {
-            question.text = "Your mail is not confirmed. Check your mail!"
+            question.text = "The exhibition is closed. A letter was sent to the winner about the possibility of redemption of the goods!"
             question.textAlignment = .center
             priceFild.isHidden = true
             changeButton.isHidden = true

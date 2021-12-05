@@ -78,7 +78,7 @@ class ResetPasswordController: UIViewController {
     //MARK: Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
 
         view.addSubview(iconImage)
         iconImage.centerX(inView: view)

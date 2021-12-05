@@ -40,7 +40,7 @@ extension ViewNoProducts {
         requestLabel.translatesAutoresizingMaskIntoConstraints = false
         requestLabel.textAlignment = .center
  
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.background
     }
 }
 

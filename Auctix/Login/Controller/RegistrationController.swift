@@ -205,17 +205,17 @@ class RegistrationController: UIViewController {
     //MARK: Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
 
         view.addSubview(iconImage)
         iconImage.centerX(inView: view)
         iconImage.setDimensions(height: 120, width: 120)
-        iconImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
+        iconImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 16)
         
         view.addSubview(auctixLabel)
         auctixLabel.attributedText = getAttrTitle()
         auctixLabel.centerX(inView: view)
-        auctixLabel.anchor(top: iconImage.bottomAnchor, paddingTop: 20)
+        auctixLabel.anchor(top: iconImage.bottomAnchor, paddingTop: 16)
         
         let controller = self.navigationController?.parent
         
@@ -231,8 +231,8 @@ class RegistrationController: UIViewController {
             singUpLabel.font = UIFont.boldSystemFont(ofSize: 16)
             singUpLabel.textColor = UIColor.blueGreen
         
-            logInButton.anchor(top: auctixLabel.bottomAnchor, left: view.leftAnchor, paddingTop: 32, paddingLeft: 32)
-            singUpLabel.anchor(top: auctixLabel.bottomAnchor, right: view.rightAnchor, paddingTop: 32, paddingRight: 32)
+            logInButton.anchor(top: auctixLabel.bottomAnchor, left: view.leftAnchor, paddingTop: 16, paddingLeft: 32)
+            singUpLabel.anchor(top: auctixLabel.bottomAnchor, right: view.rightAnchor, paddingTop: 16, paddingRight: 32)
         
         }
         
@@ -243,7 +243,7 @@ class RegistrationController: UIViewController {
                                                    numberTextField,
                                                    signUpButton])
         stack.axis = .vertical
-        stack.spacing = 20
+        stack.spacing = view.bounds.height / 70
         
         view.addSubview(stack)
         if controller?.superclass?.description() == Optional<String>.some("UITabBarController") {
