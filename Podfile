@@ -11,6 +11,7 @@ target 'Auctix' do
   pod 'Firebase/Firestore'
   pod 'PinLayout'
   pod 'SnapKit'
+  pod 'SwiftDate', '~> 5.0'
 end
 
 post_install do |installer|

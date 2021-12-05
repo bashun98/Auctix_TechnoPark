@@ -18,12 +18,17 @@
 		04764D1A2733CD4A0094114C /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04764D192733CD4A0094114C /* AuthButton.swift */; };
 		04764D1E2733CD790094114C /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04764D1D2733CD790094114C /* DividerView.swift */; };
 		12D01D91F8BA49509AA17169 /* Pods_Auctix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA96ED6EABB39311E4DBEABB /* Pods_Auctix.framework */; };
+		20115FBF275A919900A1A8DC /* ListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20115FBE275A919900A1A8DC /* ListProtocols.swift */; };
+		20115FC1275A92D800A1A8DC /* ListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20115FC0275A92D800A1A8DC /* ListRouter.swift */; };
 		2039BA99272AD3F800AD1A19 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039BA98272AD3F800AD1A19 /* File.swift */; };
 		204D684C27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */; };
 		2053404B27385DF400B9008B /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053404A27385DF400B9008B /* CollectionModel.swift */; };
 		205443D7272DA3A40079D152 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205443D6272DA3A40079D152 /* Protocols.swift */; };
 		20660F6F2738054200E6E808 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660F6E2738054200E6E808 /* TableModel.swift */; };
 		2066C3552745797B0060FBBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2066C3542745797B0060FBBB /* GoogleService-Info.plist */; };
+		20672A6E2756545100CE2F67 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20672A6D2756545100CE2F67 /* ListPresenter.swift */; };
+		20672A732756767100CE2F67 /* ListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20672A722756767100CE2F67 /* ListBuilder.swift */; };
+		208C81CE274D28E400E68417 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C81CD274D28E400E68417 /* NotificationService.swift */; };
 		208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */; };
 		208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */; };
 		208FCA03272ACDA900FEB6B8 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */; };
@@ -79,12 +84,17 @@
 		04764D172733CD330094114C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		04764D192733CD4A0094114C /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		04764D1D2733CD790094114C /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
+		20115FBE275A919900A1A8DC /* ListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListProtocols.swift; sourceTree = "<group>"; };
+		20115FC0275A92D800A1A8DC /* ListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouter.swift; sourceTree = "<group>"; };
 		2039BA98272AD3F800AD1A19 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionsImageLoader.swift; sourceTree = "<group>"; };
 		2053404A27385DF400B9008B /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
 		205443D6272DA3A40079D152 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		20660F6E2738054200E6E808 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		2066C3542745797B0060FBBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		20672A6D2756545100CE2F67 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
+		20672A722756767100CE2F67 /* ListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBuilder.swift; sourceTree = "<group>"; };
+		208C81CD274D28E400E68417 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewCell.swift; sourceTree = "<group>"; };
 		208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeader.swift; sourceTree = "<group>"; };
 		208FCA02272ACDA900FEB6B8 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
@@ -197,6 +207,32 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		20672A6F2756760900CE2F67 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				20672A6D2756545100CE2F67 /* ListPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		20672A702756761900CE2F67 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FCFCE7D8271EB94300A59AA0 /* ListViewController.swift */,
+				208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */,
+				208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		20672A712756762500CE2F67 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20660F6E2738054200E6E808 /* TableModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		208FC9EE272AC4C000FEB6B8 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +303,7 @@
 				205443D6272DA3A40079D152 /* Protocols.swift */,
 				2097AA80272DBC0900FA6292 /* TestViewController.swift */,
 				2066C3542745797B0060FBBB /* GoogleService-Info.plist */,
+				208C81CD274D28E400E68417 /* NotificationService.swift */,
 			);
 			path = Auctix;
 			sourceTree = "<group>";
@@ -418,10 +455,12 @@
 		FCFCE7E12721EFE400A59AA0 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				FCFCE7D8271EB94300A59AA0 /* ListViewController.swift */,
-				208FC9FA272AC89E00FEB6B8 /* ListTableHeader.swift */,
-				208FC9F6272AC64800FEB6B8 /* ExhibitionTableViewCell.swift */,
-				20660F6E2738054200E6E808 /* TableModel.swift */,
+				20672A712756762500CE2F67 /* Model */,
+				20672A702756761900CE2F67 /* View */,
+				20672A6F2756760900CE2F67 /* Presenter */,
+				20672A722756767100CE2F67 /* ListBuilder.swift */,
+				20115FBE275A919900A1A8DC /* ListProtocols.swift */,
+				20115FC0275A92D800A1A8DC /* ListRouter.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -455,8 +494,8 @@
 			children = (
 				FC5EB4C4271B5403000EA4C1 /* ExhibitionCell.swift */,
 				FC5EB4C8271B58BB000EA4C1 /* ExhibitionManager.swift */,
-				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
 				204D684B27384DF10010C375 /* ExhibitionsImageLoader.swift */,
+				FC5EB4C6271B5530000EA4C1 /* Exhibition.swift */,
 			);
 			path = "Cell + Data";
 			sourceTree = "<group>";
@@ -590,11 +629,13 @@
 				FCFCE7D9271EB94300A59AA0 /* ListViewController.swift in Sources */,
 				04764CBC272C2B2F0094114C /* SettingTableViewCell.swift in Sources */,
 				FC7428D12736AA1D0005C2C3 /* CustomAlert.swift in Sources */,
+				20672A6E2756545100CE2F67 /* ListPresenter.swift in Sources */,
 				04764CC0272C2B6F0094114C /* Data.swift in Sources */,
 				FCA9E189274189AE005C42B2 /* UserModel.swift in Sources */,
 				FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */,
 				FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */,
 				04764D162733CD130094114C /* ResetPasswordController.swift in Sources */,
+				20672A732756767100CE2F67 /* ListBuilder.swift in Sources */,
 				FC39181C273D8A8A00828F1B /* ProductBidModel.swift in Sources */,
 				04764D1E2733CD790094114C /* DividerView.swift in Sources */,
 				FC7428CB2735B3E40005C2C3 /* ViewAuth.swift in Sources */,
@@ -608,6 +649,7 @@
 				FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */,
 				FC5EB4C5271B5403000EA4C1 /* ExhibitionCell.swift in Sources */,
 				FC5EB4C7271B5530000EA4C1 /* Exhibition.swift in Sources */,
+				208C81CE274D28E400E68417 /* NotificationService.swift in Sources */,
 				FCAD16B527255041009140BF /* ProductManager.swift in Sources */,
 				FC7428CD27367FAF0005C2C3 /* ViewAccount.swift in Sources */,
 				2092674327390B13002E5DE6 /* HomeButtonController.swift in Sources */,
@@ -615,8 +657,10 @@
 				204D684C27384DF10010C375 /* ExhibitionsImageLoader.swift in Sources */,
 				FC5EB4C9271B58BB000EA4C1 /* ExhibitionManager.swift in Sources */,
 				FCA9E1842741868A005C42B2 /* UserManager.swift in Sources */,
+				20115FBF275A919900A1A8DC /* ListProtocols.swift in Sources */,
 				04764D182733CD330094114C /* CustomTextField.swift in Sources */,
 				208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
+				20115FC1275A92D800A1A8DC /* ListRouter.swift in Sources */,
 				FCA9E17D273FBEFF005C42B2 /* ViewNoProducts.swift in Sources */,
 				FCAD16B12725502C009140BF /* ProductCell.swift in Sources */,
 				04764D102733CCA40094114C /* Extentions.swift in Sources */,
@@ -780,7 +824,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BL67M76RZ8;
+				DEVELOPMENT_TEAM = HPFL4V5BSY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Auctix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -793,7 +837,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.technopark.auctix.misha;
+				PRODUCT_BUNDLE_IDENTIFIER = com.technopark.auctix.eugene;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

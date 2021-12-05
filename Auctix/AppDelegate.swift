@@ -7,30 +7,34 @@
 
 import UIKit
 import Firebase
+import UserNotifications
+import SwiftDate
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-   
-  //  var window: UIWindow?
+    private let currentDate = Date()
+
     var orientationLock = UIInterfaceOrientationMask.portrait
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        //Thread.sleep(forTimeInterval: 1.0)
         FirebaseApp.configure()
-     
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.lightCornflowerBlue], for: .normal)
+
+        NotificationService.shared.requestAuthorization()
         
+        if UserDefaults.standard.bool(forKey: "lastDate") {
+            let lastDate = UserDefaults.standard.object(forKey: "lastDate") as! Date
+            if currentDate.compareCloseTo(lastDate, precision: 5.days.timeInterval) {
+                NotificationService.shared.removeNotifications()
+            }
+        }
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    func applicationWillTerminate(_ application: UIApplication) {
+        let dateOfTermination = Date()
+        UserDefaults.standard.set(dateOfTermination, forKey: "lastDate")
+        NotificationService.shared.sendNotification(inDays: 5)
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {

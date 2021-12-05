@@ -5,10 +5,8 @@
 //  Created by Евгений Башун on 30.10.2021.
 //
 
-import Foundation
-import UIKit
-
-protocol HeaderOutput: AnyObject {
-    func sortButtonTapped()
-}
+//protocol HeaderOutput: AnyObject {
+//    func doneButtonTapped()
+//    func changeSortLabel(with text: String)
+//}
 

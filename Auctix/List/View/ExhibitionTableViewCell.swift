@@ -8,7 +8,11 @@
 import UIKit
 import SnapKit
 
-class ExhibitionTableViewCell: UITableViewCell {
+//protocol ExhibitionTableViewCellOutput: AnyObject {
+//    func getSelectedCellName() -> UILabel
+//}
+
+final class ExhibitionTableViewCell: UITableViewCell {
     
     private struct Constants {
         static let labelPosition: CGFloat = 20
@@ -19,6 +23,7 @@ class ExhibitionTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     private let container = UIView()
     private let gradient = CAGradientLayer()
+  //  weak var labelDelegate: ExhibitionTableViewCellOutput?
 
     
     private let mainImageView: UIImageView = {
@@ -26,6 +31,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 5
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -33,6 +39,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -40,6 +47,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -47,6 +55,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -54,13 +63,13 @@ class ExhibitionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .default
         contentView.backgroundColor = .clear
         setupViews()
         setupGradient()
@@ -92,7 +101,7 @@ class ExhibitionTableViewCell: UITableViewCell {
         }
     }
     
-    func calculateTimeDifference(from dateTime1: String) -> String {
+    private func calculateTimeDifference(from dateTime1: String) -> String {
         let dateWithTime = Date()
         
         let dateFormatter = DateFormatter()

@@ -13,7 +13,7 @@ protocol CollectionModelDescription: AnyObject {
 }
 
 final class CollectionModel: CollectionModelDescription {
-    private var exhibitionManager: ExhibitionManagerProtocol = ExhibitionManager.shared
+    private var exhibitionManager: ExhibitionManagerDescription = ExhibitionManager.shared
     
     weak var output: HomeViewControllerInput?
     

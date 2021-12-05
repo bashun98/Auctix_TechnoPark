@@ -46,7 +46,7 @@ class TableProductsController: UITableViewController {
         navigationController?.view.backgroundColor = UIColor.background
         navigationController?.view.tintColor = UIColor.blueGreen
         navigationItem.title = "Products"
-        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont(name: "Nunito-Regular", size: 36) ?? UIFont.systemFont(ofSize: 36) ]
+        navigationController?.navigationBar.titleTextAttributes =  [NSAttributedString.Key.foregroundColor: UIColor.blueGreen, NSAttributedString.Key.font: UIFont.get(with: .regular, size: 25)]
     }
     
     private func setupModel() {
