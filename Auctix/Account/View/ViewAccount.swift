@@ -1,10 +1,3 @@
-//
-//  ViewAccount.swift
-//  Auctix
-//
-//  Created by Михаил Шаговитов on 06.11.2021.
-//
-
 import Firebase
 import UIKit
 
@@ -41,6 +34,8 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     weak var delegateImage: inputImage?
     private var products: [Product] = []
     private var productsNew: [Product] = []
+    private var flag: Int?
+    //private let tablePC = TableProductsController()
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         
@@ -248,7 +243,7 @@ extension ViewAccount {
         constraints.append(tableView.trailingAnchor.constraint(
             equalTo:safeAreaLayoutGuide.trailingAnchor))
         constraints.append(tableView.bottomAnchor.constraint(
-            equalTo: tableView.topAnchor, constant: 220))
+            equalTo: tableView.topAnchor, constant: 240))
         constraints.append(tableView.topAnchor.constraint(
             equalTo: emailVerificaionTitle.bottomAnchor))
      
@@ -256,12 +251,11 @@ extension ViewAccount {
             equalTo: leadingAnchor))
         constraints.append(collectionView.trailingAnchor.constraint(
             equalTo: trailingAnchor))
+        constraints.append(collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10))
+        constraints.append(collectionView.heightAnchor.constraint(equalToConstant: 200))
+       //constraints.append(collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UIScreen.main.bounds.height/4))
         
-       constraints.append(collectionView.bottomAnchor.constraint(
-        equalTo: tableView.bottomAnchor, constant: UIScreen.main.bounds.height/4))
-        
-        constraints.append(collectionView.topAnchor.constraint(
-            equalTo: tableView.bottomAnchor))
+        //constraints.append(collectionView.topAnchor.constraint(equalTo: bottomAnchor, constant: -10))
       
         //Activate
         NSLayoutConstraint.activate(constraints)
@@ -360,7 +354,9 @@ extension ViewAccount: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductLikedCell.identifireProdLiked, for: indexPath) as? ProductLikedCell {
             let data = products[indexPath.row]
+            cell.isFavorit = true
             cell.configure(with: data)
+            cell.delegate = self
             let imageView = cell.getImageView()
             let imageURL: UILabel = {
                 let label = UILabel()
@@ -429,4 +425,25 @@ extension ViewAccount: AccountControllerInput {
     }
     
 }
-
+extension ViewAccount: ProductCellDescription {
+    func didTabButton(nameProduct: String, isFavorit: Bool) {
+        for i in 0...(products.count-1) {
+            if products[i].name == nameProduct {
+                if isFavorit {
+                    for j in 0...(products[i].idClientLiked.count-1) {
+                        if products[i].idClientLiked[j] == Auth.auth().currentUser?.uid ?? "" {
+                            products[i].idClientLiked.remove(at: j)
+                            flag = i
+                        }
+                    }
+            }
+        }
+        }
+        
+        model.update(product: products[flag ?? 0])
+        flag = nil
+        collectionView.reloadData()
+        //print("gggggggggg")
+    }
+        
+}

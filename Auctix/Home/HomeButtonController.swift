@@ -20,7 +20,11 @@ class HomeViewController: UIViewController {
     private let imageIconDelete = UIImageView()
     private let titleLabel = UILabel()
     private let nameLabel = UILabel()
+    
     private let searchTextField = UITextField()
+    private let searchLabel = UILabel()
+    private let searchButton = UIButton(type: .system)
+    
     private let newExhibitions = UILabel()
     private let warningLabel = UILabel()
     private var flag = Bool()
@@ -54,7 +58,7 @@ class HomeViewController: UIViewController {
         setupNavBar()
         setupLabel()
         setupCollectionView()
-        setupTextField()
+ //       setupTextField()
         setupAddition()
         setupModel()
     }
@@ -121,9 +125,11 @@ extension HomeViewController  {
 extension HomeViewController {
     
     func setupAddition() {
-        view.addSubview(titleLabel)
+        view.addSubview(titleLabel)  
         view.addSubview(nameLabel)
-        view.addSubview(searchTextField)
+        //view.addSubview(searchTextField)
+        view.addSubview(searchLabel)
+        view.addSubview(searchButton)
         view.addSubview(newExhibitions)
         //view.addSubview(warningLabel)
         view.addSubview(collectionView)
@@ -140,45 +146,50 @@ extension HomeViewController {
         nameLabel.font = .systemFont(ofSize: 20)
         nameLabel.textColor = UIColor.lightCornflowerBlue
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.textAlignment = .center
         
         newExhibitions.font = .systemFont(ofSize: 36)
         newExhibitions.textColor = UIColor.honeyYellow
         newExhibitions.translatesAutoresizingMaskIntoConstraints = false
-        
-//        warningLabel.text = "As soon as new exhibitions open, we will inform you. Now go to the List."
-//        warningLabel.font = .systemFont(ofSize: 20)
-//        warningLabel.numberOfLines = 0
-//        warningLabel.textColor = UIColor.blueGreen
-//        warningLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        searchLabel.font = .systemFont(ofSize: 20)
+        searchLabel.translatesAutoresizingMaskIntoConstraints = false
+        searchLabel.text = "Do you want to find an exhibit right away? Click here"
+        searchLabel.numberOfLines = 0
+        searchLabel.textColor = UIColor.lightCornflowerBlue
+        searchLabel.textAlignment = .center
+                
+        searchButton.backgroundColor = UIColor.blueGreen
+        searchButton.layer.cornerRadius = 8
+        searchButton.setTitle("Search product", for: .normal)
+        searchButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+        searchButton.setTitleColor(.white, for: .normal)
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
     }
-    // MARK: - настройка строки поиска
-    func setupTextField() {
-        // MARK: - картинка поиска
-        //imageIconSearch.image = UIImage(named: "Search")
-        
-        let contentViewSearch = UIView()
-        contentViewSearch.addSubview(imageIconSearch)
-        contentViewSearch.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-//        imageIconSearch.frame = CGRect(x: 2, y: 0, width: 30, height: 30)
-//        searchTextField.leftView = contentViewSearch
-//        searchTextField.leftViewMode = .always
+//    // MARK: - настройка строки поиска
+//    func setupTextField() {
+//        // MARK: - картинка поиска
+//        //imageIconSearch.image = UIImage(named: "Search")
+//        
+//        let contentViewSearch = UIView()
+//        contentViewSearch.addSubview(imageIconSearch)
+//        contentViewSearch.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
 //
-        
-        searchTextField.delegate = self
-        searchTextField.returnKeyType = .done
-        // MARK: - картнка стереть
-        searchTextField.setImage(UIImage(named: "Search"), imageWidth: 20, padding: 20, isLeft: true)
-        //searchTextField.setRightPaddingPoints(20)
-        searchTextField.clearButtonMode = .whileEditing
-        searchTextField.font = .systemFont(ofSize: 20)
-        searchTextField.placeholder = "Search..."
-        searchTextField.layer.cornerRadius = 15
-        // TODO: В константу цвет (так точно)
-        searchTextField.layer.backgroundColor = UIColor.searchColor.cgColor
-        searchTextField.translatesAutoresizingMaskIntoConstraints = false
-        
-    }
+//        searchTextField.delegate = self
+//        searchTextField.returnKeyType = .done
+//        // MARK: - картнка стереть
+//        searchTextField.setImage(UIImage(named: "Search"), imageWidth: 20, padding: 20, isLeft: true)
+//        //searchTextField.setRightPaddingPoints(20)
+//        searchTextField.clearButtonMode = .whileEditing
+//        searchTextField.font = .systemFont(ofSize: 20)
+//        searchTextField.placeholder = "Search..."
+//        searchTextField.layer.cornerRadius = 15
+//        // TODO: В константу цвет (так точно)
+//        searchTextField.layer.backgroundColor = UIColor.searchColor.cgColor
+//        searchTextField.translatesAutoresizingMaskIntoConstraints = false
+//        
+//    }
     // настройка коллекции
     func setupCollectionView(){
         collectionView.delegate = self
@@ -196,20 +207,25 @@ extension HomeViewController {
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
-            
+                    
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 41),
             nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -41),
             nameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
-            
-            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
-            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
-            searchTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-            searchTextField.heightAnchor.constraint(equalTo: nameLabel.heightAnchor, constant: 40),
-            
-            newExhibitions.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 41),
+                    
+            searchLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
+            searchLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+            searchLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+                    //searchLabel.heightAnchor.constraint(equalTo: nameLabel.heightAnchor, constant: 40),
+                    
+            searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
+            searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
+            searchButton.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 20),
+                    //searchButton.heightAnchor.constraint(equalTo: nameLabel.heightAnchor, constant: 40),
+                    
+            newExhibitions.topAnchor.constraint(equalTo: searchButton.bottomAnchor, constant: 41),
             newExhibitions.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
             newExhibitions.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
-            
+                
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
@@ -217,6 +233,11 @@ extension HomeViewController {
         ])
 
     }
+    @objc
+        private func didTapSearchButton() {
+            let rootVC = TableSearchViewController()
+            navigationController?.pushViewController(rootVC, animated: true)
+        }
 }
 
 // MARK: - Get Methods

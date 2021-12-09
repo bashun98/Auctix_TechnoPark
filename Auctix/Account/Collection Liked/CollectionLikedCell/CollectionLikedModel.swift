@@ -10,6 +10,7 @@ import UIKit
 protocol CollectionLikedModelDescription: AnyObject {
     var output: AccountControllerInput? { get set }
     func loadProducts()
+    func update(product: Product)
 }
 
 final class CollectionLikedModel: CollectionLikedModelDescription {
@@ -21,6 +22,9 @@ final class CollectionLikedModel: CollectionLikedModelDescription {
     func loadProducts() {
         productManager.observeProducts()
         productManager.output = self
+    }
+    func update(product: Product) {
+        productManager.update(product: product)
     }
 }
 

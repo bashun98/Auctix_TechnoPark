@@ -18,6 +18,19 @@ class ProductLikedCell: UICollectionViewCell {
     private var netImage = ProductImageLoader.shared
     private let prodName = UILabel()
     
+    var isFavorit: Bool?
+    var isActiv: Bool?
+    
+    weak var delegate: ProductCellDescription?
+    
+    lazy var likeButton: UIButton = {
+         let button = UIButton(type: .system)
+            button.setImage(UIImage(named: "like_red"), for: .normal)
+            button.tintColor = .white
+            button.translatesAutoresizingMaskIntoConstraints = false
+            return button
+        }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -66,14 +79,21 @@ class ProductLikedCell: UICollectionViewCell {
     }
     
     func configure(with data: Product){
-        imageProd.image = #imageLiteral(resourceName: "VK")
         nameProd.text = data.name
-        price.text = String(data.currentPrice) + "$"
-        actively.text = "1 work 3 tausent"
-        prodName.text = data.name + ".jpeg"
-        //netImage.image(with: prodName.text!) { [weak self] image in
-//            self?.imageProd.image = image
-//        }
+        //price.text = String(data.currentPrice) + "$"
+        if isActiv ?? false {
+            actively.text = "Bid: active"
+            price.attributedText = .none
+            price.text = (String(data.currentPrice) + "$")
+        } else {
+            actively.text = "Bid: time is over"
+            price.attributedText = (String(data.currentPrice) + "$").strikeThrough()
+        }
+        if isFavorit ?? false {
+            likeButton.tintColor = .red
+        } else {
+            likeButton.tintColor = .white
+        }
     }
     
     
@@ -89,6 +109,8 @@ class ProductLikedCell: UICollectionViewCell {
     
     private func setupViews() {
         contentView.addSubview(imageProd)
+        imageProd.addSubview(likeButton)
+        likeButton.addTarget(self, action: #selector(didTabButton), for: .touchUpInside)
 //        imageProd.addSubview(containerView)
 //        containerView.layer.addSublayer(gradient)
 //
@@ -100,6 +122,11 @@ class ProductLikedCell: UICollectionViewCell {
     public func getImageView() -> UIImageView {
             return imageProd
         }
+    
+    @objc
+    func didTabButton() {
+        delegate?.didTabButton(nameProduct: nameProd.text ?? "", isFavorit: isFavorit ?? false)
+    }
 }
 
 extension ProductLikedCell {
@@ -112,19 +139,11 @@ extension ProductLikedCell {
             imageProd.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageProd.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-//            containerView.topAnchor.constraint(equalTo: imageProd.topAnchor),
-//            containerView.bottomAnchor.constraint(equalTo: imageProd.bottomAnchor),
-//            containerView.leadingAnchor.constraint(equalTo: imageProd.leadingAnchor),
-//            containerView.trailingAnchor.constraint(equalTo: imageProd.trailingAnchor),
-//
-//            nameProd.topAnchor.constraint(equalTo: imageProd.topAnchor, constant: 10),
-//            nameProd.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-//
-//            cost.topAnchor.constraint(equalTo: nameProd.bottomAnchor, constant: 5),
-//            cost.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-//
-//            time.topAnchor.constraint(equalTo: cost.bottomAnchor, constant: 5),
-//            time.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            likeButton.topAnchor.constraint(equalTo: imageProd.topAnchor, constant: 10),
+            likeButton.leadingAnchor.constraint(equalTo: imageProd.leadingAnchor, constant: 10),
+            likeButton.heightAnchor.constraint(equalToConstant: 24),
+            likeButton.widthAnchor.constraint(equalToConstant: 28),
+
        ])
   }
 }

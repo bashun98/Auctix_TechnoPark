@@ -42,6 +42,8 @@
 		FC1C80692714B223005185D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C80672714B223005185D6 /* Main.storyboard */; };
 		FC1C806B2714B225005185D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806A2714B225005185D6 /* Assets.xcassets */; };
 		FC1C806E2714B225005185D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */; };
+		FC1D7B20276236020078BAF9 /* TableSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B1F276236020078BAF9 /* TableSearchTableViewController.swift */; };
+		FC1D7B22276236540078BAF9 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B21276236540078BAF9 /* SearchCell.swift */; };
 		FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC391819273BD0B900828F1B /* TableProductModel.swift */; };
 		FC39181C273D8A8A00828F1B /* ProductBidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39181B273D8A8A00828F1B /* ProductBidModel.swift */; };
 		FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */; };
@@ -116,6 +118,8 @@
 		FC1C80782714B225005185D6 /* AuctixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixTests.swift; sourceTree = "<group>"; };
 		FC1C80822714B225005185D6 /* AuctixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITests.swift; sourceTree = "<group>"; };
 		FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FC1D7B1F276236020078BAF9 /* TableSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSearchTableViewController.swift; sourceTree = "<group>"; };
+		FC1D7B21276236540078BAF9 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		FC391819273BD0B900828F1B /* TableProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductModel.swift; sourceTree = "<group>"; };
 		FC39181B273D8A8A00828F1B /* ProductBidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductBidModel.swift; sourceTree = "<group>"; };
 		FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Onboarding/OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +329,15 @@
 			path = AuctixUITests;
 			sourceTree = "<group>";
 		};
+		FC1D7B1E276235D90078BAF9 /* TableSearch */ = {
+			isa = PBXGroup;
+			children = (
+				FC1D7B1F276236020078BAF9 /* TableSearchTableViewController.swift */,
+				FC1D7B21276236540078BAF9 /* SearchCell.swift */,
+			);
+			path = TableSearch;
+			sourceTree = "<group>";
+		};
 		FC5EB4BF271B395E000EA4C1 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +434,7 @@
 		FCFCE7DE2721EFB500A59AA0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FC1D7B1E276235D90078BAF9 /* TableSearch */,
 				2092674227390B13002E5DE6 /* HomeButtonController.swift */,
 				FC555533272ADAFB005E697F /* HomeTableLayout.swift */,
 				2053404A27385DF400B9008B /* CollectionModel.swift */,
@@ -628,7 +642,9 @@
 				FCAD16B927255052009140BF /* Product.swift in Sources */,
 				FCFCE7D9271EB94300A59AA0 /* ListViewController.swift in Sources */,
 				04764CBC272C2B2F0094114C /* SettingTableViewCell.swift in Sources */,
+				FC1D7B22276236540078BAF9 /* SearchCell.swift in Sources */,
 				FC7428D12736AA1D0005C2C3 /* CustomAlert.swift in Sources */,
+				FC1D7B20276236020078BAF9 /* TableSearchTableViewController.swift in Sources */,
 				20672A6E2756545100CE2F67 /* ListPresenter.swift in Sources */,
 				04764CC0272C2B6F0094114C /* Data.swift in Sources */,
 				FCA9E189274189AE005C42B2 /* UserModel.swift in Sources */,
@@ -824,7 +840,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPFL4V5BSY;
+				DEVELOPMENT_TEAM = BL67M76RZ8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Auctix/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
