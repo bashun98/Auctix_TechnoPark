@@ -160,7 +160,7 @@ extension HomeViewController {
         searchLabel.textAlignment = .center
                 
         searchButton.backgroundColor = UIColor.blueGreen
-        searchButton.layer.cornerRadius = 8
+        searchButton.layer.cornerRadius = 18
         searchButton.setTitle("Search product", for: .normal)
         searchButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         searchButton.setTitleColor(.white, for: .normal)

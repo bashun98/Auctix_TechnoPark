@@ -102,6 +102,7 @@ extension ListViewController: UITableViewDelegate {
        // output.cellTapped()
         let rootVC = TableProductsController()
         rootVC.nameExhibition = currentCell.nameLabel.text ?? ""
+        rootVC.isActiv = true
         navigationController?.pushViewController(rootVC, animated: true)
     }
 }

@@ -15,7 +15,8 @@ class ListPresenter: ListPresenterDescription {
     let model: TableModelDescription!
     let view: ListViewInput!
    // let router: ListRouterInput!
-    
+    private let dateWithTime = Date()
+    private let dateFormatter = DateFormatter()
     var data: [Exhibition]?
     var reference: StorageReference?
     var pickerData: [String] {
@@ -71,7 +72,18 @@ extension ListPresenter: ListViewOutput {
 
 extension ListPresenter: ListModelOutput {
     func didReceive(_ exhibitions: [Exhibition]) {
-        self.data = exhibitions
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let date = dateFormatter.string(from: dateWithTime)
+        let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .year]
+        let difference = Calendar.current as NSCalendar
+        self.data = exhibitions.compactMap {
+            if Int(difference.components(components, from: dateFormatter.date(from: date)!, to: dateFormatter.date(from: $0.expirationDate)!, options: []).day ?? 0) >= 0 {
+                    return $0
+                } else {
+                    return nil
+                }
+            }
+        //self.data = exhibitions
         view.reloadData()
     }
     
