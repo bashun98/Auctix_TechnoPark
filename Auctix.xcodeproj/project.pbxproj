@@ -44,6 +44,7 @@
 		FC1C806E2714B225005185D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1C806C2714B225005185D6 /* LaunchScreen.storyboard */; };
 		FC1D7B20276236020078BAF9 /* TableSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B1F276236020078BAF9 /* TableSearchTableViewController.swift */; };
 		FC1D7B22276236540078BAF9 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B21276236540078BAF9 /* SearchCell.swift */; };
+		FC1D7B24276255FD0078BAF9 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B23276255FD0078BAF9 /* SupportViewController.swift */; };
 		FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC391819273BD0B900828F1B /* TableProductModel.swift */; };
 		FC39181C273D8A8A00828F1B /* ProductBidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39181B273D8A8A00828F1B /* ProductBidModel.swift */; };
 		FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */; };
@@ -120,6 +121,7 @@
 		FC1C80842714B225005185D6 /* AuctixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctixUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FC1D7B1F276236020078BAF9 /* TableSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSearchTableViewController.swift; sourceTree = "<group>"; };
 		FC1D7B21276236540078BAF9 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		FC1D7B23276255FD0078BAF9 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		FC391819273BD0B900828F1B /* TableProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductModel.swift; sourceTree = "<group>"; };
 		FC39181B273D8A8A00828F1B /* ProductBidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductBidModel.swift; sourceTree = "<group>"; };
 		FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Onboarding/OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 			children = (
 				FCFCE7CE271DD02700A59AA0 /* AccountButtonController.swift */,
 				FCA9E1802741807B005C42B2 /* EditingAccountViewController.swift */,
+				FC1D7B23276255FD0078BAF9 /* SupportViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				FCA9E18D274253A0005C42B2 /* ProductLikedCell.swift in Sources */,
 				208FC9FB272AC89E00FEB6B8 /* ListTableHeader.swift in Sources */,
 				FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */,
+				FC1D7B24276255FD0078BAF9 /* SupportViewController.swift in Sources */,
 				FCAD16B927255052009140BF /* Product.swift in Sources */,
 				FCFCE7D9271EB94300A59AA0 /* ListViewController.swift in Sources */,
 				04764CBC272C2B2F0094114C /* SettingTableViewCell.swift in Sources */,

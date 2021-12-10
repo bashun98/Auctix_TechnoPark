@@ -47,7 +47,7 @@ extension ViewAuth {
     func setupElements(){
         
         questionLabel.text = "Or maybe you want to register?"
-        questionLabel.font = .systemFont(ofSize: 36)
+        questionLabel.font = .systemFont(ofSize: 25)
         questionLabel.textColor = UIColor.blueGreen
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         questionLabel.textAlignment = .center
@@ -55,7 +55,7 @@ extension ViewAuth {
         questionLabel.numberOfLines = 0
         
         requestLabel.text = "Sign in to your account."
-        requestLabel.font = .systemFont(ofSize: 36)
+        requestLabel.font = .systemFont(ofSize: 25)
         requestLabel.textColor = UIColor.blueGreen
         requestLabel.translatesAutoresizingMaskIntoConstraints = false
         requestLabel.textAlignment = .center

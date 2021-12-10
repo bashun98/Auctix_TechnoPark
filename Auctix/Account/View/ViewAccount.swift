@@ -21,6 +21,10 @@ protocol GoFuncEdit: AnyObject {
     func editCellTapped()
 }
 
+protocol GoFuncSupport: AnyObject {
+    func supportCellTapped()
+}
+
 protocol GoLetter: AnyObject {
     func confirmationLetter()
 }
@@ -32,6 +36,7 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     weak var delegateEdit: GoFuncEdit?
     weak var delegateLetter: GoLetter?
     weak var delegateImage: inputImage?
+    weak var delegateSupport: GoFuncSupport?
     private var products: [Product] = []
     private var productsNew: [Product] = []
     private var flag: Int?
@@ -135,6 +140,11 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     func editCellTapped() {
         delegateEdit?.editCellTapped()
     }
+    @objc
+    func supportCellTapped() {
+        delegateSupport?.supportCellTapped()
+    }
+    
     @objc
     func CellTapped() {
         
@@ -326,7 +336,7 @@ extension ViewAccount {
                 self.confirmationLetter()
             }),
             .staticCell(model:SettingsOption(title: "Contact us", icon: UIImage(systemName: "questionmark.circle"), iconBackgroundColor: .systemGreen) {
-                
+                self.supportCellTapped()
             }),
             
             .staticCell(model: SettingsOption(title: "Favorites", icon: UIImage(systemName: "heart"), iconBackgroundColor: .systemRed) {

@@ -92,7 +92,7 @@ class EditingAccountViewController: UIViewController {
         setupDelegate()
         setupLayout()
         setupModel()
-        setupModel()
+//        setupModel()
     }
     
     private func setupModel() {

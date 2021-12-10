@@ -57,6 +57,7 @@ class AccountButtonTabViewController: UIViewController {
                 viewAcc.delegate = self
                 viewAcc.delegateEdit = self
                 viewAcc.delegateLetter = self
+                viewAcc.delegateSupport = self
                 viewAcc.delegateCell = self
                 viewAcc.delegateImage = self
                 setupLayoutAcc()
@@ -127,7 +128,7 @@ extension AccountButtonTabViewController: GoFuncAccount {
     }
 }
 
-extension AccountButtonTabViewController: GoFuncEdit {
+extension AccountButtonTabViewController: GoLetter {
     func confirmationLetter() {
         if Auth.auth().currentUser != nil && !Auth.auth().currentUser!.isEmailVerified {
             Auth.auth().currentUser!.sendEmailVerification(completion: { (error) in
@@ -145,9 +146,15 @@ extension AccountButtonTabViewController: GoFuncEdit {
     }
 }
 
-extension AccountButtonTabViewController: GoLetter {
+extension AccountButtonTabViewController: GoFuncEdit {
     func editCellTapped() {
         navigationController?.pushViewController(EditingAccountViewController(), animated: true)
+    }
+}
+
+extension AccountButtonTabViewController: GoFuncSupport {
+    func supportCellTapped() {
+        navigationController?.pushViewController(SupportViewController(), animated: true)
     }
 }
 

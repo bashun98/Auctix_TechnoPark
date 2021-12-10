@@ -34,7 +34,7 @@ extension ViewNoProducts {
     func setupElements(){
 
         requestLabel.text = "There will be products on which you will bid."
-        requestLabel.font = .systemFont(ofSize: 36)
+        requestLabel.font = .systemFont(ofSize: 25)
         requestLabel.textColor = UIColor.blueGreen
         requestLabel.numberOfLines = 0
         requestLabel.translatesAutoresizingMaskIntoConstraints = false
