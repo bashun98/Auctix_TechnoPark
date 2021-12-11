@@ -38,6 +38,7 @@ class TableProductsController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupModel()
         tableView.reloadData()
     }
     // настройка навигационного бара

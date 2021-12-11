@@ -62,8 +62,6 @@ class SupportViewController: UIViewController {
         message.font = UIFont(name: "Nutino-Regular", size: 14.0)
         message.textColor = UIColor.lightGray
         
-        //iconImage.center = self.view.center
-        
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageButton.translatesAutoresizingMaskIntoConstraints = false
         iconImage.translatesAutoresizingMaskIntoConstraints = false
@@ -136,16 +134,6 @@ extension SupportViewController: UITextViewDelegate{
         self.activeTextView = textView
 
     }
-    
-//    private func textViewDidEndEditing(_ textView: UITextView) -> Bool {
-//        if message.text == "" {
-//            message.text = "Your message"
-//            message.font = UIFont(name: "Nutino-Regular", size: 14.0)
-//            message.textColor = UIColor.lightGray
-//        }
-//
-//        return true
-//    }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {

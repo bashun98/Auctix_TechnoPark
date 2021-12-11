@@ -60,7 +60,10 @@ class AccountButtonTabViewController: UIViewController {
                 viewAcc.delegateSupport = self
                 viewAcc.delegateCell = self
                 viewAcc.delegateImage = self
+                viewAcc.delegatePhoto = self
+                viewAcc.delegateChangePhoto = self
                 setupLayoutAcc()
+                viewAcc.setupImage()
             }
             viewAcc.setupUserNameLabel()
             viewAcc.setupEmailVerLabel()
@@ -155,6 +158,63 @@ extension AccountButtonTabViewController: GoFuncEdit {
 extension AccountButtonTabViewController: GoFuncSupport {
     func supportCellTapped() {
         navigationController?.pushViewController(SupportViewController(), animated: true)
+    }
+}
+
+extension AccountButtonTabViewController: GoChangePhoto {
+    func changePhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+}
+
+extension AccountButtonTabViewController: GoUserPhoto {
+    func addPhoto() {
+        let userId = Auth.auth().currentUser?.uid ?? ""
+
+        let islandRef = Storage.storage().reference().child("UsersPhoto").child("\(userId)")
+
+        islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if let error = error {
+            self.viewAcc.image.image = #imageLiteral(resourceName: "UserDefault")
+          } else {
+            // Data for "images/island.jpg" is returned
+            let image = UIImage(data: data!)
+            self.viewAcc.image.image = image
+          }
+        }
+    }
+}
+
+extension AccountButtonTabViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        viewAcc.image.image = image
+//        let imageURL: UILabel = {
+//            let label = UILabel()
+//            label.text = Auth.auth().currentUser?.email ?? "default" + ".jpeg"
+//            return label
+//        }()
+        let userId = Auth.auth().currentUser?.uid ?? ""
+        let ref = Storage.storage().reference().child("UsersPhoto").child(userId)
+        
+        guard let imageData = viewAcc.image.image?.jpegData(compressionQuality: 0.4) else { return }
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        
+        ref.putData(imageData, metadata: metadata) { (metadata, error) in
+            guard let metadata = metadata else { return }
+            ref.downloadURL { (url, error) in
+                guard let url = url else { return }
+                
+            }
+        }
+        //setImageUser(for: viewAcc.image, with: imageURL.text ?? "vk.jpeg")
+        //viewAcc.image.image = image
     }
 }
 

@@ -29,6 +29,14 @@ protocol GoLetter: AnyObject {
     func confirmationLetter()
 }
 
+protocol GoChangePhoto: AnyObject {
+    func changePhoto()
+}
+
+protocol GoUserPhoto: AnyObject {
+    func addPhoto()
+}
+
 class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
         
     weak var delegateCell: SelectCollectionCell?
@@ -37,6 +45,8 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     weak var delegateLetter: GoLetter?
     weak var delegateImage: inputImage?
     weak var delegateSupport: GoFuncSupport?
+    weak var delegateChangePhoto: GoChangePhoto?
+    weak var delegatePhoto: GoUserPhoto?
     private var products: [Product] = []
     private var productsNew: [Product] = []
     private var flag: Int?
@@ -149,13 +159,23 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     func CellTapped() {
         
     }
+    
+    @objc
+    func changePhoto() {
+        delegateChangePhoto?.changePhoto()
+    }
+    
+    @objc
+    func addPhoto() {
+        delegatePhoto?.addPhoto()
+    }
 }
 
 
 extension ViewAccount {
     //MARK: настраиваем изображение аккаунта
     func setupImage(){
-        image.image = UIImage(named: "UserImage")
+        addPhoto()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.width/3)
         image.makeRounded()
@@ -227,7 +247,7 @@ extension ViewAccount {
         //self.title = "Account"
     }
     //MARK: добавляем констрейты для вьюх
-    private func addConstraints() {
+    func addConstraints() {
         var constraints = [NSLayoutConstraint]()
         //add
         
@@ -339,7 +359,8 @@ extension ViewAccount {
                 self.supportCellTapped()
             }),
             
-            .staticCell(model: SettingsOption(title: "Favorites", icon: UIImage(systemName: "heart"), iconBackgroundColor: .systemRed) {
+            .staticCell(model: SettingsOption(title: "Change photo", icon: UIImage(systemName: "person.crop.rectangle"), iconBackgroundColor: .systemRed) {
+                self.changePhoto()
                     
             })
         ]))
@@ -444,6 +465,7 @@ extension ViewAccount: ProductCellDescription {
                         if products[i].idClientLiked[j] == Auth.auth().currentUser?.uid ?? "" {
                             products[i].idClientLiked.remove(at: j)
                             flag = i
+                            break
                         }
                     }
             }

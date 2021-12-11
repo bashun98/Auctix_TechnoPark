@@ -138,7 +138,7 @@ class EditingAccountViewController: UIViewController {
     }
     
     func setupImage(){
-        image.image = UIImage(named: "UserImage")
+        addPhoto()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.width/3)
         image.makeRounded()
@@ -341,5 +341,24 @@ extension EditingAccountViewController: UserControllerInput {
                  }
              }
         configure()
+    }
+}
+
+
+extension EditingAccountViewController {
+    func addPhoto() {
+        let userId = Auth.auth().currentUser?.uid ?? ""
+
+        let islandRef = Storage.storage().reference().child("UsersPhoto").child("\(userId)")
+
+        islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if let error = error {
+            self.image.image = #imageLiteral(resourceName: "UserDefault")
+          } else {
+            // Data for "images/island.jpg" is returned
+            let image = UIImage(data: data!)
+            self.image.image = image
+          }
+        }
     }
 }
