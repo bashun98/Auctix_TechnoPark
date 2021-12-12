@@ -20,8 +20,8 @@ class EditingAccountViewController: UIViewController {
     
     private let user = Auth.auth().currentUser
     
-    private let image = UIImageView()
-    var emailVerificaionTitle: UILabel = {
+    private let imageView = UIImageView()
+    private var emailVerificaionTitle: UILabel = {
         let tf = UILabel()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.textColor = UIColor.lightCornflowerBlue
@@ -82,6 +82,13 @@ class EditingAccountViewController: UIViewController {
     
     private let model: UserModelDescription = UserModel()
     
+    let loadingIndicator: ProgressView = {
+            let progress = ProgressView(colors: [.red, .systemGreen, .systemBlue], lineWidth: 5)
+            progress.translatesAutoresizingMaskIntoConstraints = false
+            return progress
+        }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
@@ -92,6 +99,8 @@ class EditingAccountViewController: UIViewController {
         setupDelegate()
         setupLayout()
         setupModel()
+        loadingIndicator.animateStroke()
+        loadingIndicator.animateRotation()
 //        setupModel()
     }
     
@@ -139,9 +148,9 @@ class EditingAccountViewController: UIViewController {
     
     func setupImage(){
         addPhoto()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.width/3)
-        image.makeRounded()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.width/3)
+        imageView.makeRounded()
     }
     
     //MARK: Selectors
@@ -192,7 +201,9 @@ class EditingAccountViewController: UIViewController {
     //MARK: Helpers
     func configureUI() {
         view.backgroundColor = .white
-        view.addSubview(image)
+        view.addSubview(imageView)
+        imageView.addSubview(loadingIndicator)
+        loadingIndicator.tag = 35
         
         view.addSubview(emailVerificaionTitle)
         
@@ -204,22 +215,29 @@ class EditingAccountViewController: UIViewController {
     
     func setupLayout() {
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(
+            imageView.leadingAnchor.constraint(
                     equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width/3),
-            image.trailingAnchor.constraint(
+            imageView.trailingAnchor.constraint(
                     equalTo: view.trailingAnchor, constant: -UIScreen.main.bounds.width/3),
-            image.bottomAnchor.constraint(
+            imageView.bottomAnchor.constraint(
                     equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.width/3),
-            image.topAnchor.constraint(
+            imageView.topAnchor.constraint(
                     equalTo: view.safeAreaLayoutGuide.topAnchor),
             
-            emailVerificaionTitle.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10),
+            emailVerificaionTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             emailVerificaionTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             emailVerificaionTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             textFildButtonStack.topAnchor.constraint(equalTo: emailVerificaionTitle.bottomAnchor, constant: 16),
             textFildButtonStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
             textFildButtonStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            
+            loadingIndicator.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 47),
+            loadingIndicator.trailingAnchor.constraint(equalTo: imageView.trailingAnchor,constant: -47),
+            loadingIndicator.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -47),
+            loadingIndicator.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 47),
+            
+            
         ])
     }
         
@@ -353,11 +371,13 @@ extension EditingAccountViewController {
 
         islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
           if let error = error {
-            self.image.image = #imageLiteral(resourceName: "UserDefault")
+              self.imageView.image = #imageLiteral(resourceName: "UserDefault")
+              self.view.viewWithTag(35)?.removeFromSuperview()
           } else {
-            // Data for "images/island.jpg" is returned
-            let image = UIImage(data: data!)
-            self.image.image = image
+              guard let data = data else { return }
+              let image = UIImage(data: data)
+              self.imageView.image = image
+              self.view.viewWithTag(35)?.removeFromSuperview()
           }
         }
     }

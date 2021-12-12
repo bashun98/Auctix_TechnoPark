@@ -45,6 +45,11 @@
 		FC1D7B20276236020078BAF9 /* TableSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B1F276236020078BAF9 /* TableSearchTableViewController.swift */; };
 		FC1D7B22276236540078BAF9 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B21276236540078BAF9 /* SearchCell.swift */; };
 		FC1D7B24276255FD0078BAF9 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B23276255FD0078BAF9 /* SupportViewController.swift */; };
+		FC1D7B272766431A0078BAF9 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B262766431A0078BAF9 /* ProgressView.swift */; };
+		FC1D7B29276643420078BAF9 /* ProgressShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B28276643420078BAF9 /* ProgressShapeLayer.swift */; };
+		FC1D7B2B276643900078BAF9 /* StrokeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B2A276643900078BAF9 /* StrokeAnimation.swift */; };
+		FC1D7B2D27664C080078BAF9 /* RotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B2C27664C080078BAF9 /* RotationAnimation.swift */; };
+		FC1D7B2F27664C6F0078BAF9 /* StrokeColorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D7B2E27664C6F0078BAF9 /* StrokeColorAnimation.swift */; };
 		FC39181A273BD0B900828F1B /* TableProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC391819273BD0B900828F1B /* TableProductModel.swift */; };
 		FC39181C273D8A8A00828F1B /* ProductBidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39181B273D8A8A00828F1B /* ProductBidModel.swift */; };
 		FC48D58D272AF18900AFC1BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */; };
@@ -122,6 +127,11 @@
 		FC1D7B1F276236020078BAF9 /* TableSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSearchTableViewController.swift; sourceTree = "<group>"; };
 		FC1D7B21276236540078BAF9 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		FC1D7B23276255FD0078BAF9 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		FC1D7B262766431A0078BAF9 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		FC1D7B28276643420078BAF9 /* ProgressShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressShapeLayer.swift; sourceTree = "<group>"; };
+		FC1D7B2A276643900078BAF9 /* StrokeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeAnimation.swift; sourceTree = "<group>"; };
+		FC1D7B2C27664C080078BAF9 /* RotationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationAnimation.swift; sourceTree = "<group>"; };
+		FC1D7B2E27664C6F0078BAF9 /* StrokeColorAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeColorAnimation.swift; sourceTree = "<group>"; };
 		FC391819273BD0B900828F1B /* TableProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductModel.swift; sourceTree = "<group>"; };
 		FC39181B273D8A8A00828F1B /* ProductBidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductBidModel.swift; sourceTree = "<group>"; };
 		FC48D58C272AF18900AFC1BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Onboarding/OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -287,6 +297,7 @@
 		FC1C80602714B223005185D6 /* Auctix */ = {
 			isa = PBXGroup;
 			children = (
+				FC1D7B25276642EC0078BAF9 /* Circular Loading Indicator */,
 				04764D0C2733CC680094114C /* Login */,
 				2039BA97272AD3D700AD1A19 /* Extensions */,
 				208FC9EE272AC4C000FEB6B8 /* Onboarding */,
@@ -338,6 +349,18 @@
 				FC1D7B21276236540078BAF9 /* SearchCell.swift */,
 			);
 			path = TableSearch;
+			sourceTree = "<group>";
+		};
+		FC1D7B25276642EC0078BAF9 /* Circular Loading Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				FC1D7B262766431A0078BAF9 /* ProgressView.swift */,
+				FC1D7B28276643420078BAF9 /* ProgressShapeLayer.swift */,
+				FC1D7B2A276643900078BAF9 /* StrokeAnimation.swift */,
+				FC1D7B2C27664C080078BAF9 /* RotationAnimation.swift */,
+				FC1D7B2E27664C6F0078BAF9 /* StrokeColorAnimation.swift */,
+			);
+			path = "Circular Loading Indicator";
 			sourceTree = "<group>";
 		};
 		FC5EB4BF271B395E000EA4C1 /* Fonts */ = {
@@ -648,11 +671,14 @@
 				04764CBC272C2B2F0094114C /* SettingTableViewCell.swift in Sources */,
 				FC1D7B22276236540078BAF9 /* SearchCell.swift in Sources */,
 				FC7428D12736AA1D0005C2C3 /* CustomAlert.swift in Sources */,
+				FC1D7B2F27664C6F0078BAF9 /* StrokeColorAnimation.swift in Sources */,
 				FC1D7B20276236020078BAF9 /* TableSearchTableViewController.swift in Sources */,
 				20672A6E2756545100CE2F67 /* ListPresenter.swift in Sources */,
 				04764CC0272C2B6F0094114C /* Data.swift in Sources */,
+				FC1D7B2D27664C080078BAF9 /* RotationAnimation.swift in Sources */,
 				FCA9E189274189AE005C42B2 /* UserModel.swift in Sources */,
 				FCAD16BD272969E6009140BF /* ProductViewController.swift in Sources */,
+				FC1D7B272766431A0078BAF9 /* ProgressView.swift in Sources */,
 				FCAD16AC27254FF6009140BF /* TableProductsController.swift in Sources */,
 				04764D162733CD130094114C /* ResetPasswordController.swift in Sources */,
 				20672A732756767100CE2F67 /* ListBuilder.swift in Sources */,
@@ -681,6 +707,7 @@
 				04764D182733CD330094114C /* CustomTextField.swift in Sources */,
 				208FC9F7272AC64800FEB6B8 /* ExhibitionTableViewCell.swift in Sources */,
 				20115FC1275A92D800A1A8DC /* ListRouter.swift in Sources */,
+				FC1D7B29276643420078BAF9 /* ProgressShapeLayer.swift in Sources */,
 				FCA9E17D273FBEFF005C42B2 /* ViewNoProducts.swift in Sources */,
 				FCAD16B12725502C009140BF /* ProductCell.swift in Sources */,
 				04764D102733CCA40094114C /* Extentions.swift in Sources */,
@@ -688,6 +715,7 @@
 				FC1C80622714B223005185D6 /* AppDelegate.swift in Sources */,
 				2039BA99272AD3F800AD1A19 /* File.swift in Sources */,
 				FCFCE7CB271C128D00A59AA0 /* Ext+UIColor.swift in Sources */,
+				FC1D7B2B276643900078BAF9 /* StrokeAnimation.swift in Sources */,
 				04764D1A2733CD4A0094114C /* AuthButton.swift in Sources */,
 				FC1C80642714B223005185D6 /* SceneDelegate.swift in Sources */,
 				2053404B27385DF400B9008B /* CollectionModel.swift in Sources */,

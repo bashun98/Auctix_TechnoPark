@@ -47,6 +47,14 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
     weak var delegateSupport: GoFuncSupport?
     weak var delegateChangePhoto: GoChangePhoto?
     weak var delegatePhoto: GoUserPhoto?
+    
+    let loadingIndicator: ProgressView = {
+            let progress = ProgressView(colors: [.red, .systemGreen, .systemBlue], lineWidth: 5)
+            progress.translatesAutoresizingMaskIntoConstraints = false
+            return progress
+        }()
+    
+    
     private var products: [Product] = []
     private var productsNew: [Product] = []
     private var flag: Int?
@@ -91,18 +99,29 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
         return collection
     }()
     
-    var models = [Section]()
+    private var models = [Section]()
     private let model: CollectionLikedModelDescription = CollectionLikedModel()
-    var image = UIImageView()
-    var userNameTitle = UILabel()
-    var emailVerificaionTitle = UILabel()
-    let appearance = UINavigationBarAppearance()
-    let viewAuth = ViewAuth()
+    private var imageView = UIImageView()
+    var imageViewTest: UIImageView?
+    {
+        didSet {
+            self.viewWithTag(35)?.removeFromSuperview()
+        }
+    }
+    private var userNameTitle = UILabel()
+    private var emailVerificaionTitle = UILabel()
+    private let appearance = UINavigationBarAppearance()
+    private let viewAuth = ViewAuth()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupModel()
         setupAccView()
+        
+        
+        
+
+
     }
     required init?(coder: NSCoder) {
         super .init(coder: coder)
@@ -120,7 +139,10 @@ class ViewAccount: UIView, UITableViewDelegate, UITableViewDataSource {
         setupNavigationTitle()
         
         setupImage()
-        addSubview(image)
+        addSubview(imageView)
+        
+        imageView.addSubview(loadingIndicator)
+        loadingIndicator.tag = 35
         
         setupUserNameLabel()
         addSubview(userNameTitle)
@@ -176,10 +198,19 @@ extension ViewAccount {
     //MARK: настраиваем изображение аккаунта
     func setupImage(){
         addPhoto()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.width/3)
-        image.makeRounded()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.width/3)
+        imageView.makeRounded()
     }
+    
+    public func setImage(_ image: UIImage) {
+        imageView.image = image
+    }
+    
+    public func getImage() -> UIImage {
+        return imageView.image ?? #imageLiteral(resourceName: "UserDefault")
+    }
+    
     //MARK: настраиваем табличное отображение настроек
     func setupTable(){
         configure()
@@ -251,16 +282,16 @@ extension ViewAccount {
         var constraints = [NSLayoutConstraint]()
         //add
         
-        constraints.append(image.leadingAnchor.constraint(
+        constraints.append(imageView.leadingAnchor.constraint(
             equalTo: leadingAnchor, constant: UIScreen.main.bounds.width/3))
-        constraints.append(image.trailingAnchor.constraint(
+        constraints.append(imageView.trailingAnchor.constraint(
             equalTo: trailingAnchor, constant: -UIScreen.main.bounds.width/3))
-        constraints.append(image.bottomAnchor.constraint(
+        constraints.append(imageView.bottomAnchor.constraint(
             equalTo: safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.width/3))
-        constraints.append(image.topAnchor.constraint(
+        constraints.append(imageView.topAnchor.constraint(
             equalTo: safeAreaLayoutGuide.topAnchor))
  
-        constraints.append(userNameTitle.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10))
+        constraints.append(userNameTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10))
         constraints.append(userNameTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor))
         constraints.append(userNameTitle.trailingAnchor.constraint(equalTo: trailingAnchor))
         
@@ -287,6 +318,11 @@ extension ViewAccount {
         
         //constraints.append(collectionView.topAnchor.constraint(equalTo: bottomAnchor, constant: -10))
       
+        constraints.append(loadingIndicator.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 47))
+        constraints.append(loadingIndicator.trailingAnchor.constraint(equalTo: imageView.trailingAnchor,constant: -47))
+        constraints.append(loadingIndicator.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -47))
+        constraints.append(loadingIndicator.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 47))
+        
         //Activate
         NSLayoutConstraint.activate(constraints)
     }
