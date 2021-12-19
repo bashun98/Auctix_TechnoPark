@@ -12,7 +12,7 @@
 
 Некоторые подробные экраны:
 
-![](https://s1.hostingkartinok.com/uploads/images/2021/12/c3304a8aed84c3dad2a4d1086316803a.jpg)
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/e4670b2cddc2919adbd0d0cc04ebd8df.jpg)
 ![](https://s1.hostingkartinok.com/uploads/images/2021/12/ee81288203e34f9cf1fcc02fa46864a2.jpg)
 ![](https://s1.hostingkartinok.com/uploads/images/2021/12/ff45827399b8905d7214d071cc725122.jpg)
 
