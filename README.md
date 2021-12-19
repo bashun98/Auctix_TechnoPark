@@ -6,7 +6,9 @@
 Вы сможете покупать и перекупать товары, которые вам понравились.
 
 ![](https://s1.hostingkartinok.com/uploads/images/2021/12/ee81288203e34f9cf1fcc02fa46864a2.jpg)
-
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/ee81288203e34f9cf1fcc02fa46864a2.jpg)
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/ee81288203e34f9cf1fcc02fa46864a2.jpg)
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/ee81288203e34f9cf1fcc02fa46864a2.jpg)
 
 Used:
 * MVP(местами MVC)
