@@ -23,6 +23,7 @@
 Used:
 * MVP
 * Firebase
+* No storyboards
 
 Создано командой:
 * Башун Евгений
