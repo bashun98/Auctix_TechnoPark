@@ -10,6 +10,15 @@
 ![](https://s1.hostingkartinok.com/uploads/images/2021/12/99b8d5140adc0429280e214b99bda245.jpg)
 ![](https://s1.hostingkartinok.com/uploads/images/2021/12/3ed82ffcd9a051e6b0f7a808322df56f.jpg)
 
+Некоторые подробные экраны:
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/c3304a8aed84c3dad2a4d1086316803a.jpg)
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/ee81288203e34f9cf1fcc02fa46864a2.jpg)
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/ff45827399b8905d7214d071cc725122.jpg)
+
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/169bced6a0ed96d0c3eee0f0118f6f77.jpg)
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/591769234af0eb01f535b4398ee0ce87.jpg)
+![](https://s1.hostingkartinok.com/uploads/images/2021/12/ecbefa43faa74e55c4e31a4b35a61124.jpg)
+
 Used:
 * MVP(местами MVC)
 * Firebase
