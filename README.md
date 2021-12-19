@@ -21,7 +21,7 @@
 ![](https://s1.hostingkartinok.com/uploads/images/2021/12/ecbefa43faa74e55c4e31a4b35a61124.jpg)
 
 Used:
-* MVP(местами MVC)
+* MVP
 * Firebase
 
 Создано командой:
